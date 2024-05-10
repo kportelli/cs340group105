@@ -1,0 +1,142 @@
+<html>
+    <head>
+        <title>Gardens</title>
+        <link rel="stylesheet" href="./styles/main.css">
+    </head>
+    <body>
+        <h1>Growing Our Community</h1>
+        <!-- Add nav bar -->
+        <div id="nav-bar">
+            <div>
+                <span><a href="index.html">Home</a></span>|
+                <span><a href="gardens.html">Gardens</a></span>|
+                <span><a href="plots.html">Plots</a></span>|
+                <span><a href="gardeners.html">Gardeners</a></span>|
+                <span><a href="invoices.html">Invoices</a></span>|
+                <span><a href="plants.html">Plants</a></span>
+            </div>
+        </div>
+        <br>
+        <button>Show all Gardens</button>
+        <div>
+            <table>
+            <thead>
+                <tr>
+                <th>Garden ID</th>
+                <th>Garden Name</th>
+                <th>Street Address</th>
+                <th>City</th>
+                <th>Zip Code</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                <td>1</td>
+                <td>New Beginnings</td>
+                <td>456 E Forest St.</td>
+                <td>Portland</td>
+                <td>12345</td>
+                </tr>
+                <tr>
+                <td>2</td>
+                <td>Dirt Patch</td>
+                <td>10 S Desert Pkwy.</td>
+                <td>Denver</td>
+                <td>99801</td>
+                </tr>
+            </tbody>
+            </table>
+            <br>
+        </div>
+
+        <h2>Add a Garden</h2>
+        <div>
+            <div class="form-container">
+            <form>
+                <label for="garden-name">Garden Name:</label>
+                <input type="text" id="garden-name" name="garden-name" required>
+                <br>
+                <label for="garden-streetAddress">Garden Street Address:</label>
+                <input type="text" id="garden-streetAddress" name="garden-streetAddress" required>
+                <br>
+                <label for="garden-city">Garden City:</label>
+                <input type="text" id="garden-city" name="garden-city" required>
+                <br>
+                <label for="garden-zipCode">Garden Zip Code:</label>
+                <input type="text" id="garden-zipCode" name="garden-zipCode" required>
+                <br>
+                <input type="submit" value="Add Garden">
+            </form>
+            </div>
+        </div>
+        <br>
+        <h2>Update a Garden</h2>
+        <div>
+            <div class="form-container">
+            <form>
+                <label for="garden-id">Garden ID:</label>
+                <input type="number" id="garden-id" name="garden-id" required>
+                <br>
+                <label for="garden-name">Garden Name:</label>
+                <input type="text" id="garden-name" name="garden-name" required>
+                <br>
+                <label for="garden-streetAddress">Garden Street Address:</label>
+                <input type="text" id="garden-streetAddress" name="garden-streetAddress" required>
+                <br>
+                <label for="garden-city">Garden City:</label>
+                <input type="text" id="garden-city" name="garden-city" required>
+                <br>
+                <label for="garden-zipCode">Garden Zip Code:</label>
+                <input type="text" id="garden-zipCode" name="garden-zipCode" required>
+                <br>
+                <input type="submit" value="Update Garden">
+            </form>
+            </div>
+        </div>
+        <br>
+
+        <h2>Find Plots by Garden ID</h2>
+        <div>
+            <table>
+            <thead>
+                <tr>
+                <th>Garden ID</th>
+                <th>Plot ID</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                <td></td>
+                <td></td>
+                </tr>
+            </tbody>
+            </table>
+            <br>
+        </div>
+        
+        <div>
+            <div class="form-container">
+            <form>
+                <label for="garden-id">Garden ID:</label>
+                <input type="number" id="garden-id" name="garden-id" required>
+                <br>
+               
+                <input type="submit" value="Show Plots">
+            </form>
+            </div>
+        </div>
+        <br>
+        <h2>Delete a Garden</h2>
+        <div>
+            <div class="form-container">
+            <form>
+                <label for="garden-id">Garden ID:</label>
+                <input type="number" id="garden-id" name="garden-id" required>
+                <br>
+                <input type="submit" value="Delete Garden"> 
+                <!-- Needs to delete all referenced entities (plots) -->
+            </form>
+            </div>
+        </div>
+    </body>
+</html>

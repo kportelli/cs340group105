@@ -1,0 +1,19 @@
+/* Outline all forms */
+form {
+    outline: 1px solid black;
+}
+
+/* Add lines to each row and column of an HTML table */
+table {
+    border-collapse: collapse;
+}
+
+table td,
+table th {
+    border: 1px solid black;
+    padding: 8px;
+}
+
+.form-table{
+    outline: 1px solid black;
+}
