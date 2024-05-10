@@ -1,23 +1,99 @@
 <html>
-    <head>
-        <title>Invoices</title>
-        <link rel="stylesheet" href="./styles/main.css">
-    </head>
-    <body>
-        <h1>Growing Our Community</h1>
-        <!-- Add nav bar -->
-        <div id="nav-bar">
-            <div>
-                <span><a href="index.html">Home</a></span>|
-                <span><a href="gardens.html">Gardens</a></span>|
-                <span><a href="plots.html">Plots</a></span>|
-                <span><a href="gardeners.html">Gardeners</a></span>|
-                <span><a href="invoices.html">Invoices</a></span>|
-                <span><a href="plants.html">Plants</a></span>
-            </div>
-            <div>
-            </div>
-            
+
+<head>
+    <title>Invoices</title>
+    <link rel="stylesheet" href="./styles/main.css">
+</head>
+
+<body>
+    <h1>Growing Our Community</h1>
+    <!-- Add nav bar -->
+    <div id="nav-bar">
+        <div>
+            <span><a href="index.html">Home</a></span>|
+            <span><a href="gardens.html">Gardens</a></span>|
+            <span><a href="plots.html">Plots</a></span>|
+            <span><a href="gardeners.html">Gardeners</a></span>|
+            <span><a href="invoices.html">Invoices</a></span>|
+            <span><a href="plants.html">Plants</a></span>
         </div>
-    </body>
+        <br>
+        <button>Show all Invoices</button>
+        <div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Invoice ID</th>
+                        <th>Gardener ID</th>
+                        <th>Total Cost</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>1</td>
+                        <td>$120.00</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>2</td>
+                        <td>$75.50</td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td></td>
+                        <td>$150.25</td>
+                    </tr>
+                </tbody>
+            </table>
+            <br>
+        </div>
+
+        <h2>Add an Invoice</h2>
+        <div>
+            <div class="form-container">
+                <form>
+                    <label for="invoice-gardener-ID">Gardener ID:</label>
+                    <input type="text" id="invoice-gardener-ID" name="invoice-gardener-IDe" required>
+                    <br>
+                    <label for="plant-total-cost">Total Cost:</label>
+                    <input type="text" id="plant-total-cost" name="plant-total-cost" required>
+                    <br>
+                    <input type="submit" value="Add Invoice">
+                </form>
+            </div>
+        </div>
+        <br>
+        <h2>Update an Invoice</h2>
+        <div>
+            <div class="form-container">
+                <form>
+                    <label for="invoice-id">Invoice ID:</label>
+                    <input type="number" id="invoice-id" name="invoice-id" required>
+                    <br>
+                    <label for="plant-total-cost">Total Cost:</label>
+                    <input type="text" id="plant-total-cost" name="plant-total-cost" required>
+                    <br>
+                    <input type="submit" value="Update Invoice">
+                </form>
+            </div>
+        </div>
+        <br>
+
+
+        <h2>Delete an Invoice</h2>
+        <div>
+            <div class="form-container">
+                <form>
+                    <label for="invoice-id">Invoice ID:</label>
+                    <input type="number" id=invoice-id" name="invoice-id" required>
+                    <br>
+                    <input type="submit" value="Delete Invoice">
+                </form>
+            </div>
+        </div>
+</body>
+
+</html>>
+
 </html>
