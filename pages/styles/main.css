@@ -13,3 +13,7 @@ table th {
     border: 1px solid black;
     padding: 8px;
 }
+
+.form-table{
+    outline: 1px solid black;
+}
