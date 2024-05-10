@@ -47,6 +47,9 @@ INNER JOIN PlantsPlots ON PlotsGardeners.plotID = PlantsPlots.plotID
 INNER JOIN Plants ON PlantsPlots.plantID = Plants.plantID
 WHERE Gardeners.gardenerID = :gardenerID;
 
+-- -- -- get all gardeners in special form for dropdown in order to select all plants a gardener is responsible for
+SELECT gardenerID, fname, lname FROM Gardeners
+
 -- -- -- get a list of all invoices belonging to a gardener
 SELECT invoiceID, gardenerID, totalCost FROM Invoices WHERE gardenerID = :gardenerID
 
