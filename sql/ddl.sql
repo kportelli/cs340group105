@@ -57,3 +57,29 @@ UPDATE Gardeners SET fname = :fname, lname = :lname, streetAddress = :streetAddr
 DELETE FROM Gardeners WHERE gardenerID = :gardenerID
 -- -- -- -- update Gardener's invoices to show GardenerID as NULL
 UPDATE Invoices SET gardenerID = NULL WHERE gardenerID = :gardenerID
+
+-- Plants
+-- -- -- add a new Plant into Plants table
+INSERT INTO plants (varietyName, type, price) VALUES (:varietyName, :type, :price)
+
+-- -- -- view all plants
+SELECT plantID, varietyName, type FROM gardens
+
+-- -- -- update a plant's attributes based on provided plantID
+UPDATE plants SET varietyName = :varietyName, type = :type, price = :price WHERE plantID = :plantID
+
+-- -- -- delete a plant based on provided plantID 
+DELETE FROM plants WHERE plantID = :plantID
+
+-- Invoices
+-- -- -- add a new Invoice into Invoices table
+INSERT INTO invoices (gardenerID, totalCost) VALUES (:gardenerID, :type, :totalCost)
+
+-- -- -- view all Invoices
+SELECT invoiceID, gardenerID, totalCost FROM invoices
+
+-- -- -- update an invoice's attributes based on provided invoiceID
+UPDATE invoices SET gardenerID = :gardenerID, totalCost = :totalCost WHERE invoiceID = :invoiceID
+
+-- -- -- delete an invoice based on provided invoiceID 
+DELETE FROM invoices WHERE invoiceID = :invoiceID
