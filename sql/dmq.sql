@@ -84,16 +84,15 @@ INSERT INTO invoiceDetails (plantID, invoiceID, price, quantity, lineTotal) VALU
 --price should be pulled from Plants by plantID
 -- lineTotal should be price * quantity
 
--- -- -- update an InvoiceDetail's attributes based on provided ??
-UPDATE invoices SET gardenerID = :gardenerID, totalCost = :totalCost WHERE invoiceID = :invoiceID
+-- -- -- update an InvoiceDetail's attributes by ID
+UPDATE invoiceDetails SET plantID = :plantID, invoiceID = :invoiceID WHERE invoiceID = :invoiceID
 
--- -- -- delete an invoice based on provided invoiceID
---- cascade to Invoices 
-DELETE FROM invoices WHERE invoiceID = :invoiceID
+-- -- -- delete an InvoiceDetails row
+DELETE FROM invoiceDetails WHERE invoiceDetailsID = :invoiceDetailsID
 
 -- Invoices
 -- -- -- add a new Invoice into Invoices table
-INSERT INTO invoices (gardenerID, totalCost) VALUES (:gardenerID, :type, :totalCost)
+INSERT INTO invoices (gardenerID, totalCost) VALUES (:gardenerID, :totalCost)
 
 -- -- -- view all Invoices
 SELECT invoiceID, gardenerID, totalCost FROM invoices
