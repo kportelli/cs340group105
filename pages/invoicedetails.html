@@ -20,8 +20,14 @@
             <span><a href="plants.html">Plants</a></span>
         </div>
     </div>
+    <div>
+        <br>
+        <!--READ/SELECT-->
         <button>Show all InvoiceDetails records</button>
+        <br>
+        <br>
         <div>
+            <!-- static table-->
             <table>
                 <thead>
                     <tr>
@@ -76,17 +82,58 @@
                     </tr>
                 </tbody>
             </table>
-            <br>
-            <br>
         </div>
         <br>
+
+        <!-- -- Sample syntax for READ/SELECT sql:
+            get all characters and their homeworld name for the browse People page
+            SELECT bsg_people.id, fname, lname, bsg_planets.name AS homeworld, age 
+            FROM bsg_people 
+            INNER JOIN bsg_planets 
+            ON homeworld = bsg_planets.id-->
+
+        <!--CREATE/INSERT-->
         <h2>Add an InvoiceDetails item</h2>
         <div>
             <div class="form-container">
                 <form>
-                    <label for="invoice-gardener-ID">Gardener ID:</label>
-                    <input type="text" id="invoice-gardener-ID" name="invoice-gardener-IDe" required>
+
+                    <!--plantVariety input field -->
+                    <label> plantVariety </label> <select name="plantID">
+                        <!--static dropdown menu: values correspond to plantID,
+                        plantID inserted-->
+                        <option value="Choose a plant" selected>&nbsp;</option>
+                        <option value="1">Red Roses</option>
+                        <option value="2">Tulips</option>
+                        <option value="3">Carrots</option>
+                    </select>
                     <br>
+
+                    <!--invoiceID input field -->
+                    <!--static dropdown menu: user selects last name,
+                        first name list updates, user selects first name, 
+                        gardenerID is found which matches that firstName & lastName,
+                        invoiceID which matches gardenerID is inserted, or if 
+                        that Gardener does not yet have an invoiceID, a new
+                        Invoice is created-->
+                    <label> Gardener firstName </label> <select name="firstName">
+                        <option value="Choose a firstName" selected>&nbsp;</option>
+                        <option value="1">Joe</option>
+                        <option value="2">Alice</option>
+                        <option value="3">Carol</option>
+                    </select>
+                    <br>
+
+
+                    <label> Gardener lastName </label> <select name="lastName">
+                        <option value="Choose a lastName" selected>&nbsp;</option>
+                        <option value="1">Schmoe</option>
+                        <option value="2">Smith</option>
+                        <option value="3">White</option>
+                    </select>
+                    <br>
+
+
                     <label for="plant-total-cost">Total Cost:</label>
                     <input type="text" id="plant-total-cost" name="plant-total-cost" required>
                     <br>
@@ -95,6 +142,8 @@
             </div>
         </div>
         <br>
+
+        <!--UPDATE-->
         <h2>Update an InvoiceDetails item</h2>
         <div>
             <div class="form-container">
@@ -110,6 +159,31 @@
             </div>
         </div>
         <br>
+
+        <!-- example SQL syntax to populate dropdown menu
+     -- get all Planet IDs and Names to populate the Homeworld dropdown
+        SELECT planet_id, name FROM bsg_planets -->
+
+        <!-- example syntax for static dropdown
+                <label> Homeworld </label> <select name="homeworld">
+            	<option value="0">&nbsp;</option>
+                <option value="1" selected>Gemenon</option>
+                <option value="2">Leonis</option>
+                <option value="3">Caprica</option>
+                </select>-->
+
+        <!-- example SQL syntax for inserting new form values into table
+                    -- add a new character
+                    INSERT INTO bsg_people (fname, lname, homeworld, age) 
+                    VALUES (:fnameInput, :lnameInput, :homeworld_id_from_dropdown_Input, :ageInput)
+                    
+                    Here, :fnameInput is a way to denote
+                    the variable that will have the value of Name in it,
+                    when the NodeJS code processes it. 
+                    Again, you can choose any such way of denoting these variables.-->
+
+
+        <!--DELETE-->
         <h2>Delete an InvoiceDetails item</h2>
         <div>
             <div class="form-container">
