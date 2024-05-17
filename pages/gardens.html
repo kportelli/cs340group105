@@ -103,7 +103,7 @@
         <div class="form-container">
             <form>
                 <label for="garden-id">Garden ID:</label>
-                <input type="number" id="garden-id" name="garden-id" required>
+                <input type="number" min="1" max="2" id="garden-id" name="garden-id" required>
                 <br>
                 <input type="submit" value="Delete Garden">
                 <!-- Needs to delete all referenced entities (plots) -->
