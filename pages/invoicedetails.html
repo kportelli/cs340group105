@@ -99,7 +99,7 @@
                 <form>
 
                     <!--plantVariety input field -->
-                    <label> plantVariety </label> <select name="plantID">
+                    <label> plantVariety: </label> <select name="plantID">
                         <!--static dropdown menu: values correspond to plantID,
                         plantID inserted-->
                         <option value="Choose a plant" selected>&nbsp;</option>
@@ -116,16 +116,14 @@
                         invoiceID which matches gardenerID is inserted, or if 
                         that Gardener does not yet have an invoiceID, a new
                         Invoice is created-->
-                    <label> Gardener firstName </label> <select name="firstName">
+                    <label> Gardener firstName: </label> <select name="firstName">
                         <option value="Choose a firstName" selected>&nbsp;</option>
                         <option value="1">Joe</option>
                         <option value="2">Alice</option>
                         <option value="3">Carol</option>
                     </select>
                     <br>
-
-
-                    <label> Gardener lastName </label> <select name="lastName">
+                    <label> Gardener lastName: </label> <select name="lastName">
                         <option value="Choose a lastName" selected>&nbsp;</option>
                         <option value="1">Schmoe</option>
                         <option value="2">Smith</option>
@@ -133,11 +131,23 @@
                     </select>
                     <br>
 
-
-                    <label for="plant-total-cost">Total Cost:</label>
-                    <input type="text" id="plant-total-cost" name="plant-total-cost" required>
+                    <!--Price will be populated by query, here it is static-->
+                    <label> Price: </label> <select name="price">
+                        <option value="Choose a lastName" selected>&nbsp;</option>
+                        <option value="1">$10.50</option>
+                        <option value="2">$5.00</option>
+                        <option value="3">$20.00</option>
+                    </select>
                     <br>
-                    <input type="submit" value="Add Invoice">
+
+                    <!--Plant quantity input field -->
+                    <label for="quantity">Quantity:</label>
+                    <input type="text" id="quantity" name="quantity" required>
+                    <br>
+                    <input type="submit" value="Add InvoiceDetails item">
+
+                    <!--to be filled by query, static for now-->
+                    <label for="quantity">lineTotal = price x quantity </label>
                 </form>
             </div>
         </div>
