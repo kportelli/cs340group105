@@ -13,9 +13,10 @@
             <span><a href="index.html">Home</a></span>|
             <span><a href="gardens.html">Gardens</a></span>|
             <span><a href="plots.html">Plots</a></span>|
-            <span><a href="plantsplots.html">PlantsPlots</a></span>|
+            <span><a href="plantsplots.html">Plants Plots</a></span>|
+            <span><a href="gardenersplots.html">Gardeners Plots</a></span>|
             <span><a href="gardeners.html">Gardeners</a></span>|
-            <span><a href="invoicedetails.html">InvoiceDetails</a></span>|
+            <span><a href="invoicedetails.html">Invoice Details</a></span>|
             <span><a href="invoices.html">Invoices</a></span>|
             <span><a href="plants.html">Plants</a></span>
         </div>
@@ -97,7 +98,7 @@
         <div class="form-container">
             <form>
                 <label for="gardener-id">Id:</label>
-                <input type="number" id="gardener-id" name="gardener-id" required>
+                <input type="number" min="1" max="2" id="gardener-id" name="gardener-id" required>
                 <br>
                 <label for="gardener-first-name">First Name:</label>
                 <input type="text" id="gardener-first-name" name="gardener-first-name" required>
@@ -125,104 +126,12 @@
         </div>
     </div>
     <br>
-    <h2>Add a Plant to a Plot</h2>
-    <div class="form-container">
-        <form>
-            <label for="plots-plot-id">Plot ID:</label>
-            <input type="number" id="plots-plot-id" name="plots-plot-id" required>
-            <br>
-            <label for="plots-plant-id">Plant ID:</label>
-            <input type="number" id="plots-plant-id" name="plots-plant-id" required>
-            <br>
-            <input type="submit" value="Add Plant">
-        </form>
-    </div>
-    <br>
-    <br>
-    <div class="form-table">
-        <h2>Get Gardener's Plants</h2>
-        <div>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Gardener ID</th>
-                        <th>Plot ID</th>
-                        <th>Plant ID</th>
-                        <th>Variety Name</th>
-                        <th>Type</th>
-                        <th>Price</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>1</td>
-                        <td>1</td>
-                        <td>Cherry</td>
-                        <td>Tomato</td>
-                        <td>4.98</td>
-                    </tr>
-                </tbody>
-            </table>
-            <br>
-        </div>
-        <div class="form-container">
-            <form>
-                <label for="gardener-id">Gardener ([ID] First Name, Last Name):</label>
-                <select type="text" id="gardener-id" name="gardener-id" required>
-                    <option value="1">[1] Joe Schmoe</option>
-                    <option value="2">[2] Alice Smith</option>
-                </select>
-                <br>
-                <input type="submit" value="Get Plants">
-            </form>
-        </div>
-    </div>
-    <br>
-
-    <div class="form-table">
-        <h2>Get Gardener's Invoices</h2>
-        <div>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Gardener ID</th>
-                        <th>Invoice ID</th>
-                        <th>Total Cost</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>1</td>
-                        <td>$120.00</td>
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td>2</td>
-                        <td>$65.49</td>
-                    </tr>
-                </tbody>
-            </table>
-            <br>
-        </div>
-        <div class="form-container">
-            <form>
-                <label for="gardener-id">Gardener ID:</label>
-                <input type="number" id="gardener-id" name="gardener-id" required>
-                <br>
-                <input type="submit" value="Get Invoices">
-            </form>
-        </div>
-    </div>
-
-    <br>
     <h2>Remove a Gardener</h2>
     <div>
         <div class="form-container">
             <form>
                 <label for="gardener-id">Gardener ID:</label>
-                <input type="number" id="gardener-id" name="gardener-id" required>
+                <input type="number" max="2" min="1" id="gardener-id" name="gardener-id" required>
                 <br>
                 <input type="submit" value="Remove Gardener">
                 <!-- Needs to delete all referenced entities -->
@@ -233,5 +142,4 @@
     </div>
     </div>
 </body>
-
 </html>

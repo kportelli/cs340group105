@@ -22,42 +22,46 @@
         </div>
     </div>
     <br>
-    <button>Show Plants Plots</button>
+    <button>Show Gardeners Plots</button>
     <div>
         <table>
             <thead>
                 <tr>
                     <th>ID</th>
                     <th>Plot ID</th>
-                    <th>Plant Type</th>
-                    <th>Plant Variety</th>
+                    <th>Gardnener ID</th>
+                    <th>Gardener First Name</th>
+                    <th>Gardener Last Name</th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
                     <td>1</td>
                     <td>1</td>
-                    <td>Flower</td>
-                    <td>Red Roses</td>
+                    <td>1</td>
+                    <td>Joe</td>
+                    <td>Schmoe</td>
                 </tr>
                 <tr>
                     <td>2</td>
+                    <td>1</td>
                     <td>2</td>
-                    <td>Flower</td>
-                    <td>Tulips</td>
+                    <td>Alice</td>
+                    <td>Smith</td>
                 </tr>
                 <tr>
                     <td>3</td>
+                    <td>2</td>
                     <td>1</td>
-                    <td>Vegetable</td>
-                    <td>Carrots</td>
+                    <td>Joe</td>
+                    <td>Schmoe</td>
                 </tr>
             </tbody>
         </table>
         <br>
     </div>
     <br>
-    <h2>Add a Plant Plot</h2>
+    <h2>Add Gardener Plot</h2>
     <div class="form-container">
         <form>
             <label for="plant-plots-plot">Plot</label>
@@ -69,11 +73,10 @@
                 </select>
 
             <br>
-            <label for="plant-plots-plant">Plant</label>
-            <select type="text" id="plant-plots-plant" name="plant-plots-plant" required>
-                <option value="1">[1] Red Roses, Flower</option>
-                <option value="2">[2] Tulips, Flower</option>
-                <option value="3">[3] Carrots, Vegetable</option>
+            <label for="gardener-plots-gardener">Gardener</label>
+            <select type="text" id="gardener-plots-gardener" name="gardener-plots-gardener" required>
+                <option value="1">[1] Joe Schmoe</option>
+                <option value="2">[2] Alice Smith</option>
             </select>
             <br>
             <input type="submit" value="Add">
@@ -82,11 +85,11 @@
     <br>
 
     <br>
-    <h2>Delete a Plant Plot</h2>
+    <h2>Delete Gardener Plot</h2>
     <div>
         <div class="form-container">
             <form>
-                <label for="plot-id">PlantPlot ID:</label>
+                <label for="plot-id">GardenerPlot ID:</label>
                 <input type="number" min="1" max="3" id="plot-id" name="plot-id" required>
                 <br>
                 <input type="submit" value="Remove">
