@@ -31,12 +31,12 @@
             <table>
                 <thead>
                     <tr>
-                        <th>invoiceDetailID</th>
-                        <th>plantID</th>
-                        <th>invoiceID</th>
-                        <th>price</th>
-                        <th>quantity</th>
-                        <th>lineTotal</th>
+                        <th>Invoice Detail ID</th>
+                        <th>Plant ID</th>
+                        <th>Invoice ID</th>
+                        <th>Price</th>
+                        <th>Quantity</th>
+                        <th>Line Total</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -85,12 +85,6 @@
         </div>
         <br>
 
-        <!-- -- Sample syntax for READ/SELECT sql:
-            get all characters and their homeworld name for the browse People page
-            SELECT bsg_people.id, fname, lname, bsg_planets.name AS homeworld, age 
-            FROM bsg_people 
-            INNER JOIN bsg_planets 
-            ON homeworld = bsg_planets.id-->
 
         <!--CREATE/INSERT-->
         <h2>Add an InvoiceDetails item</h2>
@@ -99,7 +93,7 @@
                 <form>
 
                     <!--plantVariety input field -->
-                    <label> plantVariety: </label> <select name="plantID">
+                    <label> Plant Name: </label> <select name="plant-id">
                         <!--static dropdown menu: values correspond to plantID,
                         plantID inserted-->
                         <option value="Choose a plant" selected>&nbsp;</option>
@@ -110,30 +104,19 @@
                     <br>
 
                     <!--invoiceID input field -->
-                    <!--static dropdown menu: user selects last name,
-                        first name list updates, user selects first name, 
-                        gardenerID is found which matches that firstName & lastName,
-                        invoiceID which matches gardenerID is inserted, or if 
-                        that Gardener does not yet have an invoiceID, a new
-                        Invoice is created-->
-                    <label> Gardener firstName: </label> <select name="firstName">
-                        <option value="Choose a firstName" selected>&nbsp;</option>
-                        <option value="1">Joe</option>
-                        <option value="2">Alice</option>
-                        <option value="3">Carol</option>
-                    </select>
-                    <br>
-                    <label> Gardener lastName: </label> <select name="lastName">
-                        <option value="Choose a lastName" selected>&nbsp;</option>
-                        <option value="1">Schmoe</option>
-                        <option value="2">Smith</option>
-                        <option value="3">White</option>
+                    <!--static dropdown menu: "Many teams have just used the ID values as dropdown list labels. 
+                        While this is not user-friendly, there are no rubric criteria that state that you cannot do this."-->
+                    <label> Invoice ID: </label> <select name="invoice-id">
+                        <option value="Choose an Invoice ID" selected>&nbsp;</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
                     </select>
                     <br>
 
                     <!--Price will be populated by query, here it is static-->
                     <label> Price: </label> <select name="price">
-                        <option value="Choose a lastName" selected>&nbsp;</option>
+                        <option value="Choose a price" selected>&nbsp;</option>
                         <option value="1">$10.50</option>
                         <option value="2">$5.00</option>
                         <option value="3">$20.00</option>
@@ -144,10 +127,14 @@
                     <label for="quantity">Quantity:</label>
                     <input type="text" id="quantity" name="quantity" required>
                     <br>
-                    <input type="submit" value="Add InvoiceDetails item">
 
                     <!--to be filled by query, static for now-->
                     <label for="quantity">lineTotal = price x quantity </label>
+                    <br>
+
+                    <!--submit button-->
+                    <input type="submit" value="Add InvoiceDetails item">
+
                 </form>
             </div>
         </div>
@@ -158,40 +145,48 @@
         <div>
             <div class="form-container">
                 <form>
-                    <label for="invoice-id">Invoice ID:</label>
-                    <input type="number" id="invoice-id" name="invoice-id" required>
+                    <!--InvoiceDetails ID input field-->
+                    <label> Invoice Details ID: </label> <select name="invoice-details-id">
+                        <option value="Choose an Invoice Details ID" selected>&nbsp;</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                    </select>
                     <br>
-                    <label for="plant-total-cost">Total Cost:</label>
-                    <input type="text" id="plant-total-cost" name="plant-total-cost" required>
+                    <label> Plant Name: </label> <select name="plant-id">
+                        <!--static dropdown menu: values correspond to plantID,
+                        plantID inserted-->
+                        <option value="Choose a plant" selected>&nbsp;</option>
+                        <option value="1">Red Roses</option>
+                        <option value="2">Tulips</option>
+                        <option value="3">Carrots</option>
+                    </select>
                     <br>
+
+                    <!--Invoice ID input field-->
+                    <label> Invoice ID: </label> <select name="invoice-id">
+                        <option value="Choose an Invoice ID" selected>&nbsp;</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                    </select>
+                    <br>
+
+                    <!--Plant quantity input field -->
+                    <label for="quantity">Quantity:</label>
+                    <input type="text" id="quantity" name="quantity" required>
+                    <br>
+
+                    <!--line total input field -->
+                    <label for="line-total">Line total::</label>
+                    <input type="text" id="line-total" name="line-total" required>
+                    <br>
+
                     <input type="submit" value="Update Invoice">
                 </form>
             </div>
         </div>
         <br>
-
-        <!-- example SQL syntax to populate dropdown menu
-     -- get all Planet IDs and Names to populate the Homeworld dropdown
-        SELECT planet_id, name FROM bsg_planets -->
-
-        <!-- example syntax for static dropdown
-                <label> Homeworld </label> <select name="homeworld">
-            	<option value="0">&nbsp;</option>
-                <option value="1" selected>Gemenon</option>
-                <option value="2">Leonis</option>
-                <option value="3">Caprica</option>
-                </select>-->
-
-        <!-- example SQL syntax for inserting new form values into table
-                    -- add a new character
-                    INSERT INTO bsg_people (fname, lname, homeworld, age) 
-                    VALUES (:fnameInput, :lnameInput, :homeworld_id_from_dropdown_Input, :ageInput)
-                    
-                    Here, :fnameInput is a way to denote
-                    the variable that will have the value of Name in it,
-                    when the NodeJS code processes it. 
-                    Again, you can choose any such way of denoting these variables.-->
-
 
         <!--DELETE-->
         <h2>Delete an InvoiceDetails item</h2>
