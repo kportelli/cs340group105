@@ -75,11 +75,14 @@ UPDATE plants SET varietyName = :varietyName, type = :type, price = :price WHERE
 DELETE FROM plants WHERE plantID = :plantID
 
 -- InvoiceDetails
--- -- -- add a new InvoiceDetail row into InvoiceDetails table
-INSERT INTO invoices (gardenerID, totalCost) VALUES (:gardenerID, :type, :totalCost)
 
 -- -- -- view all InvoiceDetail rows
-SELECT invoiceID, gardenerID, totalCost FROM invoices
+SELECT InvoiceDetailID, plantID, invoiceID, price, quantity, lineTotal FROM InvoiceDetails
+
+-- -- -- add a new InvoiceDetail row into InvoiceDetails table
+INSERT INTO invoiceDetails (plantID, invoiceID, price, quantity, lineTotal) VALUES (:plantID, :invoiceID, :price, :quantity, :lineTotal)
+--price should be pulled from Plants by plantID
+-- lineTotal should be price * quantity
 
 -- -- -- update an InvoiceDetail's attributes based on provided ??
 UPDATE invoices SET gardenerID = :gardenerID, totalCost = :totalCost WHERE invoiceID = :invoiceID
