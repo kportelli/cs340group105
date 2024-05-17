@@ -56,89 +56,23 @@
     <div>
         <div class="form-container">
             <form>
-                <label for="plots-garden-name">Garden Id:</label>
-                <input type="number" id="plots-garden-id" name="plots-garden-id" required>
+                <label for="plots-garden-name">Garden</label>
+                <select type="text" id="gardener-id" name="gardener-id" required>
+                    <option value="1">[1] New Beginnings</option>
+                    <option value="2">[2] Dirt Patch</option>
+                </select>
                 <br>
                 <input type="submit" value="Add Plot">
             </form>
         </div>
     </div>
     <br>
-    <h2>Add a Plant to a Plot</h2>
-    <div class="form-container">
-        <form>
-            <label for="plots-plot-id">Plot ID:</label>
-            <input type="number" id="plots-plot-id" name="plots-plot-id" required>
-            <br>
-            <label for="plots-plant-id">Plant ID:</label>
-            <input type="number" id="plots-plant-id" name="plots-plant-id" required>
-            <br>
-            <input type="submit" value="Add Plant">
-        </form>
-    </div>
-    <br>
-    <br>
-    <div class="form-table">
-        <h2>Get Plants in Plot</h2>
-        <div>
-            <table>
-                <thead>
-                    <tr>
-                        <th>plansPlotID</th>
-                        <th>plantID</th>
-                        <th>plotID</th>
-                        <th>varietyName</th>
-                        <th>type</th>
-                        <th>price</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>1</td>
-                        <td>1</td>
-                        <td>Cherry</td>
-                        <td>Tomato</td>
-                        <td>4.98</td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>2</td>
-                        <td>1</td>
-                        <td>Garbanzo</td>
-                        <td>Bean</td>
-                        <td>249.99</td>
-                    </tr>
-                    <tr>
-                        <td>3</td>
-                        <td>1</td>
-                        <td>1</td>
-                        <td>Cherry</td>
-                        <td>Tomato</td>
-                        <td>4.98</td>
-                    </tr>
-                </tbody>
-            </table>
-            <br>
-        </div>
-        <div class="form-container">
-            <form>
-                <label for="plots-plot-id">Plot ID:</label>
-                <input type="number" id="plots-plot-id" name="plots-plot-id" required>
-                <br>
-                <input type="submit" value="Get Plants">
-            </form>
-        </div>
-    </div>
-    <br>
-
-    <br>
-    <h2>Remove a Plant from a Plot</h2>
+    <h2>Delete a Plot</h2>
     <div>
         <div class="form-container">
             <form>
-                <label for="plot-id">PlantPlot ID:</label>
-                <input type="number" id="plot-id" name="plot-id" required>
+                <label for="plot-id">Plot ID:</label>
+                <input type="number" min="1" max="4" id="plot-id" name="plot-id" required>
                 <br>
                 <input type="submit" value="Remove Plant">
                 <!-- Needs to delete all referenced entities (plots) -->
