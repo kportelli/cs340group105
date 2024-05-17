@@ -74,6 +74,20 @@ UPDATE plants SET varietyName = :varietyName, type = :type, price = :price WHERE
 -- -- -- delete a plant based on provided plantID 
 DELETE FROM plants WHERE plantID = :plantID
 
+-- InvoiceDetails
+-- -- -- add a new InvoiceDetail row into InvoiceDetails table
+INSERT INTO invoices (gardenerID, totalCost) VALUES (:gardenerID, :type, :totalCost)
+
+-- -- -- view all InvoiceDetail rows
+SELECT invoiceID, gardenerID, totalCost FROM invoices
+
+-- -- -- update an InvoiceDetail's attributes based on provided ??
+UPDATE invoices SET gardenerID = :gardenerID, totalCost = :totalCost WHERE invoiceID = :invoiceID
+
+-- -- -- delete an invoice based on provided invoiceID
+--- cascade to Invoices 
+DELETE FROM invoices WHERE invoiceID = :invoiceID
+
 -- Invoices
 -- -- -- add a new Invoice into Invoices table
 INSERT INTO invoices (gardenerID, totalCost) VALUES (:gardenerID, :type, :totalCost)
