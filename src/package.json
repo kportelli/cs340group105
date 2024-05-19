@@ -18,6 +18,7 @@
   "homepage": "https://github.com/kportelli/cs340group105#readme",
   "dependencies": {
     "express": "^4.19.2",
-    "forever": "^4.0.3"
+    "forever": "^4.0.3",
+    "mysql": "^2.18.1"
   }
 }
