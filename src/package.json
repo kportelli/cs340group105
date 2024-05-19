@@ -1,0 +1,23 @@
+{
+  "name": "src",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kportelli/cs340group105.git"
+  },
+  "author": "alokbya, kportelli",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kportelli/cs340group105/issues"
+  },
+  "homepage": "https://github.com/kportelli/cs340group105#readme",
+  "dependencies": {
+    "express": "^4.19.2",
+    "forever": "^4.0.3"
+  }
+}
