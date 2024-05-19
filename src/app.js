@@ -22,7 +22,22 @@ app.set('view engine', '.hbs');                 // Tell express to use the handl
 
 app.get('/', function(req, res)
 {
-    res.render('index');                    // Note the call to render() and not send(). Using render() ensures the templating engine
+    let query1 = "SELECT * FROM Plants;";               // Define our query
+    db.pool.query(query1, function(error, rows, fields){    // Execute the query
+
+        res.render('index', {data: rows});                  // Render the index.hbs file, and also send the renderer
+    });
+    // connection.query('SELECT * FROM Plants', (queryErr, results) => {
+    //     connection.release(); // Release the connection back to the pool
+
+    //     if (queryErr) {
+    //         console.error('Error executing query:', queryErr);
+    //         res.status(500).send('Internal Server Error');
+    //         return;
+    //     }
+    //     res.render('index', {data: results});   
+    //     // res.json(results); // Send the query results as a JSON response
+    // });             
 });                                         // will process this file, before sending the finished HTML to the client.                                      // requesting the web site.
 
 
