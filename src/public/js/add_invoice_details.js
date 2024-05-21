@@ -1,5 +1,5 @@
 // Get the objects we need to modify
-let addPlantForm = document.getElementById('add-plant-form-ajax');
+let addInvoiceDetailForm = document.getElementById('add-invocie-details-form-ajax');
 
 // Modify the objects we need
 addPlantForm.addEventListener("submit", function (e) {

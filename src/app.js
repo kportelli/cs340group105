@@ -110,6 +110,53 @@ app.get('/plants', (req, res) => {
 });
 
 
+
+
+// PAGES
+app.get('/pages-index', (req, res) => {
+    res.render('index');
+});
+
+app.get('/pages-gardens', (req, res) => {
+    res.render('gardens');
+});
+
+app.get('/pages-plots', (req, res) => {
+    res.render('plots');
+});
+
+app.get('/pages-plantsplots', (req, res) => {
+    res.render('plantsplots');
+});
+
+app.get('/pages-gardenersplots', (req, res) => {
+    res.render('gardenersplots');
+});
+
+app.get('/pages-gardeners', (req, res) => {
+    res.render('gardeners');
+});
+
+app.get('/pages-invoicedetails', (req, res) => {
+    res.render('invoicedetails');
+});
+
+app.get('/pages-invoices', (req, res) => {
+    res.render('invoices');
+});
+
+app.get('/pages-plants', (req, res) => {
+    let query1 = "SELECT * FROM Plants;";               // Define our query
+    db.pool.query(query1, function(error, rows, fields){    // Execute the query
+
+        res.render('plants', {data: rows});                  // Render the index.hbs file, and also send the renderer
+    });
+    // res.render('plants');
+});
+
+
+
+
 /*
     LISTENER
 */
