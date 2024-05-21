@@ -1,2 +1,129 @@
 <!-- index.hbs -->
 <h1>Gardeners</h1>
+<button>Show all Gardeners</button>
+    <div>
+        <table>
+            <thead>
+                <tr>
+                    <th>Gardener ID</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Street Address</th>
+                    <th>City</th>
+                    <th>Zip Code</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>Joe</td>
+                    <td>Schmoe</td>
+                    <td>555 W Lake Dr.</td>
+                    <td>Portland</td>
+                    <td>97123</td>
+                    <td>joe.schmoe@email.com</td>
+                    <td>504-621-8927</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>Alice</td>
+                    <td>Smith</td>
+                    <td>234 Elm St.</td>
+                    <td>Aurora</td>
+                    <td>80015</td>
+                    <td>alice.smith@email.com</td>
+                    <td>856-636-8749</td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>Carol</td>
+                    <td>White</td>
+                    <td>135 Birch St.</td>
+                    <td>Aurora</td>
+                    <td>80016</td>
+                    <td>carol.white@email.com</td>
+                    <td>856-636-8749</td>
+                </tr>
+            </tbody>
+        </table>
+        <br>
+    </div>
+
+    <h2>Add a Gardener</h2>
+    <div>
+        <div class="form-container">
+            <form>
+                <label for="gardener-first-name">First Name:</label>
+                <input type="text" id="gardener-first-name" name="gardener-first-name" required>
+                <br>
+                <label for="gardener-last-name">Last Name:</label>
+                <input type="text" id="gardener-last-name" name="gardener-last-name" required>
+                <br>
+                <label for="gardener-street-address">Street Address:</label>
+                <input type="number" id="gardener-street-address" name="gardener-street-address" required>
+                <br>
+                <label for="gardener-city">City:</label>
+                <input type="number" id="gardener-city" name="gardener-city" required>
+                <br>
+                <label for="gardener-zip">Zip Code:</label>
+                <input type="number" id="gardener-zip" name="gardener-zip" required>
+                <br>
+                <label for="gardener-email">Email:</label>
+                <input type="number" id="gardener-email" name="gardener-email" required>
+                <br>
+                <label for="gardener-phone">Phone Number:</label>
+                <input type="number" id="gardener-phone" name="gardener-phone" required>
+                <br>
+                <input type="submit" value="Add Gardener">
+            </form>
+        </div>
+    </div>
+    <br>
+    <h2>Update a Gardener</h2>
+    <div>
+        <div class="form-container">
+            <form>
+                <label for="gardener-id">Id:</label>
+                <input type="number" min="1" max="2" id="gardener-id" name="gardener-id" required>
+                <br>
+                <label for="gardener-first-name">First Name:</label>
+                <input type="text" id="gardener-first-name" name="gardener-first-name" required>
+                <br>
+                <label for="gardener-last-name">Last Name:</label>
+                <input type="text" id="gardener-last-name" name="gardener-last-name" required>
+                <br>
+                <label for="gardener-street-address">Street Address:</label>
+                <input type="number" id="gardener-street-address" name="gardener-street-address" required>
+                <br>
+                <label for="gardener-city">City:</label>
+                <input type="number" id="gardener-city" name="gardener-city" required>
+                <br>
+                <label for="gardener-zip">Zip Code:</label>
+                <input type="number" id="gardener-zip" name="gardener-zip" required>
+                <br>
+                <label for="gardener-email">Email:</label>
+                <input type="number" id="gardener-email" name="gardener-email" required>
+                <br>
+                <label for="gardener-phone">Phone Number:</label>
+                <input type="number" id="gardener-phone" name="gardener-phone" required>
+                <br>
+                <input type="submit" value="Update Gardener">
+            </form>
+        </div>
+    </div>
+    <br>
+    <h2>Remove a Gardener</h2>
+    <div>
+        <div class="form-container">
+            <form>
+                <label for="gardener-id">Gardener ID:</label>
+                <input type="number" max="2" min="1" id="gardener-id" name="gardener-id" required>
+                <br>
+                <input type="submit" value="Remove Gardener">
+                <!-- Needs to delete all referenced entities -->
+            </form>
+        </div>
+    </div>
+</div>
