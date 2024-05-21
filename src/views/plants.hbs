@@ -1,0 +1,52 @@
+<!-- index.hbs -->
+<h1>The server is running!</h1>
+<p>If you see this text, the server is <strong>definitely</strong> working!</p>
+<table id="plants-table">
+
+    {{!-- Header section --}}
+    <thead>
+
+        {{!-- For just the first row, we print each key of the row object as a header cell so we
+        know what each column means when the page renders --}}
+        <tr>
+            {{#each data.[0]}}
+            <th>
+                {{@key}}
+            </th>
+            {{/each}}
+        </tr>
+    </thead>
+
+    {{!-- Body section --}}
+    <tbody>
+
+        {{!-- For each row, print the id, fname, lname, homeworld and age, in order --}}
+        {{#each data}}
+        <tr>
+            <td>{{this.plantID}}</td>
+            <td>{{this.varietyName}}</td>
+            <td>{{this.type}}</td>
+            <td>{{this.price}}</td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
+
+<h2>Adding a Plant</h2>
+<p>To add a new plant, please enter its information below and click 'Submit'!</p>
+<form id="add-plant-form-ajax">
+    <label for="input-varietyName">Variety Name: </label>
+    <input type="text" name="input-varietyName" id="input-varietyName">
+    <br>
+    <label for="input-plant-type">Type: </label>
+    <input type="text" name="input-plant-type" id="input-plant-type">
+    <br>
+    <label for="input-price">Price: </label>
+    <input type="number" name="input-price" id="input-price">
+    <br>
+    <input type="submit">
+</form>
+
+
+{{!-- Embed our javascript to handle the DOM manipulation and AJAX request --}}
+<script src="./js/add_plant.js"></script>

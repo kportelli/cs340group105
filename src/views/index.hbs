@@ -1,52 +1,57 @@
-<!-- index.hbs -->
-<h1>The server is running!</h1>
-<p>If you see this text, the server is <strong>definitely</strong> working!</p>
-<table id="plants-table">
 
-    {{!-- Header section --}}
-    <thead>
-
-        {{!-- For just the first row, we print each key of the row object as a header cell so we
-        know what each column means when the page renders --}}
-        <tr>
-            {{#each data.[0]}}
-            <th>
-                {{@key}}
-            </th>
-            {{/each}}
-        </tr>
-    </thead>
-
-    {{!-- Body section --}}
-    <tbody>
-
-        {{!-- For each row, print the id, fname, lname, homeworld and age, in order --}}
-        {{#each data}}
-        <tr>
-            <td>{{this.plantID}}</td>
-            <td>{{this.varietyName}}</td>
-            <td>{{this.type}}</td>
-            <td>{{this.price}}</td>
-        </tr>
-        {{/each}}
-    </tbody>
-</table>
-
-<h2>Adding a Plant</h2>
-<p>To add a new plant, please enter its information below and click 'Submit'!</p>
-<form id="add-plant-form-ajax">
-    <label for="input-varietyName">Variety Name: </label>
-    <input type="text" name="input-varietyName" id="input-varietyName">
-    <br>
-    <label for="input-plant-type">Type: </label>
-    <input type="text" name="input-plant-type" id="input-plant-type">
-    <br>
-    <label for="input-price">Price: </label>
-    <input type="number" name="input-price" id="input-price">
-    <br>
-    <input type="submit">
-</form>
-
-
-{{!-- Embed our javascript to handle the DOM manipulation and AJAX request --}}
-<script src="./js/add_plant.js"></script>
+<div>
+    <h3>Gardens</h3>
+    <ul>
+        <li>[INSERT] Create a new Garden</li>
+        <li>[SELECT] Get a list of all Gardens</li>
+        <li>[SELECT] Get a list of all Plots in a Garden</li>
+        <li>[UPDATE] Update a Garden's name, or address</li>
+        <li>[DELETE] Remove a Garden (Removes all dependencies via CASCADE)</li>
+    </ul>
+    <h3>Plots</h3>
+    <ul>
+        <li>[INSERT] Create a new Plot</li>
+        <li>[INSERT] Add a Plant to a Plot</li>
+        <li>[SELECT] Get a list of all Plots</li>
+        <li>[SELECT] Get all Plants in Plot</li>
+        <li>[DELETE] Remove a Plant from a Plot</li>
+    </ul>
+    <h3>Plants Plots</h3>
+    <ul>
+        <li>[INSERT] Create a new PlantPlot</li>
+        <li>[SELECT] Get all PlantsPlots</li>
+        <li>[DELETE] Remove a PlantsPlots</li>
+    </ul>
+    <h3>Gardeners Plots</h3>
+    <ul>
+        <li>[INSERT] Create a new GardenerPlot</li>
+        <li>[SELECT] Get all GardenerPlot</li>
+        <li>[DELETE] Remove a GardenerPlot</li>
+    </ul>
+    <h3>Gardeners</h3>
+    <ul>
+        <li>[INSERT] Create a new Gardener</li>
+        <li>[SELECT] Get a list of all Gardeners</li>
+        <li>[SELECT] Get a list of Plants used by a Gardener</li>
+        <li>[SELECT] Get a list of all Invoices belonging to a Gardener</li>
+        <li>[UPDATE] Update a Gardener's attributes</li>
+        <li>[DELETE] Remove a Gardener (NULLs GardenerID on all associated Invoices)</li>
+    </ul>
+    <h3>Invoices</h3>
+    <ul>
+        <li>[INSERT] Create a new Invoice</li>
+        <li>[SELECT] Get a list of all Invoices</li>
+    </ul>
+    <h3>InvoiceDetails</h3>
+    <ul>
+        <li>[INSERT] Create a new InvoiceDetail</li>
+        <li>[SELECT] Get a list of all InvoiceDetail items</li>
+    </ul>
+    <h3>Plants</h3>
+    <ul>
+        <li>[INSERT] Create a new Plant</li>
+        <li>[SELECT] Get a list of all Plants</li>
+        <li>[UPDATE] Update a Plant's attributes</li>
+        <li>[DELETE] Remove a Plant</li>
+    </ul>
+</div>

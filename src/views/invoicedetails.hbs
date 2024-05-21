@@ -1,0 +1,56 @@
+<!-- index.hbs -->
+<h1>Invoice Details</h1>
+<table id="invoice-details-table">
+
+    {{!-- Header section --}}
+    <thead>
+
+        {{!-- For just the first row, we print each key of the row object as a header cell so we
+        know what each column means when the page renders --}}
+        <tr>
+            {{#each data.[0]}}
+            <th>
+                {{@key}}
+            </th>
+            {{/each}}
+        </tr>
+    </thead>
+
+    {{!-- Body section --}}
+    <tbody>
+
+        {{!-- For each row, print the id, fname, lname, homeworld and age, in order --}}
+        {{#each data}}
+        <tr>
+            <td>{{this.invoiceDetailID}}</td>
+            <td>{{this.plantID}}</td>
+            <td>{{this.invoiceID}}</td>
+            <td>{{this.price}}</td>
+            <td>{{this.quantity}}</td>
+            <td>{{this.lineTotal}}</td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
+
+<h2>Adding a Plant</h2>
+<p>To add a new plant, please enter its information below and click 'Submit'!</p>
+<form id="add-invoice-details-form-ajax">
+    <label for="input-plantID">Plant: </label>
+    <input type="text" name="input-plantID" id="input-plantID">
+    <br>
+    <label for="input-invoiceID">Type: </label>
+    <input type="text" name="input-invoiceID" id="input-invoiceID">
+    <br>
+    <label for="input-price">Price: </label>
+    <input type="number" name="input-price" id="input-price">
+    <br>
+    <label for="input-quantity">Quantity: </label>
+    <input type="text" name="input-plantID" id="input-plantID">
+    <br>
+    <input type="submit">
+</form>
+
+
+{{!-- Embed our javascript to handle the DOM manipulation and AJAX request --}}
+<script src="./js/add_invoice_details.js"></script>
