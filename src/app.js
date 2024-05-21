@@ -27,11 +27,7 @@ app.use(plantsRoutes);
 */
 app.get('/', function(req, res)
 {
-    let query1 = "SELECT * FROM Plants;";
-    db.pool.query(query1, function(error, rows, fields){
-
-        res.render('index', {data: rows});
-    });
+    res.render('index');
 });
 
 /*
