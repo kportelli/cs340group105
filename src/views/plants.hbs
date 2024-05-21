@@ -14,23 +14,28 @@
                 {{@key}}
             </th>
             {{/each}}
+            <th>delete</th>
         </tr>
     </thead>
 
     {{!-- Body section --}}
     <tbody>
 
-        {{!-- For each row, print the id, fname, lname, homeworld and age, in order --}}
+        {{!-- For each row, print the id, varietyName, type, and price, in order --}}
         {{#each data}}
-        <tr>
+        <tr data-value={{this.plantID}}>>
             <td>{{this.plantID}}</td>
             <td>{{this.varietyName}}</td>
             <td>{{this.type}}</td>
             <td>{{this.price}}</td>
+            <td><button onclick="deletePlant({{this.plantID}})">Delete</button></td>
+
         </tr>
         {{/each}}
     </tbody>
 </table>
+<script src="./js/delete_plant.js"></script>
+
 
 <h2>Adding a Plant</h2>
 <p>To add a new plant, please enter its information below and click 'Submit'!</p>
