@@ -52,7 +52,7 @@ router.post('/add-plant-ajax', function (req, res) {
 router.delete('/delete-plant-ajax/', function (req, res, next) {
     let data = req.body;
     let plantID = parseInt(data.id);
-    let deletePlant = `DELETE FROM plants WHERE id = ?`;
+    let deletePlant = `DELETE FROM plants WHERE plantID = ?`;
 
 
     // Run the 1st query
