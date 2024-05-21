@@ -88,7 +88,7 @@ CREATE TABLE InvoiceDetails (
   lineTotal decimal(19,2) NOT NULL,
   PRIMARY KEY (invoiceDetailID),
   FOREIGN KEY (invoiceID) REFERENCES Invoices (invoiceID) ON DELETE CASCADE ON UPDATE CASCADE,
-  FOREIGN KEY (plantID) REFERENCES Plants (plantID) ON DELETE NO ACTION ON UPDATE NO ACTION
+  FOREIGN KEY (plantID) REFERENCES Plants (plantID) ON DELETE SET NULL ON UPDATE NO ACTION
 );
 
 -- --------------------------------------------------------

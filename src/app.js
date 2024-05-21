@@ -6,12 +6,12 @@ var express = require('express');
 
 var app = express();
 app.use(express.json());
-app.use(express.urlencoded({extended: true}));
+app.use(express.urlencoded({ extended: true }));
 app.use(express.static('public'));
 
 const { engine } = require('express-handlebars');
 var exphbs = require('express-handlebars');         // Import express-handlebars
-app.engine('.hbs', engine({extname: ".hbs"}));      // Create an instance of the handlebars engine to process templates
+app.engine('.hbs', engine({ extname: ".hbs" }));      // Create an instance of the handlebars engine to process templates
 app.set('view engine', '.hbs');                     // Tell express to use the handlebars engine whenever it encounters a *.hbs file.
 
 PORT = 9124;
@@ -19,12 +19,11 @@ PORT = 9124;
 /*
     ROUTES
 */
-app.get('/', function(req, res)
-{
+app.get('/', function (req, res) {
     let query1 = "SELECT * FROM Plants;";
-    db.pool.query(query1, function(error, rows, fields){
+    db.pool.query(query1, function (error, rows, fields) {
 
-        res.render('index', {data: rows});
+        res.render('index', { data: rows });
     });
 });
 
@@ -75,10 +74,10 @@ app.post('/add-plant-ajax', function (req, res) {
 
 // DELETE
 
-app.delete('/delete-plant-ajax/', function (req, res, next) {
+app.delete('/delete-plant-ajax/', function (req, res) {
     let data = req.body;
     let plantID = parseInt(data.id);
-    let deletePlant = `DELETE FROM plants WHERE id = ?`;
+    let deletePlant = `DELETE FROM Plants WHERE plantID = ?`;
 
 
     // Run the 1st query
@@ -88,23 +87,12 @@ app.delete('/delete-plant-ajax/', function (req, res, next) {
             // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
             console.log(error);
             res.sendStatus(400);
+        } else {
+            //  Since we are just deleting 1 row and don't need to send back any new data,
+            // we will send back a status of 204 (No Content) common for PUT or DELETE.
+            res.sendStatus(204);
         }
-
-        else {
-            // Run the second query
-            db.pool.query(deletePlant, [plantID], function (error, rows, fields) {
-
-                if (error) {
-                    console.log(error);
-                    res.sendStatus(400);
-                } else {
-                    //  Since we are just deleting 1 row and don't need to send back any new data,
-                    // we will send back a status of 204 (No Content) common for PUT or DELETE.
-                    res.sendStatus(204);
-                }
-            })
-        }
-    })
+    });
 });
 
 
@@ -144,8 +132,8 @@ app.get('/invoices', (req, res) => {
 
 app.get('/plants', (req, res) => {
     let query1 = "SELECT * FROM Plants;";                       // Define the query
-    db.pool.query(query1, function(error, rows, fields){        // Execute the query
-        res.render('plants', {data: rows});                     // Render the hbs file, and also send the renderer
+    db.pool.query(query1, function (error, rows, fields) {        // Execute the query
+        res.render('plants', { data: rows });                     // Render the hbs file, and also send the renderer
     });
 });
 
