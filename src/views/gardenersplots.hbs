@@ -1,2 +1,76 @@
 <!-- index.hbs -->
 <h1>Gardeners Plots</h1>
+<button>Show Gardeners Plots</button>
+    <div>
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Plot ID</th>
+                    <th>Gardnener ID</th>
+                    <th>Gardener First Name</th>
+                    <th>Gardener Last Name</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>1</td>
+                    <td>1</td>
+                    <td>Joe</td>
+                    <td>Schmoe</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>1</td>
+                    <td>2</td>
+                    <td>Alice</td>
+                    <td>Smith</td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>2</td>
+                    <td>1</td>
+                    <td>Joe</td>
+                    <td>Schmoe</td>
+                </tr>
+            </tbody>
+        </table>
+        <br>
+    </div>
+    <br>
+    <h2>Add Gardener Plot</h2>
+    <div class="form-container">
+        <form>
+            <label for="plant-plots-plot">Plot</label>
+                <select type="text" id="plant-plots-plot" name="plant-plots-plot" required>
+                    <option value="1">[1] New Beginnings</option>
+                    <option value="2">[2] New Beginnings</option>
+                    <option value="3">[3] New Beginnings</option>
+                    <option value="4">[4] Dirt Patch</option>
+                </select>
+
+            <br>
+            <label for="gardener-plots-gardener">Gardener</label>
+            <select type="text" id="gardener-plots-gardener" name="gardener-plots-gardener" required>
+                <option value="1">[1] Joe Schmoe</option>
+                <option value="2">[2] Alice Smith</option>
+            </select>
+            <br>
+            <input type="submit" value="Add">
+        </form>
+    </div>
+    <br>
+    <h2>Delete Gardener Plot</h2>
+    <div>
+        <div class="form-container">
+            <form>
+                <label for="plot-id">GardenerPlot ID:</label>
+                <input type="number" min="1" max="3" id="plot-id" name="plot-id" required>
+                <br>
+                <input type="submit" value="Remove">
+                <!-- Needs to delete all referenced entities (plots) -->
+            </form>
+        </div>
+    </div>
+</div>

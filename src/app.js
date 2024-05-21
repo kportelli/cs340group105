@@ -151,7 +151,6 @@ app.get('/pages-plants', (req, res) => {
 
         res.render('plants', {data: rows});                  // Render the index.hbs file, and also send the renderer
     });
-    // res.render('plants');
 });
 
 
