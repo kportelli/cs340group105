@@ -14,7 +14,12 @@ var exphbs = require('express-handlebars');         // Import express-handlebars
 app.engine('.hbs', engine({extname: ".hbs"}));      // Create an instance of the handlebars engine to process templates
 app.set('view engine', '.hbs');                     // Tell express to use the handlebars engine whenever it encounters a *.hbs file.
 
+const pagesRoutes = require('./routes/pages');
+
 PORT = 9124;
+
+app.use(pagesRoutes);
+
 
 /*
     ROUTES
@@ -105,48 +110,6 @@ app.delete('/delete-plant-ajax/', function (req, res, next) {
             })
         }
     })
-});
-
-
-
-// PAGES
-app.get('/index', (req, res) => {
-    res.render('index');
-});
-
-app.get('/gardens', (req, res) => {
-    res.render('gardens');
-});
-
-app.get('/plots', (req, res) => {
-    res.render('plots');
-});
-
-app.get('/plantsplots', (req, res) => {
-    res.render('plantsplots');
-});
-
-app.get('/gardenersplots', (req, res) => {
-    res.render('gardenersplots');
-});
-
-app.get('/gardeners', (req, res) => {
-    res.render('gardeners');
-});
-
-app.get('/invoicedetails', (req, res) => {
-    res.render('invoicedetails');
-});
-
-app.get('/invoices', (req, res) => {
-    res.render('invoices');
-});
-
-app.get('/plants', (req, res) => {
-    let query1 = "SELECT * FROM Plants;";                       // Define the query
-    db.pool.query(query1, function(error, rows, fields){        // Execute the query
-        res.render('plants', {data: rows});                     // Render the hbs file, and also send the renderer
-    });
 });
 
 /*

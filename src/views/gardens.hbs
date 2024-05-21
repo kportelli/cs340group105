@@ -1,43 +1,38 @@
 <!-- index.hbs -->
 <h1>Gardens</h1>
 <button>Show all Gardens</button>
-    <div>
-        <table>
-            <thead>
-                <tr>
-                    <th>Garden ID</th>
-                    <th>Garden Name</th>
-                    <th>Street Address</th>
-                    <th>City</th>
-                    <th>Zip Code</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>1</td>
-                    <td>New Beginnings</td>
-                    <td>456 E Forest St.</td>
-                    <td>Portland</td>
-                    <td>97086</td>
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td>Dirt Patch</td>
-                    <td>10 S Desert Pkwy.</td>
-                    <td>Denver</td>
-                    <td>80123</td>
-                </tr>
-                <tr>
-                    <td>3</td>
-                    <td>Icy Valley</td>
-                    <td>123 Glacier Highway</td>
-                    <td>Juneau</td>
-                    <td>99801</td>
-                </tr>
-            </tbody>
-        </table>
-        <br>
-    </div>
+    {{!-- Create a table --}}
+<table id="gardens-table">
+
+    {{!-- Header section --}}
+    <thead>
+
+        {{!-- For just the first row, we print each key of the row object as a header cell so we
+        know what each column means when the page renders --}}
+        <tr>
+            {{#each data.[0]}}
+            <th>
+                {{@key}}
+            </th>
+            {{/each}}
+        </tr>
+    </thead>
+
+    {{!-- Body section --}}
+    <tbody>
+
+        {{!-- For each row, print the id, fname, lname, homeworld and age, in order --}}
+        {{#each data}}
+        <tr>
+            <td>{{this.gardenID}}</td>
+            <td>{{this.gardenName}}</td>
+            <td>{{this.streetAddress}}</td>
+            <td>{{this.city}}</td>
+            <td>{{this.zip}}</td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
 
     <h2>Add a Garden</h2>
     <div>
