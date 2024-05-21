@@ -2,10 +2,8 @@
 <h1>The server is running!</h1>
 <p>If you see this text, the server is <strong>definitely</strong> working!</p>
 <table id="plants-table">
-
     {{!-- Header section --}}
     <thead>
-
         {{!-- For just the first row, we print each key of the row object as a header cell so we
         know what each column means when the page renders --}}
         <tr>
@@ -23,13 +21,12 @@
 
         {{!-- For each row, print the id, varietyName, type, and price, in order --}}
         {{#each data}}
-        <tr data-value={{this.plantID}}>>
+        <tr data-value={{this.plantID}}>
             <td>{{this.plantID}}</td>
             <td>{{this.varietyName}}</td>
             <td>{{this.type}}</td>
             <td>{{this.price}}</td>
             <td><button onclick="deletePlant({{this.plantID}})">Delete</button></td>
-
         </tr>
         {{/each}}
     </tbody>
