@@ -72,7 +72,6 @@ addRowToTable = (data) => {
     let varietyNameCell = document.createElement("TD");
     let plantTypeCell = document.createElement("TD");
     let plantPriceCell = document.createElement("TD");
-
     let deleteCell = document.createElement("TD");
 
     // Fill the cells with correct data
@@ -81,21 +80,30 @@ addRowToTable = (data) => {
     plantTypeCell.innerText = newRow.type;
     plantPriceCell.innerText = newRow.price;
 
-    deleteCell = document.createElement("button");
-    deleteCell.innerHTML = "Delete";
-    deleteCell.onclick = function(){
-        deletePlant(newRow.id);
+    let deleteButton = document.createElement("button");
+    deleteButton.onclick = function(id){
+        deletePlant(id);
     };
+    deleteButton.innerText = "Delete";
+    deleteCell.appendChild(deleteButton);
+
+    // deleteCell.innerHTML = '<button onclick="deletePlant({{this.plantID}})">Delete</button>'
+    // deleteCell.onclick
+    // // deleteCell = document.createElement("button");
+    // deleteCell.innerText = "Delete";
+    // deleteCell.onclick = function(){
+    //     deletePlant(newRow.id);
+    // };
 
     // Add the cells to the row 
     row.appendChild(idCell);
     row.appendChild(varietyNameCell);
     row.appendChild(plantTypeCell);
     row.appendChild(plantPriceCell);
+    row.appendChild(deleteCell);
 
       // Add a row attribute so the deleteRow function can find a newly added row
       row.setAttribute('data-value', newRow.id);
-
 
     // Add the row to the table
     currentTable.appendChild(row);
