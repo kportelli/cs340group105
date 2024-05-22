@@ -35,7 +35,7 @@ router.get('/invoices', (req, res) => {
 });
 
 router.get('/plants', (req, res) => {
-    let query1 = "SELECT * FROM Plants;";                       // Define the query
+    let query1 = 'SELECT plantID AS "Id", varietyName AS "Variety", type AS "Type", price AS "Price" FROM Plants;';                       // Define the query
     db.pool.query(query1, function(error, rows, fields){        // Execute the query
         res.render('plants', {data: rows});                     // Render the hbs file, and also send the renderer
     });
