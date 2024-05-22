@@ -12,7 +12,7 @@
                 {{@key}}
             </th>
             {{/each}}
-            <th>delete</th>
+            <th>Delete</th>
         </tr>
     </thead>
 
@@ -21,12 +21,12 @@
 
         {{!-- For each row, print the id, varietyName, type, and price, in order --}}
         {{#each data}}
-        <tr data-value={{this.plantID}}>
-            <td>{{this.plantID}}</td>
-            <td>{{this.varietyName}}</td>
-            <td>{{this.type}}</td>
-            <td>{{this.price}}</td>
-            <td><button onclick="deletePlant({{this.plantID}})">Delete</button></td>
+        <tr data-value={{this.Id}}>
+            <td>{{this.Id}}</td>
+            <td>{{this.Variety}}</td>
+            <td>{{this.Type}}</td>
+            <td>{{this.Price}}</td>
+            <td><button onclick="deletePlant({{this.Id}})">Delete</button></td>
         </tr>
         {{/each}}
     </tbody>
