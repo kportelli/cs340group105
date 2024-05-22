@@ -15,7 +15,7 @@ router.post('/add-plant-ajax', function (req, res) {
         price = 'NULL';
     }
 
-    query1 = `INSERT INTO plants (varietyName, type, price) VALUES ('${data.varietyName}', '${data.type}', ${price})`;
+    query1 = `INSERT INTO Plants (varietyName, type, price) VALUES ('${data.varietyName}', '${data.type}', ${price})`;
     db.pool.query(query1, function (error, rows, fields) {
 
         // Check to see if there was an error
@@ -52,7 +52,7 @@ router.post('/add-plant-ajax', function (req, res) {
 router.delete('/delete-plant-ajax/', function (req, res, next) {
     let data = req.body;
     let plantID = parseInt(data.id);
-    let deletePlant = `DELETE FROM plants WHERE plantID = ?`;
+    let deletePlant = `DELETE FROM Plants WHERE plantID = ?`;
 
 
     // Run the 1st query
