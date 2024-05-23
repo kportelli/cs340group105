@@ -52,3 +52,26 @@
 
 {{!-- Embed our javascript to handle the DOM manipulation and AJAX request --}}
 <script src="./js/add_plant.js"></script>
+
+
+
+<h2>Updating a Plant</h2>
+<p>To update a specific plant's price, select its variety name and type from the drop-down menu on the left and input a new price on the rightt</p>
+<form id="update-plant-form-ajax">
+
+    <label for="input-variety-name">Full name: </label>
+    <select name="input-variety-name" id="mySelect">
+        <option value="test">Select a Plant</option>
+        {{#each data}}
+        <option value="{{this.plantID}}">{{this.varietyName} {{this.type}}</option>
+        {{/each}}
+    </select>
+
+    <label for="input-price">Price: </label>
+    <input type="number" name="input-price" id="input-price">
+    <br>
+    <input type="submit">
+
+</form>
+
+<script src="./js/update_plant.js"></script>
