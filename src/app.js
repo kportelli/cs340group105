@@ -14,6 +14,10 @@ var exphbs = require('express-handlebars');         // Import express-handlebars
 app.engine('.hbs', engine({ extname: ".hbs" }));      // Create an instance of the handlebars engine to process templates
 app.set('view engine', '.hbs');                     // Tell express to use the handlebars engine whenever it encounters a *.hbs file.
 
+/*
+    ROUTES
+*/
+
 const pagesRoutes = require('./routes/pages');
 const plantsRoutes = require('./routes/plants');
 
@@ -22,10 +26,8 @@ PORT = 9124;
 app.use(pagesRoutes);
 app.use(plantsRoutes);
 
-/*
-    ROUTES
-*/
-app.get('/', function(req, res)
+
+app.get('/', function (req, res)            // // This is the basic syntax for what is called a 'route'
 {
     res.render('index');
 });

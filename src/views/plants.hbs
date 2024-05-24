@@ -55,18 +55,19 @@
 
 
 
-<h2>Updating a Plant</h2>
-<p>To update a specific plant's price, select its variety name and type from the drop-down menu on the left and input a new price on the rightt</p>
+<h2>Updating a Plant Price</h2>
+<p>To update a specific Plant's price select its ID from the drop-down menu and then input the new price.</p>
 <form id="update-plant-form-ajax">
 
-    <label for="input-variety-name">Full name: </label>
-    <select name="input-variety-name" id="mySelect">
+    <label for="input-plantID">Plant ID: </label>
+    <select id="input-plantID" name="input-plantID">
         <option value="test">Select a Plant</option>
-        {{#each data}}
-        <option value="{{this.plantID}}">{{this.varietyName} {{this.type}}</option>
+        {{#each plantIDs}}
+        <option value="{{this.plantID}}">{{this.plantID}}</option>
         {{/each}}
     </select>
 
+    <br>
     <label for="input-price">Price: </label>
     <input type="number" name="input-price" id="input-price">
     <br>
