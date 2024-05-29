@@ -50,3 +50,27 @@
 
 {{!-- Embed our javascript to handle the DOM manipulation and AJAX request --}}
 <script src="./js/add_plant.js"></script>
+
+
+
+<h2>Updating a Plant Price</h2>
+<p>To update a specific Plant's price select its ID from the drop-down menu and then input the new price.</p>
+<form id="update-plant-form-ajax">
+
+    <label for="input-plantID">Plant ID: </label>
+    <select id="input-plantID" name="input-plantID">
+        <option value="test">Select a Plant</option>
+        {{#each plantIDs}}
+        <option value="{{this.plantID}}">{{this.plantID}}</option>
+        {{/each}}
+    </select>
+
+    <br>
+    <label for="input-price">Price: </label>
+    <input type="number" name="input-price" id="input-price">
+    <br>
+    <input type="submit">
+
+</form>
+
+<script src="./js/update_plant.js"></script>

@@ -46,6 +46,68 @@ router.post('/add-plant-ajax', function (req, res) {
     })
 });
 
+// UPDATE 
+
+router.get('/plants', function (req, res) {
+    let query1 = "SELECT plantID AS plantID, varietyName AS Variety, type AS Type, price AS Price FROM Plants;";
+    let query2 = "SELECT plantID FROM Plants;";
+
+    db.pool.query(query1, function (error, rows, fields) {
+        if (error) {
+            console.log(error);
+            res.sendStatus(400);
+        } else {
+            db.pool.query(query2, function (error2, plantIDs) {
+                if (error2) {
+                    console.log(error2);
+                    res.sendStatus(400);
+                } else {
+                    res.render('plants', { data: rows, plantIDS });
+                }
+            });
+        }
+    });
+});
+
+router.put('/put-plant-ajax', function (req, res, next) {
+    let data = req.body;
+
+    let plantID = parseInt(data.plantID);
+    let price = parseFloat(data.price);
+
+    if (isNaN(price)) {
+        res.sendStatus(400);
+        return;
+    }
+
+    let queryUpdateplant = `UPDATE Plants SET price = ? WHERE plantID = ?`;
+    let selectUpdatedPlant = `SELECT * FROM Plants WHERE plantID = ?`
+
+    // Run the 1st query
+    db.pool.query(queryUpdateplant, [price, plantID], function (error, rows, fields) {
+        if (error) {
+
+            // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
+            console.log(error);
+            res.sendStatus(400);
+        }
+
+        // If there was no error, we run our second query and return that data so we can use it to update the people's
+        // table on the front-end
+        else {
+            // Run the second query
+            db.pool.query(selectUpdatedPlant, [plantID], function (error, rows, fields) {
+
+                if (error) {
+                    console.log(error);
+                    res.sendStatus(400);
+                } else {
+                    res.send(rows);
+                }
+            })
+        }
+    })
+});
 
 // DELETE
 

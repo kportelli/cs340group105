@@ -3,7 +3,7 @@ let addPlantForm = document.getElementById('add-plant-form-ajax');
 
 // Modify the objects we need
 addPlantForm.addEventListener("submit", function (e) {
-    
+
     // Prevent the form from submitting
     e.preventDefault();
 
@@ -23,7 +23,7 @@ addPlantForm.addEventListener("submit", function (e) {
         type: plantTypeValue,
         price: plantPriceValue
     }
-    
+
     // Setup our AJAX request
     var xhttp = new XMLHttpRequest();
     xhttp.open("POST", "/add-plant-ajax", true);
@@ -40,7 +40,7 @@ addPlantForm.addEventListener("submit", function (e) {
             inputVarietyName.value = '';
             inputPlantType.value = '';
             inputPlantPrice.value = '';
-        } 
+        }
         else if (xhttp.readyState == 4 && xhttp.status != 200) {
             console.log("There was an error with the input.")
         }
@@ -53,7 +53,7 @@ addPlantForm.addEventListener("submit", function (e) {
 
 
 // Creates a single row from an Object representing a single record from 
-// bsg_people
+// plants
 addRowToTable = (data) => {
 
     // Get a reference to the current table on the page and clear it out.
@@ -72,6 +72,7 @@ addRowToTable = (data) => {
     let varietyNameCell = document.createElement("TD");
     let plantTypeCell = document.createElement("TD");
     let plantPriceCell = document.createElement("TD");
+
     let deleteCell = document.createElement("TD");
 
     // Fill the cells with correct data
@@ -81,7 +82,7 @@ addRowToTable = (data) => {
     plantPriceCell.innerText = newRow.price;
 
     let deleteButton = document.createElement("button");
-    deleteButton.onclick = function(id){
+    deleteButton.onclick = function (id) {
         deletePlant(id);
     };
     deleteButton.innerText = "Delete";
@@ -102,9 +103,20 @@ addRowToTable = (data) => {
     row.appendChild(plantPriceCell);
     row.appendChild(deleteCell);
 
-      // Add a row attribute so the deleteRow function can find a newly added row
-      row.setAttribute('data-value', newRow.id);
+    // Add a row attribute so the deleteRow function can find a newly added row
+    row.setAttribute('data-value', newRow.id);
 
     // Add the row to the table
     currentTable.appendChild(row);
+
+    // Start of new Step 8 code for adding new data to the dropdown menu for updating plants
+
+    // Find drop down menu, create a new option, fill data in the option (full name, id),
+    // then append option to drop down menu so newly created rows via ajax will be found in it without needing a refresh
+    let selectMenu = document.getElementById("input-plantID");
+    let option = document.createElement("option");
+    option.text = newRow.plantID;
+    option.value = newRow.plantID;
+    selectMenu.add(option);
+    // End of new step 8 code.
 }
