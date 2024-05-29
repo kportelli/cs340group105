@@ -20,11 +20,13 @@ app.set('view engine', '.hbs');                     // Tell express to use the h
 
 const pagesRoutes = require('./routes/pages');
 const plantsRoutes = require('./routes/plants');
+const gardensRoutes = require('./routes/gardens');
 
 PORT = 9124;
 
 app.use(pagesRoutes);
 app.use(plantsRoutes);
+app.use(gardensRoutes);
 
 
 app.get('/', function (req, res)            // // This is the basic syntax for what is called a 'route'
