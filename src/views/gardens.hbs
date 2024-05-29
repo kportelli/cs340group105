@@ -1,12 +1,8 @@
 <!-- index.hbs -->
 <h1>Gardens</h1>
-<button>Show all Gardens</button>
-    {{!-- Create a table --}}
 <table id="gardens-table">
-
     {{!-- Header section --}}
     <thead>
-
         {{!-- For just the first row, we print each key of the row object as a header cell so we
         know what each column means when the page renders --}}
         <tr>
@@ -15,6 +11,7 @@
                 {{@key}}
             </th>
             {{/each}}
+            <th>Delete</th>
         </tr>
     </thead>
 
@@ -24,11 +21,12 @@
         {{!-- For each row, print the id, fname, lname, homeworld and age, in order --}}
         {{#each data}}
         <tr>
-            <td>{{this.gardenID}}</td>
-            <td>{{this.gardenName}}</td>
-            <td>{{this.streetAddress}}</td>
-            <td>{{this.city}}</td>
-            <td>{{this.zip}}</td>
+            <td>{{this.ID}}</td>
+            <td>{{this.Name}}</td>
+            <td>{{this.Address}}</td>
+            <td>{{this.City}}</td>
+            <td>{{this.Zip}}</td>
+            <td><button onclick="deletePlant({{this.Id}})">Delete</button></td>
         </tr>
         {{/each}}
     </tbody>
@@ -37,18 +35,18 @@
     <h2>Add a Garden</h2>
     <div>
         <div class="form-container">
-            <form>
-                <label for="garden-name">Garden Name:</label>
-                <input type="text" id="garden-name" name="garden-name" required>
+            <form id="add-garden-form-ajax">
+                <label for="input-add-garden-name">Garden Name:</label>
+                <input type="text" id="input-add-garden-name" name="input-add-garden-name" required>
                 <br>
-                <label for="garden-streetAddress">Garden Street Address:</label>
-                <input type="text" id="garden-streetAddress" name="garden-streetAddress" required>
+                <label for="ginput-add-arden-streetAddress">Garden Street Address:</label>
+                <input type="text" id="input-add-garden-streetAddress" name="input-add-garden-streetAddress" required>
                 <br>
-                <label for="garden-city">Garden City:</label>
-                <input type="text" id="garden-city" name="garden-city" required>
+                <label for="input-add-garden-city">Garden City:</label>
+                <input type="text" id="input-add-garden-city" name="input-add-garden-city" required>
                 <br>
-                <label for="garden-zipCode">Garden Zip Code:</label>
-                <input type="text" id="garden-zipCode" name="garden-zipCode" required>
+                <label for="input-add-garden-zipCode">Garden Zip Code:</label>
+                <input type="text" id="input-add-garden-zipCode" name="input-add-garden-zipCode" required>
                 <br>
                 <input type="submit" value="Add Garden">
             </form>
@@ -91,3 +89,5 @@
             </form>
         </div>
     </div>
+
+<script src="./js/add_garden.js"></script>
