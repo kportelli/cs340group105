@@ -14,7 +14,7 @@ updatePlantForm.addEventListener("submit", function (e) {
     // Get the values from the form fields
     let plantIDvalue = input_plantID.value;
     let priceValue = input_price.value;
-
+    
     // currently the database table for bsg_people does not allow updating values to NULL
     // so we must abort if being bassed NULL for homeworld
 

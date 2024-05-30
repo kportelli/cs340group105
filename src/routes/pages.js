@@ -47,7 +47,7 @@ router.get('/invoices', (req, res) => {
 
 router.get('/plants', function (req, res) {
     let query1 = 'SELECT plantID AS "Id", varietyName AS "Variety", type AS "Type", price AS "Price" FROM Plants;';
-    let query2 = "SELECT plantID FROM Plants;";
+    let query2 = "SELECT plantID, varietyName, type FROM Plants;";
 
     db.pool.query(query1, function (error, rows, fields) {
         if (error) {
@@ -65,6 +65,7 @@ router.get('/plants', function (req, res) {
         }
     });
 });
+
 
 
 module.exports = router;
