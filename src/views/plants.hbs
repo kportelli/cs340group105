@@ -61,7 +61,7 @@
     <select id="input-plantID" name="input-plantID">
         <option value="test">Select a Plant</option>
         {{#each plantIDs}}
-        <option value="{{this.plantID}}">{{this.plantID}}</option>
+        <option value="{{this.plantID}}">{{this.plantID}} {{this.varietyName}} {{this.type}}</option>
         {{/each}}
     </select>
 
