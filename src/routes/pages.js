@@ -41,8 +41,8 @@ router.get('/gardenersplots', (req, res) => {
 
 router.get('/gardeners', (req, res) => {
     let query1 = "SELECT * FROM Gardeners;";
-    db.pool.query(query1, function(error, rows, fields){
-        res.render('gardeners', {data: rows});
+    db.pool.query(query1, function (error, rows, fields) {
+        res.render('gardeners', { data: rows });
 
     })
 });
@@ -54,7 +54,11 @@ router.get('/invoicedetails', (req, res) => {
 });
 
 router.get('/invoices', (req, res) => {
-    res.render('invoices');
+    let query1 = "SELECT * FROM INvoices;";
+    db.pool.query(query1, function (error, rows, fields) {
+        res.render('invoices', { data: rows });
+
+    })
 });
 
 // router.get('/plants', (req, res) => {
