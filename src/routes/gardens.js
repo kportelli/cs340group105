@@ -48,6 +48,12 @@ router.put('/put-garden-ajax', function (req, res, next) {
     let city = data.city;
     let zip = data.zip;
 
+    // if gardenID is not a number, send a 400 status code
+    if (isNaN(gardenID)) {
+        res.sendStatus(400);
+        return;
+    }
+
     let queryUpdateGarden = `UPDATE Gardens SET gardenName = ?, streetAddress = ?, city = ?, zip = ? WHERE gardenID = ?`;
     let selectUpdatedGarden = `SELECT * FROM Gardens WHERE gardenID = ?`
 

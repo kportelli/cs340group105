@@ -1,6 +1,30 @@
 // Get the objects we need to modify
 let updateGardenForm = document.getElementById('update-garden-form-ajax');
 
+// This code below is an attempt to populate the form fields with the data from the selected option...
+// more work is needed to get this to work.
+// // Get the select element
+// let selectGardenID = document.getElementById("input-update-garden-id");
+
+// // Add event listener for change event
+// selectGardenID.addEventListener("change", function () {
+//     // Get the selected option
+//     let selectedOption = this.options[this.selectedIndex];
+
+//     // Get the other input elements
+//     let input_name = document.getElementById("input-update-garden-name");
+//     let input_address = document.getElementById("input-update-garden-streetAddress");
+//     let input_city = document.getElementById("input-update-garden-city");
+//     let input_zip = document.getElementById("input-update-garden-zipCode");
+
+//     // Assuming the selected option's value is an object with properties matching the other input elements
+//     // You may need to adjust this based on the actual structure of your option value
+//     input_name.value = selectedOption.value.gardenName;
+//     input_address.value = selectedOption.value.streetAddress;
+//     input_city.value = selectedOption.value.city;
+//     input_zip.value = selectedOption.value.zip;
+// });
+
 // Modify the objects we need
 updateGardenForm.addEventListener("submit", function (e) {
 
