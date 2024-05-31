@@ -40,6 +40,17 @@ updateGardenForm.addEventListener("submit", function (e) {
 
     // Get the values from the form fields
     let gardenIDvalue = input_gardenID.value;
+
+    // in case the user tries to submit a non-integer value (default)
+    if (isNaN(gardenIDvalue)) {
+        // empty the input fields
+        input_name.value = '';
+        input_address.value = '';
+        input_city.value = '';
+        input_zip.value = '';
+        return;
+    }
+
     let nameValue = input_name.value;
     let addressValue = input_address.value;
     let cityValue = input_city.value;

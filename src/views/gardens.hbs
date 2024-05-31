@@ -59,6 +59,7 @@
             <form id="update-garden-form-ajax">
                 <label for="input-update-garden-id">Garden ID:</label>
                 <select id="input-update-garden-id" name="input-update-garden-id" required>
+                    <option value="prompt">Select a Garden</option>
                     {{#each gardenIDs}}
                     <option value={{this.gardenID}}>{{this.gardenID}} {{this.gardenName}}</option>
                     {{/each}}
