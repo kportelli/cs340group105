@@ -7,20 +7,28 @@ var db = require('../database/db-connector');
 router.post('/add-plot-ajax', function (req, res) {
 
     let data = req.body;
-    query1 = `INSERT INTO Plots (gardenID) VALUES ('${data.gardenID}');`;
+    let query1 = `INSERT INTO Plots (gardenID) VALUES ('${data.gardenID}');`;
+    let query2 = "SELECT Plots.plotID, Gardens.gardenID, Gardens.gardenName FROM Plots INNER JOIN Gardens ON Plots.gardenID = Gardens.gardenID ORDER BY Plots.plotID ASC;";
     db.pool.query(query1, function (error, rows, fields) {
-
-        // Check to see if there was an error
         if (error) {
-
-            // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
-            console.log(error)
+            console.log(error);
             res.sendStatus(400);
         }
         else {
-            res.send(rows);
-        }
-    })
+            db.pool.query(query2, function (error, rows, fields) {
+        
+                // Check to see if there was an error
+                if (error) {
+                    // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
+                    console.log(error)
+                    res.sendStatus(400);
+                }
+                else {
+                    res.send(rows);
+                }
+            })
+        };
+    });
 });
 
 router.put('/put-plot-ajax', function (req, res, next) {

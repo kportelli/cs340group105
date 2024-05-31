@@ -29,7 +29,7 @@ router.get('/gardens', (req, res) => {
 
 router.get('/plots', (req, res) => {
     // join gardens and plots on gardenID
-    let query1 = "SELECT Plots.plotID, Gardens.gardenID, Gardens.gardenName FROM Plots INNER JOIN Gardens ON Plots.gardenID = Gardens.gardenID";
+    let query1 = "SELECT Plots.plotID, Gardens.gardenID, Gardens.gardenName FROM Plots INNER JOIN Gardens ON Plots.gardenID = Gardens.gardenID ORDER BY Plots.plotID ASC;";
     
     // select all gardens to show in dropdown
     let query2 = "SELECT gardenID, gardenName FROM Gardens;";
