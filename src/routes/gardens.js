@@ -81,36 +81,33 @@ router.put('/put-plant-ajax', function (req, res, next) {
 
 // DELETE
 
-router.delete('/delete-plant-ajax/', function (req, res, next) {
+router.delete('/delete-garden-ajax/', function (req, res, next) {
     let data = req.body;
-    let plantID = parseInt(data.id);
-    let deletePlant = `DELETE FROM Plants WHERE plantID = ?`;
+    let gardenID = parseInt(data.id);
+    let deleteGardenFromGardens = `DELETE FROM Gardens WHERE gardenID = ?`;
+    let deleteGardenFromPlots = `DELETE FROM Plots WHERE gardenID = ?`;
 
-
-    // Run the 1st query
-    db.pool.query(deletePlant, [plantID], function (error, rows, fields) {
+    db.pool.query(deleteGardenFromPlots, [gardenID], function (error, rows, fields) {
         if (error) {
-
             // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
             console.log(error);
             res.sendStatus(400);
         }
-
         else {
-            // Run the second query
-            db.pool.query(deletePlant, [plantID], function (error, rows, fields) {
-
+            db.pool.query(deleteGardenFromGardens, [gardenID], function (error, rows, fields) {
                 if (error) {
+                    // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
                     console.log(error);
                     res.sendStatus(400);
-                } else {
+                }
+                else {
                     //  Since we are just deleting 1 row and don't need to send back any new data,
                     // we will send back a status of 204 (No Content) common for PUT or DELETE.
                     res.sendStatus(204);
                 }
-            })
+            });
         }
-    })
+    });
 });
 
 module.exports = router;
