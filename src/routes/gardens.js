@@ -39,22 +39,20 @@ router.post('/add-garden-ajax', function (req, res) {
     })
 });
 
-router.put('/put-plant-ajax', function (req, res, next) {
+router.put('/put-garden-ajax', function (req, res, next) {
     let data = req.body;
 
-    let plantID = parseInt(data.plantID);
-    let price = parseFloat(data.price);
+    let gardenID = parseInt(data.gardenID);
+    let gardenName = data.gardenName;
+    let streetAddress = data.streetAddress;
+    let city = data.city;
+    let zip = data.zip;
 
-    if (isNaN(price)) {
-        res.sendStatus(400);
-        return;
-    }
-
-    let queryUpdateplant = `UPDATE Plants SET price = ? WHERE plantID = ?`;
-    let selectUpdatedPlant = `SELECT * FROM Plants WHERE plantID = ?`
+    let queryUpdateGarden = `UPDATE Gardens SET gardenName = ?, streetAddress = ?, city = ?, zip = ? WHERE gardenID = ?`;
+    let selectUpdatedGarden = `SELECT * FROM Gardens WHERE gardenID = ?`
 
     // Run the 1st query
-    db.pool.query(queryUpdateplant, [price, plantID], function (error, rows, fields) {
+    db.pool.query(queryUpdateGarden, [gardenName, streetAddress, city, zip, gardenID], function (error, rows, fields) {
         if (error) {
 
             // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
@@ -66,7 +64,7 @@ router.put('/put-plant-ajax', function (req, res, next) {
         // table on the front-end
         else {
             // Run the second query
-            db.pool.query(selectUpdatedPlant, [plantID], function (error, rows, fields) {
+            db.pool.query(selectUpdatedGarden, [gardenID], function (error, rows, fields) {
 
                 if (error) {
                     console.log(error);
