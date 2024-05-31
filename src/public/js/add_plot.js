@@ -1,5 +1,5 @@
 // Get the objects we need to modify
-let addPlotForm = document.getElementById('add-garden-form-ajax');
+let addPlotForm = document.getElementById('add-plot-form-ajax');
 
 // Modify the objects we need
 addPlotForm.addEventListener("submit", function (e) {
@@ -8,28 +8,19 @@ addPlotForm.addEventListener("submit", function (e) {
     e.preventDefault();
 
     // Get form fields we need to get data from
-    let inputName = document.getElementById("input-add-garden-name");
-    let inputAddress = document.getElementById("input-add-garden-streetAddress");
-    let inputCity = document.getElementById("input-add-garden-city");
-    let inputZip = document.getElementById("input-add-garden-zipCode");
+    let gardenID = document.getElementById("input-add-plot-garden-id");
 
     // Get the values from the form fields
-    let nameValue = inputName.value;
-    let addressValue = inputAddress.value;
-    let cityValue = inputCity.value;
-    let zipValue = inputZip.value;
+    let gardenIDValue = gardenID.value;
 
     // Put our data we want to send in a javascript object
     let data = {
-        name: nameValue,
-        address: addressValue,
-        city: cityValue,
-        zip: zipValue
+        gardenID: gardenIDValue
     }
 
     // Setup our AJAX request
     var xhttp = new XMLHttpRequest();
-    xhttp.open("POST", "/add-garden-ajax", true);
+    xhttp.open("POST", "/add-plot-ajax", true);
     xhttp.setRequestHeader("Content-type", "application/json");
 
     // Tell our AJAX request how to resolve
@@ -38,12 +29,6 @@ addPlotForm.addEventListener("submit", function (e) {
 
             // Add the new data to the table
             addRowToTable(xhttp.response);
-
-            // Clear the input fields for another transaction
-            inputName.value = '';
-            inputAddress.value = '';
-            inputCity.value = '';
-            inputZip.value = '';
         }
         else if (xhttp.readyState == 4 && xhttp.status != 200) {
             console.log("There was an error with the input.")
@@ -61,7 +46,7 @@ addPlotForm.addEventListener("submit", function (e) {
 addRowToTable = (data) => {
 
     // Get a reference to the current table on the page and clear it out.
-    let currentTable = document.getElementById("gardens-table");
+    let currentTable = document.getElementById("plots-table");
 
     // Get the location where we should insert the new row (end of table)
     let newRowIndex = currentTable.rows.length;
@@ -73,19 +58,15 @@ addRowToTable = (data) => {
     // Create a row and 4 cells
     let row = document.createElement("TR");
     let idCell = document.createElement("TD");
-    let nameCell = document.createElement("TD");
-    let addressCell = document.createElement("TD");
-    let cityCell = document.createElement("TD");
-    let zipCell = document.createElement("TD");
+    let gardenIdCell = document.createElement("TD");
+    let gardenNameCell = document.createElement("TD");
 
     let deleteCell = document.createElement("TD");
 
     // Fill the cells with correct data
-    idCell.innerText = newRow.gardenID;
-    nameCell.innerText = newRow.gardenName;
-    addressCell.innerText = newRow.streetAddress;
-    cityCell.innerText = newRow.city;
-    zipCell.innerText = newRow.zip;
+    idCell.innerText = newRow.plotID;
+    gardenIdCell.innerText = newRow.gardenID;
+    gardenNameCell.innerText = newRow.gardenName;
 
     let deleteButton = document.createElement("button");
     deleteButton.onclick = function (id) {
@@ -96,10 +77,8 @@ addRowToTable = (data) => {
 
     // Add the cells to the row 
     row.appendChild(idCell);
-    row.appendChild(nameCell);
-    row.appendChild(addressCell);
-    row.appendChild(cityCell);
-    row.appendChild(zipCell);
+    row.appendChild(gardenIdCell);
+    row.appendChild(gardenNameCell);
     row.appendChild(deleteCell);
 
     // Add a row attribute so the deleteRow function can find a newly added row

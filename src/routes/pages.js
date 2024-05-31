@@ -28,13 +28,26 @@ router.get('/gardens', (req, res) => {
 });
 
 router.get('/plots', (req, res) => {
-    let query1 = "SELECT plotID AS ID, gardenID as gardenID;"
-
-
     // join gardens and plots on gardenID
-    let query2 = "SELECT plotID AS ID, gardenID AS GardenID, plotNumber AS PlotNumber, plotSize AS PlotSize FROM Plots;";
-
-    res.render('plots');
+    let query1 = "SELECT Plots.plotID, Gardens.gardenID, Gardens.gardenName FROM Plots INNER JOIN Gardens ON Plots.gardenID = Gardens.gardenID";
+    
+    // select all gardens to show in dropdown
+    let query2 = "SELECT gardenID, gardenName FROM Gardens;";
+    db.pool.query(query1, function(error, rows, fields){
+        if (error) {
+            console.log(error);
+            res.sendStatus(400);
+        } else {
+            db.pool.query(query2, function(error2, gardenIDs) {
+                if (error2) {
+                    console.log(error2);
+                    res.sendStatus(400);
+                } else {
+                    res.render('plots', { data: rows, gardenIDs });
+                }
+            });
+        }
+    });
 });
 
 router.get('/plantsplots', (req, res) => {
