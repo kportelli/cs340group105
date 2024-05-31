@@ -114,33 +114,39 @@ router.put('/put-plant-ajax', function (req, res, next) {
 router.delete('/delete-plant-ajax/', function (req, res, next) {
     let data = req.body;
     let plantID = parseInt(data.id);
-    let deletePlant = `DELETE FROM Plants WHERE plantID = ?`;
+    let deletePlantFromPlants = `DELETE FROM Plants WHERE plantID = ?`;
+    let deletePlantFromInvoiceDetails = `DELETE FROM InvoiceDetails WHERE plantID = ?`;
+    let deletePlantFromPlantsPlots = `DELETE FROM PlantsPlots WHERE plantID = ?`;
 
-
-    // Run the 1st query
-    db.pool.query(deletePlant, [plantID], function (error, rows, fields) {
+    db.pool.query(deletePlantFromPlantsPlots, [plantID], function (error, rows, fields) {
         if (error) {
-
             // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
             console.log(error);
             res.sendStatus(400);
         }
-
         else {
-            // Run the second query
-            db.pool.query(deletePlant, [plantID], function (error, rows, fields) {
-
+            db.pool.query(deletePlantFromInvoiceDetails, [plantID], function (error, rows, fields) {
                 if (error) {
+                    // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
                     console.log(error);
                     res.sendStatus(400);
-                } else {
-                    //  Since we are just deleting 1 row and don't need to send back any new data,
-                    // we will send back a status of 204 (No Content) common for PUT or DELETE.
-                    res.sendStatus(204);
                 }
-            })
-        }
-    })
+                else {
+                    // Run the second query
+                    db.pool.query(deletePlantFromPlants, [plantID], function (error, rows, fields) {
+                        if (error) {
+                            console.log(error);
+                            res.sendStatus(400);
+                        } else {
+                            //  Since we are just deleting 1 row and don't need to send back any new data,
+                            // we will send back a status of 204 (No Content) common for PUT or DELETE.
+                            res.sendStatus(204);
+                        }
+                    })
+                }
+            });
+        }   
+    });
 });
 
 module.exports = router;

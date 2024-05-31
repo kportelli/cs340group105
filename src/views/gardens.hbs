@@ -20,13 +20,13 @@
 
         {{!-- For each row, print the id, fname, lname, homeworld and age, in order --}}
         {{#each data}}
-        <tr>
+        <tr data-value={{this.ID}}></tr>
             <td>{{this.ID}}</td>
             <td>{{this.Name}}</td>
             <td>{{this.Address}}</td>
             <td>{{this.City}}</td>
             <td>{{this.Zip}}</td>
-            <td><button onclick="deletePlant({{this.Id}})">Delete</button></td>
+            <td><button onclick="deleteGarden({{this.ID}})">Delete</button></td>
         </tr>
         {{/each}}
     </tbody>
@@ -77,17 +77,6 @@
         </div>
     </div>
     <br>
-    <h2>Delete a Garden</h2>
-    <div>
-        <div class="form-container">
-            <form>
-                <label for="garden-id">Garden ID:</label>
-                <input type="number" min="1" max="2" id="garden-id" name="garden-id" required>
-                <br>
-                <input type="submit" value="Delete Garden">
-                <!-- Needs to delete all referenced entities (plots) -->
-            </form>
-        </div>
-    </div>
 
 <script src="./js/add_garden.js"></script>
+<script src="./js/delete_garden.js"></script>
