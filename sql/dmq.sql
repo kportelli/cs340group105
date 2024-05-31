@@ -26,6 +26,9 @@ INSERT INTO PlantsPlots (plotID, plantID) VALUES (:plotID, :plantID)
 -- -- -- get all plots
 SELECT plotID, gardenID FROM Plots
 
+-- get all plots and garden names
+SELECT Plots.plotID, Gardens.gardenName FROM Plots INNER JOIN Gardens ON Plots.gardenID = Gardens.gardenID
+
 -- -- -- get all plants in a plot
 SELECT plantID, varietyName, type, price FROM Plants INNER JOIN PlantsPlots ON Plants.plantID = PlantsPlots.plantID WHERE plotID = :plotID
 
