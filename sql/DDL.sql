@@ -152,12 +152,12 @@ INSERT INTO Invoices (gardenerID, totalCost) VALUES
 (5, 90.50);
 
 -- Insert data into Plants
---INSERT INTO Plants (varietyName, type, price) VALUES
---('RedRoses', 'Flower', 10.00),
---('Tulips', 'Flower', 5.00),
---('Carrots', 'Vegetable', 20.00),
---('Squash', 'Vegetable', 6.50),
---('Grapes', 'Fruit', 25.00);
+INSERT INTO Plants (varietyName, type, price) VALUES
+('RedRoses', 'Flower', 10.00),
+('Tulips', 'Flower', 5.00),
+('Carrots', 'Vegetable', 20.00),
+('Squash', 'Vegetable', 6.50),
+('Grapes', 'Fruit', 25.00);
 
 -- Insert data into Plots
 INSERT INTO Plots (gardenID) VALUES
