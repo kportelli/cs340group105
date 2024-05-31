@@ -28,6 +28,12 @@ router.get('/gardens', (req, res) => {
 });
 
 router.get('/plots', (req, res) => {
+    let query1 = "SELECT plotID AS ID, gardenID as gardenID;"
+
+
+    // join gardens and plots on gardenID
+    let query2 = "SELECT plotID AS ID, gardenID AS GardenID, plotNumber AS PlotNumber, plotSize AS PlotSize FROM Plots;";
+
     res.render('plots');
 });
 
