@@ -8,8 +8,22 @@ router.get('/index', (req, res) => {
 
 router.get('/gardens', (req, res) => {
     let query1 = "SELECT gardenID AS ID, gardenName AS Name, streetAddress AS Address, city AS City, zip AS Zip FROM Gardens;";
-    db.pool.query(query1, function (error, rows, fields) {        // Execute the query
-        res.render('gardens', { data: rows });                     // Render the hbs file, and also send the renderer
+    let query2 = "SELECT gardenID, gardenName FROM Gardens;";
+
+    db.pool.query(query1, function (error, rows, fields) {              // Execute the query
+        if (error) {
+            console.log(error);
+            res.sendStatus(400);
+        } else {
+            db.pool.query(query2, function (error2, gardenIDs) {
+                if (error2) {
+                    console.log(error2);
+                    res.sendStatus(400);
+                } else {
+                    res.render('gardens', { data: rows, gardenIDs });   // Render the hbs file, and also send the renderer
+                }
+            });
+        }
     });
 });
 
