@@ -82,8 +82,8 @@ addRowToTable = (data) => {
     plantPriceCell.innerText = newRow.price;
 
     let deleteButton = document.createElement("button");
-    deleteButton.onclick = function (id) {
-        deletePlant(id);
+    deleteButton.onclick = function() {
+        deletePlant(newRow.plantID);
     };
     deleteButton.innerText = "Delete";
     deleteCell.appendChild(deleteButton);
