@@ -115,4 +115,23 @@ function updateRow(data, gardenID) {
             tdZip.innerHTML = parsedData[0].zip;
         }
     }
+
+    // update garden in update garden select options
+    let updateGardenSelect = document.getElementById("input-update-garden-id");
+    for (let i = 0, option; option = updateGardenSelect.options[i]; i++) {
+        if (option.value == gardenID) {
+            option.text = `${parsedData[0].gardenID} ${parsedData[0].gardenName}`;
+            break;
+        }
+    }
+
+    // reset select option to default
+    var selectElement = document.getElementById("input-update-garden-id");
+    selectElement.selectedIndex = 0; // Reset to the first option
+
+    // reset form input fields
+    document.getElementById("input-update-garden-name").value = '';
+    document.getElementById("input-update-garden-streetAddress").value = '';
+    document.getElementById("input-update-garden-city").value = '';
+    document.getElementById("input-update-garden-zipCode").value = '';
 }

@@ -71,6 +71,13 @@ function updateRow(data, plantID) {
 
             // Reassign homeworld to our value we updated to
             td.innerHTML = parsedData[0].price;
+        
+            // reset select option to default
+            var selectElement = document.getElementById("input-plantID");
+            selectElement.selectedIndex = 0; // Reset to the first option
+            
+            // clear out form input fields
+            document.getElementById("input-price-update").value = '';
         }
     }
 }

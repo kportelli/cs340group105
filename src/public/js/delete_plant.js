@@ -40,4 +40,13 @@ function deleteRow(plantID) {
             break;
         }
     }
+
+    // remove plant from update select options
+    let updatePlantSelect = document.getElementById("input-plantID");
+    for (let i = 0, option; option = updatePlantSelect.options[i]; i++) {
+        if (option.value == plantID) {
+            updatePlantSelect.remove(i);
+            break;
+        }
+    }
 }
