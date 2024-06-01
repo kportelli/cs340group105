@@ -35,4 +35,13 @@ function deleteRow(gardenID) {
             break;
         }
     }
+
+    // remove garden from update garden select options
+    let updateGardenSelect = document.getElementById("input-update-garden-id");
+    for (let i = 0, option; option = updateGardenSelect.options[i]; i++) {
+        if (option.value == gardenID) {
+            updateGardenSelect.remove(i);
+            break;
+        }
+    }
 }

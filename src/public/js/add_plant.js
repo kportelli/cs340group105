@@ -88,7 +88,6 @@ addRowToTable = (data) => {
     deleteButton.innerText = "Delete";
     deleteCell.appendChild(deleteButton);
 
-
     // Add the cells to the row 
     row.appendChild(idCell);
     row.appendChild(varietyNameCell);
