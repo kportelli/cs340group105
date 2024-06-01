@@ -1,4 +1,4 @@
-function deletePlot(gardenID) {
+function deleteGarden(gardenID) {
     // Put our data we want to send in a javascript object
     let data = { id: gardenID };
 
