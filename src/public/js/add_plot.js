@@ -2,7 +2,7 @@
 let addPlotForm = document.getElementById('add-plot-form-ajax');
 
 // Modify the objects we need
-addPlotForm.addEventListener("submit", function (e) {
+addPlantPlotForm.addEventListener("submit", function (e) {
 
     // Prevent the form from submitting
     e.preventDefault();
