@@ -1,8 +1,8 @@
 // Get the objects we need to modify
-let addPlantPlotForm = document.getElementById('add-garden-form-ajax');
+let addGardenForm = document.getElementById('add-garden-form-ajax');
 
 // Modify the objects we need
-addPlantPlotForm.addEventListener("submit", function (e) {
+addGardenForm.addEventListener("submit", function (e) {
 
     // Prevent the form from submitting
     e.preventDefault();
