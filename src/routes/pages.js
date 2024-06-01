@@ -51,7 +51,14 @@ router.get('/plots', (req, res) => {
 });
 
 router.get('/plantsplots', (req, res) => {
-    res.render('plantsplots');
+    let query1 = "SELECT PlantsPlots.plantsPlotsID, Plots.plotID, Plants.plantID, Plants.varietyName, Plants.type, Gardens.gardenName FROM PlantsPlots INNER JOIN Plants ON PlantsPlots.plantID = Plants.plantID INNER JOIN Plots ON PlantsPlots.plotID = Plots.plotID INNER JOIN Gardens ON Plots.gardenID = Gardens.gardenID;";
+    db.pool.query(query1, function(error, rows, fields){
+        if (error) {
+            console.log(error);
+            res.sendStatus(400);
+        }
+        res.render('plantsplots', {data: rows});
+    });
 });
 
 router.get('/gardenersplots', (req, res) => {
@@ -67,7 +74,6 @@ router.get('/gardeners', (req, res) => {
 });
 
 
-
 router.get('/invoicedetails', (req, res) => {
     res.render('invoicedetails');
 });
@@ -75,14 +81,6 @@ router.get('/invoicedetails', (req, res) => {
 router.get('/invoices', (req, res) => {
     res.render('invoices');
 });
-
-// router.get('/plants', (req, res) => {
-//     let query1 = 'SELECT plantID AS "Id", varietyName AS "Variety", type AS "Type", price AS "Price" FROM Plants;';                       // Define the query
-//     db.pool.query(query1, function(error, rows, fields){        // Execute the query
-//         res.render('plants', {data: rows});                     // Render the hbs file, and also send the renderer
-//     });
-// });
-
 
 router.get('/plants', function (req, res) {
     let query1 = 'SELECT plantID AS "Id", varietyName AS "Variety", type AS "Type", price AS "Price" FROM Plants;';
@@ -104,7 +102,5 @@ router.get('/plants', function (req, res) {
         }
     });
 });
-
-
 
 module.exports = router;
