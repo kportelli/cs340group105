@@ -69,8 +69,8 @@ addRowToTable = (data) => {
     gardenNameCell.innerText = newRow.gardenName;
 
     let deleteButton = document.createElement("button");
-    deleteButton.onclick = function (id) {
-        deleteGarden(id);
+    deleteButton.onclick = function() {
+        deletePlot(newRow.plotID);
     };
     deleteButton.innerText = "Delete";
     deleteCell.appendChild(deleteButton);
@@ -82,7 +82,7 @@ addRowToTable = (data) => {
     row.appendChild(deleteCell);
 
     // Add a row attribute so the deleteRow function can find a newly added row
-    row.setAttribute('data-value', newRow.id);
+    row.setAttribute('data-value', newRow.plotID);
 
     // Add the row to the table
     currentTable.appendChild(row);

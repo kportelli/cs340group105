@@ -88,8 +88,8 @@ addRowToTable = (data) => {
     zipCell.innerText = newRow.zip;
 
     let deleteButton = document.createElement("button");
-    deleteButton.onclick = function (id) {
-        deletePlot(id);
+    deleteButton.onclick = function() {
+        deletePlot(newRow.gardenID);
     };
     deleteButton.innerText = "Delete";
     deleteCell.appendChild(deleteButton);
