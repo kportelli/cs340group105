@@ -51,7 +51,15 @@ router.get('/plots', (req, res) => {
 });
 
 router.get('/plantsplots', (req, res) => {
-    res.render('plantsplots');
+    let query1 = "SELECT PlantsPlots.plantsPlotsID, Plots.plotID, Plants.plantID, Plants.varietyName, Plants.type, Gardens.gardenName FROM PlantsPlots INNER JOIN Plants ON PlantsPlots.plantID = Plants.plantID INNER JOIN Plots ON PlantsPlots.plotID = Plots.plotID INNER JOIN Gardens ON Plots.gardenID = Gardens.gardenID;";
+
+    db.pool.query(query1, function(error, rows, fields){
+        if (error) {
+            console.log(error);
+            res.sendStatus(400);
+        }
+        res.render('plantsplots', {data: rows});
+    });
 });
 
 router.get('/gardenersplots', (req, res) => {
