@@ -13,6 +13,7 @@ const { engine } = require('express-handlebars');
 var exphbs = require('express-handlebars');         // Import express-handlebars
 const helpers = require('./helpers/handlebars');    // Import the helper functions
 
+// handlebars setup
 const hbs = exphbs.create({
     extname: '.hbs',
     helpers: helpers
