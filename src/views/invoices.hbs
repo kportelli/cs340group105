@@ -1,88 +1,89 @@
 <!-- index.hbs -->
-<h1>Invoices</h1>
-<button>Show all Invoices</button>
-    <div>
-        <table>
-            <thead>
-                <tr>
-                    <th>Invoice ID</th>
-                    <th>Gardener ID</th>
-                    <th>Total Cost</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>1</td>
-                    <td>1</td>
-                    <td>$120.00</td>
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td>2</td>
-                    <td>$75.50</td>
-                </tr>
-                <tr>
-                    <td>3</td>
-                    <td>3</td>
-                    <td>$150.25</td>
-                </tr>
-            </tbody>
-        </table>
-        <br>
-    </div>
 
-    <h2>Add an Invoice</h2>
-    <div>
-        <div class="form-container">
-            <form>
-                <label> Gardener ID: </label> <select name="gardener-id">
-                    <option value="Choose a Gardener ID" selected>&nbsp;</option>
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                </select>
-                <br>
-                <label for="plant-total-cost">Total Cost:</label>
-                <input type="text" id="plant-total-cost" name="plant-total-cost" required>
-                <br>
-                <input type="submit" value="Add Invoice">
-            </form>
-        </div>
+<h1>Display All Invoices</h1>
+{{!-- Create a table --}}
+<table id="invoices-table">
+
+    {{!-- Header section --}}
+    <thead>
+
+        {{!-- For just the first row, we print each key of the row object as a header cell so we
+        know what each column means when the page renders --}}
+        <tr>
+            {{#each data.[0]}}
+            <th>
+                {{@key}}
+            </th>
+            {{/each}}
+        </tr>
+    </thead>
+
+    {{!-- Body section --}}
+    <tbody>
+
+        {{!-- For each row, print the id, fname, lname, homeworld and age, in order --}}
+        {{#each data}}
+        <tr>
+            <td>{{this.invoiceID}}</td>
+            <td>{{this.gardenerID}}</td>
+            <td>{{this.totalCost}}</td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
+
+<h2>Add an Invoice</h2>
+<div>
+    <div class="form-container">
+        <form>
+            <label> Gardener ID: </label> <select name="gardener-id">
+                <option value="Choose a Gardener ID" selected>&nbsp;</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+            </select>
+            <br>
+            <label for="plant-total-cost">Total Cost:</label>
+            <input type="text" id="plant-total-cost" name="plant-total-cost" required>
+            <br>
+            <input type="submit" value="Add Invoice">
+        </form>
     </div>
-    <br>
-    <h2>Update an Invoice</h2>
-    <div>
-        <div class="form-container">
-            <form>
-                <label> Invoice ID: </label> <select name="invoice-id">
-                    <option value="Choose an Invoice ID" selected>&nbsp;</option>
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                </select>
-                <br>
-                <label for="plant-total-cost">Total Cost:</label>
-                <input type="text" id="plant-total-cost" name="plant-total-cost" required>
-                <br>
-                <input type="submit" value="Update Invoice">
-            </form>
-        </div>
+</div>
+<br>
+<h2>Update an Invoice</h2>
+<div>
+    <div class="form-container">
+        <form>
+            <label> Invoice ID: </label> <select name="invoice-id">
+                <option value="Choose an Invoice ID" selected>&nbsp;</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+            </select>
+            <br>
+            <label for="plant-total-cost">Total Cost:</label>
+            <input type="text" id="plant-total-cost" name="plant-total-cost" required>
+            <br>
+            <input type="submit" value="Update Invoice">
+        </form>
     </div>
-    <br>
+</div>
+<br>
 
 
-    <h2>Delete an Invoice</h2>
-    <div>
-        <div class="form-container">
-            <form>
-                <label> Invoice ID: </label> <select name="invoice-id">
-                    <option value="Choose an Invoice ID" selected>&nbsp;</option>
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                </select>
-                <br>
-                <input type="submit" value="Delete Invoice">
-            </form>
-        </div>
+<h2>Delete an Invoice</h2>
+<div>
+    <div class="form-container">
+        <form>
+            <label> Invoice ID: </label> <select name="invoice-id">
+                <option value="Choose an Invoice ID" selected>&nbsp;</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+            </select>
+            <br>
+            <input type="submit" value="Delete Invoice">
+        </form>
     </div>
+</div>

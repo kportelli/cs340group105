@@ -105,6 +105,13 @@ addRowToTable = (data) => {
     emailCell.innerText = newRow.email;
     phoneCell.innerText = newRow.phone;
 
+    // Add a delete button to the new row
+    deleteCell = document.createElement("button");
+    deleteCell.innerHTML = "Delete";
+    deleteCell.onclick = function () {
+        deletePerson(newRow.id);
+    };
+
     // Add the cells to the row 
     row.appendChild(idCell);
     row.appendChild(firstNameCell);
@@ -114,6 +121,10 @@ addRowToTable = (data) => {
     row.appendChild(zipGardenerCell);
     row.appendChild(emailCell);
     row.appendChild(phoneCell);
+    row.appendChild(deleteCell);
+
+    // Add a row attribute so the deleteRow function can find a newly added row
+    row.setAttribute('data-value', newRow.id);
 
     // Add the row to the table
     currentTable.appendChild(row);
