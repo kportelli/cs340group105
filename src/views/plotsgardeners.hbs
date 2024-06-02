@@ -1,6 +1,6 @@
 <!-- index.hbs -->
 <h1>Plots Gardeners</h1>
-<table id="plots-table">
+<table id="plotsgardeners-table">
     {{!-- Header section --}}
     <thead>
         {{!-- For just the first row, we print each key of the row object as a header cell so we
@@ -28,7 +28,7 @@
             <td>{{this.gardenName}}</td>
             <td>{{this.firstName}}</td>
             <td>{{this.lastName}}</td>
-            <td><button onclick="deletePlot({{this.plotsGardenersID}})">Delete</button></td>
+            <td><button onclick="deletePlotGardener({{this.plotsGardenersID}})">Delete</button></td>
         </tr>
         {{/each}}
     </tbody>
@@ -58,3 +58,6 @@
         <input type="submit" value="Add">
     </form>
 </div>
+
+<script src="./js/add_plotgardener.js"></script>
+<script src="./js/delete_plotgardener.js"></script>
