@@ -17,7 +17,7 @@ const hbs = exphbs.create({
     extname: '.hbs',
     helpers: helpers
 });
-app.engine('.hbs', engine({ extname: ".hbs" }));    // Create an instance of the handlebars engine to process templates
+app.engine('.hbs', hbs.engine);    // Create an instance of the handlebars engine to process templates
 app.set('view engine', '.hbs');                     // Tell express to use the handlebars engine whenever it encounters a *.hbs file.
 
 /*
