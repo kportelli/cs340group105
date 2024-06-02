@@ -13,6 +13,7 @@
                 {{@key}}
             </th>
             {{/each}}
+            <th>Delete</th>
         </tr>
     </thead>
 
@@ -21,13 +22,17 @@
 
         {{!-- For each row, print the id, fname, lname, homeworld and age, in order --}}
         {{#each data}}
-        <tr>
+        <tr data-value={{this.invoiceDetailID}}>
             <td>{{this.invoiceDetailID}}</td>
-            <td>{{this.plantID}}</td>
             <td>{{this.invoiceID}}</td>
-            <td>{{this.price}}</td>
+            <td>{{this.varietyName}}</td>
+            <td>{{this.type}}</td>
             <td>{{this.quantity}}</td>
+            <td>{{this.price}}</td>
             <td>{{this.lineTotal}}</td>
+            <td>{{this.firstName}}</td>
+            <td>{{this.lastName}}</td>
+            <td><button onclick="deleteInvoiceDetail({{this.invoiceDetailID}})">Delete</button></td>
         </tr>
         {{/each}}
     </tbody>
@@ -36,21 +41,31 @@
 <h2>Adding a Plant</h2>
 <p>To add a new plant, please enter its information below and click 'Submit'!</p>
 <form id="add-invoice-details-form-ajax">
-    <label for="input-plantID">Plant: </label>
-    <input type="text" name="input-plantID" id="input-plantID">
+    <label for="input-invoice-details-plant">Plant: </label>
+    <select type="text" name="input-invoice-details-plant" id="input-invoice-details-plant">
+        <option value="default-plant">Select a Plant</option>
+        {{#each plantIDs}}
+        <option value={{json this}}>{{this.plantID}} {{this.varietyName}} {{this.type}}</option>
+        {{/each}}
+    </select>
     <br>
-    <label for="input-invoiceID">Type: </label>
-    <input type="text" name="input-invoiceID" id="input-invoiceID">
+    <label for="input-invoice-details-invoice">Invoice: </label>
+    <select type="text" name="input-invoice-details-invoice" id="input-invoice-details-invoice">
+        <option value="default-invoice">Select an Invoice</option>
+        {{#each invoiceIDs}}
+        <option value={{this.invoiceID}}>{{this.invoiceID}} {{this.firstName}} {{this.lastName}}</option>
+        {{/each}}
+    </select>
     <br>
-    <label for="input-price">Price: </label>
-    <input type="number" name="input-price" id="input-price">
+    <label for="input-invoice-details-price">Price: </label>
+    <input type="number" name="input-invoice-details-price" id="input-invoice-details-price">
     <br>
-    <label for="input-quantity">Quantity: </label>
-    <input type="text" name="input-plantID" id="input-plantID">
+    <label for="input-invoice-details-quantity">Quantity: </label>
+    <input type="number" name="input-invoice-details-quantity" id="input-invoice-details-quantity">
     <br>
     <input type="submit">
 </form>
 
-
 {{!-- Embed our javascript to handle the DOM manipulation and AJAX request --}}
 <script src="./js/add_invoice_details.js"></script>
+<script src="./js/invoicedetails/formhelpers.js"></script>
