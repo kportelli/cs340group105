@@ -90,10 +90,8 @@ router.get('/plantsplots', (req, res) => {
 router.get('/plotsgardeners', (req, res) => {
     // create query to join plots and gardens on gardenID, and join gardeners from PlotsGardeners on plotID
     let query1 = "SELECT PlotsGardeners.plotsGardenersID, Plots.plotID, Gardens.gardenID, Gardeners.gardenerID, Gardens.gardenName, Gardeners.firstName, Gardeners.lastName FROM Plots INNER JOIN Gardens ON Plots.gardenID = Gardens.gardenID INNER JOIN PlotsGardeners ON Plots.plotID = PlotsGardeners.plotID INNER JOIN Gardeners ON PlotsGardeners.gardenerID = Gardeners.gardenerID ORDER BY PlotsGardeners.plotsGardenersID ASC;";
-    
     // query all plots and garden name from joined plots and gardens
     let query2 = "SELECT Plots.plotID, Gardens.gardenName FROM Plots INNER JOIN Gardens ON Plots.gardenID = Gardens.gardenID ORDER BY Plots.plotID ASC;";
-    
     // query all gardeners
     let query3 = "SELECT gardenerID, firstName, lastName FROM Gardeners;";
     
