@@ -87,8 +87,8 @@ router.get('/plantsplots', (req, res) => {
     });
 });
 
-router.get('/gardenersplots', (req, res) => {
-    res.render('gardenersplots');
+router.get('/plotsgardeners', (req, res) => {
+    res.render('plotsgardeners');
 });
 
 router.get('/gardeners', (req, res) => {
