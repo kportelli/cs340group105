@@ -1,8 +1,8 @@
 // Get the objects we need to modify
-let addPlotForm = document.getElementById('add-garden-form-ajax');
+let addGardenForm = document.getElementById('add-garden-form-ajax');
 
 // Modify the objects we need
-addPlotForm.addEventListener("submit", function (e) {
+addGardenForm.addEventListener("submit", function (e) {
 
     // Prevent the form from submitting
     e.preventDefault();
@@ -88,8 +88,8 @@ addRowToTable = (data) => {
     zipCell.innerText = newRow.zip;
 
     let deleteButton = document.createElement("button");
-    deleteButton.onclick = function (id) {
-        deleteGarden(id);
+    deleteButton.onclick = function() {
+        deleteGarden(newRow.gardenID);
     };
     deleteButton.innerText = "Delete";
     deleteCell.appendChild(deleteButton);
@@ -103,8 +103,16 @@ addRowToTable = (data) => {
     row.appendChild(deleteCell);
 
     // Add a row attribute so the deleteRow function can find a newly added row
-    row.setAttribute('data-value', newRow.id);
+    row.setAttribute('data-value', newRow.gardenID);
 
     // Add the row to the table
     currentTable.appendChild(row);
+
+    // Find drop down menu, create a new option, fill data in the option (full name, id),
+    // then append option to drop down menu so newly created rows via ajax will be found in it without needing a refresh
+    let selectMenu = document.getElementById("input-update-garden-id");
+    let option = document.createElement("option");
+    option.text = `${newRow.gardenID} ${newRow.gardenName}`;
+    option.value = newRow.gardenID;
+    selectMenu.add(option);
 }

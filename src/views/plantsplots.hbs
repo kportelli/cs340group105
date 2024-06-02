@@ -1,73 +1,60 @@
 <!-- index.hbs -->
 <h1>Plants Plots</h1>
-<button>Show Plants Plots</button>
-    <div>
-        <table>
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Plot ID</th>
-                    <th>Plant Type</th>
-                    <th>Plant Variety</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>1</td>
-                    <td>1</td>
-                    <td>Flower</td>
-                    <td>Red Roses</td>
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td>2</td>
-                    <td>Flower</td>
-                    <td>Tulips</td>
-                </tr>
-                <tr>
-                    <td>3</td>
-                    <td>1</td>
-                    <td>Vegetable</td>
-                    <td>Carrots</td>
-                </tr>
-            </tbody>
-        </table>
-        <br>
-    </div>
+<table id="plantsplots-table">
+    {{!-- Header section --}}
+    <thead>
+        {{!-- For just the first row, we print each key of the row object as a header cell so we
+        know what each column means when the page renders --}}
+        <tr>
+            {{#each data.[0]}}
+            <th>
+                {{@key}}
+            </th>
+            {{/each}}
+            <th>Delete</th>
+        </tr>
+    </thead>
+
+    {{!-- Body section --}}
+    <tbody>
+        {{!-- For each row, print the id, varietyName, type, and price, in order --}}
+        {{#each data}}
+        <tr data-value={{this.plantsPlotsID}}>
+            <td>{{this.plantsPlotsID}}</td>
+            <td>{{this.plotID}}</td>
+            <td>{{this.plantID}}</td>
+            <td>{{this.varietyName}}</td>
+            <td>{{this.type}}</td>
+            <td>{{this.gardenName}}</td>
+            <td><button onclick="deletePlantPlot({{this.plantsPlotsID}})">Delete</button></td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
     <br>
     <h2>Add a Plant Plot</h2>
     <div class="form-container">
-        <form>
-            <label for="plant-plots-plot">Plot</label>
-                <select type="text" id="plant-plots-plot" name="plant-plots-plot" required>
-                    <option value="1">[1] New Beginnings</option>
-                    <option value="2">[2] New Beginnings</option>
-                    <option value="3">[3] New Beginnings</option>
-                    <option value="4">[4] Dirt Patch</option>
-                </select>
-
+        <form id="add-plantplot-form-ajax">
+            <label for="plants-plots-plot-id">Plot</label>
+            <select type="text" id="plants-plots-plot-id" name="plants-plots-plot-id" required>
+                <option value="default-plot">Select a Plot</option>
+                {{#each plotIDs}}
+                <option value={{this.plotID}}>{{this.plotID}} {{this.gardenName}}</option>
+                {{/each}}
+            </select>
             <br>
-            <label for="plant-plots-plant">Plant</label>
-            <select type="text" id="plant-plots-plant" name="plant-plots-plant" required>
-                <option value="1">[1] Red Roses, Flower</option>
-                <option value="2">[2] Tulips, Flower</option>
-                <option value="3">[3] Carrots, Vegetable</option>
+            <label for="plants-plots-plant-id">Plot</label>
+            <select type="text" id="plants-plots-plant-id" name="plants-plots-plant-id" required>
+                <option value="default-plant">Select a Plant</option>
+                {{#each plantIDs}}
+                <option value={{this.plantID}}>{{this.plantID}} {{this.varietyName}} {{this.type}}</option>
+                {{/each}}
             </select>
             <br>
             <input type="submit" value="Add">
         </form>
     </div>
-    <br>
-    <h2>Delete a Plant Plot</h2>
-    <div>
-        <div class="form-container">
-            <form>
-                <label for="plot-id">PlantPlot ID:</label>
-                <input type="number" min="1" max="3" id="plot-id" name="plot-id" required>
-                <br>
-                <input type="submit" value="Remove">
-                <!-- Needs to delete all referenced entities (plots) -->
-            </form>
-        </div>
-    </div>
 </div>
+
+<script src="./js/add_plantplot.js"></script>
+<script src="./js/delete_plantplot.js"></script>

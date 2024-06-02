@@ -1,5 +1,10 @@
 function deletePlant(plantID) {
     // Put our data we want to send in a javascript object
+
+    if (plantID == null || isNaN(plantID)) {
+        return;
+    }
+    
     let data = { id: plantID };
 
     // Setup our AJAX request
@@ -32,6 +37,15 @@ function deleteRow(plantID) {
         //rows would be accessed using the "row" variable assigned in the for loop
         if (table.rows[i].getAttribute("data-value") == plantID) {
             table.deleteRow(i);
+            break;
+        }
+    }
+
+    // remove plant from update select options
+    let updatePlantSelect = document.getElementById("input-plantID");
+    for (let i = 0, option; option = updatePlantSelect.options[i]; i++) {
+        if (option.value == plantID) {
+            updatePlantSelect.remove(i);
             break;
         }
     }

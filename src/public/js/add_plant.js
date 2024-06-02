@@ -82,19 +82,11 @@ addRowToTable = (data) => {
     plantPriceCell.innerText = newRow.price;
 
     let deleteButton = document.createElement("button");
-    deleteButton.onclick = function (id) {
-        deletePlant(id);
+    deleteButton.onclick = function() {
+        deletePlant(newRow.plantID);
     };
     deleteButton.innerText = "Delete";
     deleteCell.appendChild(deleteButton);
-
-    // deleteCell.innerHTML = '<button onclick="deletePlant({{this.plantID}})">Delete</button>'
-    // deleteCell.onclick
-    // // deleteCell = document.createElement("button");
-    // deleteCell.innerText = "Delete";
-    // deleteCell.onclick = function(){
-    //     deletePlant(newRow.id);
-    // };
 
     // Add the cells to the row 
     row.appendChild(idCell);
@@ -104,7 +96,7 @@ addRowToTable = (data) => {
     row.appendChild(deleteCell);
 
     // Add a row attribute so the deleteRow function can find a newly added row
-    row.setAttribute('data-value', newRow.id);
+    row.setAttribute('data-value', newRow.plantID);
 
     // Add the row to the table
     currentTable.appendChild(row);
@@ -115,7 +107,7 @@ addRowToTable = (data) => {
     // then append option to drop down menu so newly created rows via ajax will be found in it without needing a refresh
     let selectMenu = document.getElementById("input-plantID");
     let option = document.createElement("option");
-    option.text = newRow.plantID;
+    option.text = `${newRow.plantID} ${newRow.varietyName} ${newRow.type}`;
     option.value = newRow.plantID;
     selectMenu.add(option);
     // End of new step 8 code.

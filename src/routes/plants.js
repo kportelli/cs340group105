@@ -16,6 +16,9 @@ router.post('/add-plant-ajax', function (req, res) {
     }
 
     query1 = `INSERT INTO Plants (varietyName, type, price) VALUES ('${data.varietyName}', '${data.type}', ${price})`;
+    
+    // get the last row in the Plants table (just added)
+    query2 = `SELECT * FROM Plants ORDER BY plantID DESC LIMIT 1;`;
     db.pool.query(query1, function (error, rows, fields) {
 
         // Check to see if there was an error
@@ -26,8 +29,6 @@ router.post('/add-plant-ajax', function (req, res) {
             res.sendStatus(400);
         }
         else {
-            // If there was no error, perform a SELECT * on bsg_people
-            query2 = `SELECT * FROM Plants;`;
             db.pool.query(query2, function (error, rows, fields) {
 
                 // If there was an error on the second query, send a 400
@@ -45,29 +46,6 @@ router.post('/add-plant-ajax', function (req, res) {
         }
     })
 });
-
-// UPDATE 
-
-// router.get('/plants', function (req, res) {
-//     let query1 = "SELECT plantID AS plantID, varietyName AS Variety, type AS Type, price AS Price FROM Plants;";
-//     let query2 = "SELECT plantID FROM Plants;";
-
-//     db.pool.query(query1, function (error, rows, fields) {
-//         if (error) {
-//             console.log(error);
-//             res.sendStatus(400);
-//         } else {
-//             db.pool.query(query2, function (error2, plantIDs) {
-//                 if (error2) {
-//                     console.log(error2);
-//                     res.sendStatus(400);
-//                 } else {
-//                     res.render('plants', { data: rows, plantIDS });
-//                 }
-//             });
-//         }
-//     });
-// });
 
 router.put('/put-plant-ajax', function (req, res, next) {
     let data = req.body;

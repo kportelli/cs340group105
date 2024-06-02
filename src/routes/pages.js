@@ -29,7 +29,7 @@ router.get('/gardens', (req, res) => {
 
 router.get('/plots', (req, res) => {
     // join gardens and plots on gardenID
-    let query1 = "SELECT Plots.plotID, Gardens.gardenID, Gardens.gardenName FROM Plots INNER JOIN Gardens ON Plots.gardenID = Gardens.gardenID";
+    let query1 = "SELECT Plots.plotID, Gardens.gardenID, Gardens.gardenName FROM Plots INNER JOIN Gardens ON Plots.gardenID = Gardens.gardenID ORDER BY Plots.plotID ASC;";
     
     // select all gardens to show in dropdown
     let query2 = "SELECT gardenID, gardenName FROM Gardens;";
@@ -51,7 +51,40 @@ router.get('/plots', (req, res) => {
 });
 
 router.get('/plantsplots', (req, res) => {
-    res.render('plantsplots');
+    let query1 = "SELECT PlantsPlots.plantsPlotsID, Plots.plotID, Plants.plantID, Plants.varietyName, Plants.type, Gardens.gardenName FROM PlantsPlots INNER JOIN Plants ON PlantsPlots.plantID = Plants.plantID INNER JOIN Plots ON PlantsPlots.plotID = Plots.plotID INNER JOIN Gardens ON Plots.gardenID = Gardens.gardenID ORDER BY PlantsPlots.plantsPlotsID ASC;";
+
+    // select plotID, gardenName from plots joined with gardens on gardenID
+    let query2 = "SELECT Plots.plotID, Gardens.gardenName FROM Plots INNER JOIN Gardens ON Plots.gardenID = Gardens.gardenID ORDER BY Plots.plotID ASC;";
+
+    // select plants to show in dropdown
+    let query3 = "SELECT plantID, varietyName, type FROM Plants ORDER BY plantID ASC;";
+
+    db.pool.query(query1, function(error, rows, fields){
+        if (error) {
+            console.log(error);
+            res.sendStatus(400);
+        }
+        else {
+            db.pool.query(query2, function(error2, plotIDs) {
+                if (error2) {
+                    console.log(error2);
+                    res.sendStatus(400);
+                }
+                else {
+                    db.pool.query(query3, function(error3, plantIDs) {
+                        if (error3) {
+                            console.log(error3);
+                            res.sendStatus(400);
+                        }
+                        else {
+                            res.render('plantsplots', { data: rows, plotIDs, plantIDs });
+                        }
+                    });
+                }
+            });
+        }
+        
+    });
 });
 
 router.get('/gardenersplots', (req, res) => {
@@ -67,7 +100,6 @@ router.get('/gardeners', (req, res) => {
 });
 
 
-
 router.get('/invoicedetails', (req, res) => {
     res.render('invoicedetails');
 });
@@ -79,14 +111,6 @@ router.get('/invoices', (req, res) => {
 
     })
 });
-
-// router.get('/plants', (req, res) => {
-//     let query1 = 'SELECT plantID AS "Id", varietyName AS "Variety", type AS "Type", price AS "Price" FROM Plants;';                       // Define the query
-//     db.pool.query(query1, function(error, rows, fields){        // Execute the query
-//         res.render('plants', {data: rows});                     // Render the hbs file, and also send the renderer
-//     });
-// });
-
 
 router.get('/plants', function (req, res) {
     let query1 = 'SELECT plantID AS "Id", varietyName AS "Variety", type AS "Type", price AS "Price" FROM Plants;';
@@ -108,7 +132,5 @@ router.get('/plants', function (req, res) {
         }
     });
 });
-
-
 
 module.exports = router;

@@ -32,6 +32,13 @@ SELECT Plots.plotID, Gardens.gardenName FROM Plots INNER JOIN Gardens ON Plots.g
 -- -- -- get all plants in a plot
 SELECT plantID, varietyName, type, price FROM Plants INNER JOIN PlantsPlots ON Plants.plantID = PlantsPlots.plantID WHERE plotID = :plotID
 
+-- -- -- PlantsPlots join plants table with plantsplots table on plantID, then join with plots and gardens to get information on garden Name associated with plolt and get all fields
+SELECT PlantsPlots.plantsPlotsID, Plants.varietyName, Plants.type, Plants.price, Plots.plotID, Gardens.gardenName
+FROM PlantsPlots
+INNER JOIN Plants ON PlantsPlots.plantID = Plants.plantID
+INNER JOIN Plots ON PlantsPlots.plotID = Plots.plotID
+INNER JOIN Gardens ON Plots.gardenID = Gardens.gardenID;
+
 -- -- -- remove a plant from a plot
 DELETE FROM PlantsPlots WHERE plantPlotID = :plantPlotID
 
