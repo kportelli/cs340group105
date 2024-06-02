@@ -1,76 +1,60 @@
 <!-- index.hbs -->
 <h1>Plots Gardeners</h1>
-<button>Show Plots Gardeners</button>
-    <div>
-        <table>
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Plot ID</th>
-                    <th>Gardnener ID</th>
-                    <th>Gardener First Name</th>
-                    <th>Gardener Last Name</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>1</td>
-                    <td>1</td>
-                    <td>1</td>
-                    <td>Joe</td>
-                    <td>Schmoe</td>
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td>1</td>
-                    <td>2</td>
-                    <td>Alice</td>
-                    <td>Smith</td>
-                </tr>
-                <tr>
-                    <td>3</td>
-                    <td>2</td>
-                    <td>1</td>
-                    <td>Joe</td>
-                    <td>Schmoe</td>
-                </tr>
-            </tbody>
-        </table>
-        <br>
-    </div>
-    <br>
-    <h2>Add Gardener Plot</h2>
-    <div class="form-container">
-        <form>
-            <label for="plant-plots-plot">Plot</label>
-                <select type="text" id="plant-plots-plot" name="plant-plots-plot" required>
-                    <option value="1">[1] New Beginnings</option>
-                    <option value="2">[2] New Beginnings</option>
-                    <option value="3">[3] New Beginnings</option>
-                    <option value="4">[4] Dirt Patch</option>
-                </select>
+<table id="plots-table">
+    {{!-- Header section --}}
+    <thead>
+        {{!-- For just the first row, we print each key of the row object as a header cell so we
+        know what each column means when the page renders --}}
+        <tr>
+            {{#each data.[0]}}
+            <th>
+                {{@key}}
+            </th>
+            {{/each}}
+            <th>Delete</th>
+        </tr>
+    </thead>
 
-            <br>
-            <label for="gardener-plots-gardener">Gardener</label>
-            <select type="text" id="gardener-plots-gardener" name="gardener-plots-gardener" required>
-                <option value="1">[1] Joe Schmoe</option>
-                <option value="2">[2] Alice Smith</option>
+    {{!-- Body section --}}
+    <tbody>
+
+        {{!-- For each row, print the id, varietyName, type, and price, in order --}}
+        {{#each data}}
+        <tr data-value={{this.plotsGardenersID}}>
+            <td>{{this.plotsGardenersID}}</td>
+            <td>{{this.plotID}}</td>
+            <td>{{this.gardenID}}</td>
+            <td>{{this.gardenerID}}</td>
+            <td>{{this.gardenName}}</td>
+            <td>{{this.firstName}}</td>
+            <td>{{this.lastName}}</td>
+            <td><button onclick="deletePlot({{this.plotsGardenersID}})">Delete</button></td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
+
+<br>
+<h2>Add Gardener Plot</h2>
+<div class="form-container">
+    <form id="add-plot-gardener-form-ajax">
+        <label for="input-add-plot-gardener-plot-id">Plot</label>
+            <select type="text" id="input-add-plot-gardener-plot-id" name="input-add-plot-gardener-plot-id" required>
+                <option value="default-plot">Select a Plot</option>
+                {{#each plotIDs}}
+                <option value={{this.plotID}}>{{this.plotID}} {{this.gardenName}}</option>
+                {{/each}}
             </select>
-            <br>
-            <input type="submit" value="Add">
-        </form>
-    </div>
-    <br>
-    <h2>Delete Gardener Plot</h2>
-    <div>
-        <div class="form-container">
-            <form>
-                <label for="plot-id">GardenerPlot ID:</label>
-                <input type="number" min="1" max="3" id="plot-id" name="plot-id" required>
-                <br>
-                <input type="submit" value="Remove">
-                <!-- Needs to delete all referenced entities (plots) -->
-            </form>
-        </div>
-    </div>
+
+        <br>
+        <label for="input-add-plot-gardener-gardener-id">Gardener</label>
+        <select type="text" id="input-add-plot-gardener-gardener-id" name="input-add-plot-gardener-gardener-id" required>
+            <option value="default-plot">Select a Plot</option>
+                {{#each gardenerIDs}}
+                <option value={{this.gardenerID}}>{{this.gardenerID}} {{this.firstName}} {{this.lastName}}</option>
+                {{/each}}
+        </select>
+        <br>
+        <input type="submit" value="Add">
+    </form>
 </div>
