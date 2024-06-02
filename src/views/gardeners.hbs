@@ -73,7 +73,7 @@
 
             {{!-- For each row, print the id, fname, lname, homeworld and age, in order --}}
             {{#each data}}
-            <tr>
+            <tr data-value={{this.gardenerID}}>
                 <td>{{this.gardenerID}}</td>
                 <td>{{this.firstName}}</td>
                 <td>{{this.lastName}}</td>
@@ -82,13 +82,14 @@
                 <td>{{this.zip}}</td>
                 <td>{{this.email}}</td>
                 <td>{{this.phone}}</td>
+                <td><button onclick="deleteGardener({{this.gardenerID}})">Delete</button></td>
             </tr>
             {{/each}}
         </tbody>
     </table>
     <br>
 </div>
-
+<script src="./js/delete_gardener.js"></script>
 
 
 {{!-- Form to add a Gardener to the table --}}

@@ -49,4 +49,25 @@ router.post('/add-gardener-ajax', function (req, res) {
     })
 });
 
+router.delete('/delete-gardener-ajax/', function (req, res, next) {
+    let data = req.body;
+    let gardenerID = parseInt(data.id);
+    let deleteGardeners = `DELETE FROM Gardeners WHERE gardenerID = ?`;
+
+    // Run the 1st query
+    db.pool.query(deleteGardeners, [gardenerID], function (error, rows, fields) {
+        if (error) {
+
+            // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
+            console.log(error);
+            res.sendStatus(400);
+        }
+        else {
+            res.sendStatus(204);
+        }
+
+    })
+});
+
+
 module.exports = router;
