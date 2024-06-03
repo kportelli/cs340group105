@@ -13,6 +13,7 @@ const { engine } = require('express-handlebars');
 var exphbs = require('express-handlebars');         // Import express-handlebars
 const helpers = require('./helpers/handlebars');    // Import the helper functions
 
+// handlebars setup
 const hbs = exphbs.create({
     extname: '.hbs',
     helpers: helpers
@@ -31,6 +32,7 @@ const gardenersRoutes = require('./routes/gardeners');
 const plotsRoutes = require('./routes/plots');
 const plantsPlotsRoutes = require('./routes/plantsplots');
 const plotsGardenersRoutes = require('./routes/plotsgardeners');
+const invoiceDetailsRoutes = require('./routes/invoicedetails');
 
 PORT = 9124;
 
@@ -41,6 +43,7 @@ app.use(gardenersRoutes);
 app.use(plotsRoutes);
 app.use(plantsPlotsRoutes);
 app.use(plotsGardenersRoutes);
+app.use(invoiceDetailsRoutes);
 
 app.get('/', function (req, res)            // // This is the basic syntax for what is called a 'route'
 {
