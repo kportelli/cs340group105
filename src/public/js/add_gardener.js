@@ -39,7 +39,7 @@ addGardenerForm.addEventListener("submit", function (e) {
 
     // Setup our AJAX request
     var xhttp = new XMLHttpRequest();
-    xhttp.open("POST", "/add-gardener-ajax", true);
+    xhttp.open("POST", "/add-gardener-form-ajax", true);
     xhttp.setRequestHeader("Content-type", "application/json");
 
     // Tell our AJAX request how to resolve
@@ -52,11 +52,11 @@ addGardenerForm.addEventListener("submit", function (e) {
             // Clear the input fields for another transaction
             inputFirstName.value = '';
             inputLastName.value = '';
-            inputAddressGardener = '';
-            inputCityGardener = '';
-            inputZipGardener = '';
-            inputEmail = '';
-            inputPhone = '';
+            inputAddressGardener.value = '';
+            inputCityGardener.value = '';
+            inputZipGardener.value = '';
+            inputEmail.value = '';
+            inputPhone.value = '';
         }
 
         else if (xhttp.readyState == 4 && xhttp.status != 200) {
@@ -95,22 +95,26 @@ addRowToTable = (data) => {
     let emailCell = document.createElement("TD");
     let phoneCell = document.createElement("TD");
 
+    let deleteCell = document.createElement("TD");
+
     // Fill the cells with correct data
-    idCell.innerText = newRow.id;
-    firstNameCell.innerText = newRow.fname;
-    lastNameCell.innerText = newRow.lname;
-    addressGardenerCell.innerText = newRow.address_gardener;
-    cityGardenerCell.innerText = newRow.city_gardener;
-    zipGardenerCell.innerText = newRow.zip_gardener;
+    idCell.innerText = newRow.gardenerID;
+    firstNameCell.innerText = newRow.firstName;
+    lastNameCell.innerText = newRow.lastName;
+    addressGardenerCell.innerText = newRow.streetAddress;
+    cityGardenerCell.innerText = newRow.city;
+    zipGardenerCell.innerText = newRow.zip;
     emailCell.innerText = newRow.email;
     phoneCell.innerText = newRow.phone;
 
     // Add a delete button to the new row
-    deleteCell = document.createElement("button");
-    deleteCell.innerHTML = "Delete";
-    deleteCell.onclick = function () {
-        deletePerson(newRow.id);
+    let deleteButton = document.createElement("button");
+    deleteButton.onclick = function () {
+        deleteGardener(newRow.gardenerID);
     };
+    deleteButton.innerText = "Delete";
+    deleteCell.appendChild(deleteButton);
+
 
     // Add the cells to the row 
     row.appendChild(idCell);
@@ -124,7 +128,7 @@ addRowToTable = (data) => {
     row.appendChild(deleteCell);
 
     // Add a row attribute so the deleteRow function can find a newly added row
-    row.setAttribute('data-value', newRow.id);
+    row.setAttribute('data-value', newRow.gardenerID);
 
     // Add the row to the table
     currentTable.appendChild(row);
