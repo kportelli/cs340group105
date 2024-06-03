@@ -68,10 +68,10 @@ CREATE TABLE Plots (
 
 CREATE TABLE Invoices (
   invoiceID int(11) NOT NULL AUTO_INCREMENT,
-  gardenerID int(11) NOT NULL,
+  gardenerID int(11),
   totalCost decimal(19,2) NOT NULL,
   PRIMARY KEY (invoiceID),
-  FOREIGN KEY (gardenerID) REFERENCES Gardeners (gardenerID) ON DELETE CASCADE ON UPDATE CASCADE
+  FOREIGN KEY (gardenerID) REFERENCES Gardeners (gardenerID) ON DELETE SET NULL ON UPDATE CASCADE
 );
 
 -- --------------------------------------------------------
@@ -87,8 +87,8 @@ CREATE TABLE InvoiceDetails (
   quantity int(11) NOT NULL,
   lineTotal decimal(19,2) NOT NULL,
   PRIMARY KEY (invoiceDetailID),
-  FOREIGN KEY (invoiceID) REFERENCES Invoices (invoiceID) ON DELETE CASCADE ON UPDATE CASCADE,
-  FOREIGN KEY (plantID) REFERENCES Plants (plantID) ON DELETE SET NULL ON UPDATE NO ACTION
+  FOREIGN KEY (plantID) REFERENCES Plants (plantID) ON DELETE CASCADE ON UPDATE CASCADE,
+  FOREIGN KEY (invoiceID) REFERENCES Invoices (invoiceID) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 -- --------------------------------------------------------
