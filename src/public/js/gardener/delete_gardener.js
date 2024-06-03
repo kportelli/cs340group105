@@ -1,22 +1,7 @@
-// Citation for the following function:
-// Date: 12/02/2022
-// Copied from /OR/ Adapted from /OR/ Based on
-// (Explain degree of originality)
-// Source URL: http://www.oregonstate.edu/mysource
-//
-// DELETE BELOW THIS LINE
-// Citation instructions:
-// Final Project rubric: 25 of 600 pts. 
-// "Full Marks: Citations in readme AND in source code include FULL DETAILS of 
-// 1) citation scope (e.g. module, function or line)
-// 2, date,
-// 3) originality, (copied, adapted, or based, e.g. "Based on the CS 340 starter code, with the exception of..."),
-// 4) source (e.g. URL)
-// Syllabus: 
-// "We also expect you to comment any code that is not your own so that we can see you understand how it works.
-// Any code that is not your own needs to be cited. The code from the class starter apps is not your own code. 
-// A snippet of code you copied from StackOverFlow is not your own code.
 
+// note: when a gardenerID is deleted, 
+// referencing Invoice rows set gardenerID to NULL,
+// referencing PlotsGardeners rows are also deleted via CASCADE
 
 function deleteGardener(gardenerID) {
     // Put our data we want to send in a javascript object

@@ -2,6 +2,8 @@ const express = require('express');
 const router = express.Router();
 var db = require('../database/db-connector');
 
+// CREATE a Gardener
+
 router.post('/add-gardener-form-ajax', function (req, res) {
     // Capture the incoming data and parse it back to a JS object
     let data = req.body;
@@ -18,7 +20,8 @@ router.post('/add-gardener-form-ajax', function (req, res) {
     // }
 
     // Create the query and run it on the database
-    query1 = `INSERT INTO Gardeners (firstName, lastName, streetAddress, city, zip, email, phone) VALUES ('${data.fname}', '${data.lname}', '${data.address_gardener}', '${data.city_gardener}','${data.zip_gardener}','${data.email}', '${data.phone}');`;
+    query1 = `INSERT INTO Gardeners (firstName, lastName, streetAddress, city, zip, email, phone) VALUES (
+        '${data.fname}', '${data.lname}', '${data.address_gardener}', '${data.city_gardener}','${data.zip_gardener}','${data.email}', '${data.phone}');`;
     query2 = `SELECT * FROM Gardeners ORDER BY gardenerID DESC LIMIT 1;`;
 
     db.pool.query(query1, function (error, rows, fields) {
@@ -50,13 +53,19 @@ router.post('/add-gardener-form-ajax', function (req, res) {
     })
 });
 
+// DELETE a Gardener
+
 router.delete('/delete-gardener-ajax/', function (req, res, next) {
     let data = req.body;
     let gardenerID = parseInt(data.id);
-    let deleteGardeners = `DELETE FROM Gardeners WHERE gardenerID = ?`;
+    let deleteGardener = `DELETE FROM Gardeners WHERE gardenerID = ?`;
 
-    // Run the 1st query
-    db.pool.query(deleteGardeners, [gardenerID], function (error, rows, fields) {
+    // note: when a gardenerID is deleted, 
+    // referencing Invoice rows set gardenerID to NULL;
+    // referencing PlotsGardeners rows are also deleted via CASCADE
+
+    // Run the query
+    db.pool.query(deleteGardener, [gardenerID], function (error, rows, fields) {
         if (error) {
 
             // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
@@ -69,6 +78,5 @@ router.delete('/delete-gardener-ajax/', function (req, res, next) {
 
     })
 });
-
 
 module.exports = router;
