@@ -164,7 +164,7 @@ router.get('/invoicedetails', (req, res) => {
 });
 
 router.get('/invoices', (req, res) => {
-    let query1 = "SELECT * FROM INvoices;";
+    let query1 = "SELECT * FROM Invoices;";
     db.pool.query(query1, function (error, rows, fields) {
         res.render('invoices', { data: rows });
 

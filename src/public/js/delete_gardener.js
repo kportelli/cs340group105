@@ -1,4 +1,7 @@
 
+// note: when a gardenerID is deleted, 
+// referencing Invoice rows set gardenerID to NULL,
+// referencing PlotsGardeners rows are also deleted via CASCADE
 
 function deleteGardener(gardenerID) {
     // Put our data we want to send in a javascript object

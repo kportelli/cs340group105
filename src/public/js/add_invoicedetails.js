@@ -3,7 +3,7 @@ let addInvoiceDetailForm = document.getElementById('add-invocie-details-form-aja
 
 // Modify the objects we need
 addPlantForm.addEventListener("submit", function (e) {
-    
+
     // Prevent the form from submitting
     e.preventDefault();
 
@@ -23,7 +23,7 @@ addPlantForm.addEventListener("submit", function (e) {
         type: plantTypeValue,
         price: plantPriceValue
     }
-    
+
     // Setup our AJAX request
     var xhttp = new XMLHttpRequest();
     xhttp.open("POST", "/add-plant-ajax", true);
@@ -40,7 +40,7 @@ addPlantForm.addEventListener("submit", function (e) {
             inputVarietyName.value = '';
             inputPlantType.value = '';
             inputPlantPrice.value = '';
-        } 
+        }
         else if (xhttp.readyState == 4 && xhttp.status != 200) {
             console.log("There was an error with the input.")
         }
@@ -52,8 +52,7 @@ addPlantForm.addEventListener("submit", function (e) {
 })
 
 
-// Creates a single row from an Object representing a single record from 
-// bsg_people
+// Creates a single row from an Object representing a single record 
 addRowToTable = (data) => {
 
     // Get a reference to the current table on the page and clear it out.
@@ -84,7 +83,7 @@ addRowToTable = (data) => {
     row.appendChild(varietyNameCell);
     row.appendChild(plantTypeCell);
     row.appendChild(plantPriceCell);
-    
+
     // Add the row to the table
     currentTable.appendChild(row);
 }
