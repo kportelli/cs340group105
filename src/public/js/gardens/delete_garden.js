@@ -39,7 +39,31 @@ function deleteRow(gardenID) {
     // remove garden from update garden select options
     let updateGardenSelect = document.getElementById("input-update-garden-id");
     for (let i = 0, option; option = updateGardenSelect.options[i]; i++) {
-        if (option.value == gardenID) {
+        if (option.value == "default-garden") {
+            continue;
+        }
+        if (JSON.parse(option.value).ID == gardenID) {
+
+            // if the deleted garden is the one selected in the "update garden" form, reset the form
+            let inputGardenID = document.getElementById("input-update-garden-id");
+            if (JSON.parse(inputGardenID.value).ID == gardenID) {
+                let inputName = document.getElementById("input-update-garden-name");
+                let inputAddress = document.getElementById("input-update-garden-streetAddress");
+                let inputCity = document.getElementById("input-update-garden-city");
+                let inputZip = document.getElementById("input-update-garden-zipCode");
+
+                inputName.value = '';
+                inputAddress.value = '';
+                inputCity.value = '';
+                inputZip.value = '';
+                inputGardenID.value = '';
+
+                // reset select option to default
+                var selectElement = document.getElementById("input-update-garden-id");
+                selectElement.selectedIndex = 0; // Reset to the first option
+            }
+
+            // remove the garden from the select options
             updateGardenSelect.remove(i);
             break;
         }
