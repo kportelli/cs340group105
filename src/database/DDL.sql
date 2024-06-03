@@ -71,7 +71,7 @@ CREATE TABLE Invoices (
   gardenerID int(11) NOT NULL,
   totalCost decimal(19,2) NOT NULL,
   PRIMARY KEY (invoiceID),
-  FOREIGN KEY (gardenerID) REFERENCES Gardeners (gardenerID) ON DELETE CASCADE ON UPDATE CASCADE
+  FOREIGN KEY (gardenerID) REFERENCES Gardeners (gardenerID) ON DELETE SET NULL ON UPDATE CASCADE
 );
 
 -- --------------------------------------------------------
