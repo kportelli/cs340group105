@@ -8,8 +8,8 @@ router.post('/add-garden-ajax', function (req, res) {
 
     let data = req.body;
     
-    query1 = `INSERT INTO Gardens (gardenName, streetAddress, city, zip) VALUES ('${data.name}', '${data.address}', '${data.city}', '${data.zip}')`;
-    db.pool.query(query1, function (error, rows, fields) {
+    query1 = `INSERT INTO Gardens (gardenName, streetAddress, city, zip) VALUES (?, ?, ?, ?)`;
+    db.pool.query(query1, [data.name, data.address, data.city, data.zip], function (error, rows, fields) {
 
         // Check to see if there was an error
         if (error) {
