@@ -68,7 +68,7 @@ CREATE TABLE Plots (
 
 CREATE TABLE Invoices (
   invoiceID int(11) NOT NULL AUTO_INCREMENT,
-  gardenerID int(11) NOT NULL,
+  gardenerID int(11),
   totalCost decimal(19,2) NOT NULL,
   PRIMARY KEY (invoiceID),
   FOREIGN KEY (gardenerID) REFERENCES Gardeners (gardenerID) ON DELETE SET NULL ON UPDATE CASCADE
