@@ -15,11 +15,11 @@ router.post('/add-plant-ajax', function (req, res) {
         price = 'NULL';
     }
 
-    query1 = `INSERT INTO Plants (varietyName, type, price) VALUES ('${data.varietyName}', '${data.type}', ${price})`;
+    query1 = `INSERT INTO Plants (varietyName, type, price) VALUES (?, ?, ?)`;
     
     // get the last row in the Plants table (just added)
     query2 = `SELECT * FROM Plants ORDER BY plantID DESC LIMIT 1;`;
-    db.pool.query(query1, function (error, rows, fields) {
+    db.pool.query(query1, [data.varietyName, data.type, data.price], function (error, rows, fields) {
 
         // Check to see if there was an error
         if (error) {
