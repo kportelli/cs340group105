@@ -5,6 +5,9 @@ let gardenInput = document.getElementById("input-update-garden-id");
 gardenInput.addEventListener("change", function() {
     let gardenData = gardenInput.value;
 
+    // if ` exists in gardenData, remove it
+    gardenData = gardenData.replace(/`/g, '');
+
     let gardenName = document.getElementById("input-update-garden-name");
     let gardenAddress = document.getElementById("input-update-garden-streetAddress");
     let gardenCity = document.getElementById("input-update-garden-city");
