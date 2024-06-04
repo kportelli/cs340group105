@@ -64,6 +64,56 @@ router.post('/add-gardener-form-ajax', function (req, res) {
     })
 });
 
+// UPDATE a Gardener
+
+router.put('/put-gardener-ajax', function (req, res, next) {
+    let data = req.body;
+
+    let gardenerID = data.gardenerID;
+    let gardenerfirstName = data.firstName;
+    let gardenerlastName = data.lastName;
+    let streetAddress = data.streetAddress;
+    let city = data.city;
+    let zip = data.zip;
+    let phone = data.phone;
+    let email = data.email;
+
+
+    // // if gardenerID is not a number, send a 400 status code
+    // if (isNaN(gardenerID)) {
+    //     res.sendStatus(400);
+    //     return;
+    // }
+
+    let queryUpdateGardener = `UPDATE Gardeners SET firstName = ?, lastName = ?, streetAddress = ?, city = ?, zip = ?, phone = ?, email = ? WHERE gardenerID = ?`;
+    let selectUpdatedGardener = `SELECT * FROM Gardeners WHERE gardenerID = ?`
+
+    // Run the 1st query
+    db.pool.query(queryUpdateGardener, [gardenerfirstName, gardenerlastName, streetAddress, city, zip, phone, email, gardenerID], function (error, rows, fields) {
+        if (error) {
+
+            // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
+            console.log(error);
+            res.sendStatus(400);
+        }
+
+        // If there was no error, we run our second query and return that data so we can use it to update the people's
+        // table on the front-end
+        else {
+            // Run the second query
+            db.pool.query(selectUpdatedGardener, [gardenerID], function (error, rows, fields) {
+
+                if (error) {
+                    console.log(error);
+                    res.sendStatus(400);
+                } else {
+                    res.send(rows);
+                }
+            })
+        }
+    })
+});
+
 // DELETE a Gardener
 
 router.delete('/delete-gardener-ajax/', function (req, res, next) {

@@ -132,8 +132,50 @@
 {{!-- Embed our javascript to handle the DOM manipulation and AJAX request --}}
 <script src="./js/gardener/add_gardener.js"></script>
 
-
+<br>
 <h2>Update a Gardener</h2>
+<div>
+    <div class="form-container">
+        <form id="update-gardener-form-ajax">
+            <label for="input-update-gardener-id">Garden:</label>
+            <select id="input-update-gardener-id" name="input-update-gardener-id" required>
+                <option value="default-gardener">Select a Gardener</option>
+                {{#each data}}
+                <option value=`{{{json this}}}`>{{this.gardenerID}} {{{this.firstName}}} {{{this.lastName}}}</option>
+                {{/each}}
+            </select>
+            <br>
+            <label for="input-update-gardener-first-name">First Name:</label>
+            <input type="text" id="input-update-gardener-first-name" name="input-update-gardener-first-name" required>
+            <br>
+            <label for="input-update-gardener-last-name">Last Name:</label>
+            <input type="text" id="input-update-gardener-last-name" name="input-update-gardener-last-name" required>
+            <br>
+            <label for="input-update-gardener-streetAddress">Gardener Street Address:</label>
+            <input type="text" id="input-update-gardener-streetAddress" name="input-update-gardener-streetAddress"
+                required>
+            <br>
+            <label for="input-update-gardener-city">Gardener City:</label>
+            <input type="text" id="input-update-gardener-city" name="input-update-gardener-city" required>
+            <br>
+            <label for="input-update-gardener-zipCode">Gardener Zip Code:</label>
+            <input type="text" id="input-update-gardener-zipCode" name="input-update-gardener-zipCode" required>
+            <br>
+            <label for="input-update-gardener-email">Gardener Phone:</label>
+            <input type="text" id="input-update-gardener-email" name="input-update-gardener-email" required>
+            <br>
+            <label for="input-update-gardener-phone">Gardener Email:</label>
+            <input type="text" id="input-update-gardener-phone" name="input-update-gardener-phone" required>
+            <br>
+            <input type="submit" value="Update Gardener">
+        </form>
+    </div>
+</div>
+<br>
+
+<script src="./js/gardener/update_gardener.js"></script>
+
+{{!-- <h2>Update a Gardener</h2>
 <div>
     <div class="form-container">
         <form>
@@ -165,4 +207,4 @@
         </form>
     </div>
 </div>
-<br>
+<br> --}}
