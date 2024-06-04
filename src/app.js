@@ -25,7 +25,7 @@ app.set('view engine', '.hbs');                     // Tell express to use the h
     ROUTES
 */
 
-const pagesRoutes = require('./routes/pages');
+const pagesRoutes = require('./routes/index');
 const plantsRoutes = require('./routes/plants');
 const gardensRoutes = require('./routes/gardens');
 const gardenersRoutes = require('./routes/gardeners');
