@@ -2,6 +2,29 @@ const express = require('express');
 const router = express.Router();
 var db = require('../database/db-connector');
 
+// DISPLAY/READ/GET
+
+router.get('/plants', function (req, res) {
+    let query1 = 'SELECT plantID AS "Id", varietyName AS "Variety", type AS "Type", price AS "Price" FROM Plants;';
+    let query2 = "SELECT plantID, varietyName, type FROM Plants;";
+
+    db.pool.query(query1, function (error, rows, fields) {
+        if (error) {
+            console.log(error);
+            res.sendStatus(400);
+        } else {
+            db.pool.query(query2, function (error2, plantIDs) {
+                if (error2) {
+                    console.log(error2);
+                    res.sendStatus(400);
+                } else {
+                    res.render('plants', { data: rows, plantIDs });
+                }
+            });
+        }
+    });
+});
+
 // CREATE/INSERT/POST
 
 router.post('/add-plant-ajax', function (req, res) {
@@ -16,7 +39,7 @@ router.post('/add-plant-ajax', function (req, res) {
     }
 
     query1 = `INSERT INTO Plants (varietyName, type, price) VALUES (?, ?, ?)`;
-    
+
     // get the last row in the Plants table (just added)
     query2 = `SELECT * FROM Plants ORDER BY plantID DESC LIMIT 1;`;
     db.pool.query(query1, [data.varietyName, data.type, data.price], function (error, rows, fields) {
@@ -123,7 +146,7 @@ router.delete('/delete-plant-ajax/', function (req, res, next) {
                     })
                 }
             });
-        }   
+        }
     });
 });
 

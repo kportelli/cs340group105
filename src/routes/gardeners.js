@@ -2,6 +2,17 @@ const express = require('express');
 const router = express.Router();
 var db = require('../database/db-connector');
 
+// DISPLAY/READ/GET
+
+router.get('/gardeners', (req, res) => {
+    let query1 = "SELECT * FROM Gardeners;";
+    db.pool.query(query1, function (error, rows, fields) {
+        res.render('gardeners', { data: rows });
+
+    })
+});
+
+
 // CREATE a Gardener
 
 router.post('/add-gardener-form-ajax', function (req, res) {
