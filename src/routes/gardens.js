@@ -2,6 +2,32 @@ const express = require('express');
 const router = express.Router();
 var db = require('../database/db-connector');
 
+
+
+// READ/DISPLAY/GET
+
+router.get('/gardens', (req, res) => {
+    let query1 = "SELECT gardenID AS ID, gardenName AS Name, streetAddress AS Address, city AS City, zip AS Zip FROM Gardens;";
+    let query2 = "SELECT gardenID, gardenName FROM Gardens;";
+
+    db.pool.query(query1, function (error, rows, fields) {              // Execute the query
+        if (error) {
+            console.log(error);
+            res.sendStatus(400);
+        } else {
+            db.pool.query(query2, function (error2, gardenIDs) {
+                if (error2) {
+                    console.log(error2);
+                    res.sendStatus(400);
+                } else {
+                    res.render('gardens', { data: rows, gardenIDs });   // Render the hbs file, and also send the renderer
+                }
+            });
+        }
+    });
+});
+
+
 // CREATE/INSERT/POST
 
 router.post('/add-garden-ajax', function (req, res) {

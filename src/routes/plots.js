@@ -2,6 +2,31 @@ const express = require('express');
 const router = express.Router();
 var db = require('../database/db-connector');
 
+// READ/DISPLAY/GET
+
+router.get('/plots', (req, res) => {
+    // join gardens and plots on gardenID
+    let query1 = "SELECT Plots.plotID, Gardens.gardenID, Gardens.gardenName FROM Plots INNER JOIN Gardens ON Plots.gardenID = Gardens.gardenID ORDER BY Plots.plotID ASC;";
+
+    // select all gardens to show in dropdown
+    let query2 = "SELECT gardenID, gardenName FROM Gardens;";
+    db.pool.query(query1, function (error, rows, fields) {
+        if (error) {
+            console.log(error);
+            res.sendStatus(400);
+        } else {
+            db.pool.query(query2, function (error2, gardenIDs) {
+                if (error2) {
+                    console.log(error2);
+                    res.sendStatus(400);
+                } else {
+                    res.render('plots', { data: rows, gardenIDs });
+                }
+            });
+        }
+    });
+});
+
 // CREATE/INSERT/POST
 
 router.post('/add-plot-ajax', function (req, res) {
@@ -16,7 +41,7 @@ router.post('/add-plot-ajax', function (req, res) {
         }
         else {
             db.pool.query(query2, function (error, rows, fields) {
-        
+
                 // Check to see if there was an error
                 if (error) {
                     // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
