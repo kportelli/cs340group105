@@ -46,7 +46,11 @@ function deleteRow(gardenID) {
 
             // if the deleted garden is the one selected in the "update garden" form, reset the form
             let inputGardenID = document.getElementById("input-update-garden-id");
-            if (JSON.parse(inputGardenID.value).ID == gardenID) {
+
+            if (inputGardenID.value != "default-garden" && 
+            JSON.parse(inputGardenID.value).ID == gardenID) {
+
+                // clear the input fields
                 let inputName = document.getElementById("input-update-garden-name");
                 let inputAddress = document.getElementById("input-update-garden-streetAddress");
                 let inputCity = document.getElementById("input-update-garden-city");
