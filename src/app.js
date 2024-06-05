@@ -33,6 +33,8 @@ const plotsRoutes = require('./routes/plots');
 const plantsPlotsRoutes = require('./routes/plantsplots');
 const plotsGardenersRoutes = require('./routes/plotsgardeners');
 const invoiceDetailsRoutes = require('./routes/invoicedetails');
+const invoicesRoutes = require('./routes/invoices');
+
 // INVOICES GOES HERE
 const dbmanagementRoutes = require('./routes/dbmanagement');
 
@@ -46,6 +48,7 @@ app.use(plotsRoutes);
 app.use(plantsPlotsRoutes);
 app.use(plotsGardenersRoutes);
 app.use(invoiceDetailsRoutes);
+
 // INVOICES GOES HERE
 app.use(dbmanagementRoutes);
 
