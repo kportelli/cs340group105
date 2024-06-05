@@ -19,7 +19,16 @@ var pool = mysql.createPool({
     user            : 'api_user',
     password        : ';0JBY)}kXx"un}O0',
     database        : 'goc_dev'
-})
+});
+
+var adminpool = mysql.createPool({
+    connectionLimit : 10,
+    host            : 'localhost',
+    user            : 'api_admin',
+    password        : ';0JBY)}kXx"un}O0',
+    database        : 'goc_dev',
+    multipleStatements: true
+});
 
 // Function to check connection and make a SELECT query
 const testConnection = () => {
@@ -47,5 +56,8 @@ const testConnection = () => {
 // Test the connection and query
 testConnection();
 
-// Export it for use in our applicaiton
-module.exports.pool = pool;
+// export both pool and admin pool
+module.exports = {
+    pool: pool,
+    adminpool: adminpool
+};
