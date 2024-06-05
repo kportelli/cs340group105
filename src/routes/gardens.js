@@ -65,6 +65,8 @@ router.post('/add-garden-ajax', function (req, res) {
     })
 });
 
+// UPDATE a Garden
+
 router.put('/put-garden-ajax', function (req, res, next) {
     let data = req.body;
 

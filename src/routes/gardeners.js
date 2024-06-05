@@ -68,8 +68,8 @@ router.post('/add-gardener-form-ajax', function (req, res) {
 
 router.put('/put-gardener-ajax', function (req, res, next) {
     let data = req.body;
-
-    let gardenerID = data.gardenerID;
+    
+    let gardenerID = parseInt(data.gardenerID);
     let gardenerfirstName = data.firstName;
     let gardenerlastName = data.lastName;
     let streetAddress = data.streetAddress;
@@ -79,11 +79,12 @@ router.put('/put-gardener-ajax', function (req, res, next) {
     let email = data.email;
 
 
-    // // if gardenerID is not a number, send a 400 status code
-    // if (isNaN(gardenerID)) {
-    //     res.sendStatus(400);
-    //     return;
-    // }
+    // if gardenerID is not a number, send a 400 status code
+    if (isNaN(gardenerID)) {
+        res.sendStatus(400);
+        console.log("gardenerID is not a number");
+        return;
+    }
 
     let queryUpdateGardener = `UPDATE Gardeners SET firstName = ?, lastName = ?, streetAddress = ?, city = ?, zip = ?, phone = ?, email = ? WHERE gardenerID = ?`;
     let selectUpdatedGardener = `SELECT * FROM Gardeners WHERE gardenerID = ?`
