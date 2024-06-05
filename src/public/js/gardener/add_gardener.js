@@ -39,7 +39,7 @@ addGardenerForm.addEventListener("submit", function (e) {
 
     // Setup our AJAX request
     var xhttp = new XMLHttpRequest();
-    xhttp.open("POST", "/add-gardener-form-ajax", true);
+    xhttp.open("POST", "/add-gardener-ajax", true);
     xhttp.setRequestHeader("Content-type", "application/json");
 
     // Tell our AJAX request how to resolve
@@ -137,9 +137,9 @@ addRowToTable = (data) => {
 
     // Find drop down menu, create a new option, fill data in the option (full name, id),
     // then append option to drop down menu so newly created rows via ajax will be found in it without needing a refresh
-    let selectMenu = document.getElementById("mySelect");
+    let selectMenu = document.getElementById("input-update-gardener-id");
     let option = document.createElement("option");
-    option.text = newRow.fname + ' ' + newRow.lname;
+    option.text = `${newRow.gardenerID} ${newRow.firstName} ${newRow.lastName}`;
     option.value = newRow.gardenerID;
     selectMenu.add(option);
     // End of new step 8 code.

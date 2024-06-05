@@ -19,23 +19,6 @@ updateGardenerForm.addEventListener("submit", function (e) {
 
 
     // Get the values from the form fields
-    let gardenerIDvalue = JSON.parse(input_gardenerID.value).gardenerID;
-
-    // // in case the user tries to submit a non-integer value (default)
-    // if (isNaN(gardenerIDvalue)) {
-    //     // empty the input fields
-    //     input_fname.value = '';
-    //     input_lname.value = '';
-    //     input_address.value = '';
-    //     input_city.value = '';
-    //     input_zip.value = '';
-    //     input_email.value = '';
-    //     input_phone.value = '';
-    //     return;
-    // }
-
-    // Get the values from the form fields
-
     let gardenerIDValue = input_gardenerID.value;
     let firstnameValue = input_fname.value;
     let lastnameValue = input_lname.value;
@@ -44,6 +27,8 @@ updateGardenerForm.addEventListener("submit", function (e) {
     let zipValue = input_zip.value;
     let emailValue = input_email.value;
     let phoneValue = input_phone.value;
+
+    // NAN??
 
     // Put our data we want to send in a javascript object
     let data = {
@@ -67,7 +52,7 @@ updateGardenerForm.addEventListener("submit", function (e) {
         if (xhttp.readyState == 4 && xhttp.status == 200) {
 
             // Add the new data to the table
-            updateRow(xhttp.response, gardenerIDvalue);
+            updateRow(xhttp.response, gardenerIDValue);
 
         }
         else if (xhttp.readyState == 4 && xhttp.status != 200) {
@@ -81,7 +66,8 @@ updateGardenerForm.addEventListener("submit", function (e) {
 })
 
 
-function updateRow(data, gardenID) {
+
+function updateRow(data, gardenerID) {
     let parsedData = JSON.parse(data);
 
     let table = document.getElementById("gardeners-table");
@@ -94,7 +80,7 @@ function updateRow(data, gardenID) {
             // Get the location of the row where we found the matching person ID
             let updateRowIndex = table.getElementsByTagName("tr")[i];
 
-            // Get td of homeworld value
+            // Get td of value
             let tdfirstName = updateRowIndex.getElementsByTagName("td")[1];
             let tdlastName = updateRowIndex.getElementsByTagName("td")[2];
             let tdAddress = updateRowIndex.getElementsByTagName("td")[3];
@@ -103,8 +89,7 @@ function updateRow(data, gardenID) {
             let tdPhone = updateRowIndex.getElementsByTagName("td")[6];
             let tdEmail = updateRowIndex.getElementsByTagName("td")[7];
 
-
-            // Reassign homeworld to our value we updated to
+            // Reassign to our value we updated to
             tdfirstName.innerHTML = parsedData[0].firstName;
             tdlastName.innerHTML = parsedData[0].lastName;
             tdAddress.innerHTML = parsedData[0].streetAddress;
@@ -112,34 +97,7 @@ function updateRow(data, gardenID) {
             tdZip.innerHTML = parsedData[0].zip;
             tdPhone.innerHTML = parsedData[0].phone;
             tdEmail.innerHTML = parsedData[0].email;
-
         }
     }
-
-    // update gardener in update gardener select options
-    let updateGardenerSelect = document.getElementById("input-update-gardener-id");
-    for (let i = 0, option; option = updateGardenerSelect.options[i]; i++) {
-        if (option.value == "default-gardener") {
-            continue;
-        }
-        if (JSON.parse(option.value).ID == gardenerID) {
-            option.text = `${parsedData[0].gardenID} ${parsedData[0].gardenerName}`;
-            break;
-        }
-    }
-
-    // reset select option to default
-    var selectElement = document.getElementById("input-update-gardener-id");
-    selectElement.selectedIndex = 0; // Reset to the first option
-
-    // reset form input fields
-    document.getElementById("input-update-gardener-first-name").value = '';
-    document.getElementById("input-update-gardener-last-name").value = '';
-    document.getElementById("input-update-gardener-streetAddress").value = '';
-    document.getElementById("input-update-gardener-city").value = '';
-    document.getElementById("input-update-gardener-zipCode").value = '';
-    document.getElementById("input-update-gardener-phone").value = '';
-    document.getElementById("input-update-gardener-email").value = '';
-
-
 }
+
