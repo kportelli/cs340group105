@@ -18,11 +18,12 @@ use goc_dev
 source ../DDL.sql
 ```
 
-### Create a new user for your local database
-Make sure you are logged in as the root user.
+### Create new users for your local database to support the API
+Make sure you are logged in as the root user when performing these steps. Here, we will create two users: `api_user` and `api_admin`. The `api_user` will have limited access to the database, while the `api_admin` will have full access to the database. The `api_admin` will also support multiple SQL statements in a single query in the node app.
 
 ```sql
-CREATE USER 'api_user'@'localhost' IDENTIFIED BY 'strong_password';
+CREATE USER 'api_user'@'localhost' IDENTIFIED BY ';0JBY)}kXx"un}O0';
+CREATE USER 'api_admin'@'localhost' IDENTIFIED BY ';0JBY)}kXx"un}O0';
 ```
 Provide a strong password for this user and make sure to remember it.
 
@@ -30,6 +31,7 @@ Provide a strong password for this user and make sure to remember it.
 In this example, the development database is `goc_dev`. If you have a different database name, replace `goc_dev` with your database name.
 ```sql
 GRANT SELECT, INSERT, UPDATE, DELETE ON goc_dev.* TO 'api_user'@'localhost';
+GRANT ALL PRIVILEGES ON goc_dev.* TO 'api_admin'@'localhost';
 ```
 
 #### Flush privileges
@@ -46,16 +48,26 @@ const pool = mysql.createPool({
     password: 'strong_password',
     database: 'goc_dev'
 });
+
+const admin_pool = mysql.createPool({
+    connectionLimit: 10,
+    host: 'localhost',
+    user: 'api_admin',
+    password: 'strong_password',
+    database: 'goc_dev',
+    multipleStatements: true
+});
 ```
 #### Additional changes
 I ran into some issues with my new user. I found this link helpful: https://stackoverflow.com/questions/51147964/errno-1251-sqlmessage-client-does-not-support-authentication-protocol-reques
 
 Here is the SQL command I ran to fix the issue:
 ```sql
-ALTER USER 'api_user'@'localhost' IDENTIFIED WITH mysql_native_password BY 'your_current_password';
+ALTER USER 'api_user'@'localhost' IDENTIFIED WITH mysql_native_password BY ';0JBY)}kXx"un}O0';
+ALTER USER 'api_admin'@'localhost' IDENTIFIED WITH mysql_native_password BY ';0JBY)}kXx"un}O0';
 ```
 
-Remember to replace `your_current_password` with the password you set for the `api_user`.
+Remember to replace `';0JBY)}kXx"un}O0'` with the password you set for the `api_user` and `api_admin`. The provided passwords are for development purposes and require a user to be setup with that inforamtion on your local machine. Feel free to copy and paste each command into your terminal to avoid any typos.
 
 ## Things to note
 For reasons beyond your control, running forever is a bit more complex on the school's FLIP server. Here is how to make it easy, run the following command from the root of your project:

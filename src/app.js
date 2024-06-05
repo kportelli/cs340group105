@@ -35,6 +35,8 @@ const plotsGardenersRoutes = require('./routes/plotsgardeners');
 const invoiceDetailsRoutes = require('./routes/invoicedetails');
 const invoicesRoutes = require('./routes/invoices');
 
+// INVOICES GOES HERE
+const dbmanagementRoutes = require('./routes/dbmanagement');
 
 PORT = 9124;
 
@@ -46,9 +48,9 @@ app.use(plotsRoutes);
 app.use(plantsPlotsRoutes);
 app.use(plotsGardenersRoutes);
 app.use(invoiceDetailsRoutes);
-app.use(invoicesRoutes);
 
-
+// INVOICES GOES HERE
+app.use(dbmanagementRoutes);
 
 app.get('/', function (req, res)            // // This is the basic syntax for what is called a 'route'
 {
