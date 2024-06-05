@@ -4,9 +4,7 @@ let gardenInput = document.getElementById("input-update-garden-id");
 // when a new option is selected, capture the value
 gardenInput.addEventListener("change", function() {
     let gardenData = gardenInput.value;
-
-    // if ` exists in gardenData, remove it
-    gardenData = gardenData.replace(/`/g, '');
+    gardenData = decodeURI(gardenData);
 
     let gardenName = document.getElementById("input-update-garden-name");
     let gardenAddress = document.getElementById("input-update-garden-streetAddress");

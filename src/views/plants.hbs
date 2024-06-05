@@ -23,7 +23,7 @@
             <td>{{this.Id}}</td>
             <td>{{this.Variety}}</td>
             <td>{{this.Type}}</td>
-            <td>{{toFixed this.Price 2}}</td>
+            <td>${{toFixed this.Price 2}}</td>
             <td><button onclick="deletePlant({{this.Id}})">Delete</button></td>
         </tr>
         {{/each}}

@@ -61,7 +61,7 @@
                 <select id="input-update-garden-id" name="input-update-garden-id" required>
                     <option value="default-garden">Select a Garden</option>
                      {{#each data}}
-                     <option value=`{{{json this}}}`>{{this.ID}} {{{this.Name}}}</option>
+                     <option value={{{json this}}}>{{this.ID}} {{{this.Name}}}</option>
                      {{/each}}
                 </select>
                 <br>
