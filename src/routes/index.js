@@ -30,7 +30,7 @@ router.get('/index', (req, res) => {
 // router.get('/plots', (req, res) => {
 //     // join gardens and plots on gardenID
 //     let query1 = "SELECT Plots.plotID, Gardens.gardenID, Gardens.gardenName FROM Plots INNER JOIN Gardens ON Plots.gardenID = Gardens.gardenID ORDER BY Plots.plotID ASC;";
-    
+
 //     // select all gardens to show in dropdown
 //     let query2 = "SELECT gardenID, gardenName FROM Gardens;";
 //     db.pool.query(query1, function(error, rows, fields){
@@ -83,7 +83,7 @@ router.get('/index', (req, res) => {
 //                 }
 //             });
 //         }
-        
+
 //     });
 // });
 
@@ -94,7 +94,7 @@ router.get('/index', (req, res) => {
 //     let query2 = "SELECT Plots.plotID, Gardens.gardenName FROM Plots INNER JOIN Gardens ON Plots.gardenID = Gardens.gardenID ORDER BY Plots.plotID ASC;";
 //     // query all gardeners
 //     let query3 = "SELECT gardenerID, firstName, lastName FROM Gardeners;";
-    
+
 //     db.pool.query(query1, function(error, rows, fields){
 //         if (error) {
 //             console.log(error);
@@ -131,7 +131,7 @@ router.get('/index', (req, res) => {
 // router.get('/invoicedetails', (req, res) => {
 //     // join invoice details on plants by plantID and invoices by invoiceID and then gardeners by gardenerID, and then sort by invoice details ID
 //     let query1 = "SELECT InvoiceDetails.invoiceDetailID, Invoices.invoiceID, Plants.varietyName, Plants.type, InvoiceDetails.quantity, InvoiceDetails.price, InvoiceDetails.lineTotal, Gardeners.firstName, Gardeners.lastName FROM InvoiceDetails INNER JOIN Plants ON InvoiceDetails.plantID = Plants.plantID INNER JOIN Invoices ON InvoiceDetails.invoiceID = Invoices.invoiceID INNER JOIN Gardeners ON Invoices.gardenerID = Gardeners.gardenerID ORDER BY InvoiceDetails.invoiceDetailID ASC;";
-    
+
 //     // select all plants from Plants table to show in drop down
 //     let query2 = "SELECT plantID, varietyName, type, price FROM Plants;";
 

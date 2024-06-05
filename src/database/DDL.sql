@@ -91,6 +91,7 @@ CREATE TABLE InvoiceDetails (
   FOREIGN KEY (invoiceID) REFERENCES Invoices (invoiceID) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
+-- remove invoiceID Fk from this table, along with sample data?
 -- --------------------------------------------------------
 --
 -- Table structure for table `PlantsPlots`
