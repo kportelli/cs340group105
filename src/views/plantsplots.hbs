@@ -35,16 +35,16 @@
     <h2>Add a Plant Plot</h2>
     <div class="form-container">
         <form id="add-plantplot-form-ajax">
-            <label for="plants-plots-plot-id">Plot</label>
-            <select type="text" id="plants-plots-plot-id" name="plants-plots-plot-id" required>
+            <label for="add-plants-plots-plot-id">Plot</label>
+            <select type="text" id="add-plants-plots-plot-id" name="add-plants-plots-plot-id" required>
                 <option value="default-plot">Select a Plot</option>
                 {{#each plotIDs}}
                 <option value={{this.plotID}}>{{this.plotID}} {{this.gardenName}}</option>
                 {{/each}}
             </select>
             <br>
-            <label for="plants-plots-plant-id">Plot</label>
-            <select type="text" id="plants-plots-plant-id" name="plants-plots-plant-id" required>
+            <label for="add-plants-plots-plant-id">Plant</label>
+            <select type="text" id="add-plants-plots-plant-id" name="add-plants-plots-plant-id" required>
                 <option value="default-plant">Select a Plant</option>
                 {{#each plantIDs}}
                 <option value={{this.plantID}}>{{this.plantID}} {{this.varietyName}} {{this.type}}</option>
@@ -54,7 +54,40 @@
             <input type="submit" value="Add">
         </form>
     </div>
-</div>
+    <br>
+    <h2>Update a Plant Plot</h2>
+    <div class="form-container">
+        <form id="update-plantplot-form-ajax">
+            
+            <label for="update-plants-plots-plantsplots-id">PlantPlot</label>
+            <select type="text" id="update-plants-plots-plantsplots-id" name="update-plants-plots-plantsplots-id" required>
+                <option value="default-plantplot">Select a Plot</option>
+                {{#each data}}
+                <option value={{{json this}}}>{{this.plantsPlotsID}} {{this.varietyName}} {{this.type}} {{this.gardenName}}</option>
+                {{/each}}
+            </select>
+            <br>
+            <label for="update-plants-plots-plot-id">Plot</label>
+            <select type="text" id="update-plants-plots-plot-id" name="update-plants-plots-plot-id" required>
+                <option value="default-plot">Select a Plot</option>
+                {{#each plotIDs}}
+                <option value={{this.plotID}}>{{this.plotID}} {{this.gardenName}}</option>
+                {{/each}}
+            </select>
+            <br>
+            <label for="update-plants-plots-plant-id">Plant</label>
+            <select type="text" id="update-plants-plots-plant-id" name="update-plants-plots-plant-id" required>
+                <option value="default-plant">Select a Plant</option>
+                {{#each plantIDs}}
+                <option value={{this.plantID}}>{{this.plantID}} {{this.varietyName}} {{this.type}}</option>
+                {{/each}}
+            </select>
+            <br>
+            <input type="submit" value="Update">
+        </form>
+    </div>
 
 <script src="./js/plantsplots/add_plantplot.js"></script>
 <script src="./js/plantsplots/delete_plantplot.js"></script>
+<script src="./js/plantsplots/update_plantplot.js"></script>
+<script src="./js/plantsplots/formhelpers.js"></script>
