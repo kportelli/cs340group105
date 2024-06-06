@@ -1,0 +1,44 @@
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+  <div class="container-fluid">
+    {{!-- <a class="navbar-brand" href="#"></a> --}}
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarText">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="/">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/gardens">Gardens</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/plots">Plots</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/plantsplots">Plants Plots</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/plotsgardeners">Plots Gardeners</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/gardeners">Gardeners</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/invoicedetails">Invoice Details</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/invoices">Invoices</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="plants">Plants</a>
+        </li>
+      </ul>
+      <button id="sql-reset-button" onclick="resetDatabase()" class="navbar-btn">
+        Navbar text with an inline element
+      </button>
+    </div>
+  </div>
+</nav>
+
+<script src="./js/helpers/sql.js"></script>
