@@ -48,6 +48,8 @@ router.post('/add-invoicedetail-ajax', function (req, res) {
     let query1 = `INSERT INTO InvoiceDetails (plantID, invoiceID, price, quantity, lineTotal) VALUES ('${data.plantID}', '${data.invoiceID}', '${data.price}', '${data.quantity}', '${data.lineTotal}')`;
     let query2 = "SELECT InvoiceDetails.invoiceDetailID, Invoices.invoiceID, Plants.varietyName, Plants.type, InvoiceDetails.quantity, InvoiceDetails.price, InvoiceDetails.lineTotal, Gardeners.firstName, Gardeners.lastName FROM InvoiceDetails INNER JOIN Plants ON InvoiceDetails.plantID = Plants.plantID INNER JOIN Invoices ON InvoiceDetails.invoiceID = Invoices.invoiceID INNER JOIN Gardeners ON Invoices.gardenerID = Gardeners.gardenerID ORDER BY InvoiceDetails.invoiceDetailID ASC;";
 
+    
+
     db.pool.query(query1, function (error, rows, fields) {
         // Check to see if there was an error
         if (error) {

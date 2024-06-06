@@ -146,11 +146,9 @@ INSERT INTO Gardeners (firstName, lastName, streetAddress, city, zip, email, pho
 
 -- Insert data into Invoices
 INSERT INTO Invoices (gardenerID, totalCost) VALUES
-(1, 120.00),
-(2, 75.50),
-(3, 150.25),
-(4, 110.00),
-(5, 90.50);
+(6, 125.00),
+(5, 32.50),
+(1, 35.00);
 
 -- Insert data into Plants
 INSERT INTO Plants (varietyName, type, price) VALUES
@@ -162,11 +160,11 @@ INSERT INTO Plants (varietyName, type, price) VALUES
 
 -- Insert data into Plots
 INSERT INTO Plots (gardenID) VALUES
-(1),
-(2),
-(3),
+(5),
 (4),
-(5);
+(3),
+(2),
+(1);
 
 -- Insert data into PlantsPlots
 INSERT INTO PlantsPlots (plantID, plotID) VALUES
@@ -180,18 +178,16 @@ INSERT INTO PlantsPlots (plantID, plotID) VALUES
 INSERT INTO PlotsGardeners (plotID, gardenerID) VALUES
 (1, 1),
 (2, 2),
-(3, 3),
+(3, 2),
 (4, 4),
-(5, 5);
+(4, 5);
 
 
 -- Insert data into InvoiceDetails
 INSERT INTO InvoiceDetails (plantID, invoiceID, price, quantity, lineTotal) VALUES
-(1, 1, 10.00, 5, 50.00),
-(2, 2, 5.00, 5, 25.00),
-(3, 3, 20.00, 2, 40.00),
-(4, 4, 6.50, 3, 19.50),
-(5, 5, 25.00, 1, 25.00);
-
+(5, 1, 25.00, 5, 125.00),
+(4, 2, 6.50, 5, 32.50),
+(1, 3, 10.00, 2, 20.00),
+(2, 3, 5.00, 3, 15.00);
 
 SET FOREIGN_KEY_CHECKS=1;
