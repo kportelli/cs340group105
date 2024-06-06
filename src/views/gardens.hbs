@@ -1,10 +1,7 @@
 <!-- index.hbs -->
 <h1>Gardens</h1>
-<table id="gardens-table">
-    {{!-- Header section --}}
+<table id="gardens-table" class="table table-striped">
     <thead>
-        {{!-- For just the first row, we print each key of the row object as a header cell so we
-        know what each column means when the page renders --}}
         <tr>
             {{#each data.[0]}}
             <th>
@@ -14,21 +11,18 @@
             <th>Delete</th>
         </tr>
     </thead>
-
-    {{!-- Body section --}}
     <tbody>
-
         {{!-- For each row, print the id, fname, lname, homeworld and age, in order --}}
-        {{#each data}}
-        <tr data-value={{this.ID}}>
-            <td>{{this.ID}}</td>
-            <td>{{this.Name}}</td>
-            <td>{{this.Address}}</td>
-            <td>{{this.City}}</td>
-            <td>{{this.Zip}}</td>
-            <td><button onclick="deleteGarden({{this.ID}})">Delete</button></td>
-        </tr>
-        {{/each}}
+    {{#each data}}
+    <tr data-value={{this.ID}}>
+        <td>{{this.ID}}</td>
+        <td>{{this.Name}}</td>
+        <td>{{this.Address}}</td>
+        <td>{{this.City}}</td>
+        <td>{{this.Zip}}</td>
+        <td><button class="delete-row-button" onclick="deleteGarden({{this.ID}})">Delete</button></td>
+    </tr>
+    {{/each}}
     </tbody>
 </table>
 
