@@ -32,58 +32,28 @@
     </tbody>
 </table>
 
+
 <h2>Add an Invoice</h2>
-<div>
-    <div class="form-container">
-        <form>
-            <label> Gardener ID: </label> <select name="gardener-id">
-                <option value="Choose a Gardener ID" selected>&nbsp;</option>
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-            </select>
-            <br>
-            <label for="plant-total-cost">Total Cost:</label>
-            <input type="text" id="plant-total-cost" name="plant-total-cost" required>
-            <br>
-            <input type="submit" value="Add Invoice">
-        </form>
-    </div>
-</div>
-<br>
-{{!-- <h2>Update an Invoice</h2>
-<div>
-    <div class="form-container">
-        <form>
-            <label> Invoice ID: </label> <select name="invoice-id">
-                <option value="Choose an Invoice ID" selected>&nbsp;</option>
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-            </select>
-            <br>
-            <label for="plant-total-cost">Total Cost:</label>
-            <input type="text" id="plant-total-cost" name="plant-total-cost" required>
-            <br>
-            <input type="submit" value="Update Invoice">
-        </form>
-    </div>
-</div>
-<br> --}}
+<p>To add an Invoice, select a Gardener.
+    <br>
+    When an InvoiceDetails item is added, the totalCost of the
+    Invoice will be updated.
+    <br>
+    Invoices cannot be deleted, but if a Gardener is deleted, that Gardener's record in the Invoices and InvoiceDetails
+    tables will be converted to NULL values.
+</p>
+<form id="add-invoice-form-ajax">
 
+    <label for="input-gardenerID-invoices">Gardener</label>
+    <select type="text" id="input-gardenerID-invoices" name="input-gardenerID-invoices" required>
+        <option value="default-gardener-invoice">Select a Gardener</option>
+        {{#each gardenerIDs}}
+        <option value="{{this.gardenerID}}">{{this.gardenerID}} {{this.firstName}} {{this.lastName}}</option>
+        {{/each}}
+    </select>
+    <br>
+    <input type="submit" value="Add">
 
-{{!-- <h2>Delete an Invoice</h2>
-<div>
-    <div class="form-container">
-        <form>
-            <label> Invoice ID: </label> <select name="invoice-id">
-                <option value="Choose an Invoice ID" selected>&nbsp;</option>
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-            </select>
-            <br>
-            <input type="submit" value="Delete Invoice">
-        </form>
-    </div>
-</div> --}}
+</form>
+
+<script src="./js/invoices/add_invoice.js"></script>
