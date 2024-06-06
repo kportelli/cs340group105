@@ -95,4 +95,5 @@ router.delete('/delete-invoicedetail-ajax/', function (req, res, next) {
     });
 });
 
+
 module.exports = router;
