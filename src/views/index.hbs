@@ -1,58 +1,49 @@
 <div>
-    <h1>For Step 3 Draft, See Plants page</h1>
 
     <h3>Gardens</h3>
     <ul>
-        <li>[INSERT] Create a new Garden</li>
         <li>[SELECT] Get a list of all Gardens</li>
-        <li>[SELECT] Get a list of all Plots in a Garden</li>
-        <li>[UPDATE] Update a Garden's name, or address</li>
+        <li>[INSERT] Create a new Garden</li>
+        <li>[UPDATE] Update a Garden's attributes</li>
         <li>[DELETE] Remove a Garden (Removes all dependencies via CASCADE)</li>
     </ul>
     <h3>Plots</h3>
     <ul>
-        <li>[INSERT] Create a new Plot</li>
-        <li>[INSERT] Add a Plant to a Plot</li>
         <li>[SELECT] Get a list of all Plots</li>
-        <li>[SELECT] Get all Plants in Plot</li>
-        <li>[DELETE] Remove a Plant from a Plot</li>
+        <li>[INSERT] Create a new Plot</li>
     </ul>
     <h3>Plants Plots</h3>
     <ul>
-        <li>[INSERT] Create a new PlantPlot</li>
         <li>[SELECT] Get all PlantsPlots</li>
-        <li>[DELETE] Remove a PlantsPlots</li>
+        <li>[INSERT] Create a new PlantPlot</li>
     </ul>
-    <h3>Gardeners Plots</h3>
+    <h3>Plots Gardeners</h3>
     <ul>
-        <li>[INSERT] Create a new GardenerPlot</li>
-        <li>[SELECT] Get all GardenerPlot</li>
-        <li>[DELETE] Remove a GardenerPlot</li>
+        <li>[SELECT] Get all PlotsGardeners</li>
+        <li>[INSERT] Create a new PlotsGardeners</li>
     </ul>
     <h3>Gardeners</h3>
     <ul>
-        <li>[INSERT] Create a new Gardener</li>
         <li>[SELECT] Get a list of all Gardeners</li>
-        <li>[SELECT] Get a list of Plants used by a Gardener</li>
-        <li>[SELECT] Get a list of all Invoices belonging to a Gardener</li>
+        <li>[INSERT] Create a new Gardener</li>
         <li>[UPDATE] Update a Gardener's attributes</li>
         <li>[DELETE] Remove a Gardener (NULLs GardenerID on all associated Invoices)</li>
     </ul>
-    <h3>Invoices</h3>
-    <ul>
-        <li>[INSERT] Create a new Invoice</li>
-        <li>[SELECT] Get a list of all Invoices</li>
-    </ul>
     <h3>InvoiceDetails</h3>
     <ul>
-        <li>[INSERT] Create a new InvoiceDetail</li>
         <li>[SELECT] Get a list of all InvoiceDetail items</li>
+        <li>[INSERT] Create a new InvoiceDetail (this also updates Invoices)</li>
+    </ul>
+    <h3>Invoices</h3>
+    <ul>
+        <li>[SELECT] Get a list of all Invoices</li>
+        <li>[INSERT] Create a new Invoice</li>
     </ul>
     <h3>Plants</h3>
     <ul>
-        <li>[INSERT] Create a new Plant</li>
         <li>[SELECT] Get a list of all Plants</li>
-        <li>[UPDATE] Update a Plant's attributes</li>
+        <li>[INSERT] Create a new Plant</li>
+        <li>[UPDATE] Update a Plant's price</li>
         <li>[DELETE] Remove a Plant</li>
     </ul>
 </div>
