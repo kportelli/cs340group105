@@ -33,4 +33,31 @@ function deleteRow(ID) {
             break;
         }
     }
+
+    // remove plantplot from update plantplot select options
+    let updatePlantPlotSelect = document.getElementById("update-plants-plots-plantsplots-id");
+    for (let i = 0, option; option = updatePlantPlotSelect.options[i]; i++) {
+        let value = decodeURI(option.value);
+        if (value == "default-plantplot") {
+            continue;
+        }
+        if (JSON.parse(value).plantsPlotsID == ID) {
+
+            // if the deleted plantplot is the one selected in the "update plantplot" form, reset the form
+            if (decodeURI(updatePlantPlotSelect.value) != "default-plantplot" && 
+            JSON.parse(decodeURI(updatePlantPlotSelect.value)).plantsPlotsID == ID) {
+
+                // clear the input fields
+                let inputPlantID = document.getElementById("update-plants-plots-plot-id");
+                let inputPlotID = document.getElementById("update-plants-plots-plant-id");
+
+                inputPlantID.value = '';
+                inputPlotID.value = '';
+
+                updatePlantPlotSelect.selectedIndex = 0;
+                updatePlantPlotSelect.remove(i);
+                break;
+            }
+        }
+    }
 }
