@@ -75,51 +75,70 @@
             <div class="input row-auto">
                 <button type="submit" class="form-btn btn btn-primary mb-3">Add</button>
             </div>
-
         </form>
     </div>
 
-    {{!-- <h2>Add a Gardener</h2>
-    <p>To add a new Gardener's details, please enter their information below and click 'Submit'!</p>
-    <form id="add-gardener-form-ajax">
-
-        <label for="input-fname">First Name: </label>
-        <input type="text" name="input-fname" id="input-fname">
-        <br>
-
-        <label for="input-lname">Last Name: </label>
-        <input type="text" name="input-lname" id="input-lname">
-        <br>
-
-        <label for="input-address-gardener">Street address: </label>
-        <input type="text" name="input-address-gardener" id="input-address-gardener">
-        <br>
-
-        <label for="input-city-gardener">City: </label>
-        <input type="text" name="input-city-gardener" id="input-city-gardener">
-        <br>
-
-        <label for="input-zip-gardener">Zip: </label>
-        <input type="text" name="input-zip-gardener" id="input-zip-gardener">
-        <br>
-
-        <label for="input-email">Email: </label>
-        <input type="text" name="input-email" id="input-email">
-        <br>
-
-        <label for="input-phone">Phone: </label>
-        <input type="text" name="input-phone" id="input-phone">
-        <br>
-
-        <input type="submit">
-    </form> --}}
-
-
-
-    <br>
-    <h2>Update a Gardener</h2>
     <div>
-        <div class="form-container">
+
+        <form class="col g-1" id="update-gardener-form-ajax">
+            <span class="form-name">Update Gardener</span>
+            <span class="form-description"><p>To update a gardener, select a gardener from the drop down menu and adjust it's properties in the appropriate fields.</p></span>
+
+            <div class="input row-auto">
+                <label for="input-update-gardener-id" class="col-sm-2 row-form-label">Gardener</label>
+                <select class="form-select" id="input-update-gardener-id" name="input-update-gardener-id" required>
+                    <option value="default-gardener">Select a Gardener</option>
+                    {{#each data}}
+                    <option value="{{{this.gardenerID}}}">{{this.gardenerID}} {{{this.firstName}}} {{{this.lastName}}}
+                    </option>
+                    {{/each}}
+                </select>
+            </div>
+
+            <br>
+            
+            <div class="input row-auto">
+                <label for="input-update-gardener-first-name" class="col-sm-2 row-form-label">First Name</label>
+                <input type="text" class="form-control" id="input-update-gardener-first-name">
+            </div>
+            
+            <div class="input row-auto">
+                <label for="input-update-gardener-last-name" class="col-sm-2 row-form-label">Last Name</label>
+                <input type="text" class="form-control" id="input-update-gardener-last-name">
+            </div>
+
+            <div class="input row-auto">
+                <label for="input-update-gardener-streetAddress" class="col-sm-2 row-form-label">Address</label>
+                <input type="text" class="form-control" id="input-update-gardener-streetAddress">
+            </div>
+
+            <div class="input row-auto">
+                <label for="input-update-gardener-city" class="col-sm-2 row-form-label">City</label>
+                <input type="text" class="form-control" id="input-update-gardener-city">
+            </div>
+            
+            <div class="input row-auto">
+                <label for="input-update-gardener-zipCode" class="col-sm-2 row-form-label">Zipcode</label>
+                <input type="text" class="form-control" pattern="[0-9]{5}" title="Five digit zip code" id="input-update-gardener-zipCode">
+            </div>
+
+            <div class="input row-auto">
+                <label for="input-update-gardener-email" class="col-sm-2 row-form-label">Email</label>
+                <input type="text" class="form-control" id="input-update-gardener-email">
+            </div>
+
+            <div class="input row-auto">
+                <label for="input-update-gardener-phone" class="col-sm-2 row-form-label">Phone</label>
+                <input type="text" class="form-control" id="input-update-gardener-phone">
+            </div>
+            
+            <div class="input row-auto">
+                <button type="submit" class="form-btn btn btn-primary mb-3">Update</button>
+            </div>
+        </form>
+
+
+        {{!-- <div class="form-container">
             <form id="update-gardener-form-ajax">
 
                 <label for="input-update-gardener-id">Garden:</label>
@@ -130,20 +149,30 @@
                     </option>
                     {{/each}}
                 </select>
+
                 <br>
+
                 <label for="input-update-gardener-first-name">First Name:</label>
                 <input type="text" id="input-update-gardener-first-name" name="input-update-gardener-first-name" required>
+                
                 <br>
+
                 <label for="input-update-gardener-last-name">Last Name:</label>
                 <input type="text" id="input-update-gardener-last-name" name="input-update-gardener-last-name" required>
+                
                 <br>
+
                 <label for="input-update-gardener-streetAddress">Gardener Street Address:</label>
                 <input type="text" id="input-update-gardener-streetAddress" name="input-update-gardener-streetAddress"
                     required>
+                
                 <br>
+
                 <label for="input-update-gardener-city">Gardener City:</label>
                 <input type="text" id="input-update-gardener-city" name="input-update-gardener-city" required>
+                
                 <br>
+                
                 <label for="input-update-gardener-zipCode">Gardener Zip Code:</label>
                 <input type="text" id="input-update-gardener-zipCode" name="input-update-gardener-zipCode" required>
                 <br>
@@ -155,7 +184,7 @@
                 <br>
                 <input type="submit" value="Update Gardener">
             </form>
-        </div>
+        </div> --}}
     </div>
 </div>
 
