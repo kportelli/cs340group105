@@ -4,7 +4,7 @@
     <ul>
         <li>[SELECT] Get a list of all Gardens</li>
         <li>[INSERT] Create a new Garden</li>
-        <li>[UPDATE] Update a Garden's attributes</li>
+        <li>[UPDATE] Update a Garden</li>
         <li>[DELETE] Remove a Garden (Removes all dependencies via CASCADE)</li>
     </ul>
     <h3>Plots</h3>
@@ -12,12 +12,13 @@
         <li>[SELECT] Get a list of all Plots</li>
         <li>[INSERT] Create a new Plot</li>
     </ul>
-    <h3>Plants Plots</h3>
+    <h3>Plants Plots (M:N Intersection Table)</h3>
     <ul>
         <li>[SELECT] Get all PlantsPlots</li>
         <li>[INSERT] Create a new PlantPlot</li>
+        <li>[UPDATE] Update PlantPlot</li>
     </ul>
-    <h3>Plots Gardeners</h3>
+    <h3>Plots Gardeners (M:N Intersection Table)</h3>
     <ul>
         <li>[SELECT] Get all PlotsGardeners</li>
         <li>[INSERT] Create a new PlotsGardeners</li>
@@ -34,7 +35,7 @@
         <li>[SELECT] Get a list of all InvoiceDetail items</li>
         <li>[INSERT] Create a new InvoiceDetail (this also updates Invoices)</li>
     </ul>
-    <h3>Invoices</h3>
+    <h3>Invoices (Facilitates a M:N relationship, but not a pure intersection table)</h3>
     <ul>
         <li>[SELECT] Get a list of all Invoices</li>
         <li>[INSERT] Create a new Invoice</li>
