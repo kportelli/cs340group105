@@ -1,11 +1,7 @@
-<!-- index.hbs -->
 <div class="page-table">
 <h1>Plants Plots</h1>
 <table id="plantsplots-table">
-    {{!-- Header section --}}
     <thead>
-        {{!-- For just the first row, we print each key of the row object as a header cell so we
-        know what each column means when the page renders --}}
         <tr>
             {{#each data.[0]}}
             <th>
@@ -16,9 +12,7 @@
         </tr>
     </thead>
 
-    {{!-- Body section --}}
     <tbody>
-        {{!-- For each row, print the id, varietyName, type, and price, in order --}}
         {{#each data}}
         <tr data-value={{this.plantsPlotsID}}>
             <td>{{this.plantsPlotsID}}</td>
@@ -34,10 +28,7 @@
 </table>
 </div>
 
-
-
 <div class="page-forms">
-
     <div>
         <form class="col g-1" id="add-plantplot-form-ajax">
             <span class="form-name">Add Plant Plot</span>
