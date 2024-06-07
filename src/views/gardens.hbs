@@ -29,7 +29,7 @@
 <div class="page-forms">
     <div>
         <form class="col g-1" id="add-garden-form-ajax">
-            <span class="form-name">Add a Garden</span>
+            <span class="form-name">Add Garden</span>
             <div class="input row-auto">
                 <label for="input-add-garden-name" class="col-sm-2 row-form-label">Name</label>
                 <input type="text" class="form-control" id="input-add-garden-name" placeholder="Garden Name">
@@ -50,30 +50,11 @@
                 <button type="submit" class="form-btn btn btn-primary mb-3">Add</button>
             </div>
         </form>
-
-
-        {{!-- <div class="form-container">
-            <form id="add-garden-form-ajax">
-                <label for="input-add-garden-name">Garden Name:</label>
-                <input type="text" id="input-add-garden-name" name="input-add-garden-name" required>
-                <br>
-                <label for="input-add-garden-streetAddress">Garden Street Address:</label>
-                <input type="text" id="input-add-garden-streetAddress" name="input-add-garden-streetAddress" required>
-                <br>
-                <label for="input-add-garden-city">Garden City:</label>
-                <input type="text" id="input-add-garden-city" name="input-add-garden-city" required>
-                <br>
-                <label for="input-add-garden-zipCode">Garden Zip Code:</label>
-                <input type="text" id="input-add-garden-zipCode" name="input-add-garden-zipCode" required>
-                <br>
-                <input type="submit" value="Add Garden">
-            </form>
-        </div> --}}
     </div>
     <div>
 
         <form class="col g-1" id="update-garden-form-ajax">
-            <span class="form-name">Update a Garden</span>
+            <span class="form-name">Update Garden</span>
             <div class="input row-auto">
                 <select class="form-select" id="input-update-garden-id" name="input-update-garden-id" required>
                     <option value="default-garden">Select a Garden</option>
@@ -101,33 +82,6 @@
                 <button type="submit" class="form-btn btn btn-primary mb-3">Update</button>
             </div>
         </form>
-
-
-        {{!-- <div class="form-container">
-            <form id="update-garden-form-ajax">
-                <label for="input-update-garden-id">Garden:</label>
-                <select id="input-update-garden-id" name="input-update-garden-id" required>
-                    <option value="default-garden">Select a Garden</option>
-                    {{#each data}}
-                    <option value={{{json this}}}>{{this.ID}} {{{this.Name}}}</option>
-                    {{/each}}
-                </select>
-                <br>
-                <label for="input-update-garden-name">Garden Name:</label>
-                <input type="text" id="input-update-garden-name" name="input-update-garden-name" required>
-                <br>
-                <label for="input-update-garden-streetAddress">Garden Street Address:</label>
-                <input type="text" id="input-update-garden-streetAddress" name="input-update-garden-streetAddress" required>
-                <br>
-                <label for="input-update-garden-city">Garden City:</label>
-                <input type="text" id="input-update-garden-city" name="input-update-garden-city" required>
-                <br>
-                <label for="input-update-garden-zipCode">Garden Zip Code:</label>
-                <input type="text" id="input-update-garden-zipCode" name="input-update-garden-zipCode" required>
-                <br>
-                <input type="submit" value="Update Garden">
-            </form>
-        </div> --}}
     </div>
     <br>
 </div>
