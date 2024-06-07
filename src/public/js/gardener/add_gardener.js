@@ -140,7 +140,16 @@ addRowToTable = (data) => {
     let selectMenu = document.getElementById("input-update-gardener-id");
     let option = document.createElement("option");
     option.text = `${newRow.gardenerID} ${newRow.firstName} ${newRow.lastName}`;
-    option.value = newRow.gardenerID;
+    option.value = JSON.stringify({
+        gardenerID: newRow.gardenerID,
+        firstName: newRow.firstName,
+        lastName: newRow.lastName,
+        streetAddress: newRow.streetAddress,
+        city: newRow.city,
+        zip: newRow.zip,
+        email: newRow.email,
+        phone: newRow.phone
+    });
     selectMenu.add(option);
     // End of new step 8 code.
 }
