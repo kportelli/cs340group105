@@ -42,4 +42,44 @@ function deleteRow(gardenerID) {
             break;
         }
     }
+
+    // remove gardener from update gardener select options
+    let updateGardenerSelect = document.getElementById("input-update-gardener-id");
+    for (let i = 0, option; option = updateGardenerSelect.options[i]; i++) {
+        let value = decodeURI(option.value);
+        if (value == "default-gardener") {
+            continue;
+        }
+        if (JSON.parse(value).gardenerID == gardenerID) {
+
+            // if the deleted gardener is the one selected in the "update gardener" form, reset the form
+            let inputGardenerID = document.getElementById("input-update-gardener-id");
+
+            if (decodeURI(inputGardenerID.value) != "default-gardener" && 
+            JSON.parse(decodeURI(inputGardenerID.value)).gardenerID == gardenerID) {
+
+                // clear the input fields
+                let inputFirstName = document.getElementById("input-update-gardener-first-name");
+                let inputLastName = document.getElementById("input-update-gardener-last-name");
+                let inputAddress = document.getElementById("input-update-gardener-streetAddress");
+                let inputCity = document.getElementById("input-update-gardener-city");
+                let inputZip = document.getElementById("input-update-gardener-zipCode");
+                let inputEmail = document.getElementById("input-update-gardener-email");
+                let inputPhone = document.getElementById("input-update-gardener-phone");
+
+                inputFirstName.value = '';
+                inputLastName.value = '';
+                inputAddress.value = '';
+                inputCity.value = '';
+                inputZip.value = '';
+                inputEmail.value = '';
+                inputPhone.value = '';
+            }
+            updateGardenerSelect.selectedIndex = 0; // Reset to the first option
+
+            // remove the gardener from the select options
+            updateGardenerSelect.remove(i);
+            break;
+        }
+    }
 }
