@@ -58,15 +58,13 @@ addRowToTable = (data) => {
     // Create a row and 4 cells
     let row = document.createElement("TR");
     let idCell = document.createElement("TD");
-    let gardenIdCell = document.createElement("TD");
-    let gardenNameCell = document.createElement("TD");
+    let gardenCell = document.createElement("TD");
 
     let deleteCell = document.createElement("TD");
 
     // Fill the cells with correct data
     idCell.innerText = newRow.plotID;
-    gardenIdCell.innerText = newRow.gardenID;
-    gardenNameCell.innerText = newRow.gardenName;
+    gardenCell.innerText = `${newRow.gardenID} ${newRow.gardenName}`;
 
     let deleteButton = document.createElement("button");
     deleteButton.onclick = function() {
@@ -77,8 +75,7 @@ addRowToTable = (data) => {
 
     // Add the cells to the row 
     row.appendChild(idCell);
-    row.appendChild(gardenIdCell);
-    row.appendChild(gardenNameCell);
+    row.appendChild(gardenCell);
     row.appendChild(deleteCell);
 
     // Add a row attribute so the deleteRow function can find a newly added row
@@ -86,4 +83,8 @@ addRowToTable = (data) => {
 
     // Add the row to the table
     currentTable.appendChild(row);
+
+    // reset select option to default
+    let addPlotSelect = document.getElementById("input-add-plot-garden-id");
+    addPlotSelect.selectedIndex = 0;
 }
