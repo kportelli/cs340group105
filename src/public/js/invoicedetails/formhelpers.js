@@ -14,7 +14,7 @@ plantInput.addEventListener("change", function() {
     }
 
     // parse data into JSON object
-    let parsedData = JSON.parse(plantData);
+    let parsedData = JSON.parse(decodeURI(plantData));
 
     let price = parsedData.price;
     let plantID = parsedData.plantID;
