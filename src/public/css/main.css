@@ -56,6 +56,15 @@ form {
     background-color: #f0f0f0;
 }
 
+.form-description {
+    font-size: 0.75;
+    text-align: center;
+    margin-top: 1em;
+    font-style: italic;
+    padding-left: 1em;
+    padding-right: 1em;
+}
+
 .page-forms {
     /* make this a flex layout */
     display: flex;
