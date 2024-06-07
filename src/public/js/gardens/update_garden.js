@@ -15,7 +15,7 @@ updateGardenForm.addEventListener("submit", function (e) {
     let input_zip = document.getElementById("input-update-garden-zipCode");
 
     // Get the values from the form fields
-    let gardenIDvalue = JSON.parse(input_gardenID.value).ID;
+    let gardenIDvalue = JSON.parse(decodeURI(input_gardenID.value)).ID;
 
     // in case the user tries to submit a non-integer value (default)
     if (isNaN(gardenIDvalue)) {
@@ -98,7 +98,7 @@ function updateRow(data, gardenID) {
         if (option.value == "default-garden") {
             continue;
         }
-        if (JSON.parse(option.value).ID == gardenID) {
+        if (JSON.parse(decodeURI(option.value)).ID == gardenID) {
             option.text = `${parsedData[0].gardenID} ${parsedData[0].gardenName}`;
             break;
         }
