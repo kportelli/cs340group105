@@ -1,8 +1,8 @@
 // Get the objects we need to modify
-let addGardenForm = document.getElementById('add-plant-form-ajax');
+let addPlantForm = document.getElementById('add-plant-form-ajax');
 
 // Modify the objects we need
-addGardenForm.addEventListener("submit", function (e) {
+addPlantForm.addEventListener("submit", function (e) {
 
     // Prevent the form from submitting
     e.preventDefault();
@@ -79,7 +79,7 @@ addRowToTable = (data) => {
     idCell.innerText = newRow.plantID;
     varietyNameCell.innerText = newRow.varietyName;
     plantTypeCell.innerText = newRow.type;
-    plantPriceCell.innerText = newRow.price;
+    plantPriceCell.innerText = '$' + parseFloat(newRow.price).toFixed(2);
 
     let deleteButton = document.createElement("button");
     deleteButton.onclick = function() {

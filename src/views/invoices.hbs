@@ -13,7 +13,7 @@
         <tr>
             <td>{{this.invoiceID}}</td>
             <td>{{this.gardenerID}} {{this.firstName}} {{this.lastName}}</td>
-            <td>{{this.totalCost}}</td>
+            <td>${{toFixed this.totalCost 2}}</td>
         </tr>
         {{/each}}
     </tbody>
