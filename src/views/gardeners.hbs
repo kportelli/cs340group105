@@ -83,7 +83,7 @@
                 <select class="form-select" id="input-update-gardener-id" name="input-update-gardener-id" required>
                     <option value="default-gardener">Select a Gardener</option>
                     {{#each data}}
-                    <option value="{{{this.gardenerID}}}">{{this.gardenerID}} {{{this.firstName}}} {{{this.lastName}}}
+                    <option value="{{{json this}}}">{{this.gardenerID}} {{{this.firstName}}} {{{this.lastName}}}
                     </option>
                     {{/each}}
                 </select>
@@ -129,3 +129,4 @@
 <script src="./js/gardener/update_gardener.js"></script>
 <script src="./js/gardener/delete_gardener.js"></script>
 <script src="./js/gardener/add_gardener.js"></script>
+<script src="./js/gardener/formhelpers.js"></script>
