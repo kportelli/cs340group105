@@ -98,7 +98,7 @@ router.put('/put-plantplot-ajax', function (req, res, next) {
     let queryUpdatePlantPlot = `UPDATE PlantsPlots SET plantID = ?, plotID = ? WHERE plantsPlotsID = ?`;
     //let selectUpdatedPlantPlot = `SELECT * FROM  WHERE plantsPlotsID = ?`
     // select the updated plant plot
-    let selectUpdatedPlantPlot = "SELECT PlantsPlots.plantsPlotsID, Plots.plotID, Plants.plantID, Plants.varietyName, Plants.type, Gardens.gardenName FROM PlantsPlots INNER JOIN Plants ON PlantsPlots.plantID = Plants.plantID INNER JOIN Plots ON PlantsPlots.plotID = Plots.plotID INNER JOIN Gardens ON Plots.gardenID = Gardens.gardenID WHERE PlantsPlots.plantsPlotsID = ?;";
+    let selectUpdatedPlantPlot = "SELECT PlantsPlots.plantsPlotsID, Plots.plotID, Plants.plantID, Plants.varietyName, Plants.type, Gardens.gardenID, Gardens.gardenName FROM PlantsPlots INNER JOIN Plants ON PlantsPlots.plantID = Plants.plantID INNER JOIN Plots ON PlantsPlots.plotID = Plots.plotID INNER JOIN Gardens ON Plots.gardenID = Gardens.gardenID WHERE PlantsPlots.plantsPlotsID = ?;";
     
     // Run the 1st query
     db.pool.query(queryUpdatePlantPlot, [plantID, plotID, plantsPlotsID], function (error, rows, fields) {
