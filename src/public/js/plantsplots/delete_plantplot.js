@@ -23,19 +23,20 @@ function deletePlantPlot(plantsPlotsID) {
 
 
 function deleteRow(ID) {
-
+    
+    let updatePlantPlotSelect = document.getElementById("update-plants-plots-plantsplots-id");
     let table = document.getElementById("plantsplots-table");
+    let index = 0;
     for (let i = 0, row; row = table.rows[i]; i++) {
         //iterate through rows
         //rows would be accessed using the "row" variable assigned in the for loop
         if (table.rows[i].getAttribute("data-value") == ID) {
             table.deleteRow(i);
+            index = i;
             break;
         }
     }
 
-    // remove plantplot from update plantplot select options
-    let updatePlantPlotSelect = document.getElementById("update-plants-plots-plantsplots-id");
     for (let i = 0, option; option = updatePlantPlotSelect.options[i]; i++) {
         let value = decodeURI(option.value);
         if (value == "default-plantplot") {
@@ -55,9 +56,11 @@ function deleteRow(ID) {
                 inputPlotID.value = '';
 
                 updatePlantPlotSelect.selectedIndex = 0;
-                updatePlantPlotSelect.remove(i);
+                index = i;
                 break;
             }
         }
     }
+
+    updatePlantPlotSelect.remove(index);
 }

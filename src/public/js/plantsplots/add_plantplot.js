@@ -8,8 +8,8 @@ addPlantPlotForm.addEventListener("submit", function (e) {
     e.preventDefault();
 
     // Get form fields we need to get data from
-    let plotID = document.getElementById("plants-plots-plot-id");
-    let plantID = document.getElementById("plants-plots-plant-id");
+    let plotID = document.getElementById("add-plants-plots-plot-id");
+    let plantID = document.getElementById("add-plants-plots-plant-id");
 
     // Get the values from the form fields
     let plotIDValue = plotID.value;
@@ -61,21 +61,17 @@ addRowToTable = (data) => {
     // Create a row and 4 cells
     let row = document.createElement("TR");
     let idCell = document.createElement("TD");
-    let plotIdCell = document.createElement("TD");
-    let plantIdCell = document.createElement("TD");
-    let varietyNameCell = document.createElement("TD");
-    let typeCell = document.createElement("TD");
-    let gardenNameCell = document.createElement("TD");
+    let plotCell = document.createElement("TD");
+    let plantCell = document.createElement("TD");
+    let gardenCell = document.createElement("TD");
 
     let deleteCell = document.createElement("TD");
 
     // Fill the cells with correct data
     idCell.innerText = newRow.plantsPlotsID;
-    plotIdCell.innerText = newRow.plotID;
-    plantIdCell.innerText = newRow.plantID;
-    varietyNameCell.innerText = newRow.varietyName;
-    typeCell.innerText = newRow.type;
-    gardenNameCell.innerText = newRow.gardenName;
+    plotCell.innerText = newRow.plotID;
+    plantCell.innerText = `${newRow.plantID} ${newRow.varietyName} ${newRow.type}`;
+    gardenCell.innerText = `${newRow.gardenID} ${newRow.gardenName}`;
     
     let deleteButton = document.createElement("button");
     deleteButton.onclick = function() {
@@ -86,11 +82,9 @@ addRowToTable = (data) => {
 
     // Add the cells to the row 
     row.appendChild(idCell);
-    row.appendChild(plotIdCell);
-    row.appendChild(plantIdCell);
-    row.appendChild(varietyNameCell);
-    row.appendChild(typeCell);
-    row.appendChild(gardenNameCell);
+    row.appendChild(plotCell);
+    row.appendChild(plantCell);
+    row.appendChild(gardenCell);
     row.appendChild(deleteCell);
 
     // Add a row attribute so the deleteRow function can find a newly added row
@@ -98,4 +92,18 @@ addRowToTable = (data) => {
 
     // Add the row to the table
     currentTable.appendChild(row);
+
+    // clear the input fields
+    let plotID = document.getElementById("add-plants-plots-plot-id");
+    let plantID = document.getElementById("add-plants-plots-plant-id");
+    plotID.selectedIndex = 0;
+    plantID.selectedIndex = 0;
+
+    // add new plant to update plant select options
+    let updatePlantPlotSelect = document.getElementById("update-plants-plots-plantsplots-id");
+    let option = document.createElement("option");
+    option.value = JSON.stringify(newRow);
+    option.text = `${newRow.plantsPlotsID} (${newRow.plantID} ${newRow.varietyName} ${newRow.type}) (${newRow.gardenID} ${newRow.gardenName})`;
+    updatePlantPlotSelect.add(option);
+
 }
