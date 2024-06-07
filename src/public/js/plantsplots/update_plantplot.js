@@ -71,17 +71,13 @@ function updateRow(data, plantPlotID) {
             let updateRowIndex = table.getElementsByTagName("tr")[i];
 
             let tdPlotID = updateRowIndex.getElementsByTagName("td")[1];
-            let tdPlantID = updateRowIndex.getElementsByTagName("td")[2];
-            let tdVarietyName = updateRowIndex.getElementsByTagName("td")[3];
-            let tdType = updateRowIndex.getElementsByTagName("td")[4];
-            let tdGardenName = updateRowIndex.getElementsByTagName("td")[5];
+            let tdPlant = updateRowIndex.getElementsByTagName("td")[2];
+            let tdGarden = updateRowIndex.getElementsByTagName("td")[3];
 
             // Reassign homeworld to our value we updated to
-            tdPlotID.innerHTML = parsedData[0].plotID;
-            tdPlantID.innerHTML = parsedData[0].plantID;
-            tdVarietyName.innerHTML = parsedData[0].varietyName;
-            tdType.innerHTML = parsedData[0].type;
-            tdGardenName.innerHTML = parsedData[0].gardenName;
+            tdPlotID.innerText = parsedData[0].plotID;
+            tdPlant.innerText = `${parsedData[0].plantID} ${parsedData[0].varietyName} ${parsedData[0].type}`;
+            tdGarden.innerText = `${parsedData[0].gardenID} ${parsedData[0].gardenName}`;
             
             break;
         }
