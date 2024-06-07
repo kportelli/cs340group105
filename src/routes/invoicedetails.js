@@ -48,31 +48,33 @@ router.post('/add-invoicedetail-ajax', function (req, res) {
     let data = req.body;
     let query1 = `INSERT INTO InvoiceDetails (plantID, invoiceID, price, quantity, lineTotal) VALUES ('${data.plantID}', '${data.invoiceID}', '${data.price}', '${data.quantity}', '${data.lineTotal}')`;
 
-    let query2 = "SELECT InvoiceDetails.invoiceDetailID, Invoices.invoiceID, Plants.varietyName, Plants.type, InvoiceDetails.quantity, InvoiceDetails.price, InvoiceDetails.lineTotal, Gardeners.firstName, Gardeners.lastName FROM InvoiceDetails INNER JOIN Plants ON InvoiceDetails.plantID = Plants.plantID INNER JOIN Invoices ON InvoiceDetails.invoiceID = Invoices.invoiceID INNER JOIN Gardeners ON Invoices.gardenerID = Gardeners.gardenerID ORDER BY InvoiceDetails.invoiceDetailID ASC;";
+    let query2 = `UPDATE Invoices SET totalCost = totalCost + '${data.lineTotal}' WHERE Invoices.invoiceID = '${data.invoiceID}';`;
+
+    let query3 = "SELECT InvoiceDetails.invoiceDetailID, Invoices.invoiceID, Plants.varietyName, Plants.type, InvoiceDetails.quantity, InvoiceDetails.price, InvoiceDetails.lineTotal, Gardeners.firstName, Gardeners.lastName FROM InvoiceDetails INNER JOIN Plants ON InvoiceDetails.plantID = Plants.plantID INNER JOIN Invoices ON InvoiceDetails.invoiceID = Invoices.invoiceID INNER JOIN Gardeners ON Invoices.gardenerID = Gardeners.gardenerID ORDER BY InvoiceDetails.invoiceDetailID ASC;";
 
 
     db.pool.query(query1, function (error, rows, fields) {
-        // Check to see if there was an error
         if (error) {
-            // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
-            console.log(error)
+            console.log("invoice details query1 error")
             res.sendStatus(400);
-        }
-        else {
+        } else {
             db.pool.query(query2, function (error, rows, fields) {
-                // If there was an error on the second query, send a 400
                 if (error) {
-                    // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
-                    console.log(error);
+                    console.log("invoice details query2 error");
                     res.sendStatus(400);
+                } else {
+                    db.pool.query(query3, function (error, rows, fields) {
+                        if (error) {
+                            console.log("invoice details query3 error");
+                            res.sendStatus(400);
+                        } else {
+                            res.send(rows);
+                        }
+                    });
                 }
-                // If all went well, send the results of the query back.
-                else {
-                    res.send(rows);
-                }
-            })
+            });
         }
-    })
+    });
 });
 
 // commenting this out for now, may implement later
