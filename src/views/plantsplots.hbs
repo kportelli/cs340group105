@@ -3,11 +3,12 @@
 <table id="plantsplots-table">
     <thead>
         <tr>
-            {{#each data.[0]}}
-            <th>
-                {{@key}}
-            </th>
-            {{/each}}
+            <th>ID</th>
+            <th>Plot ID</th>
+            <th>Plant ID</th>
+            <th>Variety</th>
+            <th>Type</th>
+            <th>Garden</th>
             <th>Delete</th>
         </tr>
     </thead>
@@ -35,9 +36,9 @@
             <div class="input row-auto">
                 <label for="add-plants-plots-plot-id" class="col-sm-2 row-form-label">Plot</label>
                 <select class="form-select" type="text" id="add-plants-plots-plot-id" name="add-plants-plots-plot-id" required>
-                    <option value="default-plot">Select a Plot</option>
+                    <option value="default-plot">Select a Plot [PlotID (Garden)]</option>
                     {{#each plotIDs}}
-                    <option value={{this.plotID}}>{{this.plotID}} {{this.gardenName}}</option>
+                    <option value={{this.plotID}}>{{this.plotID}} ({{this.gardenID}} {{this.gardenName}})</option>
                     {{/each}}
                 </select>
             </div>
@@ -62,9 +63,9 @@
             <div class="input row-auto">
                 <label for="update-plants-plots-plantsplots-id" class="col-sm-2 row-form-label">Plant Plot</label>
                 <select class="form-select" type="text" id="update-plants-plots-plantsplots-id" name="update-plants-plots-plantsplots-id" required>
-                    <option value="default-plantplot">Select a Plant Plot</option>
+                    <option value="default-plantplot">Select a Plant Plot [PlantPlotID (Plant) (Garden)]</option>
                     {{#each data}}
-                    <option value={{{json this}}}>{{this.plantsPlotsID}} {{this.varietyName}} {{this.type}} {{this.gardenName}}</option>
+                    <option value={{{json this}}}>{{this.plantsPlotsID}} ({{this.plantID}} {{this.varietyName}} {{this.type}}) ({{this.gardenID}} {{this.gardenName}})</option>
                     {{/each}}
                 </select>
             </div>

@@ -1,23 +1,16 @@
 <h1>Plants</h1>
 <table id="plants-table">
-    {{!-- Header section --}}
     <thead>
-        {{!-- For just the first row, we print each key of the row object as a header cell so we
-        know what each column means when the page renders --}}
         <tr>
-            {{#each data.[0]}}
-            <th>
-                {{@key}}
-            </th>
-            {{/each}}
+            <th>ID</th>
+            <th>Variety</th>
+            <th>Type</th>
+            <th>Price</th>
             <th>Delete</th>
         </tr>
     </thead>
 
-    {{!-- Body section --}}
     <tbody>
-
-        {{!-- For each row, print the id, varietyName, type, and price, in order --}}
         {{#each data}}
         <tr data-value={{this.Id}}>
             <td>{{this.Id}}</td>
@@ -45,8 +38,6 @@
     <input type="submit">
 </form>
 
-
-{{!-- Embed our javascript to handle the DOM manipulation and AJAX request --}}
 
 <h2>Updating a Plant Price</h2>
 <p>To update a specific Plant's price select its ID from the drop-down menu and then input the new price.</p>
