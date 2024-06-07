@@ -15,27 +15,14 @@ router.get('/gardeners', (req, res) => {
 
 // CREATE a Gardener
 
-router.post('/add-gardener-form-ajax', function (req, res) {
-    // Capture the incoming data and parse it back to a JS object
+router.post('/add-gardener-ajax', function (req, res) {
     let data = req.body;
 
-    // // Capture NULL values
-    // let homeworld = parseInt(data.homeworld);
-    // if (isNaN(homeworld)) {
-    //     homeworld = 'NULL'
-    // }
-
-    // let age = parseInt(data.age);
-    // if (isNaN(age)) {
-    //     age = 'NULL'
-    // }
-
-    // Create the query and run it on the database
     query1 = `INSERT INTO Gardeners (firstName, lastName, streetAddress, city, zip, email, phone) VALUES (
-        '${data.fname}', '${data.lname}', '${data.address_gardener}', '${data.city_gardener}','${data.zip_gardener}','${data.email}', '${data.phone}');`;
+        ?, ?, ?, ?, ?, ?, ?);`;
     query2 = `SELECT * FROM Gardeners ORDER BY gardenerID DESC LIMIT 1;`;
 
-    db.pool.query(query1, function (error, rows, fields) {
+    db.pool.query(query1, [data.firstName, data.lastName, data.streetAddress, data.city, data.zip, data.email, data.phone], function (error, rows, fields) {
 
         // Check to see if there was an error
         if (error) {
