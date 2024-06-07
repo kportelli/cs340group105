@@ -85,49 +85,33 @@ addRowToTable = (data) => {
     let parsedData = JSON.parse(data);
     let newRow = parsedData[parsedData.length - 1]
 
-    // Create a row and 4 cells
+    // Create a row and appropriate cells
     let row = document.createElement("TR");
     let idCell = document.createElement("TD");
-    let invoiceIDCell = document.createElement("TD");
-    let varietyNameCell = document.createElement("TD");
-    let typeCell = document.createElement("TD");
+    let invoiceCell = document.createElement("TD");
+    let plantCell = document.createElement("TD");
     let quantityCell = document.createElement("TD");
     let priceCell = document.createElement("TD");
     let lineTotalCell = document.createElement("TD");
-    let firstNameCell = document.createElement("TD");
-    let lastNameCell = document.createElement("TD");
-
-    //let deleteCell = document.createElement("TD");
+    let gardenerCell = document.createElement("TD");
 
     // Fill the cells with correct data
     idCell.innerText = newRow.invoiceDetailID;
-    invoiceIDCell.innerText = newRow.invoiceID;
-    varietyNameCell.innerText = newRow.varietyName;
-    typeCell.innerText = newRow.type;
+    invoiceCell.innerText = newRow.invoiceID;
+    plantCell.innerText = `${newRow.plantID} ${newRow.varietyName} ${newRow.type}`;
     quantityCell.innerText = newRow.quantity;
-    priceCell.innerText = newRow.price;
-    lineTotalCell.innerText = newRow.lineTotal;
-    firstNameCell.innerText = newRow.firstName;
-    lastNameCell.innerText = newRow.lastName;
-
-    ///let deleteButton = document.createElement("button");
-    // deleteButton.onclick = function () {
-    //deleteInvoiceDetail(newRow.invoiceDetailID);
-    //};
-    //deleteButton.innerText = "Delete";
-    //deleteCell.appendChild(deleteButton);
+    priceCell.innerText = '$' + parseFloat(newRow.price).toFixed(2);
+    lineTotalCell.innerText = '$' + parseFloat(newRow.lineTotal).toFixed(2);
+    gardenerCell.innerText = `${newRow.gardenerID} ${newRow.firstName} ${newRow.lastName}`;
 
     // Add the cells to the row 
     row.appendChild(idCell);
-    row.appendChild(invoiceIDCell);
-    row.appendChild(varietyNameCell);
-    row.appendChild(typeCell);
+    row.appendChild(invoiceCell);
+    row.appendChild(plantCell);
     row.appendChild(quantityCell);
     row.appendChild(priceCell);
     row.appendChild(lineTotalCell);
-    row.appendChild(firstNameCell);
-    row.appendChild(lastNameCell);
-    //row.appendChild(deleteCell);
+    row.appendChild(gardenerCell);
 
     row.setAttribute('data-value', newRow.invoiceDetailID);
 

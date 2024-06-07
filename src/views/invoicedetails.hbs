@@ -9,7 +9,6 @@
             <th>Price</th>
             <th>Line Total</th>
             <th>Gardener</th>
-            <th>Delete</th>
         </tr>
     </thead>
 
@@ -20,10 +19,9 @@
             <td>{{this.invoiceID}}</td>
             <td>{{this.varietyName}} {{this.type}}</td>
             <td>{{this.quantity}}</td>
-            <td>{{this.price}}</td>
-            <td>{{this.lineTotal}}</td>
+            <td>${{toFixed this.price 2}}</td>
+            <td>${{toFixed this.lineTotal 2}}</td>
             <td>{{this.gardenerID}} {{this.firstName}} {{this.lastName}}</td>
-            <td><button onclick="deleteInvoiceDetail({{this.invoiceDetailID}})">Delete</button></td>
         </tr>
         {{/each}}
     </tbody>
@@ -47,7 +45,7 @@
 
 <form id="add-invoice-details-form-ajax">
     <p>To add a new InvoiceDetails row, please enter its information below and click 'Submit'!</p>
-    <label for="input-invoice-details-plant">Plant: </label>
+    <label for="input-invoice-details-plant">Plant</label>
     <select type="text" name="input-invoice-details-plant" id="input-invoice-details-plant">
         <option value="default-plant">Select a Plant</option>
         {{#each plantIDs}}
@@ -55,7 +53,7 @@
         {{/each}}
     </select>
     <br>
-    <label for="input-invoice-details-invoice">Invoice: </label>
+    <label for="input-invoice-details-invoice">Invoice</label>
     <select type="text" name="input-invoice-details-invoice" id="input-invoice-details-invoice">
         <option value="default-invoice">Select an Invoice</option>
         {{#each invoiceIDs}}
@@ -63,10 +61,10 @@
         {{/each}}
     </select>
     <br>
-    <label for="input-invoice-details-price">Price: </label>
+    <label for="input-invoice-details-price">Price</label>
     <input type="number" name="input-invoice-details-price" id="input-invoice-details-price">
     <br>
-    <label for="input-invoice-details-quantity">Quantity: </label>
+    <label for="input-invoice-details-quantity">Quantity</label>
     <input type="number" name="input-invoice-details-quantity" id="input-invoice-details-quantity">
     <br>
     <input type="submit">

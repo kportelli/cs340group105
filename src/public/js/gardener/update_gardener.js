@@ -19,7 +19,7 @@ updateGardenerForm.addEventListener("submit", function (e) {
 
 
     // Get the values from the form fields
-    let gardenerIDValue = input_gardenerID.value;
+    let gardenerIDValue = JSON.parse(decodeURI(input_gardenerID.value)).gardenerID;
     let firstnameValue = input_fname.value;
     let lastnameValue = input_lname.value;
     let addressValue = input_address.value;
@@ -27,8 +27,6 @@ updateGardenerForm.addEventListener("submit", function (e) {
     let zipValue = input_zip.value;
     let emailValue = input_email.value;
     let phoneValue = input_phone.value;
-
-    // NAN??
 
     // Put our data we want to send in a javascript object
     let data = {

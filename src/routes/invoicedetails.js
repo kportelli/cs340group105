@@ -50,7 +50,7 @@ router.post('/add-invoicedetail-ajax', function (req, res) {
 
     let query2 = `UPDATE Invoices SET totalCost = totalCost + '${data.lineTotal}' WHERE Invoices.invoiceID = '${data.invoiceID}';`;
 
-    let query3 = "SELECT InvoiceDetails.invoiceDetailID, Invoices.invoiceID, Plants.varietyName, Plants.type, InvoiceDetails.quantity, InvoiceDetails.price, InvoiceDetails.lineTotal, Gardeners.firstName, Gardeners.lastName FROM InvoiceDetails INNER JOIN Plants ON InvoiceDetails.plantID = Plants.plantID INNER JOIN Invoices ON InvoiceDetails.invoiceID = Invoices.invoiceID INNER JOIN Gardeners ON Invoices.gardenerID = Gardeners.gardenerID ORDER BY InvoiceDetails.invoiceDetailID ASC;";
+    let query3 = "SELECT InvoiceDetails.invoiceDetailID, Invoices.invoiceID, Plants.plantID, Plants.varietyName, Plants.type, InvoiceDetails.quantity, InvoiceDetails.price, InvoiceDetails.lineTotal, Gardeners.gardenerID, Gardeners.firstName, Gardeners.lastName FROM InvoiceDetails INNER JOIN Plants ON InvoiceDetails.plantID = Plants.plantID INNER JOIN Invoices ON InvoiceDetails.invoiceID = Invoices.invoiceID INNER JOIN Gardeners ON Invoices.gardenerID = Gardeners.gardenerID ORDER BY InvoiceDetails.invoiceDetailID ASC;";
 
 
     db.pool.query(query1, function (error, rows, fields) {
@@ -77,13 +77,11 @@ router.post('/add-invoicedetail-ajax', function (req, res) {
     });
 });
 
-// commenting this out for now, may implement later
-// // DELETE
+
+// DELETE
 // router.delete('/delete-invoicedetail-ajax/', function (req, res, next) {
 //     let data = req.body;
 //     let invoiceDetailID = parseInt(data.invoiceDetailID);
-
-//     // query to delete an invoiceDetail by invoiceDetailID from InvoiceDetails table
 //     let deleteFromInvoiceDetails = `DELETE FROM InvoiceDetails WHERE invoiceDetailID = ?`;
 
 //     db.pool.query(deleteFromInvoiceDetails, [invoiceDetailID], function (error, rows, fields) {
@@ -91,8 +89,6 @@ router.post('/add-invoicedetail-ajax', function (req, res) {
 //             console.log(error);
 //             res.sendStatus(400);
 //         } else {
-//             //  Since we are just deleting 1 row and don't need to send back any new data,
-//             // we will send back a status of 204 (No Content) common for PUT or DELETE.
 //             res.sendStatus(204);
 //         }
 //     });

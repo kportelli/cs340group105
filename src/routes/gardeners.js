@@ -65,7 +65,6 @@ router.put('/put-gardener-ajax', function (req, res, next) {
     let phone = data.phone;
     let email = data.email;
 
-
     // if gardenerID is not a number, send a 400 status code
     if (isNaN(gardenerID)) {
         res.sendStatus(400);
