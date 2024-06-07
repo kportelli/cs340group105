@@ -25,7 +25,7 @@
     <form class="col g-1" id="add-plot-form-ajax">
         <span class="form-name">Add Plot</span>
         <div class="input row-auto">
-            <label for="plots-garden-name" class="col-sm-2 row-form-label">Garden</label>
+            <label for="input-add-plot-garden-id" class="col-sm-2 row-form-label">Garden</label>
             <select class="form-select" type="text" id="input-add-plot-garden-id" name="input-add-plot-garden-id" required>
                 <option value="default-garden">Select a Garden</option>
                 {{#each gardenIDs}}
@@ -34,7 +34,7 @@
             </select>
         </div>
         <div class="input row-auto">
-            <button type="submit" class="form-btn btn btn-primary mb-3">Update</button>
+            <button type="submit" class="form-btn btn btn-primary mb-3">Add</button>
         </div>
     </form>
 </div>
