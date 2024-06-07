@@ -4,10 +4,8 @@
     <thead>
         <tr>
             <th>ID</th>
-            <th>Plot ID</th>
-            <th>Plant ID</th>
-            <th>Variety</th>
-            <th>Type</th>
+            <th>Plot</th>
+            <th>Plant</th>
             <th>Garden</th>
             <th>Delete</th>
         </tr>
@@ -18,10 +16,8 @@
         <tr data-value={{this.plantsPlotsID}}>
             <td>{{this.plantsPlotsID}}</td>
             <td>{{this.plotID}}</td>
-            <td>{{this.plantID}}</td>
-            <td>{{this.varietyName}}</td>
-            <td>{{this.type}}</td>
-            <td>{{this.gardenName}}</td>
+            <td>{{this.plantID}} {{this.varietyName}} {{this.type}}</td>
+            <td>{{this.gardenID}} {{this.gardenName}}</td>
             <td><button onclick="deletePlantPlot({{this.plantsPlotsID}})">Delete</button></td>
         </tr>
         {{/each}}

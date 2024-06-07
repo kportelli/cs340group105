@@ -4,7 +4,6 @@
         <thead>
             <tr>
                 <th>ID</th>
-                <th>Garden ID</th>
                 <th>Garden</th>
                 <th>Delete</th>
             </tr>
@@ -14,8 +13,7 @@
             {{#each data}}
             <tr data-value={{this.plotID}}>
                 <td>{{this.plotID}}</td>
-                <td>{{this.gardenID}}</td>
-                <td>{{this.gardenName}}</td>
+                <td>{{this.gardenID}} {{this.gardenName}}</td>
                 <td><button onclick="deletePlot({{this.plotID}})">Delete</button></td>
             </tr>
             {{/each}}

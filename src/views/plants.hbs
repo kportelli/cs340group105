@@ -26,13 +26,13 @@
 <h2>Adding a Plant</h2>
 <p>To add a new plant, please enter its information below and click 'Submit'!</p>
 <form id="add-plant-form-ajax">
-    <label for="input-varietyName">Variety Name: </label>
+    <label for="input-varietyName">Variety</label>
     <input type="text" name="input-varietyName" id="input-varietyName">
     <br>
-    <label for="input-plant-type">Type: </label>
+    <label for="input-plant-type">Type</label>
     <input type="text" name="input-plant-type" id="input-plant-type">
     <br>
-    <label for="input-price">Price: </label>
+    <label for="input-price">Price</label>
     <input type="number" step="0.01" name="input-price" id="input-price">
     <br>
     <input type="submit">
@@ -43,7 +43,7 @@
 <p>To update a specific Plant's price select its ID from the drop-down menu and then input the new price.</p>
 <form id="update-plant-form-ajax">
 
-    <label for="input-plantID">Plant ID: </label>
+    <label for="input-plantID">Plant</label>
     <select id="input-plantID" name="input-plantID">
         <option value="test">Select a Plant</option>
         {{#each plantIDs}}
@@ -52,7 +52,7 @@
     </select>
 
     <br>
-    <label for="input-price-update">Price: </label>
+    <label for="input-price-update">Price</label>
     <input type="number" step="0.01" name="input-price-update" id="input-price-update">
     <br>
     <input type="submit">

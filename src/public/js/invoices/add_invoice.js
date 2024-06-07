@@ -64,17 +64,19 @@ addRowToTable = (data) => {
     // Create a row and 8 cells
     let row = document.createElement("TR");
     let idCell = document.createElement("TD");
-    let gardenerIDCell = document.createElement("TD");
+    let gardenerCell = document.createElement("TD");
+    let gardenerFirstNameCell = document.createElement("TD");
+    let gardenerLastNameCell = document.createElement("TD");
     let totalCostCell = document.createElement("TD");
 
     // Fill the cells with correct data
     idCell.innerText = newRow.invoiceID;
-    gardenerIDCell.innerText = newRow.gardenerID;
-    totalCostCell.innerText = newRow.totalCost;
+    gardenerCell.innerText = `${newRow.gardenerID} ${newRow.firstName} ${newRow.lastName}`;
+    totalCostCell.innerText = '$' + parseFloat(newRow.totalCost).toFixed(2);
 
     // Add the cells to the row 
     row.appendChild(idCell);
-    row.appendChild(gardenerIDCell);
+    row.appendChild(gardenerCell);
     row.appendChild(totalCostCell);
 
     row.setAttribute('data-value', newRow.invoiceID);
