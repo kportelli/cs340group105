@@ -5,7 +5,7 @@ body {
     background-color: #f0f0f0;
 
     /* min size is the standard iphone size */
-    min-width: 320px;
+    min-width: 750px;
     min-height: 568px;
 
 }
@@ -39,12 +39,18 @@ table th {
     margin: 3em;
 }
 
+form {
+    outline: 1px solid green;
+}
+
 .page-forms {
     /* make this a flex layout */
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
+    border: 1px solid red;
+    justify-content: space-around;
 }
 
 .form-name {
