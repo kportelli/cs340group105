@@ -9,7 +9,7 @@ router.get('/invoices', (req, res) => {
     // Select all Invoices and join with Gardener table on gardenerID
     let query1 = "SELECT * FROM Invoices JOIN Gardeners ON Invoices.gardenerID = Gardeners.gardenerID;";
 
-    // Select relevant Gardener values for dropdown menu
+    // Select relevant Gardener values for dropdown menu to display names with PKs
     let query2 = "SELECT gardenerID, firstName, lastName FROM Gardeners;";
 
     db.pool.query(query1, function (error, rows, fields) {
@@ -30,14 +30,14 @@ router.get('/invoices', (req, res) => {
 });
 
 
-
-// CREATE
+// INSERT/CREATE/POST
 router.post('/add-invoice-ajax', function (req, res) {
     let data = req.body;
 
-    // insert
+    // Insert a new Invoice with gardenerID and starting totalCost of $0.00
     let query1 = `INSERT INTO Invoices (gardenerID, totalCost) VALUES ('${data.gardenerID}', '${data.totalCost}');`;
-    // select
+
+    // Select relevant data to dynamically display table with new Invoice added 
     let query2 = "SELECT Invoices.invoiceID, Gardeners.gardenerID, Gardeners.firstName, Gardeners.lastName, Invoices.totalCost FROM Invoices JOIN Gardeners ON Invoices.gardenerID = Gardeners.gardenerID ORDER BY Invoices.invoiceID DESC LIMIT 1;";
     db.pool.query(query1, function (error, rows, fields) {
         if (error) {
@@ -56,6 +56,5 @@ router.post('/add-invoice-ajax', function (req, res) {
         }
     });
 });
-
 
 module.exports = router;
