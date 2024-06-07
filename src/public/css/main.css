@@ -1,22 +1,88 @@
+table {
+    /* border-collapse: collapse; */
+    min-width: 750px;
+    max-width: 90%;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+.table-name {
+    font-size: 2em;
+    text-align: center;
+    margin-top: 1em;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+tr {
+    border-bottom: 1px solid #ddd; 
+    font-weight: semi-bold;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* add light grey background when hovering over a row */
+tr:hover {
+    background-color: #f1f1f1;
+}
+
+th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+th, td {
+    padding: 5px;
+    margin-left: 5px;
+    margin-right: 5px;
+    text-align: left;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+table button:hover {
+    background-color: lightcoral; /* Replace with your desired color */
+  }
 
 form {
-    outline: 1px solid green;
+    margin: 2em;
+    min-width: 600px;
+    max-width: 750px;
+    
+    
+    display: flex;
+    flex-direction: column;
+
+
+    /* add curved border */
+    border-radius: 10px;
+    /* add background color light grey */
+    background-color: #f0f0f0;
 }
 
 .page-forms {
     /* make this a flex layout */
     display: flex;
-    flex-direction: row;
+    flex-wrap: wrap;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-    border: 1px solid red;
-    justify-content: space-around;
+    justify-content: center;
+}
+
+.page-table {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 .form-name {
     font-size: 2em;
+    text-align: center;
 }
 
 .form-btn {
     margin-top: 1em;
+}
+
+.input {
+    margin-left: 1em;
+    margin-right: 1em;
 }
