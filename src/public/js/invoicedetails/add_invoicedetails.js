@@ -3,7 +3,7 @@ let addInvoiceDetailForm = document.getElementById('add-invoice-details-form-aja
 
 // Modify the objects we need
 addInvoiceDetailForm.addEventListener("submit", function (e) {
-    
+
     // Prevent the form from submitting
     e.preventDefault();
 
@@ -15,7 +15,7 @@ addInvoiceDetailForm.addEventListener("submit", function (e) {
 
     // Get the values from the form fields
     // parse inputPlantID.value from string to object
-    let plantIDValue = JSON.parse(inputPlantID.value).plantID;
+    let plantIDValue = JSON.parse(decodeURI(inputPlantID.value)).plantID;
     let invoiceIDValue = inputInvoiceID.value;
     // parse price and quantity to numbers
     let priceValue = parseFloat(inputPlantPrice.value);
@@ -40,7 +40,7 @@ addInvoiceDetailForm.addEventListener("submit", function (e) {
         quantity: quantityValue,
         lineTotal: priceValue * quantityValue
     }
-    
+
     // Setup our AJAX request
     var xhttp = new XMLHttpRequest();
     xhttp.open("POST", "/add-invoicedetail-ajax", true);
@@ -65,7 +65,7 @@ addInvoiceDetailForm.addEventListener("submit", function (e) {
             // Clear the input fields for another transaction\
             inputPlantPrice.value = '';
             inputPlantQuantity.value = '';
-        } 
+        }
         else if (xhttp.readyState == 4 && xhttp.status != 200) {
             console.log("There was an error with the input.")
         }
@@ -97,7 +97,7 @@ addRowToTable = (data) => {
     let firstNameCell = document.createElement("TD");
     let lastNameCell = document.createElement("TD");
 
-    let deleteCell = document.createElement("TD");
+    //let deleteCell = document.createElement("TD");
 
     // Fill the cells with correct data
     idCell.innerText = newRow.invoiceDetailID;
@@ -110,12 +110,12 @@ addRowToTable = (data) => {
     firstNameCell.innerText = newRow.firstName;
     lastNameCell.innerText = newRow.lastName;
 
-    let deleteButton = document.createElement("button");
-    deleteButton.onclick = function() {
-        deleteInvoiceDetail(newRow.invoiceDetailID);
-    };
-    deleteButton.innerText = "Delete";
-    deleteCell.appendChild(deleteButton);
+    ///let deleteButton = document.createElement("button");
+    // deleteButton.onclick = function () {
+    //deleteInvoiceDetail(newRow.invoiceDetailID);
+    //};
+    //deleteButton.innerText = "Delete";
+    //deleteCell.appendChild(deleteButton);
 
     // Add the cells to the row 
     row.appendChild(idCell);
@@ -127,7 +127,7 @@ addRowToTable = (data) => {
     row.appendChild(lineTotalCell);
     row.appendChild(firstNameCell);
     row.appendChild(lastNameCell);
-    row.appendChild(deleteCell);
+    //row.appendChild(deleteCell);
 
     row.setAttribute('data-value', newRow.invoiceDetailID);
 
