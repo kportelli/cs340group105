@@ -28,11 +28,11 @@ addGardenerForm.addEventListener("submit", function (e) {
 
     // Put our data we want to send in a javascript object
     let data = {
-        fname: firstNameValue,
-        lname: lastNameValue,
-        address_gardener: addressGardenerValue,
-        city_gardener: cityGardenerValue,
-        zip_gardener: zipGardenerValue,
+        firstName: firstNameValue,
+        lastName: lastNameValue,
+        streetAddress: addressGardenerValue,
+        city: cityGardenerValue,
+        zip: zipGardenerValue,
         email: emailValue,
         phone: phoneValue
     }
