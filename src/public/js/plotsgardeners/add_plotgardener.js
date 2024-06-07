@@ -63,22 +63,16 @@ addRowToTable = (data) => {
     let row = document.createElement("TR");
     let idCell = document.createElement("TD");
     let plotIDCell = document.createElement("TD");
-    let gardenIDCell = document.createElement("TD");
-    let gardenerIDCell = document.createElement("TD");
-    let gardenNameCell = document.createElement("TD");
-    let firstNameCell = document.createElement("TD");
-    let lastNameCell = document.createElement("TD");
+    let gardenCell = document.createElement("TD");
+    let gardenerCell = document.createElement("TD");
 
     let deleteCell = document.createElement("TD");
 
     // Fill the cells with correct data
     idCell.innerText = newRow.plotsGardenersID;
     plotIDCell.innerText = newRow.plotID;
-    gardenIDCell.innerText = newRow.gardenID;
-    gardenerIDCell.innerText = newRow.gardenerID;
-    gardenNameCell.innerText = newRow.gardenName;
-    firstNameCell.innerText = newRow.firstName;
-    lastNameCell.innerText = newRow.lastName;
+    gardenCell.innerText = `${newRow.gardenID} ${newRow.gardenName}`;
+    gardenerCell.innerText = `${newRow.gardenerID} ${newRow.firstName} ${newRow.lastName}`;
 
     let deleteButton = document.createElement("button");
     deleteButton.onclick = function() {
@@ -90,11 +84,8 @@ addRowToTable = (data) => {
     // Add the cells to the row 
     row.appendChild(idCell);
     row.appendChild(plotIDCell);
-    row.appendChild(gardenIDCell);
-    row.appendChild(gardenerIDCell);
-    row.appendChild(gardenNameCell);
-    row.appendChild(firstNameCell);
-    row.appendChild(lastNameCell);
+    row.appendChild(gardenCell);
+    row.appendChild(gardenerCell);
     row.appendChild(deleteCell);
 
     row.setAttribute('data-value', newRow.plotsGardenersID);
