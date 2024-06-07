@@ -8,7 +8,7 @@ var db = require('../database/db-connector');
 router.get('/invoicedetails', (req, res) => {
     // join invoice details on plants by plantID and invoices by invoiceID and then gardeners by gardenerID, and then sort by invoice details ID
     let query1 = "SELECT InvoiceDetails.invoiceDetailID, Invoices.invoiceID, Plants.varietyName, Plants.type, InvoiceDetails.quantity, InvoiceDetails.price, InvoiceDetails.lineTotal, Gardeners.firstName, Gardeners.lastName FROM InvoiceDetails INNER JOIN Plants ON InvoiceDetails.plantID = Plants.plantID INNER JOIN Invoices ON InvoiceDetails.invoiceID = Invoices.invoiceID INNER JOIN Gardeners ON Invoices.gardenerID = Gardeners.gardenerID ORDER BY InvoiceDetails.invoiceDetailID ASC;";
-    
+
     // select all plants from Plants table to show in drop down
     let query2 = "SELECT plantID, varietyName, type, price FROM Plants;";
 
@@ -16,17 +16,17 @@ router.get('/invoicedetails', (req, res) => {
     let query3 = "SELECT Invoices.invoiceID, Gardeners.gardenerID, Gardeners.firstName, Gardeners.lastName FROM Invoices INNER JOIN Gardeners ON Invoices.gardenerID = Gardeners.gardenerID ORDER BY Invoices.invoiceID ASC;";
 
     // execute queries
-    db.pool.query(query1, function(error, rows, fields){
+    db.pool.query(query1, function (error, rows, fields) {
         if (error) {
             console.log(error);
             res.sendStatus(400);
         } else {
-            db.pool.query(query2, function(error2, plantIDs) {
+            db.pool.query(query2, function (error2, plantIDs) {
                 if (error2) {
                     console.log(error2);
                     res.sendStatus(400);
                 } else {
-                    db.pool.query(query3, function(error3, invoiceIDs) {
+                    db.pool.query(query3, function (error3, invoiceIDs) {
                         if (error3) {
                             console.log(error3);
                             res.sendStatus(400);
@@ -44,11 +44,12 @@ router.get('/invoicedetails', (req, res) => {
 // CREATE/INSERT/POST
 
 router.post('/add-invoicedetail-ajax', function (req, res) {
+
     let data = req.body;
     let query1 = `INSERT INTO InvoiceDetails (plantID, invoiceID, price, quantity, lineTotal) VALUES ('${data.plantID}', '${data.invoiceID}', '${data.price}', '${data.quantity}', '${data.lineTotal}')`;
+
     let query2 = "SELECT InvoiceDetails.invoiceDetailID, Invoices.invoiceID, Plants.varietyName, Plants.type, InvoiceDetails.quantity, InvoiceDetails.price, InvoiceDetails.lineTotal, Gardeners.firstName, Gardeners.lastName FROM InvoiceDetails INNER JOIN Plants ON InvoiceDetails.plantID = Plants.plantID INNER JOIN Invoices ON InvoiceDetails.invoiceID = Invoices.invoiceID INNER JOIN Gardeners ON Invoices.gardenerID = Gardeners.gardenerID ORDER BY InvoiceDetails.invoiceDetailID ASC;";
 
-    
 
     db.pool.query(query1, function (error, rows, fields) {
         // Check to see if there was an error
@@ -74,26 +75,26 @@ router.post('/add-invoicedetail-ajax', function (req, res) {
     })
 });
 
+// commenting this out for now, may implement later
+// // DELETE
+// router.delete('/delete-invoicedetail-ajax/', function (req, res, next) {
+//     let data = req.body;
+//     let invoiceDetailID = parseInt(data.invoiceDetailID);
 
-// DELETE
-router.delete('/delete-invoicedetail-ajax/', function (req, res, next) {
-    let data = req.body;
-    let invoiceDetailID = parseInt(data.invoiceDetailID);
+//     // query to delete an invoiceDetail by invoiceDetailID from InvoiceDetails table
+//     let deleteFromInvoiceDetails = `DELETE FROM InvoiceDetails WHERE invoiceDetailID = ?`;
 
-    // query to delete an invoiceDetail by invoiceDetailID from InvoiceDetails table
-    let deleteFromInvoiceDetails = `DELETE FROM InvoiceDetails WHERE invoiceDetailID = ?`;
-
-    db.pool.query(deleteFromInvoiceDetails, [invoiceDetailID], function (error, rows, fields) {
-        if (error) {
-            console.log(error);
-            res.sendStatus(400);
-        } else {
-            //  Since we are just deleting 1 row and don't need to send back any new data,
-            // we will send back a status of 204 (No Content) common for PUT or DELETE.
-            res.sendStatus(204);
-        }
-    });
-});
+//     db.pool.query(deleteFromInvoiceDetails, [invoiceDetailID], function (error, rows, fields) {
+//         if (error) {
+//             console.log(error);
+//             res.sendStatus(400);
+//         } else {
+//             //  Since we are just deleting 1 row and don't need to send back any new data,
+//             // we will send back a status of 204 (No Content) common for PUT or DELETE.
+//             res.sendStatus(204);
+//         }
+//     });
+// });
 
 
 module.exports = router;
