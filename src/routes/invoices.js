@@ -6,8 +6,8 @@ var db = require('../database/db-connector');
 // DISPLAY/READ/GET
 
 router.get('/invoices', (req, res) => {
-    // Display all Invoices
-    let query1 = "SELECT * FROM Invoices;";
+    // Select all Invoices and join with Gardener table on gardenerID
+    let query1 = "SELECT * FROM Invoices JOIN Gardeners ON Invoices.gardenerID = Gardeners.gardenerID;";
 
     // Select relevant Gardener values for dropdown menu
     let query2 = "SELECT gardenerID, firstName, lastName FROM Gardeners;";

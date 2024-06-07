@@ -1,37 +1,28 @@
-<!-- index.hbs -->
 <h1>Invoice Details</h1>
 <table id="invoice-details-table">
-
-    {{!-- Header section --}}
     <thead>
-
-        {{!-- For just the first row, we print each key of the row object as a header cell so we
-        know what each column means when the page renders --}}
         <tr>
-            {{#each data.[0]}}
-            <th>
-                {{@key}}
-            </th>
-            {{/each}}
+            <th>ID</th>
+            <th>Invoice</th>
+            <th>Plant</th>
+            <th>Quantity</th>
+            <th>Price</th>
+            <th>Line Total</th>
+            <th>Gardener</th>
             <th>Delete</th>
         </tr>
     </thead>
 
-    {{!-- Body section --}}
     <tbody>
-
-        {{!-- For each row, print the id, fname, lname, homeworld and age, in order --}}
         {{#each data}}
         <tr data-value={{this.invoiceDetailID}}>
             <td>{{this.invoiceDetailID}}</td>
             <td>{{this.invoiceID}}</td>
-            <td>{{this.varietyName}}</td>
-            <td>{{this.type}}</td>
+            <td>{{this.varietyName}} {{this.type}}</td>
             <td>{{this.quantity}}</td>
             <td>{{this.price}}</td>
             <td>{{this.lineTotal}}</td>
-            <td>{{this.firstName}}</td>
-            <td>{{this.lastName}}</td>
+            <td>{{this.gardenerID}} {{this.firstName}} {{this.lastName}}</td>
             <td><button onclick="deleteInvoiceDetail({{this.invoiceDetailID}})">Delete</button></td>
         </tr>
         {{/each}}
@@ -68,7 +59,7 @@
     <select type="text" name="input-invoice-details-invoice" id="input-invoice-details-invoice">
         <option value="default-invoice">Select an Invoice</option>
         {{#each invoiceIDs}}
-        <option value={{this.invoiceID}}>{{this.invoiceID}} {{this.firstName}} {{this.lastName}}</option>
+        <option value={{this.invoiceID}}>{{this.invoiceID}} ({{this.gardenerID}} {{this.firstName}} {{this.lastName}})</option>
         {{/each}}
     </select>
     <br>
@@ -81,7 +72,6 @@
     <input type="submit">
 </form>
 
-{{!-- Embed our javascript to handle the DOM manipulation and AJAX request --}}
 <script src="./js/invoicedetails/formhelpers.js"></script>
 <script src="./js/invoicedetails/add_invoicedetails.js"></script>
 <script src="./js/invoicedetails/delete_invoicedetails.js"></script>

@@ -1,31 +1,18 @@
-<!-- index.hbs -->
-
 <h1>Display All Invoices</h1>
-{{!-- Create a table --}}
 <table id="invoices-table">
-
-    {{!-- Header section --}}
     <thead>
-
-        {{!-- For just the first row, we print each key of the row object as a header cell so we
-        know what each column means when the page renders --}}
         <tr>
-            {{#each data.[0]}}
-            <th>
-                {{@key}}
-            </th>
-            {{/each}}
+            <th>ID</th>
+            <th>Gardener</th>
+            <th>Total Cost</th>
         </tr>
     </thead>
 
-    {{!-- Body section --}}
     <tbody>
-
-        {{!-- For each row, print the id, fname, lname, homeworld and age, in order --}}
         {{#each data}}
         <tr>
             <td>{{this.invoiceID}}</td>
-            <td>{{this.gardenerID}}</td>
+            <td>{{this.gardenerID}} {{this.firstName}} {{this.lastName}}</td>
             <td>{{this.totalCost}}</td>
         </tr>
         {{/each}}
