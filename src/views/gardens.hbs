@@ -31,24 +31,24 @@
 
         <form class="row g-1" id="add-garden-form-ajax">
             <span class="form-name">Add a Garden</span>
-            <div class="col-auto">
+            <div class="input row-auto">
                 <label for="input-add-garden-name" class="col-sm-2 row-form-label">Name</label>
                 <input type="text" class="form-control" id="input-add-garden-name" placeholder="Garden Name">
             </div>
-            <div class="col-auto">
+            <div class="input row-auto">
                 <label for="input-add-garden-streetAddress" class="col-sm-2 row-form-label">Address</label>
                 <input type="text" class="form-control" id="input-add-garden-streetAddress" placeholder="Garden Address">
             </div>
-            <div class="col-auto">
+            <div class="row-auto">
                 <label for="input-add-garden-city" class="col-sm-2 row-form-label">Name</label>
                 <input type="text" class="form-control" id="input-add-garden-city" placeholder="Garden City">
             </div>
-            <div class="col-auto">
+            <div class="input row-auto">
                 <label for="input-add-garden-zipCode" class="col-sm-2 row-form-label">Address</label>
                 <input type="text" class="form-control" pattern="[0-9]{5}" title="Five digit zip code" id="input-add-garden-zipCode" placeholder="Garden Zipcode">
             </div>
-            <div class="col-auto">
-                <button type="submit" class="btn btn-primary mb-3">Add a Garden</button>
+            <div class="input row-auto">
+                <button type="submit" class="form-btn btn btn-primary mb-3">Add</button>
             </div>
         </form>
 
@@ -71,10 +71,39 @@
             </form>
         </div> --}}
     </div>
-    <br>
-    <h2>Update a Garden</h2>
     <div>
-        <div class="form-container">
+
+        <form class="row g-1" id="update-garden-form-ajax">
+            <span class="form-name">Update a Garden</span>
+            <div class="input row-auto">
+                <select class="form-select" id="input-update-garden-id" name="input-update-garden-id" required>
+                    <option value="default-garden">Select a Garden</option>
+                    {{#each data}}
+                    <option value={{{json this}}}>{{this.ID}} {{{this.Name}}}</option>
+                    {{/each}}
+                </select>
+                <label for="input-update-garden-name" class="col-sm-2 row-form-label">Name</label>
+                <input type="text" class="form-control" id="input-update-garden-name" placeholder="Garden">
+            </div>
+            <div class="input row-auto">
+                <label for="input-update-garden-streetAddress" class="col-sm-2 row-form-label">Address</label>
+                <input type="text" class="form-control" id="input-update-garden-streetAddress" placeholder="Garden Address">
+            </div>
+            <div class="row-auto">
+                <label for="input-update-garden-city" class="col-sm-2 row-form-label">Name</label>
+                <input type="text" class="form-control" id="input-update-garden-city" placeholder="Garden City">
+            </div>
+            <div class="input row-auto">
+                <label for="input-update-garden-zipCode" class="col-sm-2 row-form-label">Address</label>
+                <input type="text" class="form-control" pattern="[0-9]{5}" title="Five digit zip code" id="input-update-garden-zipCode" placeholder="Garden Zipcode">
+            </div>
+            <div class="input row-auto">
+                <button type="submit" class="form-btn btn btn-primary mb-3">Update</button>
+            </div>
+        </form>
+
+
+        {{!-- <div class="form-container">
             <form id="update-garden-form-ajax">
                 <label for="input-update-garden-id">Garden:</label>
                 <select id="input-update-garden-id" name="input-update-garden-id" required>
@@ -98,7 +127,7 @@
                 <br>
                 <input type="submit" value="Update Garden">
             </form>
-        </div>
+        </div> --}}
     </div>
     <br>
 </div>
