@@ -1,52 +1,47 @@
-<!-- index.hbs -->
-<h1>Plots</h1>
-<table id="plots-table">
-    {{!-- Header section --}}
-    <thead>
-        {{!-- For just the first row, we print each key of the row object as a header cell so we
-        know what each column means when the page renders --}}
-        <tr>
-            {{#each data.[0]}}
-            <th>
-                {{@key}}
-            </th>
+<div class="page-table">
+    <h1>Plots</h1>
+    <table id="plots-table">
+        <thead>
+            <tr>
+                {{#each data.[0]}}
+                <th>
+                    {{@key}}
+                </th>
+                {{/each}}
+                <th>Delete</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            {{#each data}}
+            <tr data-value={{this.plotID}}>
+                <td>{{this.plotID}}</td>
+                <td>{{this.gardenID}}</td>
+                <td>{{this.gardenName}}</td>
+                <td><button onclick="deletePlot({{this.plotID}})">Delete</button></td>
+            </tr>
             {{/each}}
-            <th>Delete</th>
-        </tr>
-    </thead>
+        </tbody>
+    </table>
+</div>
 
-    {{!-- Body section --}}
-    <tbody>
-
-        {{!-- For each row, print the id, varietyName, type, and price, in order --}}
-        {{#each data}}
-        <tr data-value={{this.plotID}}>
-            <td>{{this.plotID}}</td>
-            <td>{{this.gardenID}}</td>
-            <td>{{this.gardenName}}</td>
-            <td><button onclick="deletePlot({{this.plotID}})">Delete</button></td>
-        </tr>
-        {{/each}}
-    </tbody>
-</table>
-
-    <h2>Add a Plot</h2>
-    <div>
-        <div class="form-container">
-            <form id="add-plot-form-ajax">
-                <label for="plots-garden-name">Garden</label>
-                <select type="text" id="input-add-plot-garden-id" name="input-add-plot-garden-id" required>
-                    <option value="default-garden">Select a Garden</option>
-                    {{#each gardenIDs}}
-                    <option value={{this.gardenID}}>{{this.gardenID}} {{this.gardenName}}</option>
-                    {{/each}}
-                </select>
-                <br>
-                <input type="submit" value="Add Plot">
-            </form>
+<div class="page-forms">
+    <form class="col g-1" id="add-plot-form-ajax">
+        <span class="form-name">Add Plot</span>
+        <div class="input row-auto">
+            <label for="plots-garden-name" class="col-sm-2 row-form-label">Garden</label>
+            <select class="form-select" type="text" id="input-add-plot-garden-id" name="input-add-plot-garden-id" required>
+                <option value="default-garden">Select a Garden</option>
+                {{#each gardenIDs}}
+                <option value={{this.gardenID}}>{{this.gardenID}} {{this.gardenName}}</option>
+                {{/each}}
+            </select>
+            <br>
         </div>
-    </div>
-    <br>
+        <div class="input row-auto">
+            <button type="submit" class="form-btn btn btn-primary mb-3">Update</button>
+        </div>
+    </form>
 </div>
 
 <script src="./js/plots/add_plot.js"></script>
