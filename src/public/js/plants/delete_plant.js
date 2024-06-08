@@ -1,10 +1,10 @@
 function deletePlant(plantID) {
-    // Put our data we want to send in a javascript object
 
+    // check that the plantID to be deleted is a valid number
     if (plantID == null || isNaN(plantID)) {
         return;
     }
-    
+
     let data = { id: plantID };
 
     // Setup our AJAX request
