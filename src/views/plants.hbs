@@ -1,64 +1,100 @@
-<h1>Plants</h1>
-<table id="plants-table">
-    <thead>
-        <tr>
-            <th>ID</th>
-            <th>Variety</th>
-            <th>Type</th>
-            <th>Price</th>
-            <th>Delete</th>
-        </tr>
-    </thead>
+{{! Display all Plants as a table}}
+<div class="page-table">
+    {{! Table title and column headers}}
+    <h1 class="table-name">Plants</h1>
+    <table id="plants-table" class="goc-table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Variety</th>
+                <th>Type</th>
+                <th>Price</th>
+                <th>Delete</th>
+            </tr>
+        </thead>
 
-    <tbody>
-        {{#each data}}
-        <tr data-value={{this.Id}}>
-            <td>{{this.Id}}</td>
-            <td>{{this.Variety}}</td>
-            <td>{{this.Type}}</td>
-            <td>${{toFixed this.Price 2}}</td>
-            <td><button onclick="deletePlant({{this.Id}})">Delete</button></td>
-        </tr>
-        {{/each}}
-    </tbody>
-</table>
+        {{! Fill out rows with data}}
+        <tbody>
+            {{#each data}}
+            <tr data-value={{this.Id}}>
+                <td>{{this.Id}}</td>
+                <td>{{this.Variety}}</td>
+                <td>{{this.Type}}</td>
+                <td>${{toFixed this.Price 2}}</td>
+                <td><button class="delete-row-button" onclick="deletePlant({{this.Id}})">Delete</button></td>
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>
+</div>
 
-<h2>Adding a Plant</h2>
-<p>To add a new plant, please enter its information below and click 'Submit'!</p>
-<form id="add-plant-form-ajax">
-    <label for="input-varietyName">Variety</label>
-    <input type="text" name="input-varietyName" id="input-varietyName">
-    <br>
-    <label for="input-plant-type">Type</label>
-    <input type="text" name="input-plant-type" id="input-plant-type">
-    <br>
-    <label for="input-price">Price</label>
-    <input type="number" step="0.01" name="input-price" id="input-price">
-    <br>
-    <input type="submit">
-</form>
+{{! Add a Plant form}}
+<div class="page-forms">
+    <div>
+        <form class="col g-1" id="add-plant-form-ajax">
+            <span class="form-name">Add Plant</span>
+
+            {{! Input field for Add Plant Variety}}
+            <div class="input row-auto">
+                <label for="input-varietyName" class="col-sm-2 row-form-label">Variety</label>
+                <input type="text" class="form-control" name="input-varietyName" id="input-varietyName"
+                    placeholder="Variety">
+            </div>
+
+            {{! Input field for Add Plant Name}}
+            <div class="input row-auto">
+                <label for="input-plant-type" class="col-sm-2 row-form-label">Type</label>
+                <input type="text" class="form-control" name="input-plant-type" id="input-plant-type"
+                    placeholder="Type">
+            </div>
+
+            {{! Input field for Add Plant price}}
+            <div class="input row-auto">
+                <label for="input-price" class="col-sm-2 row-form-label">Price</label>
+                <input type="number" class="form-control" step="0.01" name="input-price" id="input-price"
+                    placeholder="Price">
+            </div>
 
 
-<h2>Updating a Plant Price</h2>
-<p>To update a specific Plant's price select its ID from the drop-down menu and then input the new price.</p>
-<form id="update-plant-form-ajax">
+            {{! Add Plant submit button}}
+            <div class="input row-auto">
+                <button type="submit" class="form-btn btn btn-primary mb-3">Add</button>
+            </div>
+        </form>
 
-    <label for="input-plantID">Plant</label>
-    <select id="input-plantID" name="input-plantID">
-        <option value="test">Select a Plant</option>
-        {{#each plantIDs}}
-        <option value="{{this.plantID}}">{{this.plantID}} {{this.varietyName}} {{this.type}}</option>
-        {{/each}}
-    </select>
 
-    <br>
-    <label for="input-price-update">Price</label>
-    <input type="number" step="0.01" name="input-price-update" id="input-price-update">
-    <br>
-    <input type="submit">
+        {{! Update a Plant price form}}
+        <div>
+            <form class="col g-1" id="update-plant-form-ajax">
+                <span class="form-name">Update Plant Price</span>
 
-</form>
+                {{! Dropdown menu to select Plant to Update}}
+                <div class="input row-auto">
+                    <select class="form-select" id="input-plantID" name="input-plantID" required>
+                        <option value="test">Select a Plant</option>
+                        {{#each plantIDs}}
+                        <option value="{{this.plantID}}">{{this.plantID}} {{this.varietyName}} {{this.type}}</option>
+                        {{/each}}
+                    </select>
+                    <br>
 
-<script src="./js/plants/update_plant.js"></script>
-<script src="./js/plants/delete_plant.js"></script>
-<script src="./js/plants/add_plant.js"></script>
+                    {{! Input field for Update Plant Price}}
+                    <label for="input-price-update" class="col-sm-2 row-form-label">Price</label>
+                    <input type="number" class="form-control" step="0.01" name="input-price-update"
+                        id="input-price-update" placeholder="Price">
+                </div>
+
+
+                {{! Update Plant submit button}}
+                <div class="input row-auto">
+                    <button type="submit" class="form-btn btn btn-primary mb-3">Update</button>
+                </div>
+
+            </form>
+        </div>
+        <br>
+    </div>
+
+    <script src="./js/plants/update_plant.js"></script>
+    <script src="./js/plants/delete_plant.js"></script>
+    <script src="./js/plants/add_plant.js"></script>
