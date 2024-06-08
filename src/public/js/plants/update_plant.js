@@ -14,14 +14,11 @@ updateGardenForm.addEventListener("submit", function (e) {
     // Get the values from the form fields
     let plantIDvalue = input_plantID.value;
     let priceValue = input_price.value;
-    
-    // currently the database table for bsg_people does not allow updating values to NULL
-    // so we must abort if being bassed NULL for homeworld
 
+    // check the the input value for the new Price is valid
     if (isNaN(priceValue)) {
         return;
     }
-
 
     // Put our data we want to send in a javascript object
     let data = {
@@ -63,19 +60,19 @@ function updateRow(data, plantID) {
         //rows would be accessed using the "row" variable assigned in the for loop
         if (table.rows[i].getAttribute("data-value") == plantID) {
 
-            // Get the location of the row where we found the matching person ID
+            // Get the location of the row where we found the matching plant ID
             let updateRowIndex = table.getElementsByTagName("tr")[i];
 
-            // Get td of homeworld value
+            // Get td of price value
             let td = updateRowIndex.getElementsByTagName("td")[3];
 
-            // Reassign homeworld to our value we updated to
+            // Reassign price to our value we updated to
             td.innerHTML = parsedData[0].price;
-        
+
             // reset select option to default
             var selectElement = document.getElementById("input-plantID");
             selectElement.selectedIndex = 0; // Reset to the first option
-            
+
             // clear out form input fields
             document.getElementById("input-price-update").value = '';
         }

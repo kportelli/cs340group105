@@ -1,52 +1,71 @@
-<h1>Plots Gardeners</h1>
-<table id="plotsgardeners-table">
-    <thead>
-        <tr>
-            <th>ID</th>
-            <th>Plot</th>
-            <th>Garden</th>
-            <th>Gardener</th>
-            <th>Delete</th>
-        </tr>
-    </thead>
+{{! Display all PlotsGardeners data as a table}}
+<div class="page-table">
+    {{! Table title and column headers}}
+    <h1 class="table-name">Plots Gardeners</h1>
+    <table id="plotsgardeners-table" class="goc-table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Plot</th>
+                <th>Garden</th>
+                <th>Gardener</th>
+                <th>Delete</th>
+            </tr>
+        </thead>
 
-    <tbody>
-        {{#each data}}
-        <tr data-value={{this.plotsGardenersID}}>
-            <td>{{this.plotsGardenersID}}</td>
-            <td>{{this.plotID}}</td>
-            <td>{{this.gardenID}} {{this.gardenName}}</td>
-            <td>{{this.gardenerID}} {{this.firstName}} {{this.lastName}}</td>
-            <td><button onclick="deletePlotGardener({{this.plotsGardenersID}})">Delete</button></td>
-        </tr>
-        {{/each}}
-    </tbody>
-</table>
-
-<br>
-<h2>Add Gardener Plot</h2>
-<div class="form-container">
-    <form id="add-plot-gardener-form-ajax">
-        <label for="input-add-plot-gardener-plot-id">Plot</label>
-            <select type="text" id="input-add-plot-gardener-plot-id" name="input-add-plot-gardener-plot-id" required>
-                <option value="default-plot">Select a Plot [PlotID (Garden)]</option>
-                {{#each plotIDs}}
-                <option value={{this.plotID}}>{{this.plotID}} ({{this.gardenID}} {{this.gardenName}})</option>
-                {{/each}}
-            </select>
-
-        <br>
-        <label for="input-add-plot-gardener-gardener-id">Gardener</label>
-        <select type="text" id="input-add-plot-gardener-gardener-id" name="input-add-plot-gardener-gardener-id" required>
-            <option value="default-plot">Select a Gardener</option>
-                {{#each gardenerIDs}}
-                <option value={{this.gardenerID}}>{{this.gardenerID}} {{this.firstName}} {{this.lastName}}</option>
-                {{/each}}
-        </select>
-        <br>
-        <input type="submit" value="Add">
-    </form>
+        {{! Fill out rows with data}}
+        <tbody>
+            {{#each data}}
+            <tr data-value={{this.plotsGardenersID}}>
+                <td>{{this.plotsGardenersID}}</td>
+                <td>{{this.plotID}}</td>
+                <td>{{this.gardenID}} {{this.gardenName}}</td>
+                <td>{{this.gardenerID}} {{this.firstName}} {{this.lastName}}</td>
+                <td><button class="delete-row-button"
+                        onclick="deletePlotGardener({{this.plotsGardenersID}})">Delete</button></td>
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>
 </div>
 
-<script src="./js/plotsgardeners/add_plotgardener.js"></script>
-<script src="./js/plotsgardeners/delete_plotgardener.js"></script>
+{{! Add a Plots Gardender form}}
+<div class="page-forms">
+    <div>
+        {{!<div class="form-container">}}
+            <form class="col g-1" id="add-plot-gardener-form-ajax"> <span class="form-name">Add Plots Gardener</span>
+
+                {{! Dropdown menu to select Plot}}
+                <div class="input row-auto">
+                    <select class="form-select" type="text" id="input-add-plot-gardener-plot-id"
+                        name="input-add-plot-gardener-plot-id" required>
+                        <option value="default-plot">Select a Plot [PlotID (Garden)]</option>
+                        {{#each plotIDs}}
+                        <option value={{this.plotID}}>{{this.plotID}} ({{this.gardenID}} {{this.gardenName}})</option>
+                        {{/each}}
+                    </select>
+                </div>
+                <br>
+
+                {{! Dropdown menu to Add Gardener to Plots Gardeners}}
+                <div class="input row-auto">
+                    <select class="form-select" type="text" id="input-add-plot-gardener-gardener-id"
+                        name="input-add-plot-gardener-gardener-id" required>
+                        <option value="default-plot">Select a Gardener</option>
+                        {{#each gardenerIDs}}
+                        <option value={{this.gardenerID}}>{{this.gardenerID}} {{this.firstName}} {{this.lastName}}
+                        </option>
+                        {{/each}}
+                    </select>
+                </div>
+                <br>
+
+                {{! Update Garden submit button}}
+                <div class="input row-auto">
+                    <button type="submit" class="form-btn btn btn-primary mb-3">Add</button>
+                </div>
+            </form>
+        </div>
+
+        <script src="./js/plotsgardeners/add_plotgardener.js"></script>
+        <script src="./js/plotsgardeners/delete_plotgardener.js"></script>
