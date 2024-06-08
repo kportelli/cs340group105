@@ -1,14 +1,18 @@
+/* 
+** Citation for the contents of this file
+** Date: 10 June 2024
+** Adapted from the w3 schools documentation, and flexbox documentation which are linked below, as well as
+**  the conventional knowledge gained in Oregon State University's CS290 coursework.
+**  Knowledge gained during CS290 is not cited as it is considered common knowledge
+**  for the purposes of this course.
+** Source URL: https://www.w3schools.com/css/
+** Source URL: https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_flexible_box_layout/Basic_concepts_of_flexbox
+*/
+
+/*********************************************** Table ***************/
 table {
-    /* border-collapse: collapse; */
     min-width: 750px;
     max-width: 90%;
-    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-}
-
-.table-name {
-    font-size: 2em;
-    text-align: center;
-    margin-top: 1em;
     font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
 
@@ -18,12 +22,13 @@ tr {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-/* add light grey background when hovering over a row */
 tr:hover {
+    /* hover over a table row */
     background-color: #f1f1f1;
 }
 
 th {
+    /* table header */
     background-color: #f2f2f2;
     font-weight: bold;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -31,6 +36,7 @@ th {
 
 th,
 td {
+    /* table header and table column styles. append the the 'th' styles defined above */
     padding: 5px;
     margin-left: 5px;
     margin-right: 5px;
@@ -39,23 +45,26 @@ td {
 }
 
 table button:hover {
+    /* hovering over a button whose parent is a table (delete button) */
     background-color: lightcoral;
-    /* Replace with your desired color */
 }
 
+.table-name {
+    font-size: 2em;
+    text-align: center;
+    margin-top: 1em;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+/*********************************************************************/
+/*********************************************** Form ****************/
 form {
     margin: 2em;
     min-width: 600px;
     max-width: 750px;
-
-
     display: flex;
     flex-direction: column;
-
-
-    /* add curved border */
     border-radius: 10px;
-    /* add background color light grey */
     background-color: #f0f0f0;
 }
 
@@ -68,8 +77,18 @@ form {
     padding-right: 1em;
 }
 
+.form-name {
+    font-size: 2em;
+    text-align: center;
+}
+
+.form-btn {
+    margin-top: 1em;
+}
+
+/*********************************************************************/
+/*********************************************** Page/Input **********/
 .page-forms {
-    /* make this a flex layout */
     display: flex;
     flex-wrap: wrap;
     flex-direction: column;
@@ -85,16 +104,8 @@ form {
     align-items: center;
 }
 
-.form-name {
-    font-size: 2em;
-    text-align: center;
-}
-
-.form-btn {
-    margin-top: 1em;
-}
-
 .input {
     margin-left: 1em;
     margin-right: 1em;
 }
+/*********************************************************************/

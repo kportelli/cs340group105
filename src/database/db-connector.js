@@ -1,18 +1,21 @@
-// ./database/db-connector.js
+// Citation for the contents of this file, and specifically `mysql.createPool`
+// Date: 10 June 2024
+// Adapted from the nodejs-starter-app and modified to use different credentials.
+// Source URL: : https://github.com/osu-cs340-ecampus/nodejs-starter-app/blob/main/Step%201%20-%20Connecting%20to%20a%20MySQL%20Database/database/db-connector.js
 
 // Get an instance of mysql we can use in the app
 var mysql = require('mysql')
 
-// // Create a 'connection pool' using the provided credentials
-// var pool = mysql.createPool({
-//     connectionLimit : 10,
-//     host            : 'classmysql.engr.oregonstate.edu',
-//     user            : 'cs340_[your_onid]',
-//     password        : '[your_db_password]',
-//     database        : 'cs340_[your_onid]'
-// })
+// Database connection credentials
+// The api_user and api_admin are both created in the MySQL database in a 
+// process that must precede the execution of the app. The idea with multiple
+// databse users is to separate the permissions of the app from the permissions
+// of an admin-type user. This was done in an attempt to follow the principle 
+// of least privilege. The reason for the admin user is to execute all of the 
+// queries in the cleanup.sql and ddl.sql files in order to reset the database.
 
-// Create a 'connection pool' using the provided credentials
+// Pool for the api_user which does not allow for multiple SQL statements. 
+// This is used for all CRUD queries.
 var pool = mysql.createPool({
     connectionLimit : 10,
     host            : 'localhost',
@@ -21,6 +24,9 @@ var pool = mysql.createPool({
     database        : 'goc_dev'
 });
 
+// Pool for the api_admin which allows for multiple SQL statements.
+// This is used for the "/db-management-reset" route which executes all queries from the cleanup.sql and ddl.sql files
+// in order to drop all tables, recreate them, and then seed them with data.
 var adminpool = mysql.createPool({
     connectionLimit : 10,
     host            : 'localhost',
@@ -38,25 +44,13 @@ const testConnection = () => {
             return;
         }
         console.log('Connected to the database.');
-
-        // Make a basic SELECT query
-        connection.query('SELECT * FROM Plants', (queryErr, results, fields) => {
-            connection.release(); // Release the connection back to the pool
-
-            if (queryErr) {
-                console.error('Error executing query:', queryErr);
-                return;
-            }
-
-            console.log('Query results:', results);
-        });
     });
 };
 
 // Test the connection and query
 testConnection();
 
-// export both pool and admin pool
+// Export both pool and admin pool
 module.exports = {
     pool: pool,
     adminpool: adminpool
