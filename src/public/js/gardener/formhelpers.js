@@ -15,7 +15,7 @@ gardenerInput.addEventListener("change", function() {
     let phone = document.getElementById("input-update-gardener-phone");
 
     // if the value is default, return
-    if (gardenData == "default-garden") {
+    if (gardenData == "default-gardener") {
         
         firstName.value = "";
         address.value = "";
