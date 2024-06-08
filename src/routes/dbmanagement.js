@@ -21,10 +21,6 @@ const readSQL = () => {
 }
 
 router.get('/db-management-reset', function (req, res) {
-
-    const ddlPath = path.join(__dirname, '../database/ddl.sql');
-    const cleanupPath = path.join(__dirname, '../database/cleanup.sql');
-    const paths = [cleanupPath, ddlPath];
     const query = readSQL();
     db.adminpool.query(query, function (error, rows, fields) {
         if (error) {
