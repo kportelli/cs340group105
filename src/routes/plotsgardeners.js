@@ -8,9 +8,9 @@ var db = require('../database/db-connector');
 router.get('/plotsgardeners', (req, res) => {
     // create query to join plots and gardens on gardenID, and join gardeners from PlotsGardeners on plotID
     let query1 = "SELECT PlotsGardeners.plotsGardenersID, Plots.plotID, Gardens.gardenID, Gardeners.gardenerID, Gardens.gardenName, Gardeners.firstName, Gardeners.lastName FROM Plots INNER JOIN Gardens ON Plots.gardenID = Gardens.gardenID INNER JOIN PlotsGardeners ON Plots.plotID = PlotsGardeners.plotID INNER JOIN Gardeners ON PlotsGardeners.gardenerID = Gardeners.gardenerID ORDER BY PlotsGardeners.plotsGardenersID ASC;";
-    // query all plots and garden name from joined plots and gardens
+    // query all plots and garden name from joined plots and gardens for use in first dropdown
     let query2 = "SELECT Plots.plotID, Gardens.gardenID, Gardens.gardenName FROM Plots INNER JOIN Gardens ON Plots.gardenID = Gardens.gardenID ORDER BY Plots.plotID ASC;";
-    // query all gardeners
+    // query all gardeners for use in second dropdown
     let query3 = "SELECT gardenerID, firstName, lastName FROM Gardeners;";
 
     db.pool.query(query1, function (error, rows, fields) {
@@ -40,10 +40,12 @@ router.get('/plotsgardeners', (req, res) => {
 
 // CREATE
 router.post('/add-plotgardener-ajax', function (req, res) {
+
+    // receive input fields
     let data = req.body;
     console.log(data);
 
-    // insert
+    // insert new PlotsGardeners intersection row
     let query1 = `INSERT INTO PlotsGardeners (plotID, gardenerID) VALUES ('${data.plotID}', '${data.gardenerID}');`;
 
     // select to update the table
@@ -70,8 +72,14 @@ router.post('/add-plotgardener-ajax', function (req, res) {
 
 // DELETE
 router.delete('/delete-plotgardener-ajax', function (req, res, next) {
+
+    // recieve plotsgardeners ID to delete
     let data = req.body;
+
+    // pull out plotsgardeners ID
     let plantPlotID = parseInt(data.plotsGardenersID);
+
+    // delete specifified PlotsGardeners row
     let deleteFromPlantsPlots = `DELETE FROM PlotsGardeners WHERE plotsGardenersID = ?`;
 
     db.pool.query(deleteFromPlantsPlots, [plantPlotID], function (error, rows, fields) {

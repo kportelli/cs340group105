@@ -45,8 +45,7 @@ addPlotGardenerForm.addEventListener("submit", function (e) {
 })
 
 
-// Creates a single row from an Object representing a single record from 
-// bsg_people
+// Creates a single row from an Object representing a single record  
 addRowToTable = (data) => {
 
     // Get a reference to the current table on the page and clear it out.
@@ -59,7 +58,7 @@ addRowToTable = (data) => {
     let parsedData = JSON.parse(data);
     let newRow = parsedData[parsedData.length - 1]
 
-    // Create a row and 8 cells
+    // Create a row and 5 cells
     let row = document.createElement("TR");
     let idCell = document.createElement("TD");
     let plotIDCell = document.createElement("TD");
@@ -74,8 +73,9 @@ addRowToTable = (data) => {
     gardenCell.innerText = `${newRow.gardenID} ${newRow.gardenName}`;
     gardenerCell.innerText = `${newRow.gardenerID} ${newRow.firstName} ${newRow.lastName}`;
 
+    //insert delete button in new cell
     let deleteButton = document.createElement("button");
-    deleteButton.onclick = function() {
+    deleteButton.onclick = function () {
         deletePlotGardener(newRow.plotsGardenersID);
     };
     deleteButton.innerText = "Delete";
