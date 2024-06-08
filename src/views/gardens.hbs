@@ -1,4 +1,6 @@
+{{! Display all Gardens data as a table}}
 <div class="page-table">
+    {{! Table title and column headers}}
     <h1 class="table-name">Gardens</h1>
     <table id="gardens-table" class="goc-table">
         <thead>
@@ -12,50 +14,69 @@
             </tr>
         </thead>
 
+        {{! Fill out rows with data}}
         <tbody>
-        {{#each data}}
-        <tr data-value={{this.ID}}>
-            <td>{{this.ID}}</td>
-            <td>{{this.Name}}</td>
-            <td>{{this.Address}}</td>
-            <td>{{this.City}}</td>
-            <td>{{this.Zip}}</td>
-            <td><button class="delete-row-button" onclick="deleteGarden({{this.ID}})">Delete</button></td>
-        </tr>
-        {{/each}}
+            {{#each data}}
+            <tr data-value={{this.ID}}>
+                <td>{{this.ID}}</td>
+                <td>{{this.Name}}</td>
+                <td>{{this.Address}}</td>
+                <td>{{this.City}}</td>
+                <td>{{this.Zip}}</td>
+                <td><button class="delete-row-button" onclick="deleteGarden({{this.ID}})">Delete</button></td>
+            </tr>
+            {{/each}}
         </tbody>
     </table>
 </div>
 
+{{! Add a Garden form}}
 <div class="page-forms">
     <div>
         <form class="col g-1" id="add-garden-form-ajax">
             <span class="form-name">Add Garden</span>
+
+            {{! Input field for Add Garden Name}}
             <div class="input row-auto">
                 <label for="input-add-garden-name" class="col-sm-2 row-form-label">Name</label>
                 <input type="text" class="form-control" id="input-add-garden-name" placeholder="Garden Name">
             </div>
+
+            {{! Input field for Add Garden Address}}
             <div class="input row-auto">
                 <label for="input-add-garden-streetAddress" class="col-sm-2 row-form-label">Address</label>
-                <input type="text" class="form-control" id="input-add-garden-streetAddress" placeholder="Garden Address">
+                <input type="text" class="form-control" id="input-add-garden-streetAddress"
+                    placeholder="Garden Address">
             </div>
+
+            {{! Input field for Add Garden City}}
             <div class="input row-auto">
                 <label for="input-add-garden-city" class="col-sm-2 row-form-label">City</label>
                 <input type="text" class="form-control" id="input-add-garden-city" placeholder="Garden City">
             </div>
+
+            {{! Input field for Add Garden Zipcode}}
             <div class="input row-auto">
                 <label for="input-add-garden-zipCode" class="col-sm-2 row-form-label">Zipcode</label>
-                <input type="text" class="form-control" pattern="[0-9]{5}" title="Five digit zip code" id="input-add-garden-zipCode" placeholder="Garden Zipcode">
+                <input type="text" class="form-control" pattern="[0-9]{5}" title="Five digit zip code"
+                    id="input-add-garden-zipCode" placeholder="Garden Zipcode">
             </div>
+
+            {{! Add Garden submit button}}
             <div class="input row-auto">
                 <button type="submit" class="form-btn btn btn-primary mb-3">Add</button>
             </div>
+
         </form>
     </div>
-    <div>
 
+
+    {{! Update a Garden form}}
+    <div>
         <form class="col g-1" id="update-garden-form-ajax">
             <span class="form-name">Update Garden</span>
+
+            {{! Dropdown menu to select Garden to Update}}
             <div class="input row-auto">
                 <select class="form-select" id="input-update-garden-id" name="input-update-garden-id" required>
                     <option value="default-garden">Select a Garden</option>
@@ -64,24 +85,37 @@
                     {{/each}}
                 </select>
                 <br>
+
+                {{! Input field for Update Garden Name}}
                 <label for="input-update-garden-name" class="col-sm-2 row-form-label">Name</label>
                 <input type="text" class="form-control" id="input-update-garden-name" placeholder="Garden">
             </div>
+
+            {{! Input field for Update Garden Address}}
             <div class="input row-auto">
                 <label for="input-update-garden-streetAddress" class="col-sm-2 row-form-label">Address</label>
-                <input type="text" class="form-control" id="input-update-garden-streetAddress" placeholder="Garden Address">
+                <input type="text" class="form-control" id="input-update-garden-streetAddress"
+                    placeholder="Garden Address">
             </div>
+
+            {{! Input field for Update Garden City}}
             <div class="input row-auto">
                 <label for="input-update-garden-city" class="col-sm-2 row-form-label">City</label>
                 <input type="text" class="form-control" id="input-update-garden-city" placeholder="Garden City">
             </div>
+
+            {{! Input field for Update Garden Zipcode}}
             <div class="input row-auto">
                 <label for="input-update-garden-zipCode" class="col-sm-2 row-form-label">Zipcode</label>
-                <input type="text" class="form-control" pattern="[0-9]{5}" title="Five digit zip code" id="input-update-garden-zipCode" placeholder="Garden Zipcode">
+                <input type="text" class="form-control" pattern="[0-9]{5}" title="Five digit zip code"
+                    id="input-update-garden-zipCode" placeholder="Garden Zipcode">
             </div>
+
+            {{! Update Garden submit button}}
             <div class="input row-auto">
                 <button type="submit" class="form-btn btn btn-primary mb-3">Update</button>
             </div>
+
         </form>
     </div>
     <br>

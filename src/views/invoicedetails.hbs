@@ -1,74 +1,106 @@
-<h1>Invoice Details</h1>
-<table id="invoice-details-table">
-    <thead>
-        <tr>
-            <th>ID</th>
-            <th>Invoice</th>
-            <th>Plant</th>
-            <th>Quantity</th>
-            <th>Price</th>
-            <th>Line Total</th>
-            <th>Gardener</th>
-        </tr>
-    </thead>
+{{! Display all InvoicesDetails data as a table}}
+<div class="page-table">
 
-    <tbody>
-        {{#each data}}
-        <tr data-value={{this.invoiceDetailID}}>
-            <td>{{this.invoiceDetailID}}</td>
-            <td>{{this.invoiceID}}</td>
-            <td>{{this.varietyName}} {{this.type}}</td>
-            <td>{{this.quantity}}</td>
-            <td>${{toFixed this.price 2}}</td>
-            <td>${{toFixed this.lineTotal 2}}</td>
-            <td>{{this.gardenerID}} {{this.firstName}} {{this.lastName}}</td>
-        </tr>
-        {{/each}}
-    </tbody>
-</table>
+    {{! Table title and column headers}}
+    <h1 class="table-name">Invoice Details</h1>
+    <table id="invoice-details-table" class="goc-table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Invoice</th>
+                <th>Plant</th>
+                <th>Quantity</th>
+                <th>Price</th>
+                <th>Line Total</th>
+                <th>Gardener</th>
+            </tr>
+        </thead>
 
+        {{! Fill out rows with data}}
+        <tbody>
+            {{#each data}}
+            <tr data-value={{this.invoiceDetailID}}>
+                <td>{{this.invoiceDetailID}}</td>
+                <td>{{this.invoiceID}}</td>
+                <td>{{this.varietyName}} {{this.type}}</td>
+                <td>{{this.quantity}}</td>
+                <td>${{toFixed this.price 2}}</td>
+                <td>${{toFixed this.lineTotal 2}}</td>
+                <td>{{this.gardenerID}} {{this.firstName}} {{this.lastName}}</td>
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>
+</div>
+
+{{! Instructions for Invoices & InvoiceDetails}}
+<center>
+    <br>
+    <h5>Important: </h5>
+    <b>
+        <p>Before adding an InvoiceDetails row, check that the Gardener has at least one Invoice.</p>
+    </b>
+    <p>InvoiceDetails rows are like line items on a receipt, and Invoices are the grand total at the bottom of the
+        receipt.</p>
+    <p>Each row represents a transaction by one Gardener,
+        purchasing a quantity of one Plant. </p>
+    <p>Adding InvoiceDetail rows will change that Gardener's totalCost attribute in the
+        Invoices table.</p>
+</center>
+
+
+{{! Add InvoiceDetail form}}
+<div class="page-forms">
+    <form class="col g-1" id="add-invoice-details-form-ajax">
+        <span class="form-name">Add Invoice Details</span>
+
+        {{! Dropdown menu of Plants}}
+        <div class="input row-auto">
+            <select class="form-select" type="text" id="input-invoice-details-plant" name="input-invoice-details-plant"
+                required>
+                <option value="default-plant">Select a Plant</option>
+                {{#each plantIDs}}
+                <option value={{json this}}>{{this.plantID}} {{this.varietyName}} {{this.type}}</option>
+                {{/each}}
+            </select>
+        </div>
+        <br>
+        {{! Dropdown menu of Invoices}}
+        <div class="input row-auto">
+            <select class="form-select" type="text" name="input-invoice-details-invoice"
+                id="input-invoice-details-invoice" required>
+                <option value="default-invoice">Select an Invoice</option>
+                {{#each invoiceIDs}}
+                <option value={{this.invoiceID}}>{{this.invoiceID}} ({{this.gardenerID}} {{this.firstName}}
+                    {{this.lastName}})</option>
+                {{/each}}
+            </select>
+        </div>
+        <br>
+
+        {{! Input field for Add Invoice Price: Dynamically populated by Plant dropdown selection}}
+        <div class="input row-auto">
+            <label for="input-invoice-details-price" class="col-sm-2 row-form-label">Price</label>
+            <input type="number" name="input-invoice-details-price" id="input-invoice-details-price"
+                placeholder="Price of selected Plant" class="form-control">
+        </div>
+
+        {{! Input field for Add Plant Quantity}}
+        <div class="input row-auto">
+            <label for="input-invoice-details-quantity" class="col-sm-2 row-form-label">Quantity</label>
+            <input type="number" name="input-invoice-details-quantity" id="input-invoice-details-quantity"
+                class="form-control" placeholder="Quantity">
+        </div>
+
+        {{! Add Invoice Details submit button}}
+        <div class="input row-auto">
+            <button type="submit" class="form-btn btn btn-primary mb-3">Update</button>
+        </div>
+
+    </form>
+</div>
 <br>
-
-<h5>Important: </h5>
-<b>
-    <p>Before adding an InvoiceDetails row for a certain Gardener, check that the Gardener has an Invoice row.</p>
-</b>
-<p>InvoiceDetails rows are like line items on a receipt, and Invoices are the grand total at the bottom of the receipt.
-    Each row represents a transaction by one Gardener,
-    purchasing a quantity of one Plant. </p>
-<p>Adding InvoiceDetail rows will change that Gardener's totalCost attribute in the
-    Invoices table.</p>
-<br>
-
-<h2>Adding an InvoiceDetails row</h2>
-
-
-<form id="add-invoice-details-form-ajax">
-    <p>To add a new InvoiceDetails row, please enter its information below and click 'Submit'!</p>
-    <label for="input-invoice-details-plant">Plant</label>
-    <select type="text" name="input-invoice-details-plant" id="input-invoice-details-plant">
-        <option value="default-plant">Select a Plant</option>
-        {{#each plantIDs}}
-        <option value={{json this}}>{{this.plantID}} {{this.varietyName}} {{this.type}}</option>
-        {{/each}}
-    </select>
-    <br>
-    <label for="input-invoice-details-invoice">Invoice</label>
-    <select type="text" name="input-invoice-details-invoice" id="input-invoice-details-invoice">
-        <option value="default-invoice">Select an Invoice</option>
-        {{#each invoiceIDs}}
-        <option value={{this.invoiceID}}>{{this.invoiceID}} ({{this.gardenerID}} {{this.firstName}} {{this.lastName}})</option>
-        {{/each}}
-    </select>
-    <br>
-    <label for="input-invoice-details-price">Price</label>
-    <input type="number" name="input-invoice-details-price" id="input-invoice-details-price">
-    <br>
-    <label for="input-invoice-details-quantity">Quantity</label>
-    <input type="number" name="input-invoice-details-quantity" id="input-invoice-details-quantity">
-    <br>
-    <input type="submit">
-</form>
+</div>
 
 <script src="./js/invoicedetails/formhelpers.js"></script>
 <script src="./js/invoicedetails/add_invoicedetails.js"></script>

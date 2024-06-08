@@ -45,11 +45,16 @@ router.get('/invoicedetails', (req, res) => {
 
 router.post('/add-invoicedetail-ajax', function (req, res) {
 
+    // javascript object "data" contains Add InvoiceDetails input
     let data = req.body;
+
+    // Adds new input data to InvoiceDetails table
     let query1 = `INSERT INTO InvoiceDetails (plantID, invoiceID, price, quantity, lineTotal) VALUES ('${data.plantID}', '${data.invoiceID}', '${data.price}', '${data.quantity}', '${data.lineTotal}')`;
 
+    // Updates totalCost field in matching invoiceID in Invoices table
     let query2 = `UPDATE Invoices SET totalCost = totalCost + '${data.lineTotal}' WHERE Invoices.invoiceID = '${data.invoiceID}';`;
 
+    // gets all data from InvoiceDetails table to update table
     let query3 = "SELECT InvoiceDetails.invoiceDetailID, Invoices.invoiceID, Plants.plantID, Plants.varietyName, Plants.type, InvoiceDetails.quantity, InvoiceDetails.price, InvoiceDetails.lineTotal, Gardeners.gardenerID, Gardeners.firstName, Gardeners.lastName FROM InvoiceDetails INNER JOIN Plants ON InvoiceDetails.plantID = Plants.plantID INNER JOIN Invoices ON InvoiceDetails.invoiceID = Invoices.invoiceID INNER JOIN Gardeners ON Invoices.gardenerID = Gardeners.gardenerID ORDER BY InvoiceDetails.invoiceDetailID ASC;";
 
 
@@ -76,23 +81,6 @@ router.post('/add-invoicedetail-ajax', function (req, res) {
         }
     });
 });
-
-
-// DELETE
-// router.delete('/delete-invoicedetail-ajax/', function (req, res, next) {
-//     let data = req.body;
-//     let invoiceDetailID = parseInt(data.invoiceDetailID);
-//     let deleteFromInvoiceDetails = `DELETE FROM InvoiceDetails WHERE invoiceDetailID = ?`;
-
-//     db.pool.query(deleteFromInvoiceDetails, [invoiceDetailID], function (error, rows, fields) {
-//         if (error) {
-//             console.log(error);
-//             res.sendStatus(400);
-//         } else {
-//             res.sendStatus(204);
-//         }
-//     });
-// });
 
 
 module.exports = router;

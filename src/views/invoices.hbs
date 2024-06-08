@@ -1,54 +1,61 @@
-<h1>Display All Invoices</h1>
-<table id="invoices-table">
-    <thead>
-        <tr>
-            <th>ID</th>
-            <th>Gardener</th>
-            <th>Total Cost</th>
-        </tr>
-    </thead>
+{{! Display all Invoices data as a table}}
+<div class="page-table">
 
-    <tbody>
-        {{#each data}}
-        <tr>
-            <td>{{this.invoiceID}}</td>
-            <td>{{this.gardenerID}} {{this.firstName}} {{this.lastName}}</td>
-            <td>${{toFixed this.totalCost 2}}</td>
-        </tr>
-        {{/each}}
-    </tbody>
-</table>
+    {{! Table title and column headers}}
+    <h1 class="table-name">Invoices</h1>
+    <table id="invoices-table" class="goc-table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Gardener</th>
+                <th>Total Cost</th>
+            </tr>
+        </thead>
 
-<br>
-<h5>Important: </h5>
-<p>InvoiceDetails rows are like line items on a reciept, and Invoices are the grand total at the bottom of the receipt.
-    Each row in the Invoices table represents the total amount owed by one Gardener for all their purchases represented
-    in the
-    InvoiceDetails table. </p>
+        {{! Fill out rows with data}}
+        <tbody>
+            {{#each data}}
+            <tr>
+                <td>{{this.invoiceID}}</td>
+                <td>{{this.gardenerID}} {{this.firstName}} {{this.lastName}}</td>
+                <td>${{toFixed this.totalCost 2}}</td>
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>
+</div>
 
-<p>Before creating an InvoiceDetails row, an Invoices row must be created. The totalCost attribute will be set to a
-    starting value of $0.00. When an InvoiceDetails item is added, the totalCost of the
-    Invoice will be updated.</p>
-
-<p>Invoices cannot be edited or deleted, but if a Gardener is deleted, that Gardener's record in the Invoices and
-    InvoiceDetails
-    tables will be converted to NULL values.</p>
-
-<h2>Add an Invoice</h2>
-
-<form id="add-invoice-form-ajax">
-    <p>To add an Invoice, select a Gardener.</p>
-
-    <label for="input-gardenerID-invoices">Gardener</label>
-    <select type="text" id="input-gardenerID-invoices" name="input-gardenerID-invoices" required>
-        <option value="default-gardener-invoice">Select a Gardener</option>
-        {{#each gardenerIDs}}
-        <option value="{{this.gardenerID}}">{{this.gardenerID}} {{this.firstName}} {{this.lastName}}</option>
-        {{/each}}
-    </select>
+{{! Instructions for Invoices & InvoiceDetails}}
+<center>
     <br>
-    <input type="submit" value="Add">
+    <h5>Important: </h5>
+    <p>InvoiceDetails rows are like line items on a reciept, and Invoices are the grand total.</p>
+    <p>When an InvoiceDetails item is added, its Invoice will be updated.</p>
+</center>
 
-</form>
+{{! Add Invoice form}}
+<div class="page-forms">
+    <div>
+        <form class="col g-1" id="add-invoice-form-ajax">
+            <span class="form-name">Add Invoice</span>
 
+            {{! Dropdown menu of Gardeners}}
+            <div class="input row-auto">
+                <select class="form-select" id="input-gardenerID-invoices" name="input-gardenerID-invoices" required>
+                    <option value="default-gardener-invoice">Select a Gardener</option>
+                    {{#each gardenerIDs}}
+                    <option value="{{this.gardenerID}}">{{this.gardenerID}} {{this.firstName}} {{this.lastName}}
+                    </option>
+                    {{/each}}
+                </select>
+            </div>
+
+            {{! Add Invoice submit button}}
+            <div class="input row-auto">
+                <button type="submit" class="form-btn btn btn-primary mb-3">Add</button>
+            </div>
+
+        </form>
+    </div>
+</div>
 <script src="./js/invoices/add_invoice.js"></script>

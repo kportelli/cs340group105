@@ -4,6 +4,7 @@ table {
     max-width: 90%;
     font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
+
 .table-name {
     font-size: 2em;
     text-align: center;
@@ -12,7 +13,7 @@ table {
 }
 
 tr {
-    border-bottom: 1px solid #ddd; 
+    border-bottom: 1px solid #ddd;
     font-weight: semi-bold;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
@@ -28,7 +29,8 @@ th {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-th, td {
+th,
+td {
     padding: 5px;
     margin-left: 5px;
     margin-right: 5px;
@@ -37,15 +39,16 @@ th, td {
 }
 
 table button:hover {
-    background-color: lightcoral; /* Replace with your desired color */
-  }
+    background-color: lightcoral;
+    /* Replace with your desired color */
+}
 
 form {
     margin: 2em;
     min-width: 600px;
     max-width: 750px;
-    
-    
+
+
     display: flex;
     flex-direction: column;
 

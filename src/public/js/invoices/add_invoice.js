@@ -47,11 +47,10 @@ addInvoiceForm.addEventListener("submit", function (e) {
 })
 
 
-// Creates a single row from an Object representing a single record from 
-// bsg_people
+// Creates a single row from an Object representing a single record from Invoices
 addRowToTable = (data) => {
 
-    // Get a reference to the current table on the page and clear it out.
+    // Get a reference to the current table on the page 
     let currentTable = document.getElementById("invoices-table");
 
     // Get the location where we should insert the new row (end of table)
@@ -65,8 +64,8 @@ addRowToTable = (data) => {
     let row = document.createElement("TR");
     let idCell = document.createElement("TD");
     let gardenerCell = document.createElement("TD");
-    let gardenerFirstNameCell = document.createElement("TD");
-    let gardenerLastNameCell = document.createElement("TD");
+    //let gardenerFirstNameCell = document.createElement("TD");
+    //let gardenerLastNameCell = document.createElement("TD");
     let totalCostCell = document.createElement("TD");
 
     // Fill the cells with correct data
