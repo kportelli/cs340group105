@@ -52,8 +52,7 @@ addPlantForm.addEventListener("submit", function (e) {
 })
 
 
-// Creates a single row from an Object representing a single record from 
-// plants
+// Creates a single row from an Object representing a single record from plants
 addRowToTable = (data) => {
 
     // Get a reference to the current table on the page and clear it out.
@@ -66,7 +65,7 @@ addRowToTable = (data) => {
     let parsedData = JSON.parse(data);
     let newRow = parsedData[parsedData.length - 1]
 
-    // Create a row and 4 cells
+    // Create a row and 5 cells
     let row = document.createElement("TR");
     let idCell = document.createElement("TD");
     let varietyNameCell = document.createElement("TD");
@@ -81,8 +80,9 @@ addRowToTable = (data) => {
     plantTypeCell.innerText = newRow.type;
     plantPriceCell.innerText = '$' + parseFloat(newRow.price).toFixed(2);
 
+    // add delete button to new row
     let deleteButton = document.createElement("button");
-    deleteButton.onclick = function() {
+    deleteButton.onclick = function () {
         deletePlant(newRow.plantID);
     };
     deleteButton.innerText = "Delete";
@@ -101,8 +101,6 @@ addRowToTable = (data) => {
     // Add the row to the table
     currentTable.appendChild(row);
 
-    // Start of new Step 8 code for adding new data to the dropdown menu for updating plants
-
     // Find drop down menu, create a new option, fill data in the option (full name, id),
     // then append option to drop down menu so newly created rows via ajax will be found in it without needing a refresh
     let selectMenu = document.getElementById("input-plantID");
@@ -110,5 +108,4 @@ addRowToTable = (data) => {
     option.text = `${newRow.plantID} ${newRow.varietyName} ${newRow.type}`;
     option.value = newRow.plantID;
     selectMenu.add(option);
-    // End of new step 8 code.
 }

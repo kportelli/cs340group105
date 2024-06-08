@@ -5,7 +5,11 @@ var db = require('../database/db-connector');
 // DISPLAY/READ/GET
 
 router.get('/plants', function (req, res) {
+
+    // Select all Plants data for display
     let query1 = 'SELECT plantID AS "Id", varietyName AS "Variety", type AS "Type", price AS "Price" FROM Plants;';
+
+
     let query2 = "SELECT plantID, varietyName, type FROM Plants;";
 
     db.pool.query(query1, function (error, rows, fields) {
@@ -29,19 +33,22 @@ router.get('/plants', function (req, res) {
 
 router.post('/add-plant-ajax', function (req, res) {
 
+    // recieve input 
     let data = req.body;
     console.log(data);
 
-    // capture NULL values
+    // check that new Price input value is a valid float
     let price = parseFloat(data.price);
     if (isNaN(price)) {
         price = 'NULL';
     }
 
+    // Insert new Plants data
     query1 = `INSERT INTO Plants (varietyName, type, price) VALUES (?, ?, ?)`;
 
     // get the last row in the Plants table (just added)
     query2 = `SELECT * FROM Plants ORDER BY plantID DESC LIMIT 1;`;
+
     db.pool.query(query1, [data.varietyName, data.type, data.price], function (error, rows, fields) {
 
         // Check to see if there was an error
@@ -70,18 +77,26 @@ router.post('/add-plant-ajax', function (req, res) {
     })
 });
 
+
 router.put('/put-plant-ajax', function (req, res, next) {
+
+    // Recieve input
     let data = req.body;
 
+    // Pull out specified plant and new price
     let plantID = parseInt(data.plantID);
     let price = parseFloat(data.price);
 
+    // check that given price is valid
     if (isNaN(price)) {
         res.sendStatus(400);
         return;
     }
 
+    // Update chosen Plant with new price value
     let queryUpdateplant = `UPDATE Plants SET price = ? WHERE plantID = ?`;
+
+    // Select newly updated Plant row for update in table
     let selectUpdatedPlant = `SELECT * FROM Plants WHERE plantID = ?`
 
     // Run the 1st query
@@ -113,10 +128,20 @@ router.put('/put-plant-ajax', function (req, res, next) {
 // DELETE
 
 router.delete('/delete-plant-ajax/', function (req, res, next) {
+
+    // receive input (plantID for deletion)
     let data = req.body;
+
+    // Pull out relevant ID as a number
     let plantID = parseInt(data.id);
+
+    // delete the Plants row with the matching ID 
     let deletePlantFromPlants = `DELETE FROM Plants WHERE plantID = ?`;
+
+    // Also delete the Plant from InvoiceDetails
     let deletePlantFromInvoiceDetails = `DELETE FROM InvoiceDetails WHERE plantID = ?`;
+
+    // Also delete the Plant from PlantsPlots
     let deletePlantFromPlantsPlots = `DELETE FROM PlantsPlots WHERE plantID = ?`;
 
     db.pool.query(deletePlantFromPlantsPlots, [plantID], function (error, rows, fields) {
