@@ -13,9 +13,11 @@
 // Citation for the remaining code in this file
 // Date: 10 June 2024
 // Adapted from the nodejs-starter-app provided by the instructor. The routes are placed in their own files, 
-//  and then registered with the app in this file. This pattern is used to improve code organization, code readability,
-//  and reduce friction between developers working on the same codebase (reduces merge conflicts).
+//  and then registered with the app in this file. This pattern uses the express router library and is used 
+//  to improve code organization, code readability, and reduce friction between developers working on the same
+//  codebase (reduces merge conflicts).
 // Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app/blob/main/Step%208%20-%20Dynamically%20Updating%20Data/app.js
+// Source URL: https://expressjs.com/en/4x/api.html#router
 
 // express setup
 var express = require('express');
@@ -64,7 +66,7 @@ app.get('/', function (req, res)
     res.render('index'); // render the index.hbs file
 });
 
-// Listen on a port for incoming requests
+// listen on a port for incoming requests
 PORT = 34959;
 app.listen(PORT, function () {
     console.log('Express started on http://localhost:' + PORT + '; press Ctrl-C to terminate.')
