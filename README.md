@@ -4,12 +4,22 @@ Growing our Community is a project that revolves around community gardens. This 
 This project is built on NodeJS, MySQL, and HandlebarsJS.
 
 # Project Overview
-This project is full stack, as in, in contains code for both the front end and the back end. Starting at the very bottom of this stack is the database. We are using MySQL for our database, and are using the `mysql` package in NodeJS to interact with the database. The database is used to store all of the data for the project, including gardens, plots, plants, gardeners, and invoices. There are also some intersection entities not included in this list that are more of a surprise for you to discover. There's not a ton of information about the database outside of the [database](./src//database/README.md) directory in this repository. There you'll find the `ddl.sql`, `dml.sql`, and `cleanup.sql` files, which contain the necessary SQL commands to create the database, populate it with data, and drop the tables, respectively. You'll also find an ERD and a schema diagram in that directory, which should help you understand the structure of the database.
+- [Database](./src/database): MySQL
+  - [ddl.sql](./src/database//ddl.sql): Contains the DDL for the database
+  - [dmq.sql](./src/database/dmq.sql): Contains the DML for the database
+- [Backend](./src): NodeJS
+  - [db-connector.js](./src/database/db-connector.js): Contains the connection pool for the database
+  - [app.js](./src/app.js): Contains the main entry point for the server application
+  - [routes](./src/routes): Contains the routes for the server application
+- [Frontend](./src/views): HandlebarsJS
+  - [layouts](./src/views/layouts): Contains the layouts for the views
+  - [partials](./src/views/partials): Contains the partials for the views
+  - [public](./src/public): Contains the public assets for the site
+    - [css](./src/public/css/): Contains the CSS files for the views
+    - [js](./src/public/js/): Contains the JS files for the views, including helpers, event handlers, and AJAX requests
 
-The back end is built using NodeJS and Express. The entry point for our application is [`app.js`](./src/app.js). Aside from this file, there are two sections of importance: [`db-connector.js`](./src//database//db-connector.js) (which establishes a connection to the local MySQL database), and the [routes](./src/routes/) folder.
 
-
-# So you want to run the project?
+# Development Guide: So you want to run the project?
 Here's how you do it.
 
 ## Step 1: Clone the repository
