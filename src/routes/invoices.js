@@ -59,11 +59,12 @@ router.post('/add-invoice-ajax', function (req, res) {
     let data = req.body;
 
     // Insert a new Invoice into the Invoices table
-    let query1 = `INSERT INTO Invoices (gardenerID, totalCost) VALUES ('${data.gardenerID}', '${data.totalCost}');`;
+    let query1 = `INSERT INTO Invoices (gardenerID, totalCost) VALUES (?, ?);`;
 
     // Select the last row from the Invoices table joined with Gardeners on gardenerID
-    let query2 = "SELECT Invoices.invoiceID, Gardeners.gardenerID, Gardeners.firstName, Gardeners.lastName, Invoices.totalCost FROM Invoices JOIN Gardeners ON Invoices.gardenerID = Gardeners.gardenerID ORDER BY Invoices.invoiceID DESC LIMIT 1;";
-    db.pool.query(query1, function (error, rows, fields) {
+    let query2 = `SELECT Invoices.invoiceID, Gardeners.gardenerID, Gardeners.firstName, Gardeners.lastName, Invoices.totalCost FROM Invoices JOIN Gardeners ON Invoices.gardenerID = Gardeners.gardenerID ORDER BY Invoices.invoiceID DESC LIMIT 1;`;
+    
+    db.pool.query(query1, [data.gardenerID, data.totalCost], function (error, rows, fields) {
         if (error) {
             console.log(error)              // if there's an error, log it to console and return a 400 status code
             res.sendStatus(400);

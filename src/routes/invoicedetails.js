@@ -31,13 +31,13 @@ var db = require('../database/db-connector');
 router.get('/invoicedetails', (req, res) => {
 
     // select joined data from InvoiceDetails, Plants, Invoices, and Gardeners tables
-    let query1 = "SELECT InvoiceDetails.invoiceDetailID, Invoices.invoiceID, Plants.varietyName, Plants.type, InvoiceDetails.quantity, InvoiceDetails.price, InvoiceDetails.lineTotal, Gardeners.gardenerID, Gardeners.firstName, Gardeners.lastName FROM InvoiceDetails INNER JOIN Plants ON InvoiceDetails.plantID = Plants.plantID INNER JOIN Invoices ON InvoiceDetails.invoiceID = Invoices.invoiceID INNER JOIN Gardeners ON Invoices.gardenerID = Gardeners.gardenerID ORDER BY InvoiceDetails.invoiceDetailID ASC;";
+    let query1 = `SELECT InvoiceDetails.invoiceDetailID, Invoices.invoiceID, Plants.varietyName, Plants.type, InvoiceDetails.quantity, InvoiceDetails.price, InvoiceDetails.lineTotal, Gardeners.gardenerID, Gardeners.firstName, Gardeners.lastName FROM InvoiceDetails INNER JOIN Plants ON InvoiceDetails.plantID = Plants.plantID INNER JOIN Invoices ON InvoiceDetails.invoiceID = Invoices.invoiceID INNER JOIN Gardeners ON Invoices.gardenerID = Gardeners.gardenerID ORDER BY InvoiceDetails.invoiceDetailID ASC;`;
 
     // select all plants from Plants table to show in drop down
-    let query2 = "SELECT plantID, varietyName, type, price FROM Plants;";
+    let query2 = `SELECT plantID, varietyName, type, price FROM Plants;`;
 
     // select all invoices from Invoices table and join with Gardeners on gardenerID to show in drop down
-    let query3 = "SELECT Invoices.invoiceID, Gardeners.gardenerID, Gardeners.firstName, Gardeners.lastName FROM Invoices INNER JOIN Gardeners ON Invoices.gardenerID = Gardeners.gardenerID ORDER BY Invoices.invoiceID ASC;";
+    let query3 = `SELECT Invoices.invoiceID, Gardeners.gardenerID, Gardeners.firstName, Gardeners.lastName FROM Invoices INNER JOIN Gardeners ON Invoices.gardenerID = Gardeners.gardenerID ORDER BY Invoices.invoiceID ASC;`;
 
     db.pool.query(query1, function (error, rows, fields) {
         if (error) {
@@ -69,20 +69,20 @@ router.post('/add-invoicedetail-ajax', function (req, res) {
     let data = req.body;
 
     // Adds new input data to InvoiceDetails table
-    let query1 = `INSERT INTO InvoiceDetails (plantID, invoiceID, price, quantity, lineTotal) VALUES ('${data.plantID}', '${data.invoiceID}', '${data.price}', '${data.quantity}', '${data.lineTotal}')`;
+    let query1 = `INSERT INTO InvoiceDetails (plantID, invoiceID, price, quantity, lineTotal) VALUES (?, ?, ?, ?, ?);`;
 
     // Updates totalCost field in matching invoiceID in Invoices table
-    let query2 = `UPDATE Invoices SET totalCost = totalCost + '${data.lineTotal}' WHERE Invoices.invoiceID = '${data.invoiceID}';`;
+    let query2 = `UPDATE Invoices SET totalCost = totalCost + ? WHERE Invoices.invoiceID = ?;`;
 
     // select joined data from InvoiceDetails, Plants, Invoices, and Gardeners tables in sorted order
-    let query3 = "SELECT InvoiceDetails.invoiceDetailID, Invoices.invoiceID, Plants.plantID, Plants.varietyName, Plants.type, InvoiceDetails.quantity, InvoiceDetails.price, InvoiceDetails.lineTotal, Gardeners.gardenerID, Gardeners.firstName, Gardeners.lastName FROM InvoiceDetails INNER JOIN Plants ON InvoiceDetails.plantID = Plants.plantID INNER JOIN Invoices ON InvoiceDetails.invoiceID = Invoices.invoiceID INNER JOIN Gardeners ON Invoices.gardenerID = Gardeners.gardenerID ORDER BY InvoiceDetails.invoiceDetailID ASC;";
+    let query3 = `SELECT InvoiceDetails.invoiceDetailID, Invoices.invoiceID, Plants.plantID, Plants.varietyName, Plants.type, InvoiceDetails.quantity, InvoiceDetails.price, InvoiceDetails.lineTotal, Gardeners.gardenerID, Gardeners.firstName, Gardeners.lastName FROM InvoiceDetails INNER JOIN Plants ON InvoiceDetails.plantID = Plants.plantID INNER JOIN Invoices ON InvoiceDetails.invoiceID = Invoices.invoiceID INNER JOIN Gardeners ON Invoices.gardenerID = Gardeners.gardenerID ORDER BY InvoiceDetails.invoiceDetailID ASC;`;
 
-    db.pool.query(query1, function (error, rows, fields) {
+    db.pool.query(query1, [data.plantID, data.invoiceID, data.price, data.quantity, data.lineTotal], function (error, rows, fields) {
         if (error) {
             console.log("invoice details query1 error")                     // if there's an error, log it to console and return a 400 status code
             res.sendStatus(400);
         } else {
-            db.pool.query(query2, function (error, rows, fields) {
+            db.pool.query(query2, [data.lineTotal, data.invoiceID], function (error, rows, fields) {
                 if (error) {
                     console.log("invoice details query2 error");            // if there's an error, log it to console and return a 400 status code
                     res.sendStatus(400);

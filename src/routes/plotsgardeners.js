@@ -31,13 +31,13 @@ var db = require('../database/db-connector');
 router.get('/plotsgardeners', (req, res) => {
 
     // select plots and gardens on gardenID, and gardeners from PlotsGardeners joined on plotID in sorted order
-    let query1 = "SELECT PlotsGardeners.plotsGardenersID, Plots.plotID, Gardens.gardenID, Gardeners.gardenerID, Gardens.gardenName, Gardeners.firstName, Gardeners.lastName FROM Plots INNER JOIN Gardens ON Plots.gardenID = Gardens.gardenID INNER JOIN PlotsGardeners ON Plots.plotID = PlotsGardeners.plotID INNER JOIN Gardeners ON PlotsGardeners.gardenerID = Gardeners.gardenerID ORDER BY PlotsGardeners.plotsGardenersID ASC;";
+    let query1 = `SELECT PlotsGardeners.plotsGardenersID, Plots.plotID, Gardens.gardenID, Gardeners.gardenerID, Gardens.gardenName, Gardeners.firstName, Gardeners.lastName FROM Plots INNER JOIN Gardens ON Plots.gardenID = Gardens.gardenID INNER JOIN PlotsGardeners ON Plots.plotID = PlotsGardeners.plotID INNER JOIN Gardeners ON PlotsGardeners.gardenerID = Gardeners.gardenerID ORDER BY PlotsGardeners.plotsGardenersID ASC;`;
     
     // select all plots and gardens from joined plots and gardens for use in first dropdown
-    let query2 = "SELECT Plots.plotID, Gardens.gardenID, Gardens.gardenName FROM Plots INNER JOIN Gardens ON Plots.gardenID = Gardens.gardenID ORDER BY Plots.plotID ASC;";
+    let query2 = `SELECT Plots.plotID, Gardens.gardenID, Gardens.gardenName FROM Plots INNER JOIN Gardens ON Plots.gardenID = Gardens.gardenID ORDER BY Plots.plotID ASC;`;
     
     // query all gardeners for use in second dropdown
-    let query3 = "SELECT gardenerID, firstName, lastName FROM Gardeners;";
+    let query3 = `SELECT gardenerID, firstName, lastName FROM Gardeners;`;
 
     db.pool.query(query1, function (error, rows, fields) {
         if (error) {
@@ -69,12 +69,12 @@ router.post('/add-plotgardener-ajax', function (req, res) {
     let data = req.body;
 
     // insert new PlotsGardeners intersection row
-    let query1 = `INSERT INTO PlotsGardeners (plotID, gardenerID) VALUES ('${data.plotID}', '${data.gardenerID}');`;
+    let query1 = `INSERT INTO PlotsGardeners (plotID, gardenerID) VALUES (?, ?);`;
 
     // select to update the table
-    let query2 = "SELECT PlotsGardeners.plotsGardenersID, Plots.plotID, Gardens.gardenID, Gardeners.gardenerID, Gardens.gardenName, Gardeners.firstName, Gardeners.lastName FROM Plots INNER JOIN Gardens ON Plots.gardenID = Gardens.gardenID INNER JOIN PlotsGardeners ON Plots.plotID = PlotsGardeners.plotID INNER JOIN Gardeners ON PlotsGardeners.gardenerID = Gardeners.gardenerID ORDER BY PlotsGardeners.plotsGardenersID ASC;";
+    let query2 = `SELECT PlotsGardeners.plotsGardenersID, Plots.plotID, Gardens.gardenID, Gardeners.gardenerID, Gardens.gardenName, Gardeners.firstName, Gardeners.lastName FROM Plots INNER JOIN Gardens ON Plots.gardenID = Gardens.gardenID INNER JOIN PlotsGardeners ON Plots.plotID = PlotsGardeners.plotID INNER JOIN Gardeners ON PlotsGardeners.gardenerID = Gardeners.gardenerID ORDER BY PlotsGardeners.plotsGardenersID ASC;`;
 
-    db.pool.query(query1, function (error, rows, fields) {
+    db.pool.query(query1, [data.plotID, data.gardenerID], function (error, rows, fields) {
         if (error) {
             console.log(error)              // if there's an error, log it to console and return a 400 status code
             res.sendStatus(400);

@@ -31,10 +31,10 @@ var db = require('../database/db-connector');
 router.get('/gardens', (req, res) => {
 
     // select all Gardeners from the Gardeners table
-    let query1 = "SELECT gardenID AS ID, gardenName AS Name, streetAddress AS Address, city AS City, zip AS Zip FROM Gardens;";
+    let query1 = `SELECT gardenID AS ID, gardenName AS Name, streetAddress AS Address, city AS City, zip AS Zip FROM Gardens;`;
 
     // select all gardenIDs and gardenNames from the Gardens table
-    let query2 = "SELECT gardenID, gardenName FROM Gardens;";
+    let query2 = `SELECT gardenID, gardenName FROM Gardens;`;
 
     db.pool.query(query1, function (error, rows, fields) {
         if (error) {
@@ -59,7 +59,7 @@ router.post('/add-garden-ajax', function (req, res) {
     let data = req.body;
     
     // Insert a new Garden into the Gardens table
-    query1 = `INSERT INTO Gardens (gardenName, streetAddress, city, zip) VALUES (?, ?, ?, ?)`;
+    query1 = `INSERT INTO Gardens (gardenName, streetAddress, city, zip) VALUES (?, ?, ?, ?);`;
 
     // Select all Gardens from the Gardens table
     query2 = `SELECT * FROM Gardens;`;
@@ -100,10 +100,10 @@ router.put('/put-garden-ajax', function (req, res, next) {
     }
 
     // Update the Garden with the given gardenID
-    let queryUpdateGarden = `UPDATE Gardens SET gardenName = ?, streetAddress = ?, city = ?, zip = ? WHERE gardenID = ?`;
+    let queryUpdateGarden = `UPDATE Gardens SET gardenName = ?, streetAddress = ?, city = ?, zip = ? WHERE gardenID = ?;`;
 
     // Select the updated Garden
-    let selectUpdatedGarden = `SELECT * FROM Gardens WHERE gardenID = ?`
+    let selectUpdatedGarden = `SELECT * FROM Gardens WHERE gardenID = ?;`
 
     db.pool.query(queryUpdateGarden, [gardenName, streetAddress, city, zip, gardenID], function (error, rows, fields) {
         if (error) {            
@@ -129,10 +129,10 @@ router.delete('/delete-garden-ajax/', function (req, res, next) {
     let gardenID = parseInt(data.id);
 
     // delete the Garden with the given gardenID from the Gardens table
-    let deleteGardenFromGardens = `DELETE FROM Gardens WHERE gardenID = ?`;
+    let deleteGardenFromGardens = `DELETE FROM Gardens WHERE gardenID = ?;`;
 
     // delete the Plot with the given associated gardenID from the Plots table
-    let deleteGardenFromPlots = `DELETE FROM Plots WHERE gardenID = ?`;
+    let deleteGardenFromPlots = `DELETE FROM Plots WHERE gardenID = ?;`;
 
     db.pool.query(deleteGardenFromPlots, [gardenID], function (error, rows, fields) {
         if (error) {
