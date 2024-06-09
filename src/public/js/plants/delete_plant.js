@@ -1,3 +1,8 @@
+// Citation for delete functionality
+// Date: 10 June 2024
+// Adapted from the nodejs-starter app
+// Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app/blob/main/Step%208%20-%20Dynamically%20Updating%20Data/public/js/delete_person.js
+
 function deletePlant(plantID) {
 
     // check that the plantID to be deleted is a valid number
@@ -27,7 +32,6 @@ function deletePlant(plantID) {
     // Send the request and wait for the response
     xhttp.send(JSON.stringify(data));
 }
-
 
 function deleteRow(plantID) {
 

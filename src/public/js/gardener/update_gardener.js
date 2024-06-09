@@ -1,4 +1,9 @@
-// Get the objects we need to modify
+// Citation for event handler on the 'submit' event for updating an entity
+// Date: 10 June 2024
+// Adapted from the nodejs-starter-app
+// Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app/blob/main/Step%208%20-%20Dynamically%20Updating%20Data/public/js/update_person.js
+
+
 let updateGardenerForm = document.getElementById('update-gardener-form-ajax');
 
 // Modify the objects we need
@@ -16,7 +21,6 @@ updateGardenerForm.addEventListener("submit", function (e) {
     let input_zip = document.getElementById("input-update-gardener-zipCode");
     let input_email = document.getElementById("input-update-gardener-email");
     let input_phone = document.getElementById("input-update-gardener-phone");
-
 
     // Get the values from the form fields
     let gardenerIDValue = JSON.parse(decodeURI(input_gardenerID.value)).gardenerID;
@@ -62,8 +66,6 @@ updateGardenerForm.addEventListener("submit", function (e) {
     xhttp.send(JSON.stringify(data));
 
 })
-
-
 
 function updateRow(data, gardenerID) {
     let parsedData = JSON.parse(data);

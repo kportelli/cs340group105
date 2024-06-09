@@ -1,4 +1,8 @@
-// Get the objects we need to modify
+// Citation for event handler on the 'submit' event for adding an entity
+// Date: 10 June 2024
+// Adapted from the nodejs-starter-app
+// Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app/blob/main/Step%208%20-%20Dynamically%20Updating%20Data/public/js/add_person.js
+
 let addPlantForm = document.getElementById('add-plant-form-ajax');
 
 // Modify the objects we need
@@ -48,18 +52,13 @@ addPlantForm.addEventListener("submit", function (e) {
 
     // Send the request and wait for the response
     xhttp.send(JSON.stringify(data));
-
-})
-
+});
 
 // Creates a single row from an Object representing a single record from plants
 addRowToTable = (data) => {
 
     // Get a reference to the current table on the page and clear it out.
     let currentTable = document.getElementById("plants-table");
-
-    // Get the location where we should insert the new row (end of table)
-    let newRowIndex = currentTable.rows.length;
 
     // Get a reference to the new row from the database query (last object)
     let parsedData = JSON.parse(data);

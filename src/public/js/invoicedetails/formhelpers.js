@@ -1,4 +1,10 @@
-// get the selected plantID
+// Citation for event handler on the 'change' event
+// Date: 10 June 2024
+// Adapted from the nodejs-starter-app, as well as the MDN documentation
+// Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app/blob/main/Step%208%20-%20Dynamically%20Updating%20Data/public/js/add_person.js
+// Source URL: https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/change_event
+
+// get the selected plant
 let plantInput = document.getElementById("input-invoice-details-plant");
 
 // when a new option is selected, capture the value
@@ -15,15 +21,9 @@ plantInput.addEventListener("change", function() {
 
     // parse data into JSON object
     let parsedData = JSON.parse(decodeURI(plantData));
-
-    let price = parsedData.price;
-    let plantID = parsedData.plantID;
-
+    
     // populate the price field with the price of the selected plant
     let priceInput = document.getElementById("input-invoice-details-price");
-    priceInput.value = price;
+    priceInput.value = parsedData.price;
     priceInput.readOnly = true;
-
-    // Get the plant details
-    // getPlantDetails(plantID, plantName);
 });

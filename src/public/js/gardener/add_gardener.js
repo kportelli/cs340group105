@@ -1,3 +1,12 @@
+// Citation for event handler on the 'submit' event for updating an entity
+// Date: 10 June 2024
+// Adapted from the nodejs-starter-app
+// Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app/blob/main/Step%208%20-%20Dynamically%20Updating%20Data/public/js/update_person.js
+
+
+
+
+
 // Get the objects we need to modify
 let addGardenerForm = document.getElementById('add-gardener-form-ajax');
 
@@ -66,7 +75,6 @@ addGardenerForm.addEventListener("submit", function (e) {
 
     // Send the request and wait for the response
     xhttp.send(JSON.stringify(data));
-
 })
 
 
@@ -114,7 +122,6 @@ addRowToTable = (data) => {
     };
     deleteButton.innerText = "Delete";
     deleteCell.appendChild(deleteButton);
-
 
     // Add the cells to the row 
     row.appendChild(idCell);

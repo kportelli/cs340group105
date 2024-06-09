@@ -48,9 +48,42 @@
 // Source URL: https://nodejs.org/api/modules.html#requireid
 
 // Citation for route definitions
-// Date 10 June 2024
+// Date: 10 June 2024
 // Adapted from the nodejs-starter-app
 // Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app/blob/main/Step%208%20-%20Dynamically%20Updating%20Data/app.js
+
+// Citation for event handler on the 'submit' event for adding an entity
+// Date: 10 June 2024
+// Adapted from the nodejs-starter-app
+// Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app/blob/main/Step%208%20-%20Dynamically%20Updating%20Data/public/js/add_person.js
+
+// Citation for event handler on the 'submit' event for updating an entity
+// Date: 10 June 2024
+// Adapted from the nodejs-starter-app
+// Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app/blob/main/Step%208%20-%20Dynamically%20Updating%20Data/public/js/update_person.js
+
+// Citation for event handler on the 'change' event
+// Date: 10 June 2024
+// Adapted from the nodejs-starter-app, as well as the MDN documentation
+// Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app/blob/main/Step%208%20-%20Dynamically%20Updating%20Data/public/js/add_person.js
+// Source URL: https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/change_event
+
+// Citation for delete functionality
+// Date: 10 June 2024
+// Adapted from the nodejs-starter app
+// Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app/blob/main/Step%208%20-%20Dynamically%20Updating%20Data/public/js/delete_person.js
+
+// Citation for encodeURI()
+// Date: 10 June 2024
+// Adapted from MDN Web docs. This is used in order to handle special characters in the code. By encoding
+//  a stringified object whose properties are explicitly defined by the user, we are able to handle all sorts of special 
+//  characters, including ', ", and ` which were extremely problematic.
+// Source URL: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/encodeURI
+
+// Citation for decodeURI()
+// Date: 10 June 2024
+// Adapted from MDN Web docs. Used to decode a string so it can then be parsed into an object.
+// Source URL: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/decodeURI
 
 {{! Citations for Gardeners.hbs:
 Date: 10 June 2024
@@ -157,6 +190,15 @@ with dynamic drop down menus adapted from Step 6.
  ----- Date: 10 June 2024
 ------ Adapted from  Handlebars Partials example code in Handlebars.js documentation
 ------ Source URL: https://handlebarsjs.com/guide/partials.html
+  --}}
+
+ {{!-- 
+ ----- Citations for Handlebars Helpers usage -----
+ ----- Date: 10 June 2024
+------ Adapted from Handlebars Helpers example code in Handlebars.js documentation to create and use 
+------ a custom Handlebars Helper to convert JSON object to string.
+------ Source URL: https://handlebarsjs.com/guide/builtin-helpers.html
+------ Source URL: https://handlebarsjs.com/guide/expressions.html#helpers
   --}}
 
 /* 

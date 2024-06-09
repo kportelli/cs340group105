@@ -1,3 +1,13 @@
+// Citation for delete functionality
+// Date: 10 June 2024
+// Adapted from the nodejs-starter app
+// Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app/blob/main/Step%208%20-%20Dynamically%20Updating%20Data/public/js/delete_person.js
+
+// Citation for decodeURI()
+// Date: 10 June 2024
+// Adapted from MDN Web docs. Used to decode a string so it can then be parsed into an object.
+// Source URL: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/decodeURI
+
 function deleteGarden(gardenID) {
     // Put our data we want to send in a javascript object
     let data = { id: gardenID };
@@ -22,7 +32,6 @@ function deleteGarden(gardenID) {
     // Send the request and wait for the response
     xhttp.send(JSON.stringify(data));
 }
-
 
 function deleteRow(gardenID) {
 
