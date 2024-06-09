@@ -1,4 +1,14 @@
-// get the selected plantID
+// Citation for event handler on the 'change' event
+// Date: 10 June 2024
+// Adapted from the nodejs-starter-app, as well as the MDN documentation
+// Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app/blob/main/Step%208%20-%20Dynamically%20Updating%20Data/public/js/add_person.js
+// Source URL: https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/change_event
+
+// Citation for decodeURI()
+// Date: 10 June 2024
+// Adapted from MDN Web docs. Used to decode a string so it can then be parsed into an object.
+// Source URL: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/decodeURI
+
 let gardenerInput = document.getElementById("input-update-gardener-id");
 
 // when a new option is selected, capture the value
@@ -6,6 +16,7 @@ gardenerInput.addEventListener("change", function() {
     let gardenData = gardenerInput.value;
     gardenData = decodeURI(gardenData);
 
+    // get the form fields
     let firstName = document.getElementById("input-update-gardener-first-name");
     let lastName = document.getElementById("input-update-gardener-last-name");
     let address = document.getElementById("input-update-gardener-streetAddress");
@@ -14,7 +25,7 @@ gardenerInput.addEventListener("change", function() {
     let email = document.getElementById("input-update-gardener-email");
     let phone = document.getElementById("input-update-gardener-phone");
 
-    // if the value is default, return
+    // if the value is default, empty the form and return
     if (gardenData == "default-gardener") {
         
         firstName.value = "";
@@ -29,6 +40,7 @@ gardenerInput.addEventListener("change", function() {
     // parse data into JSON object
     let parsedData = JSON.parse(gardenData);
 
+    // fill the form fields with the data
     firstName.value = parsedData.firstName;
     lastName.value = parsedData.lastName;
     address.value = parsedData.streetAddress;
