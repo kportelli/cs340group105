@@ -101,3 +101,45 @@ You should be able to run the project now. You can do this by running the follow
 ``` bash
 node app.js
 ```
+
+## Deployment
+This site is deployed on Oregon State University's `classwork` servers. You can access the site [here](http://classwork.engr.oregonstate.edu:34959/). You'll need to be on the Oregon State University network to access the site.
+
+### Step 1: Clone the repository on the server
+First, you need to clone the repository on the server. I've had tons of issues with trying to clone via HTTPS, so I recommend cloning via SSH. You can do this by running the following command on the server:
+
+``` bash
+git clone git@github.com:kportelli/cs340group105.git
+```
+
+You might need to setup an ssh key on the server. You can do this by following the instructions [here](https://docs.github.com/en/github/authenticating-to-github/connecting-to-github-with-ssh).
+
+### Step 2: Install the dependencies
+Next, you need to install the dependencies. This is the same process as described [above](./README.md#step-2-install-the-dependencies).
+
+### Step 3: Set up the database
+This is the same process as described [above](./README.md#step-3-set-up-the-database).
+
+### Step 4: Create users for the database
+This is the same process as described [above](./README.md#step-4-create-a-user-for-the-database).
+
+### Step 5: Setup your [`db-connector.js`](./src/database/db-connector.js) file
+This is the same process as described [above](./README.md#step-5-setup-your-db-connectorjs-file). **But**, these credentials will be different on the Oregon State University servers. You will need to use the credentials provided to you by the school.
+
+### Step 6: Run the project
+This is where things get a little different. You can't just run `node app.js` and call it a day. You need to run the project continuously. We use [Forever.JS](https://blog.logrocket.com/running-node-js-scripts-continuously-forever/) to do this. You can install Forever.JS by running the following command on the server:
+``` bash
+npm i -g forever
+```
+
+For reasons beyond our control, running forever is a bit more complex on the school's FLIP server. Here is how to make it easy, run the following command from the root of your project in order to create an alias for forever:
+``` bash
+alias forever='./node_modules/forever/bin/forever'
+```
+
+You must run the forever command from the root of your project (where app.js is located). If you don't it will fail. This assumes (as it should) that your entry point is `app.js`.
+``` bash
+forever start app.js
+```
+
+And that's it! Now it will run forever. You should be able to access the site at the provided URL. If you run into any issues, feel free to reach out to [me](mailto:alokbya@oregonstate.edu). I'll do my best to help you out.
