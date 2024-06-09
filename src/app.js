@@ -20,14 +20,14 @@
 // Source URL: https://expressjs.com/en/4x/api.html#router
 
 // express setup
-var express = require('express');
-var app = express();
+const express = require('express');
+const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static('public'));
 
 // handlebars setup
-var exphbs = require('express-handlebars');         // Import express-handlebars
+const exphbs = require('express-handlebars');       // Import express-handlebars
 const helpers = require('./helpers/handlebars');    // Import the handlebars helper functions
 const hbs = exphbs.create({
     extname: '.hbs',
