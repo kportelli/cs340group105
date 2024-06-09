@@ -160,11 +160,11 @@ INSERT INTO Plants (varietyName, type, price) VALUES
 
 -- Insert data into Plots
 INSERT INTO Plots (gardenID) VALUES
-(SELECT gardenerID FROM Gardeners WHERE gardenerID = 5),
-(SELECT gardenerID FROM Gardeners WHERE gardenerID = 4),
-(SELECT gardenerID FROM Gardeners WHERE gardenerID = 3),
-(SELECT gardenerID FROM Gardeners WHERE gardenerID = 2),
-(SELECT gardenerID FROM Gardeners WHERE gardenerID = 1);
+((SELECT gardenerID FROM Gardeners WHERE gardenerID = 5)),
+((SELECT gardenerID FROM Gardeners WHERE gardenerID = 4)),
+((SELECT gardenerID FROM Gardeners WHERE gardenerID = 3)),
+((SELECT gardenerID FROM Gardeners WHERE gardenerID = 2)),
+((SELECT gardenerID FROM Gardeners WHERE gardenerID = 1));
 
 -- Insert data into PlantsPlots
 INSERT INTO PlantsPlots (plantID, plotID) VALUES
@@ -176,11 +176,11 @@ INSERT INTO PlantsPlots (plantID, plotID) VALUES
 
 -- Insert data into PlotsGardeners
 INSERT INTO PlotsGardeners (plotID, gardenerID) VALUES
-((SELECT plotID FROM Plots WHERE plotID = 1), (SELECT gardenerID FROM Gardeners WHERE gardenerID = 1),
-((SELECT plotID FROM Plots WHERE plotID = 2), (SELECT gardenerID FROM Gardeners WHERE gardenerID = 2),
-((SELECT plotID FROM Plots WHERE plotID = 3), (SELECT gardenerID FROM Gardeners WHERE gardenerID = 2),
-((SELECT plotID FROM Plots WHERE plotID = 4), (SELECT gardenerID FROM Gardeners WHERE gardenerID = 4),
-((SELECT plotID FROM Plots WHERE plotID = 4), (SELECT gardenerID FROM Gardeners WHERE gardenerID = 5);
+((SELECT plotID FROM Plots WHERE plotID = 1), (SELECT gardenerID FROM Gardeners WHERE gardenerID = 1)),
+((SELECT plotID FROM Plots WHERE plotID = 2), (SELECT gardenerID FROM Gardeners WHERE gardenerID = 2)),
+((SELECT plotID FROM Plots WHERE plotID = 3), (SELECT gardenerID FROM Gardeners WHERE gardenerID = 2)),
+((SELECT plotID FROM Plots WHERE plotID = 4), (SELECT gardenerID FROM Gardeners WHERE gardenerID = 4)),
+((SELECT plotID FROM Plots WHERE plotID = 4), (SELECT gardenerID FROM Gardeners WHERE gardenerID = 5));
 
 
 -- Insert data into InvoiceDetails
