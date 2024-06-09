@@ -70,7 +70,7 @@ function updateRow(data, plantID) {
             let td = updateRowIndex.getElementsByTagName("td")[3];
 
             // Reassign price to our value we updated to
-            td.innerHTML = parsedData[0].price;
+            td.innerHTML = '$' + parseFloat(parsedData[0].price).toFixed(2);
 
             // reset select option to default
             var selectElement = document.getElementById("input-plantID");
