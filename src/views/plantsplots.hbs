@@ -1,88 +1,126 @@
-<div class="page-table">
-<h1>Plants Plots</h1>
-<table id="plantsplots-table">
-    <thead>
-        <tr>
-            <th>ID</th>
-            <th>Plot</th>
-            <th>Plant</th>
-            <th>Garden</th>
-            <th>Delete</th>
-        </tr>
-    </thead>
+{{! Citations for PlantsPlots.hbs:
+Date: 06/08/2024
+All PlantsPlots Handlebars adapted from node-js-starter-app example code:
+https://github.com/osu-cs340-ecampus/nodejs-starter-app/
 
-    <tbody>
-        {{#each data}}
-        <tr data-value={{this.plantsPlotsID}}>
-            <td>{{this.plantsPlotsID}}</td>
-            <td>{{this.plotID}}</td>
-            <td>{{this.plantID}} {{this.varietyName}} {{this.type}}</td>
-            <td>{{this.gardenID}} {{this.gardenName}}</td>
-            <td><button onclick="deletePlantPlot({{this.plantsPlotsID}})">Delete</button></td>
-        </tr>
-        {{/each}}
-    </tbody>
-</table>
+Display all PlantsPlots table adapted from Step 4,
+with dynamic delete buttons based on Step 7.
+Add PlantsPlots form adapted from Step 5,
+with dynamic drop down menus adapted from Step 6.
+Update PlantsPlots form adapted from Step 8,
+see /js/plantsplots/formhelpers.js for "json this" citation.
+}}
+
+{{! Display all PlantsPlots data as a table}}
+<div class="page-table">
+    {{! Table title and column headers}}
+    <h1 class="table-name">Plants Plots</h1>
+    <table id="plantsplots-table" class="goc-table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Plot</th>
+                <th>Plant</th>
+                <th>Garden</th>
+                <th>Delete</th>
+            </tr>
+        </thead>
+
+        {{! Fill out rows with data}}
+        <tbody>
+            {{#each data}}
+            <tr data-value={{this.plantsPlotsID}}>
+                <td>{{this.plantsPlotsID}}</td>
+                <td>{{this.plotID}}</td>
+                <td>{{this.plantID}} {{this.varietyName}} {{this.type}}</td>
+                <td>{{this.gardenID}} {{this.gardenName}}</td>
+                <td><button onclick="deletePlantPlot({{this.plantsPlotsID}})">Delete</button></td>
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>
 </div>
 
+{{! Add a PlantsPlots form}}
 <div class="page-forms">
     <div>
         <form class="col g-1" id="add-plantplot-form-ajax">
             <span class="form-name">Add Plant Plot</span>
+
+            {{! Dropdown menu to select Plot}}
             <div class="input row-auto">
                 <label for="add-plants-plots-plot-id" class="col-sm-2 row-form-label">Plot</label>
-                <select class="form-select" type="text" id="add-plants-plots-plot-id" name="add-plants-plots-plot-id" required>
+                <select class="form-select" type="text" id="add-plants-plots-plot-id" name="add-plants-plots-plot-id"
+                    required>
                     <option value="default-plot">Select a Plot [PlotID (Garden)]</option>
                     {{#each plotIDs}}
                     <option value={{this.plotID}}>{{this.plotID}} ({{this.gardenID}} {{this.gardenName}})</option>
                     {{/each}}
                 </select>
             </div>
+
+            {{! Dropdown menu to select Plant}}
             <div class="input row-auto">
                 <label for="add-plants-plots-plant-id" class="col-sm-2 row-form-label">Plant</label>
-                <select class="form-select" type="text" id="add-plants-plots-plant-id" name="add-plants-plots-plant-id" required>
+                <select class="form-select" type="text" id="add-plants-plots-plant-id" name="add-plants-plots-plant-id"
+                    required>
                     <option value="default-plant">Select a Plant</option>
                     {{#each plantIDs}}
                     <option value={{this.plantID}}>{{this.plantID}} {{this.varietyName}} {{this.type}}</option>
                     {{/each}}
                 </select>
             </div>
+
+            {{! Add PlantsPlots submit button}}
             <div class="input row-auto">
                 <button type="submit" class="form-btn btn btn-primary mb-3">Add</button>
             </div>
         </form>
     </div>
 
+    {{! Update PlantsPlots form}}
     <div>
         <form class="col g-1" id="update-plantplot-form-ajax">
             <span class="form-name">Update Plant Plot</span>
+
+            {{! Dropdown menu to select PlantsPlots row to alter}}
             <div class="input row-auto">
                 <label for="update-plants-plots-plantsplots-id" class="col-sm-2 row-form-label">Plant Plot</label>
-                <select class="form-select" type="text" id="update-plants-plots-plantsplots-id" name="update-plants-plots-plantsplots-id" required>
+                <select class="form-select" type="text" id="update-plants-plots-plantsplots-id"
+                    name="update-plants-plots-plantsplots-id" required>
                     <option value="default-plantplot">Select a Plant Plot [PlantPlotID (Plant) (Garden)]</option>
                     {{#each data}}
-                    <option value={{{json this}}}>{{this.plantsPlotsID}} ({{this.plantID}} {{this.varietyName}} {{this.type}}) ({{this.gardenID}} {{this.gardenName}})</option>
+                    <option value={{{json this}}}>{{this.plantsPlotsID}} ({{this.plantID}} {{this.varietyName}}
+                        {{this.type}}) ({{this.gardenID}} {{this.gardenName}})</option>
                     {{/each}}
                 </select>
             </div>
+
+            {{! Dropdown menu to reassign a Plot}}
             <div class="input row-auto">
                 <label for="update-plants-plots-plot-id" class="col-sm-2 row-form-label">Plot</label>
-                <select class="form-select" type="text" id="update-plants-plots-plot-id" name="update-plants-plots-plot-id" required>
+                <select class="form-select" type="text" id="update-plants-plots-plot-id"
+                    name="update-plants-plots-plot-id" required>
                     <option value="default-plot">Select a Plot</option>
                     {{#each plotIDs}}
                     <option value={{this.plotID}}>{{this.plotID}} {{this.gardenName}}</option>
                     {{/each}}
                 </select>
             </div>
+
+            {{! Dropdown menu to reassign a Plant}}
             <div class="input row-auto">
                 <label for="update-plants-plots-plant-id" class="col-sm-2 row-form-label">Plant</label>
-                <select class="form-select" ype="text" id="update-plants-plots-plant-id" name="update-plants-plots-plant-id" required>
+                <select class="form-select" ype="text" id="update-plants-plots-plant-id"
+                    name="update-plants-plots-plant-id" required>
                     <option value="default-plant">Select a Plant</option>
                     {{#each plantIDs}}
                     <option value={{this.plantID}}>{{this.plantID}} {{this.varietyName}} {{this.type}}</option>
                     {{/each}}
-            </select>
+                </select>
             </div>
+
+            {{! Update PlantsPlots submit button}}
             <div class="input row-auto">
                 <button type="submit" class="form-btn btn btn-primary mb-3">Update</button>
             </div>

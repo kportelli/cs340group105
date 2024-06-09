@@ -1,5 +1,20 @@
+{{! Citations for Gardeners.hbs:
+Date: 06/08/2024
+All Gardeners Handlebars adapted from node-js-starter-app example code:
+https://github.com/osu-cs340-ecampus/nodejs-starter-app/
+
+Display all Gardeners table adapted from Step 4,
+dynamic delete buttons adapted from Step 7.
+Add Gardeners form adapted from Step 5.
+Update Gardeners form based on Step 8,
+with dynamic drop down menus adapted from Step 6.
+see /js/gardeners/formhelpers.js for "json this" citation.
+}}
+
+{{! Display all Gardeners data as a table}}
 <div class="page-table">
-    <h1>Gardeners</h1>
+    {{! Table title and column headers}}
+    <h1 class="table-name">Gardeners</h1>
     <table id="gardeners-table">
         <thead>
             <tr>
@@ -15,6 +30,7 @@
             </tr>
         </thead>
 
+        {{! Fill out rows with data}}
         <tbody>
             {{#each data}}
             <tr data-value={{this.gardenerID}}>
@@ -33,40 +49,61 @@
     </table>
 </div>
 
-<div class="page-forms">
 
+<div class="page-forms">
+    {{! Add Gardener form}}
     <div>
         <form class="col g-1" id="add-gardener-form-ajax">
             <span class="form-name">Add Gardener</span>
-            <span class="form-description"><p>To add a new Gardener's details, please enter their information below and click the 'Add' button.</p></span>
+            {{!<span class="form-description">
+                <p>To add a new Gardener's details,
+                    please enter their information below and click the 'Add' button.</p>
+            </span>}}
+
+            {{! Input field for new Gardener firstName}}
             <div class="input row-auto">
                 <label for="input-fname" class="col-sm-2 row-form-label">First Name</label>
                 <input type="text" class="form-control" id="input-fname">
             </div>
+
+            ! {{! Input field for new Gardener lastName}}
             <div class="input row-auto">
                 <label for="input-lname" class="col-sm-2 row-form-label">Last Name</label>
                 <input type="text" class="form-control" id="input-lname">
             </div>
+
+            {{! Input field for new Gardener streetAddress}}
             <div class="input row-auto">
                 <label for="input-address-gardener" class="col-sm-2 row-form-label">Address</label>
                 <input type="text" class="form-control" id="input-address-gardener">
             </div>
+
+            {{! Input field for new Gardener city}}
             <div class="input row-auto">
                 <label for="input-city-gardener" class="col-sm-2 row-form-label">City</label>
                 <input type="text" class="form-control" id="input-city-gardener">
             </div>
+
+            {{! Input field for new Gardener zip}}
             <div class="input row-auto">
                 <label for="input-zip-gardener" class="col-sm-2 row-form-label">Zipcode</label>
-                <input type="text" class="form-control" pattern="[0-9]{5}" title="Five digit zip code" id="input-zip-gardener">
+                <input type="text" class="form-control" pattern="[0-9]{5}" title="Five digit zip code"
+                    id="input-zip-gardener">
             </div>
+
+            {{! Input field for new Gardener email}}
             <div class="input row-auto">
                 <label for="input-email" class="col-sm-2 row-form-label">Email</label>
                 <input type="text" class="form-control" id="input-email">
             </div>
+
+            {{! Input field for new Gardener phone}}
             <div class="input row-auto">
                 <label for="input-phone" class="col-sm-2 row-form-label">Phone</label>
                 <input type="text" class="form-control" id="input-phone">
             </div>
+
+            {{! Add Gardener submit button}}
             <div class="input row-auto">
                 <button type="submit" class="form-btn btn btn-primary mb-3">Add</button>
             </div>
@@ -74,10 +111,15 @@
     </div>
 
     <div>
-
+        {{! Update Gardener form}}
         <form class="col g-1" id="update-gardener-form-ajax">
             <span class="form-name">Update Gardener</span>
-            <span class="form-description"><p>To update a gardener, select a gardener from the drop down menu and adjust it's properties in the appropriate fields.</p></span>
+            {{!<span class="form-description">
+                <p>To update a gardener, select a gardener from the drop down menu and adjust its properties in the
+                    appropriate fields.</p>
+            </span>}}
+
+            {{! Dropdown menu to select Gardener to update}}
             <div class="input row-auto">
                 <label for="input-update-gardener-id" class="col-sm-2 row-form-label">Gardener</label>
                 <select class="form-select" id="input-update-gardener-id" name="input-update-gardener-id" required>
@@ -88,37 +130,52 @@
                     {{/each}}
                 </select>
             </div>
-
             <br>
-            
+
+            {{! Input field to update selected Gardener's firstName}}
             <div class="input row-auto">
                 <label for="input-update-gardener-first-name" class="col-sm-2 row-form-label">First Name</label>
                 <input type="text" class="form-control" id="input-update-gardener-first-name">
-            </div>            
+            </div>
+
+            {{! Input field to update selected Gardener's lastName}}
             <div class="input row-auto">
                 <label for="input-update-gardener-last-name" class="col-sm-2 row-form-label">Last Name</label>
                 <input type="text" class="form-control" id="input-update-gardener-last-name">
             </div>
+
+            {{! Input field to update selected Gardener's streetAddres}}
             <div class="input row-auto">
                 <label for="input-update-gardener-streetAddress" class="col-sm-2 row-form-label">Address</label>
                 <input type="text" class="form-control" id="input-update-gardener-streetAddress">
             </div>
+
+            {{! Input field to update selected Gardener's city}}
             <div class="input row-auto">
                 <label for="input-update-gardener-city" class="col-sm-2 row-form-label">City</label>
                 <input type="text" class="form-control" id="input-update-gardener-city">
             </div>
+
+            {{! Input field to update selected Gardener's zipcode}}
             <div class="input row-auto">
                 <label for="input-update-gardener-zipCode" class="col-sm-2 row-form-label">Zipcode</label>
-                <input type="text" class="form-control" pattern="[0-9]{5}" title="Five digit zip code" id="input-update-gardener-zipCode">
+                <input type="text" class="form-control" pattern="[0-9]{5}" title="Five digit zip code"
+                    id="input-update-gardener-zipCode">
             </div>
+
+            {{! Input field to update selected Gardener's email}}
             <div class="input row-auto">
                 <label for="input-update-gardener-email" class="col-sm-2 row-form-label">Email</label>
                 <input type="text" class="form-control" id="input-update-gardener-email">
             </div>
+
+            {{! Input field to update selected Gardener's phone}}
             <div class="input row-auto">
                 <label for="input-update-gardener-phone" class="col-sm-2 row-form-label">Phone</label>
                 <input type="text" class="form-control" id="input-update-gardener-phone">
             </div>
+
+            {{! Update Gardener submit button}}
             <div class="input row-auto">
                 <button type="submit" class="form-btn btn btn-primary mb-3">Update</button>
             </div>
