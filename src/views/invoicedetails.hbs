@@ -77,7 +77,7 @@ with dynamic drop down menus adapted from Step 6.
         <div class="input row-auto">
             <select class="form-select" type="text" id="input-invoice-details-plant" name="input-invoice-details-plant"
                 required>
-                <option value="default-plant">Select a Plant</option>
+                <option value="default">Select a Plant</option>
                 {{#each plantIDs}}
                 <option value={{json this}}>{{this.plantID}} {{this.varietyName}} {{this.type}}</option>
                 {{/each}}
@@ -88,7 +88,7 @@ with dynamic drop down menus adapted from Step 6.
         <div class="input row-auto">
             <select class="form-select" type="text" name="input-invoice-details-invoice"
                 id="input-invoice-details-invoice" required>
-                <option value="default-invoice">Select an Invoice</option>
+                <option value="default">Select an Invoice</option>
                 {{#each invoiceIDs}}
                 <option value={{this.invoiceID}}>{{this.invoiceID}} ({{this.gardenerID}} {{this.firstName}}
                     {{this.lastName}})</option>
@@ -108,7 +108,7 @@ with dynamic drop down menus adapted from Step 6.
         <div class="input row-auto">
             <label for="input-invoice-details-quantity" class="col-sm-2 row-form-label">Quantity</label>
             <input type="number" name="input-invoice-details-quantity" id="input-invoice-details-quantity"
-                class="form-control" placeholder="Quantity">
+                class="form-control" placeholder="Quantity" required>
         </div>
 
         {{! Add Invoice Details submit button}}
@@ -123,4 +123,3 @@ with dynamic drop down menus adapted from Step 6.
 
 <script src="./js/invoicedetails/formhelpers.js"></script>
 <script src="./js/invoicedetails/add_invoicedetails.js"></script>
-<script src="./js/invoicedetails/delete_invoicedetails.js"></script>

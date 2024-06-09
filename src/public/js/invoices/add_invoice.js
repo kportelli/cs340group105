@@ -17,6 +17,11 @@ addInvoiceForm.addEventListener("submit", function (e) {
     // Get the values from the form fields
     let gardenerIDValue = inputGardenerID.value;
 
+    if (gardenerIDValue === "default") {
+        alert("Please select a gardener from the dropdown.");
+        return;
+    }
+
     // Put our data we want to send in a javascript object
     let data = {
         gardenerID: gardenerIDValue,
@@ -34,12 +39,7 @@ addInvoiceForm.addEventListener("submit", function (e) {
 
             // Add the new data to the table
             addRowToTable(xhttp.response);
-
-            // Clear the input fields for another transaction
-            inputGardenerID.value = '';
-
         }
-
         else if (xhttp.readyState == 4 && xhttp.status != 200) {
             console.log("There was an error with the input.")
         }
@@ -81,4 +81,8 @@ addRowToTable = (data) => {
 
     // Add the row to the table
     currentTable.appendChild(row);
+
+    // reset the dropdown to default
+    let inputGardenerID = document.getElementById("input-gardenerID-invoices");
+    inputGardenerID.selectedIndex = 0;
 }

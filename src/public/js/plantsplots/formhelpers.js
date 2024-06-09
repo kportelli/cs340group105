@@ -20,7 +20,7 @@ plantsPlotsInput.addEventListener("change", function() {
     let plotInput = document.getElementById("update-plants-plots-plot-id");
 
     // if nothing is selected in the plantsplots dropdown, reset the form inputs and return
-    if (plantsPlotsData == "default-plantplot") {
+    if (plantsPlotsData == "default") {
         
         plantInput.value = "";
         plotInput.value = "";

@@ -22,6 +22,21 @@ updateGardenForm.addEventListener("submit", function (e) {
     let input_plotID = document.getElementById("update-plants-plots-plot-id");
     let input_plantID = document.getElementById("update-plants-plots-plant-id");
 
+    if (input_plantPlotID.value === "default") {
+        alert("Please select a plant plot from the dropdown.");
+        return;
+    }
+    
+    if (input_plotID.value === "default") {
+        alert("Please select a plot from the dropdown.");
+        return;
+    }
+
+    if (input_plantID.value === "default") {
+        alert("Please select a plant from the dropdown.");
+        return;
+    }
+
     // Get the values from the form fields
     let plantsPlotsIDValue = JSON.parse(decodeURI(input_plantPlotID.value)).plantsPlotsID;
 
@@ -97,7 +112,7 @@ function updateRow(data, plantPlotID) {
     let updatePlantPlotSelect = document.getElementById("update-plants-plots-plantsplots-id");
     let index = 0;
     for (let i = 0, option; option = updatePlantPlotSelect.options[i]; i++) {
-        if (option.value == "default-plantplot") {
+        if (option.value == "default") {
             continue;
         }
         if (JSON.parse(decodeURI(option.value)).plantsPlotsID == plantPlotID) {

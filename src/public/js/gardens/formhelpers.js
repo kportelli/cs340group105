@@ -25,7 +25,7 @@ gardenInput.addEventListener("change", function() {
     let gardenZip = document.getElementById("input-update-garden-zipCode");
 
     // if the value is default, return
-    if (gardenData == "default-garden") {
+    if (gardenData == "default") {
         
         gardenName.value = "";
         gardenAddress.value = "";

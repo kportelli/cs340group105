@@ -62,7 +62,7 @@ with dynamic drop down menus adapted from Step 6.
             {{! Dropdown menu of Gardeners}}
             <div class="input row-auto">
                 <select class="form-select" id="input-gardenerID-invoices" name="input-gardenerID-invoices" required>
-                    <option value="default-gardener-invoice">Select a Gardener</option>
+                    <option value="default">Select a Gardener</option>
                     {{#each gardenerIDs}}
                     <option value="{{this.gardenerID}}">{{this.gardenerID}} {{this.firstName}} {{this.lastName}}
                     </option>

@@ -66,44 +66,44 @@ with dynamic drop down menus adapted from Step 6.
             {{! Input field for new Gardener firstName}}
             <div class="input row-auto">
                 <label for="input-fname" class="col-sm-2 row-form-label">First Name</label>
-                <input type="text" class="form-control" id="input-fname">
+                <input type="text" class="form-control" id="input-fname" required>
             </div>
 
             {{! Input field for new Gardener lastName}}
             <div class="input row-auto">
                 <label for="input-lname" class="col-sm-2 row-form-label">Last Name</label>
-                <input type="text" class="form-control" id="input-lname">
+                <input type="text" class="form-control" id="input-lname" required>
             </div>
 
             {{! Input field for new Gardener streetAddress}}
             <div class="input row-auto">
                 <label for="input-address-gardener" class="col-sm-2 row-form-label">Address</label>
-                <input type="text" class="form-control" id="input-address-gardener">
+                <input type="text" class="form-control" id="input-address-gardener" required>
             </div>
 
             {{! Input field for new Gardener city}}
             <div class="input row-auto">
                 <label for="input-city-gardener" class="col-sm-2 row-form-label">City</label>
-                <input type="text" class="form-control" id="input-city-gardener">
+                <input type="text" class="form-control" id="input-city-gardener" required>
             </div>
 
             {{! Input field for new Gardener zip}}
             <div class="input row-auto">
                 <label for="input-zip-gardener" class="col-sm-2 row-form-label">Zipcode</label>
                 <input type="text" class="form-control" pattern="[0-9]{5}" title="Five digit zip code"
-                    id="input-zip-gardener">
+                    id="input-zip-gardener" required>
             </div>
 
             {{! Input field for new Gardener email}}
             <div class="input row-auto">
                 <label for="input-email" class="col-sm-2 row-form-label">Email</label>
-                <input type="text" class="form-control" id="input-email">
+                <input type="text" class="form-control" id="input-email" required>
             </div>
 
             {{! Input field for new Gardener phone}}
             <div class="input row-auto">
                 <label for="input-phone" class="col-sm-2 row-form-label">Phone</label>
-                <input type="text" class="form-control" id="input-phone">
+                <input type="text" class="form-control" id="input-phone" required>
             </div>
 
             {{! Add Gardener submit button}}
@@ -121,7 +121,7 @@ with dynamic drop down menus adapted from Step 6.
             <div class="input row-auto">
                 <label for="input-update-gardener-id" class="col-sm-2 row-form-label">Gardener</label>
                 <select class="form-select" id="input-update-gardener-id" name="input-update-gardener-id" required>
-                    <option value="default-gardener">Select a Gardener</option>
+                    <option value="default">Select a Gardener</option>
                     {{#each data}}
                     <option value="{{{json this}}}">{{this.gardenerID}} {{{this.firstName}}} {{{this.lastName}}}
                     </option>

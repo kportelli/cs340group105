@@ -60,27 +60,27 @@ with dynamic drop down menus adapted from Step 6.
             {{! Input field for Add Garden Name}}
             <div class="input row-auto">
                 <label for="input-add-garden-name" class="col-sm-2 row-form-label">Name</label>
-                <input type="text" class="form-control" id="input-add-garden-name" placeholder="Garden Name">
+                <input type="text" class="form-control" id="input-add-garden-name" placeholder="Garden Name" required>
             </div>
 
             {{! Input field for Add Garden Address}}
             <div class="input row-auto">
                 <label for="input-add-garden-streetAddress" class="col-sm-2 row-form-label">Address</label>
                 <input type="text" class="form-control" id="input-add-garden-streetAddress"
-                    placeholder="Garden Address">
+                    placeholder="Garden Address" required>
             </div>
 
             {{! Input field for Add Garden City}}
             <div class="input row-auto">
                 <label for="input-add-garden-city" class="col-sm-2 row-form-label">City</label>
-                <input type="text" class="form-control" id="input-add-garden-city" placeholder="Garden City">
+                <input type="text" class="form-control" id="input-add-garden-city" placeholder="Garden City" required>
             </div>
 
             {{! Input field for Add Garden Zipcode}}
             <div class="input row-auto">
                 <label for="input-add-garden-zipCode" class="col-sm-2 row-form-label">Zipcode</label>
                 <input type="text" class="form-control" pattern="[0-9]{5}" title="Five digit zip code"
-                    id="input-add-garden-zipCode" placeholder="Garden Zipcode">
+                    id="input-add-garden-zipCode" placeholder="Garden Zipcode" required>
             </div>
 
             {{! Add Garden submit button}}
@@ -100,7 +100,7 @@ with dynamic drop down menus adapted from Step 6.
             {{! Dropdown menu to select Garden to Update}}
             <div class="input row-auto">
                 <select class="form-select" id="input-update-garden-id" name="input-update-garden-id" required>
-                    <option value="default-garden">Select a Garden</option>
+                    <option value="default">Select a Garden</option>
                     {{#each data}}
                     <option value={{{json this}}}>{{this.ID}} {{{this.Name}}}</option>
                     {{/each}}
@@ -109,27 +109,27 @@ with dynamic drop down menus adapted from Step 6.
 
                 {{! Input field for Update Garden Name}}
                 <label for="input-update-garden-name" class="col-sm-2 row-form-label">Name</label>
-                <input type="text" class="form-control" id="input-update-garden-name" placeholder="Garden">
+                <input type="text" class="form-control" id="input-update-garden-name" placeholder="Garden" required>
             </div>
 
             {{! Input field for Update Garden Address}}
             <div class="input row-auto">
                 <label for="input-update-garden-streetAddress" class="col-sm-2 row-form-label">Address</label>
                 <input type="text" class="form-control" id="input-update-garden-streetAddress"
-                    placeholder="Garden Address">
+                    placeholder="Garden Address" required>
             </div>
 
             {{! Input field for Update Garden City}}
             <div class="input row-auto">
                 <label for="input-update-garden-city" class="col-sm-2 row-form-label">City</label>
-                <input type="text" class="form-control" id="input-update-garden-city" placeholder="Garden City">
+                <input type="text" class="form-control" id="input-update-garden-city" placeholder="Garden City" required>
             </div>
 
             {{! Input field for Update Garden Zipcode}}
             <div class="input row-auto">
                 <label for="input-update-garden-zipCode" class="col-sm-2 row-form-label">Zipcode</label>
                 <input type="text" class="form-control" pattern="[0-9]{5}" title="Five digit zip code"
-                    id="input-update-garden-zipCode" placeholder="Garden Zipcode">
+                    id="input-update-garden-zipCode" placeholder="Garden Zipcode" required>
             </div>
 
             {{! Update Garden submit button}}

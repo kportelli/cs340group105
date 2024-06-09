@@ -23,6 +23,11 @@ updateGardenForm.addEventListener("submit", function (e) {
     let input_city = document.getElementById("input-update-garden-city");
     let input_zip = document.getElementById("input-update-garden-zipCode");
 
+    if (input_gardenID.value === "default") {
+        alert("Please select a garden from the dropdown.");
+        return;
+    }
+
     // Get the values from the form fields
     let gardenIDvalue = JSON.parse(decodeURI(input_gardenID.value)).ID;
 
@@ -103,7 +108,7 @@ function updateRow(data, gardenID) {
     // update garden in update garden select options
     let updateGardenSelect = document.getElementById("input-update-garden-id");
     for (let i = 0, option; option = updateGardenSelect.options[i]; i++) {
-        if (option.value == "default-garden") {
+        if (option.value == "default") {
             continue;
         }
         if (JSON.parse(decodeURI(option.value)).ID == gardenID) {

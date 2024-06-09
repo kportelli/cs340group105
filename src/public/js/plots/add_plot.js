@@ -17,6 +17,11 @@ addPlotForm.addEventListener("submit", function (e) {
     // Get the values from the form fields
     let gardenIDValue = gardenID.value;
 
+    if (gardenIDValue === "default") {
+        alert("Please select a garden from the dropdown.");
+        return;
+    }
+    
     // Put our data we want to send in a javascript object
     let data = {
         gardenID: gardenIDValue
