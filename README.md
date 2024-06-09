@@ -3,6 +3,10 @@ Growing our Community is a project that revolves around community gardens. This 
 
 This project is built on NodeJS, MySQL, and HandlebarsJS.
 
+Before we get into the details of the project, let's talk about plagarism. Here's a [README](./src//README.md) that discusses the common patterns used in this project. It also includes a list of [citations](./citations.txt) used to build this project. These citations are also included in each file that references them.
+
+Now back to the fun stuff.
+
 # Project Overview
 - [Database](./src/database): MySQL
   - [ddl.sql](./src/database//ddl.sql): Contains the DDL for the database
