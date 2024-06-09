@@ -145,6 +145,20 @@ Add PlotsGardener form adapted from Step 5,
 with dynamic drop down menus adapted from Step 6.
 }}
 
+{{!-- 
+----- Citations for Bootstrap and CSS -----
+----- Date 10 June 2024
+----- Bootstrap and CSS references are from the following sources:
+----- Source URL: https://getbootstrap.com/docs/5.3/getting-started/introduction/
+ --}}
+
+  {{!-- 
+ ----- Citations for Handlebars Partials -----
+ ----- Date: 10 June 2024
+------ Adapted from  Handlebars Partials example code in Handlebars.js documentation
+------ Source URL: https://handlebarsjs.com/guide/partials.html
+  --}}
+
 /* 
 ** Citation for the contents of main.css
 ** Date: 10 June 2024

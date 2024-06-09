@@ -13,7 +13,6 @@
 // Source URL: https://nodejs.org/docs/v20.13.1/api/modules.html#exports
 // Source URL: https://www.geeksforgeeks.org/node-js-export-module/
 
-
 module.exports = {
     json: function(context) {
         return encodeURI(JSON.stringify(context));
