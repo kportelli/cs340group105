@@ -1,4 +1,14 @@
-// get the selected plantID
+// Citation for event handler on the 'change' event
+// Date: 10 June 2024
+// Adapted from the nodejs-starter-app, as well as the MDN documentation
+// Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app/blob/main/Step%208%20-%20Dynamically%20Updating%20Data/public/js/add_person.js
+// Source URL: https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/change_event
+
+// Citation for decodeURI()
+// Date: 10 June 2024
+// Adapted from MDN Web docs. Used to decode a string so it can then be parsed into an object.
+// Source URL: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/decodeURI
+
 let plantsPlotsInput = document.getElementById("update-plants-plots-plantsplots-id");
 
 // when a new option is selected, capture the value
@@ -55,7 +65,4 @@ plantsPlotsInput.addEventListener("change", function() {
             break;
         }
     }
-
-    // plantInput.value = parsedData.plantID; // `${} ${} ${}`
-    // plotInput.value = parsedData.plotID; // `${} ${} ${}`
 });

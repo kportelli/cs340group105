@@ -1,4 +1,8 @@
-// Get the objects we need to modify
+// Citation for event handler on the 'submit' event for adding an entity
+// Date: 10 June 2024
+// Adapted from the nodejs-starter-app
+// Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app/blob/main/Step%208%20-%20Dynamically%20Updating%20Data/public/js/add_person.js
+
 let addInvoiceForm = document.getElementById('add-invoice-form-ajax');
 
 // Modify the objects we need
@@ -53,9 +57,6 @@ addRowToTable = (data) => {
     // Get a reference to the current table on the page 
     let currentTable = document.getElementById("invoices-table");
 
-    // Get the location where we should insert the new row (end of table)
-    let newRowIndex = currentTable.rows.length;
-
     // Get a reference to the new row from the database query (last object)
     let parsedData = JSON.parse(data);
     let newRow = parsedData[parsedData.length - 1]
@@ -64,8 +65,6 @@ addRowToTable = (data) => {
     let row = document.createElement("TR");
     let idCell = document.createElement("TD");
     let gardenerCell = document.createElement("TD");
-    //let gardenerFirstNameCell = document.createElement("TD");
-    //let gardenerLastNameCell = document.createElement("TD");
     let totalCostCell = document.createElement("TD");
 
     // Fill the cells with correct data
@@ -77,7 +76,7 @@ addRowToTable = (data) => {
     row.appendChild(idCell);
     row.appendChild(gardenerCell);
     row.appendChild(totalCostCell);
-
+    
     row.setAttribute('data-value', newRow.invoiceID);
 
     // Add the row to the table

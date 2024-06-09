@@ -9,6 +9,17 @@
 // Adapted from the nodejs-starter-app and modified to use different credentials.
 // Source URL: : https://github.com/osu-cs340-ecampus/nodejs-starter-app/blob/main/Step%201%20-%20Connecting%20to%20a%20MySQL%20Database/database/db-connector.js
 
+// Citation for the use of the node filesystem library 'fs'
+// Date 10 June 2024
+// Copied from the nodejs api documentation
+// Source URL: https://nodejs.org/api/fs.html#fsreadfilesyncpath-options
+
+// Citation for the use of the node path library 'path'
+// Date 10 June 2024
+// Copied from the nodejs api documentation. This library is used to join file paths
+//  in order to properly read the sql files.
+// Source URL: https://nodejs.org/api/path.html#path_path_join_paths
+
 // Citation for mysql database options configuration and the use of 'multipleStatements'
 // Date: 10 June 2024
 // Adapted from the nodejs documentation. The documentation provides examples of
@@ -37,6 +48,166 @@
 // Source URL: https://nodejs.org/api/modules.html#requireid
 
 // Citation for route definitions
-// Date 10 June 2024
+// Date: 10 June 2024
 // Adapted from the nodejs-starter-app
 // Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app/blob/main/Step%208%20-%20Dynamically%20Updating%20Data/app.js
+
+// Citation for event handler on the 'submit' event for adding an entity
+// Date: 10 June 2024
+// Adapted from the nodejs-starter-app
+// Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app/blob/main/Step%208%20-%20Dynamically%20Updating%20Data/public/js/add_person.js
+
+// Citation for event handler on the 'submit' event for updating an entity
+// Date: 10 June 2024
+// Adapted from the nodejs-starter-app
+// Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app/blob/main/Step%208%20-%20Dynamically%20Updating%20Data/public/js/update_person.js
+
+// Citation for event handler on the 'change' event
+// Date: 10 June 2024
+// Adapted from the nodejs-starter-app, as well as the MDN documentation
+// Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app/blob/main/Step%208%20-%20Dynamically%20Updating%20Data/public/js/add_person.js
+// Source URL: https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/change_event
+
+// Citation for delete functionality
+// Date: 10 June 2024
+// Adapted from the nodejs-starter app
+// Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app/blob/main/Step%208%20-%20Dynamically%20Updating%20Data/public/js/delete_person.js
+
+// Citation for encodeURI()
+// Date: 10 June 2024
+// Adapted from MDN Web docs. This is used in order to handle special characters in the code. By encoding
+//  a stringified object whose properties are explicitly defined by the user, we are able to handle all sorts of special 
+//  characters, including ', ", and ` which were extremely problematic.
+// Source URL: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/encodeURI
+
+// Citation for decodeURI()
+// Date: 10 June 2024
+// Adapted from MDN Web docs. Used to decode a string so it can then be parsed into an object.
+// Source URL: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/decodeURI
+
+{{! Citations for Gardeners.hbs:
+Date: 10 June 2024
+All Gardeners Handlebars adapted from node-js-starter-app example code:
+https://github.com/osu-cs340-ecampus/nodejs-starter-app/
+
+Display all Gardeners table adapted from Step 4,
+dynamic delete buttons adapted from Step 7.
+Add Gardeners form adapted from Step 5.
+Update Gardeners form based on Step 8,
+with dynamic drop down menus adapted from Step 6.
+see /js/gardeners/formhelpers.js for "json this" citation.
+}}
+
+{{! Citations for Gardens.hbs:
+Date: 10 June 2024
+All Gardens Handlebars adapted from node-js-starter-app example code:
+https://github.com/osu-cs340-ecampus/nodejs-starter-app/
+
+Display all Gardens table adapted from Step 4,
+dynamic delete buttons adapted from Step 7.
+Add Gardens form adapted from Step 5.
+Update Gardens form based on Step 8,
+with dynamic drop down menus adapted from Step 6.
+}}
+
+{{! Citations for InvoiceDetails.hbs:
+Date: 10 June 2024
+All InvoiceDetails Handlebars adapted from node-js-starter-app example code:
+https://github.com/osu-cs340-ecampus/nodejs-starter-app/
+
+Display all InvoiceDetails table adapted from Step 4,
+Add InvoiceDetails form adapted from Step 5,
+with dynamic drop down menus adapted from Step 6.
+}}
+
+{{! Citations for Invoices.hbs:
+Date: 10 June 2024
+All Invoices Handlebars adapted from node-js-starter-app example code:
+https://github.com/osu-cs340-ecampus/nodejs-starter-app/
+
+Display all Invoices table adapted from Step 4,
+with dynamic delete buttons based on Step 7.
+Add Invoice form adapted from Step 5,
+with dynamic drop down menus adapted from Step 6.
+}}
+
+{{! Citations for Plants.hbs:
+Date: 10 June 2024
+All Plants Handlebars adapted from node-js-starter-app example code:
+https://github.com/osu-cs340-ecampus/nodejs-starter-app/
+
+Display all Plants table adapted from Step 4,
+with dynamic delete buttons based on Step 7.
+Add Plant form adapted from Step 5.
+Update Plant form adapted from Step 8.
+Dynamic drop down menus adapted from Step 6.
+}}
+
+{{! Citations for PlantsPlots.hbs:
+Date: 10 June 2024
+All PlantsPlots Handlebars adapted from node-js-starter-app example code:
+https://github.com/osu-cs340-ecampus/nodejs-starter-app/
+
+Display all PlantsPlots table adapted from Step 4,
+with dynamic delete buttons based on Step 7.
+Add PlantsPlots form adapted from Step 5,
+with dynamic drop down menus adapted from Step 6.
+Update PlantsPlots form adapted from Step 8,
+see /js/plantsplots/formhelpers.js for "json this" citation.
+}}
+
+{{! Citations for Plots.hbs:
+Date: 10 June 2024
+All Plots Handlebars adapted from node-js-starter-app example code:
+https://github.com/osu-cs340-ecampus/nodejs-starter-app/
+
+Display all Plots table adapted from Step 4,
+with dynamic delete buttons based on Step 7.
+Add Plot form adapted from Step 5,
+with dynamic drop down menus adapted from Step 6.
+}}
+
+{{! Citations for PlotsGardeners.hbs:
+Date: 10 June 2024
+All PlotsGardeners Handlebars adapted from node-js-starter-app example code:
+https://github.com/osu-cs340-ecampus/nodejs-starter-app/
+
+Display all PlotsGardeners table adapted from Step 4,
+with dynamic delete buttons based on Step 7.
+Add PlotsGardener form adapted from Step 5,
+with dynamic drop down menus adapted from Step 6.
+}}
+
+{{!-- 
+----- Citations for Bootstrap and CSS -----
+----- Date 10 June 2024
+----- Bootstrap and CSS references are from the following sources:
+----- Source URL: https://getbootstrap.com/docs/5.3/getting-started/introduction/
+ --}}
+
+  {{!-- 
+ ----- Citations for Handlebars Partials -----
+ ----- Date: 10 June 2024
+------ Adapted from  Handlebars Partials example code in Handlebars.js documentation
+------ Source URL: https://handlebarsjs.com/guide/partials.html
+  --}}
+
+ {{!-- 
+ ----- Citations for Handlebars Helpers usage -----
+ ----- Date: 10 June 2024
+------ Adapted from Handlebars Helpers example code in Handlebars.js documentation to create and use 
+------ a custom Handlebars Helper to convert JSON object to string.
+------ Source URL: https://handlebarsjs.com/guide/builtin-helpers.html
+------ Source URL: https://handlebarsjs.com/guide/expressions.html#helpers
+  --}}
+
+/* 
+** Citation for the contents of main.css
+** Date: 10 June 2024
+** Adapted from the w3 schools documentation, and flexbox documentation which are linked below, as well as
+**  the conventional knowledge gained in Oregon State University's CS290 coursework.
+**  Knowledge gained during CS290 is not cited as it is considered common knowledge
+**  for the purposes of this course.
+** Source URL: https://www.w3schools.com/css/
+** Source URL: https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_flexible_box_layout/Basic_concepts_of_flexbox
+*/

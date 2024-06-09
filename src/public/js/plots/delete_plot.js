@@ -1,3 +1,8 @@
+// Citation for delete functionality
+// Date: 10 June 2024
+// Adapted from the nodejs-starter app
+// Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app/blob/main/Step%208%20-%20Dynamically%20Updating%20Data/public/js/delete_person.js
+
 function deletePlot(plotID) {
     // Put our data we want to send in a javascript object
     let data = { plotID: plotID };
@@ -28,8 +33,6 @@ function deleteRow(plotID) {
 
     let table = document.getElementById("plots-table");
     for (let i = 0, row; row = table.rows[i]; i++) {
-        //iterate through rows
-        //rows would be accessed using the "row" variable assigned in the for loop
         if (table.rows[i].getAttribute("data-value") == plotID) {
             table.deleteRow(i);
             break;

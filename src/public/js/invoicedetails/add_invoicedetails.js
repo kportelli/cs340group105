@@ -1,4 +1,8 @@
-// Get the objects we need to modify
+// Citation for event handler on the 'submit' event for adding an entity
+// Date: 10 June 2024
+// Adapted from the nodejs-starter-app
+// Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app/blob/main/Step%208%20-%20Dynamically%20Updating%20Data/public/js/add_person.js
+
 let addInvoiceDetailForm = document.getElementById('add-invoice-details-form-ajax');
 
 // Modify the objects we need
