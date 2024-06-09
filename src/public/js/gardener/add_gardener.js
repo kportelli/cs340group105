@@ -3,10 +3,6 @@
 // Adapted from the nodejs-starter-app
 // Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app/blob/main/Step%208%20-%20Dynamically%20Updating%20Data/public/js/update_person.js
 
-
-
-
-
 // Get the objects we need to modify
 let addGardenerForm = document.getElementById('add-gardener-form-ajax');
 

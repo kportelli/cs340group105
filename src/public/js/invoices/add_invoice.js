@@ -48,7 +48,7 @@ addInvoiceForm.addEventListener("submit", function (e) {
     // Send the request and wait for the response
     xhttp.send(JSON.stringify(data));
 
-})
+});
 
 
 // Creates a single row from an Object representing a single record from Invoices
@@ -81,5 +81,4 @@ addRowToTable = (data) => {
 
     // Add the row to the table
     currentTable.appendChild(row);
-
 }

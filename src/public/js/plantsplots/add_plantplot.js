@@ -105,5 +105,4 @@ addRowToTable = (data) => {
     option.value = JSON.stringify(newRow);
     option.text = `${newRow.plantsPlotsID} (${newRow.plantID} ${newRow.varietyName} ${newRow.type}) (${newRow.gardenID} ${newRow.gardenName})`;
     updatePlantPlotSelect.add(option);
-
 }
