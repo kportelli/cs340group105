@@ -1,5 +1,18 @@
+{{! Citations for Plots.hbs:
+Date: 06/08/2024
+All Plots Handlebars adapted from node-js-starter-app example code:
+https://github.com/osu-cs340-ecampus/nodejs-starter-app/
+
+Display all Plots table adapted from Step 4,
+with dynamic delete buttons based on Step 7.
+Add Plot form adapted from Step 5,
+with dynamic drop down menus adapted from Step 6.
+}}
+
+{{! Display all Plots data as a table}}
 <div class="page-table">
-    <h1>Plots</h1>
+    {{! Table title and column headers}}
+    <h1 class="table-name"></h1>Plots</h1>
     <table id="plots-table">
         <thead>
             <tr>
@@ -9,6 +22,7 @@
             </tr>
         </thead>
 
+        {{! Fill out rows with data}}
         <tbody>
             {{#each data}}
             <tr data-value={{this.plotID}}>
@@ -21,18 +35,24 @@
     </table>
 </div>
 
+{{! Add a Plot form}}
 <div class="page-forms">
     <form class="col g-1" id="add-plot-form-ajax">
         <span class="form-name">Add Plot</span>
+
+        {{! Dropdown menu to select Garden}}
         <div class="input row-auto">
             <label for="input-add-plot-garden-id" class="col-sm-2 row-form-label">Garden</label>
-            <select class="form-select" type="text" id="input-add-plot-garden-id" name="input-add-plot-garden-id" required>
+            <select class="form-select" type="text" id="input-add-plot-garden-id" name="input-add-plot-garden-id"
+                required>
                 <option value="default-garden">Select a Garden</option>
                 {{#each gardenIDs}}
                 <option value={{this.gardenID}}>{{this.gardenID}} {{this.gardenName}}</option>
                 {{/each}}
             </select>
         </div>
+
+        {{! Add Plot submit button}}
         <div class="input row-auto">
             <button type="submit" class="form-btn btn btn-primary mb-3">Add</button>
         </div>
