@@ -1,27 +1,52 @@
+// Citation for the use of the node exports module
+// Date: 10 June 2024
+// Adapted from the nodejs documentation. The documentation provides examples of
+//  how to export functions from a module.
+// Source URL: https://nodejs.org/api/modules.html#modules_modules
+// Source URL: https://nodejs.org/docs/v20.13.1/api/modules.html#exports
+// Source URL: https://www.geeksforgeeks.org/node-js-export-module/
+
+// Citation for the use of the express.Router class
+// Date: 10 June 2024
+// Adapted from the express api documentation. See [README] for more information on the use
+//  of this pattern throughout this codebase.
+// Source URL: https://expressjs.com/en/4x/api.html#router
+
+// Citation for the importing of dependencies using the require function
+// Date: 10 June 2024
+// Adapted from the nodejs api documentation. See [README] for more information on the use
+//  of this pattern throughout this codebase.
+// Source URL: https://nodejs.org/api/modules.html#requireid
+
+// Citation for route definitions
+// Date 10 June 2024
+// Adapted from the nodejs-starter-app
+// Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app/blob/main/Step%208%20-%20Dynamically%20Updating%20Data/app.js
+
 const express = require('express');
 const router = express.Router();
 var db = require('../database/db-connector');
 
-// DISPLAY/READ/GET
-
+// GET: Get all Plants
 router.get('/plants', function (req, res) {
 
     // Select all Plants data for display
     let query1 = 'SELECT plantID AS "Id", varietyName AS "Variety", type AS "Type", price AS "Price" FROM Plants;';
 
-
+    // Select all plantIDs and varietyNames from the Plants table
     let query2 = "SELECT plantID, varietyName, type FROM Plants;";
 
     db.pool.query(query1, function (error, rows, fields) {
         if (error) {
-            console.log(error);
+            console.log(error);             // if there's an error, log it to console and return a 400 status code
             res.sendStatus(400);
         } else {
             db.pool.query(query2, function (error2, plantIDs) {
                 if (error2) {
-                    console.log(error2);
+                    console.log(error2);    // if there's an error, log it to console and return a 400 status code
                     res.sendStatus(400);
                 } else {
+                    // Render the plants hbs file, and send results from query1 (rows) and results from query2 (plantIDs)
                     res.render('plants', { data: rows, plantIDs });
                 }
             });
@@ -29,13 +54,9 @@ router.get('/plants', function (req, res) {
     });
 });
 
-// CREATE/INSERT/POST
-
+// POST: Create a new Plant
 router.post('/add-plant-ajax', function (req, res) {
-
-    // recieve input 
     let data = req.body;
-    console.log(data);
 
     // check that new Price input value is a valid float
     let price = parseFloat(data.price);
@@ -43,47 +64,34 @@ router.post('/add-plant-ajax', function (req, res) {
         price = 'NULL';
     }
 
-    // Insert new Plants data
+    // insert new Plants data into the Plants table
     query1 = `INSERT INTO Plants (varietyName, type, price) VALUES (?, ?, ?)`;
 
     // get the last row in the Plants table (just added)
     query2 = `SELECT * FROM Plants ORDER BY plantID DESC LIMIT 1;`;
 
     db.pool.query(query1, [data.varietyName, data.type, data.price], function (error, rows, fields) {
-
-        // Check to see if there was an error
         if (error) {
-
-            // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
-            console.log(error)
+            console.log(error)          // if there's an error, log it to console and return a 400 status code
             res.sendStatus(400);
         }
         else {
             db.pool.query(query2, function (error, rows, fields) {
-
-                // If there was an error on the second query, send a 400
                 if (error) {
-
-                    // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
-                    console.log(error);
+                    console.log(error); // if there's an error, log it to console and return a 400 status code
                     res.sendStatus(400);
                 }
-                // If all went well, send the results of the query back.
                 else {
-                    res.send(rows);
+                    res.send(rows);     // send the newly created Plant back to the client
                 }
-            })
+            });
         }
-    })
+    });
 });
 
-
+// PUT: Update an existing Plant
 router.put('/put-plant-ajax', function (req, res, next) {
-
-    // Recieve input
     let data = req.body;
-
-    // Pull out specified plant and new price
     let plantID = parseInt(data.plantID);
     let price = parseFloat(data.price);
 
@@ -93,46 +101,33 @@ router.put('/put-plant-ajax', function (req, res, next) {
         return;
     }
 
-    // Update chosen Plant with new price value
+    // Update Plant with new price value
     let queryUpdateplant = `UPDATE Plants SET price = ? WHERE plantID = ?`;
 
     // Select newly updated Plant row for update in table
     let selectUpdatedPlant = `SELECT * FROM Plants WHERE plantID = ?`
 
-    // Run the 1st query
     db.pool.query(queryUpdateplant, [price, plantID], function (error, rows, fields) {
         if (error) {
-
-            // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
-            console.log(error);
+            console.log(error);                 // if there's an error, log it to console and return a 400 status code
             res.sendStatus(400);
         }
-
-        // If there was no error, we run our second query and return that data so we can use it to update the people's
-        // table on the front-end
         else {
-            // Run the second query
             db.pool.query(selectUpdatedPlant, [plantID], function (error, rows, fields) {
-
                 if (error) {
-                    console.log(error);
+                    console.log(error);         // if there's an error, log it to console and return a 400 status code
                     res.sendStatus(400);
                 } else {
-                    res.send(rows);
+                    res.send(rows);             // send the updated Plant back to the client
                 }
-            })
+            });
         }
-    })
+    });
 });
 
-// DELETE
-
+// DELETE: Delete an existing Plant
 router.delete('/delete-plant-ajax/', function (req, res, next) {
-
-    // receive input (plantID for deletion)
     let data = req.body;
-
-    // Pull out relevant ID as a number
     let plantID = parseInt(data.id);
 
     // delete the Plants row with the matching ID 
@@ -146,29 +141,24 @@ router.delete('/delete-plant-ajax/', function (req, res, next) {
 
     db.pool.query(deletePlantFromPlantsPlots, [plantID], function (error, rows, fields) {
         if (error) {
-            // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
-            console.log(error);
+            console.log(error);                         // if there's an error, log it to console and return a 400 status code
             res.sendStatus(400);
         }
         else {
             db.pool.query(deletePlantFromInvoiceDetails, [plantID], function (error, rows, fields) {
                 if (error) {
-                    // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
-                    console.log(error);
+                    console.log(error);                 // if there's an error, log it to console and return a 400 status code
                     res.sendStatus(400);
                 }
                 else {
-                    // Run the second query
                     db.pool.query(deletePlantFromPlants, [plantID], function (error, rows, fields) {
                         if (error) {
-                            console.log(error);
+                            console.log(error);         // if there's an error, log it to console and return a 400 status code
                             res.sendStatus(400);
                         } else {
-                            //  Since we are just deleting 1 row and don't need to send back any new data,
-                            // we will send back a status of 204 (No Content) common for PUT or DELETE.
-                            res.sendStatus(204);
+                            res.sendStatus(204);        // send a 204 status code to indicate success
                         }
-                    })
+                    });
                 }
             });
         }

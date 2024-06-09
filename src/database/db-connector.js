@@ -1,7 +1,22 @@
-// Citation for the contents of this file, and specifically `mysql.createPool`
+// Citation for mysql.createPool
 // Date: 10 June 2024
 // Adapted from the nodejs-starter-app and modified to use different credentials.
 // Source URL: : https://github.com/osu-cs340-ecampus/nodejs-starter-app/blob/main/Step%201%20-%20Connecting%20to%20a%20MySQL%20Database/database/db-connector.js
+
+// Citation for mysql database options configuration and the use of 'multipleStatements'
+// Date: 10 June 2024
+// Adapted from the nodejs documentation. The documentation provides examples of
+//  how to configure a mysql database connection.
+// Source URL: https://www.npmjs.com/package/mysql#connection-options
+// Source URL: https://stackoverflow.com/questions/58410791/node-mysql-multiple-statement-queries-er-parse-error
+
+// Citation for the use of the node exports module
+// Date: 10 June 2024
+// Adapted from the nodejs documentation. The documentation provides examples of
+//  how to export functions from a module.
+// Source URL: https://nodejs.org/api/modules.html#modules_modules
+// Source URL: https://nodejs.org/docs/v20.13.1/api/modules.html#exports
+// Source URL: https://www.geeksforgeeks.org/node-js-export-module/
 
 // Get an instance of mysql we can use in the app
 var mysql = require('mysql')

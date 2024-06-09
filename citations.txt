@@ -1,3 +1,21 @@
+// Citation for handlebars helpers
+// Date: 10 June 2024
+// Adapted from the Handlebars Helpers documentation. The documentation provides examples of 
+//  how to create custom handlebars helpers.
+// Source URL: https://handlebarsjs.com/api-reference/helpers.html#helpers'
+
+// Citation for mysql.createPool
+// Date: 10 June 2024
+// Adapted from the nodejs-starter-app and modified to use different credentials.
+// Source URL: : https://github.com/osu-cs340-ecampus/nodejs-starter-app/blob/main/Step%201%20-%20Connecting%20to%20a%20MySQL%20Database/database/db-connector.js
+
+// Citation for mysql database options configuration and the use of 'multipleStatements'
+// Date: 10 June 2024
+// Adapted from the nodejs documentation. The documentation provides examples of
+//  how to configure a mysql database connection.
+// Source URL: https://www.npmjs.com/package/mysql#connection-options
+// Source URL: https://stackoverflow.com/questions/58410791/node-mysql-multiple-statement-queries-er-parse-error
+
 // Citation for the use of the node exports module
 // Date: 10 June 2024
 // Adapted from the nodejs documentation. The documentation provides examples of
@@ -22,12 +40,3 @@
 // Date 10 June 2024
 // Adapted from the nodejs-starter-app
 // Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app/blob/main/Step%208%20-%20Dynamically%20Updating%20Data/app.js
-
-const express = require('express');
-const router = express.Router();
-
-router.get('/index', (req, res) => {
-    res.render('index');    // render the index view
-});
-
-module.exports = router;
