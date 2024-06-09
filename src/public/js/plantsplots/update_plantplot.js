@@ -64,7 +64,7 @@ updateGardenForm.addEventListener("submit", function (e) {
     // Send the request and wait for the response
     xhttp.send(JSON.stringify(data));
 
-})
+});
 
 
 function updateRow(data, plantPlotID) {
