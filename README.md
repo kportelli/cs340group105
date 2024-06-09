@@ -87,6 +87,15 @@ var adminpool = mysql.createPool({
 ```
 Make sure to update the `host`, `user`, `password`, and `database` fields to match your MySQL server. If you are running this on your local machine, the `host` should be `localhost`. If you are running this on a server, the `host` should be the IP address of the server. The `user` and `password` fields should be the username and password of the user you created in MySQL. The `database` field should be the name of the database you created in MySQL (in Step 3).
 
+### One more thing
+I ran into some issues with the users setup for this database. I found this link helpful: https://stackoverflow.com/questions/51147964/errno-1251-sqlmessage-client-does-not-support-authentication-protocol-reques
+
+Here is the SQL command I ran to fix the issue:
+```sql
+ALTER USER 'api_user'@'localhost' IDENTIFIED WITH mysql_native_password BY ';0JBY)}kXx"un}O0';
+ALTER USER 'api_admin'@'localhost' IDENTIFIED WITH mysql_native_password BY ';0JBY)}kXx"un}O0';
+```
+
 ### And that's it!
 You should be able to run the project now. You can do this by running the following command in your terminal (make sure you are in the root directory of the project, i.e., in the [`src`](./src/) directory):
 ``` bash
