@@ -30,11 +30,11 @@ var db = require('../database/db-connector');
 // GET: Get all Plants
 router.get('/plants', function (req, res) {
 
-    // Select all Plants data for display
-    let query1 = 'SELECT plantID AS "Id", varietyName AS "Variety", type AS "Type", price AS "Price" FROM Plants;';
+    // select all Plants data for display
+    let query1 = `SELECT plantID AS "Id", varietyName AS "Variety", type AS "Type", price AS "Price" FROM Plants;`;
 
-    // Select all plantIDs and varietyNames from the Plants table
-    let query2 = "SELECT plantID, varietyName, type FROM Plants;";
+    // select all plantIDs and varietyNames from the Plants table
+    let query2 = `SELECT plantID, varietyName, type FROM Plants;`;
 
     db.pool.query(query1, function (error, rows, fields) {
         if (error) {
@@ -65,7 +65,7 @@ router.post('/add-plant-ajax', function (req, res) {
     }
 
     // insert new Plants data into the Plants table
-    query1 = `INSERT INTO Plants (varietyName, type, price) VALUES (?, ?, ?)`;
+    query1 = `INSERT INTO Plants (varietyName, type, price) VALUES (?, ?, ?);`;
 
     // get the last row in the Plants table (just added)
     query2 = `SELECT * FROM Plants ORDER BY plantID DESC LIMIT 1;`;
@@ -102,10 +102,10 @@ router.put('/put-plant-ajax', function (req, res, next) {
     }
 
     // Update Plant with new price value
-    let queryUpdateplant = `UPDATE Plants SET price = ? WHERE plantID = ?`;
+    let queryUpdateplant = `UPDATE Plants SET price = ? WHERE plantID = ?;`;
 
     // Select newly updated Plant row for update in table
-    let selectUpdatedPlant = `SELECT * FROM Plants WHERE plantID = ?`
+    let selectUpdatedPlant = `SELECT * FROM Plants WHERE plantID = ?;`
 
     db.pool.query(queryUpdateplant, [price, plantID], function (error, rows, fields) {
         if (error) {
@@ -131,13 +131,13 @@ router.delete('/delete-plant-ajax/', function (req, res, next) {
     let plantID = parseInt(data.id);
 
     // delete the Plants row with the matching ID 
-    let deletePlantFromPlants = `DELETE FROM Plants WHERE plantID = ?`;
+    let deletePlantFromPlants = `DELETE FROM Plants WHERE plantID = ?;`;
 
     // Also delete the Plant from InvoiceDetails
-    let deletePlantFromInvoiceDetails = `DELETE FROM InvoiceDetails WHERE plantID = ?`;
+    let deletePlantFromInvoiceDetails = `DELETE FROM InvoiceDetails WHERE plantID = ?;`;
 
     // Also delete the Plant from PlantsPlots
-    let deletePlantFromPlantsPlots = `DELETE FROM PlantsPlots WHERE plantID = ?`;
+    let deletePlantFromPlantsPlots = `DELETE FROM PlantsPlots WHERE plantID = ?;`;
 
     db.pool.query(deletePlantFromPlantsPlots, [plantID], function (error, rows, fields) {
         if (error) {

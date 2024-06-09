@@ -29,9 +29,8 @@ const db = require('../database/db-connector');
 
 // GET: Get all Gardeners
 router.get('/gardeners', (req, res) => {
-    let query1 = "SELECT * FROM Gardeners;";
+    let query1 = `SELECT * FROM Gardeners;`;
     db.pool.query(query1, function (error, rows, fields) {
-        
         // render the gardeners view with the data returned
         res.render('gardeners', { data: rows });
     });
@@ -87,10 +86,10 @@ router.put('/put-gardener-ajax', function (req, res, next) {
     }
 
     // Update the Gardener whose gardenerID matches the one provided
-    let queryUpdateGardener = `UPDATE Gardeners SET firstName = ?, lastName = ?, streetAddress = ?, city = ?, zip = ?, phone = ?, email = ? WHERE gardenerID = ?`;
+    let queryUpdateGardener = `UPDATE Gardeners SET firstName = ?, lastName = ?, streetAddress = ?, city = ?, zip = ?, phone = ?, email = ? WHERE gardenerID = ?;`;
 
     // Select the updated Gardener
-    let selectUpdatedGardener = `SELECT * FROM Gardeners WHERE gardenerID = ?`
+    let selectUpdatedGardener = `SELECT * FROM Gardeners WHERE gardenerID = ?;`
 
     db.pool.query(queryUpdateGardener, [gardenerfirstName, gardenerlastName, streetAddress, city, zip, phone, email, gardenerID], function (error, rows, fields) {
         if (error) {
@@ -114,7 +113,7 @@ router.put('/put-gardener-ajax', function (req, res, next) {
 router.delete('/delete-gardener-ajax/', function (req, res, next) {
     let data = req.body;
     let gardenerID = parseInt(data.id);
-    let deleteGardener = `DELETE FROM Gardeners WHERE gardenerID = ?`;
+    let deleteGardener = `DELETE FROM Gardeners WHERE gardenerID = ?;`;
 
     // note: when a gardenerID is deleted, 
     // referencing Invoice rows set gardenerID to NULL;

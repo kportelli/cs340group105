@@ -31,10 +31,10 @@ var db = require('../database/db-connector');
 router.get('/plots', (req, res) => {
 
     // get all plots joined with gardens and plots on gardenID
-    let query1 = "SELECT Plots.plotID, Gardens.gardenID, Gardens.gardenName FROM Plots INNER JOIN Gardens ON Plots.gardenID = Gardens.gardenID ORDER BY Plots.plotID ASC;";
+    let query1 = `SELECT Plots.plotID, Gardens.gardenID, Gardens.gardenName FROM Plots INNER JOIN Gardens ON Plots.gardenID = Gardens.gardenID ORDER BY Plots.plotID ASC;`;
 
     // select all gardens to show in dropdown
-    let query2 = "SELECT gardenID, gardenName FROM Gardens;";
+    let query2 = `SELECT gardenID, gardenName FROM Gardens;`;
     
     db.pool.query(query1, function (error, rows, fields) {
         if (error) {
@@ -59,12 +59,12 @@ router.post('/add-plot-ajax', function (req, res) {
     let data = req.body;
 
     // Insert a new Plot with the gardenID from the form
-    let query1 = `INSERT INTO Plots (gardenID) VALUES ('${data.gardenID}');`;
+    let query1 = `INSERT INTO Plots (gardenID) VALUES (?);`;
 
     // Select all Plots, joined with Gardens on gardenID, in sorted order
-    let query2 = "SELECT Plots.plotID, Gardens.gardenID, Gardens.gardenName FROM Plots INNER JOIN Gardens ON Plots.gardenID = Gardens.gardenID ORDER BY Plots.plotID ASC;";
+    let query2 = `SELECT Plots.plotID, Gardens.gardenID, Gardens.gardenName FROM Plots INNER JOIN Gardens ON Plots.gardenID = Gardens.gardenID ORDER BY Plots.plotID ASC;`;
 
-    db.pool.query(query1, function (error, rows, fields) {
+    db.pool.query(query1, [data.gardenID], function (error, rows, fields) {
         if (error) {
             console.log(error);                 // if there's an error, log it to console and return a 400 status code
             res.sendStatus(400);
@@ -89,13 +89,13 @@ router.delete('/delete-plot-ajax/', function (req, res, next) {
     let plotID = parseInt(data.plotID);
 
     // Delete the plot from the PlotsGardeners table
-    let deleteFromPlotsGardeners = `DELETE FROM PlotsGardeners WHERE plotID = ?`;
+    let deleteFromPlotsGardeners = `DELETE FROM PlotsGardeners WHERE plotID = ?;`;
 
     // Delete the plot from the PlantsPlots table
-    let deleteFromPlantsPlots = `DELETE FROM PlantsPlots WHERE plotID = ?`;
+    let deleteFromPlantsPlots = `DELETE FROM PlantsPlots WHERE plotID = ?;`;
 
     // Delete the plot from the Plots table
-    let deleteFromPlots = `DELETE FROM Plots WHERE plotID = ?`;
+    let deleteFromPlots = `DELETE FROM Plots WHERE plotID = ?;`;
 
     db.pool.query(deleteFromPlantsPlots, [plotID], function (error, rows, fields) {
         if (error) {

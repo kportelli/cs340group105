@@ -31,13 +31,13 @@ var db = require('../database/db-connector');
 router.get('/plantsplots', (req, res) => {
 
     // select all PlantsPlots data joined with Plots, Plants, and Gardens
-    let query1 = "SELECT PlantsPlots.plantsPlotsID, Plots.plotID, Plants.plantID, Plants.varietyName, Plants.type, Gardens.gardenID, Gardens.gardenName FROM PlantsPlots INNER JOIN Plants ON PlantsPlots.plantID = Plants.plantID INNER JOIN Plots ON PlantsPlots.plotID = Plots.plotID INNER JOIN Gardens ON Plots.gardenID = Gardens.gardenID ORDER BY PlantsPlots.plantsPlotsID ASC;";
+    let query1 = `SELECT PlantsPlots.plantsPlotsID, Plots.plotID, Plants.plantID, Plants.varietyName, Plants.type, Gardens.gardenID, Gardens.gardenName FROM PlantsPlots INNER JOIN Plants ON PlantsPlots.plantID = Plants.plantID INNER JOIN Plots ON PlantsPlots.plotID = Plots.plotID INNER JOIN Gardens ON Plots.gardenID = Gardens.gardenID ORDER BY PlantsPlots.plantsPlotsID ASC;`;
 
     // select Plots and Gardens data to show in dropdown, joined on gardenID
-    let query2 = "SELECT Plots.plotID, Gardens.gardenID, Gardens.gardenName FROM Plots INNER JOIN Gardens ON Plots.gardenID = Gardens.gardenID ORDER BY Plots.plotID ASC;";
+    let query2 = `SELECT Plots.plotID, Gardens.gardenID, Gardens.gardenName FROM Plots INNER JOIN Gardens ON Plots.gardenID = Gardens.gardenID ORDER BY Plots.plotID ASC;`;
 
     // select Plants data to show in dropdown
-    let query3 = "SELECT plantID, varietyName, type FROM Plants ORDER BY plantID ASC;";
+    let query3 = `SELECT plantID, varietyName, type FROM Plants ORDER BY plantID ASC;`;
 
     db.pool.query(query1, function (error, rows, fields) {
         if (error) {
@@ -73,12 +73,12 @@ router.post('/add-plantplot-ajax', function (req, res) {
     console.log(data);
 
     // insert a new PlantPlot into the PlantsPlots table
-    let query1 = `INSERT INTO PlantsPlots (plantID, plotID) VALUES ('${data.plantID}', '${data.plotID}');`;
+    let query1 = `INSERT INTO PlantsPlots (plantID, plotID) VALUES (?, ?);`;
     
     // select all PlantsPlots data joined with Plots, Plants, and Gardens
-    let query2 = "SELECT PlantsPlots.plantsPlotsID, Plots.plotID, Plants.plantID, Plants.varietyName, Plants.type, Gardens.gardenID, Gardens.gardenName FROM PlantsPlots INNER JOIN Plants ON PlantsPlots.plantID = Plants.plantID INNER JOIN Plots ON PlantsPlots.plotID = Plots.plotID INNER JOIN Gardens ON Plots.gardenID = Gardens.gardenID ORDER BY PlantsPlots.plantsPlotsID ASC;";
+    let query2 = `SELECT PlantsPlots.plantsPlotsID, Plots.plotID, Plants.plantID, Plants.varietyName, Plants.type, Gardens.gardenID, Gardens.gardenName FROM PlantsPlots INNER JOIN Plants ON PlantsPlots.plantID = Plants.plantID INNER JOIN Plots ON PlantsPlots.plotID = Plots.plotID INNER JOIN Gardens ON Plots.gardenID = Gardens.gardenID ORDER BY PlantsPlots.plantsPlotsID ASC;`;
 
-    db.pool.query(query1, function (error, rows, fields) {
+    db.pool.query(query1, [data.plantID, data.plotID], function (error, rows, fields) {
         if (error) {
             console.log(error)              // if there's an error, log it to console and return a 400 status code
             res.sendStatus(400);
@@ -103,7 +103,7 @@ router.delete('/delete-plantplot-ajax/', function (req, res, next) {
     let plantPlotID = parseInt(data.plantsPlotsID);
 
     // delete the PlantPlot from the PlantsPlots table
-    let deleteFromPlantsPlots = `DELETE FROM PlantsPlots WHERE plantsPlotsID = ?`;
+    let deleteFromPlantsPlots = `DELETE FROM PlantsPlots WHERE plantsPlotsID = ?;`;
 
     db.pool.query(deleteFromPlantsPlots, [plantPlotID], function (error, rows, fields) {
         if (error) {
@@ -125,10 +125,10 @@ router.put('/put-plantplot-ajax', function (req, res, next) {
     let plantsPlotsID = parseInt(data.plantsPlotsID);
 
     // update plantID and plotID on the PlantPlot with the given plantsPlotsID
-    let queryUpdatePlantPlot = `UPDATE PlantsPlots SET plantID = ?, plotID = ? WHERE plantsPlotsID = ?`;
+    let queryUpdatePlantPlot = `UPDATE PlantsPlots SET plantID = ?, plotID = ? WHERE plantsPlotsID = ?;`;
 
     // select the updated plant plot, joined with Plants, Plots, and Gardens
-    let selectUpdatedPlantPlot = "SELECT PlantsPlots.plantsPlotsID, Plots.plotID, Plants.plantID, Plants.varietyName, Plants.type, Gardens.gardenID, Gardens.gardenName FROM PlantsPlots INNER JOIN Plants ON PlantsPlots.plantID = Plants.plantID INNER JOIN Plots ON PlantsPlots.plotID = Plots.plotID INNER JOIN Gardens ON Plots.gardenID = Gardens.gardenID WHERE PlantsPlots.plantsPlotsID = ?;";
+    let selectUpdatedPlantPlot = `SELECT PlantsPlots.plantsPlotsID, Plots.plotID, Plants.plantID, Plants.varietyName, Plants.type, Gardens.gardenID, Gardens.gardenName FROM PlantsPlots INNER JOIN Plants ON PlantsPlots.plantID = Plants.plantID INNER JOIN Plots ON PlantsPlots.plotID = Plots.plotID INNER JOIN Gardens ON Plots.gardenID = Gardens.gardenID WHERE PlantsPlots.plantsPlotsID = ?;`;
     
     db.pool.query(queryUpdatePlantPlot, [plantID, plotID, plantsPlotsID], function (error, rows, fields) {
         if (error) {
