@@ -159,6 +159,15 @@ with dynamic drop down menus adapted from Step 6.
 ------ Source URL: https://handlebarsjs.com/guide/partials.html
   --}}
 
+ {{!-- 
+ ----- Citations for Handlebars Helpers usage -----
+ ----- Date: 10 June 2024
+------ Adapted from Handlebars Helpers example code in Handlebars.js documentation to create and use 
+------ a custom Handlebars Helper to convert JSON object to string.
+------ Source URL: https://handlebarsjs.com/guide/builtin-helpers.html
+------ Source URL: https://handlebarsjs.com/guide/expressions.html#helpers
+  --}}
+
 /* 
 ** Citation for the contents of main.css
 ** Date: 10 June 2024
