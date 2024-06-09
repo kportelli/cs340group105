@@ -1,7 +1,18 @@
-// Get the objects we need to modify
+// Citation for event handler on the 'submit' event for adding an entity
+// Date: 10 June 2024
+// Adapted from the nodejs-starter-app
+// Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app/blob/main/Step%208%20-%20Dynamically%20Updating%20Data/public/js/add_person.js
+
+// Citation for encodeURI()
+// Date: 10 June 2024
+// Adapted from MDN Web docs. This is used in order to handle special characters in the code. By encoding
+//  a stringified object whose properties are explicitly defined by the user, we are able to handle all sorts of special 
+//  characters, including ', ", and ` which were extremely problematic.
+// Source URL: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/encodeURI
+
 let addGardenForm = document.getElementById('add-garden-form-ajax');
 
-// Modify the objects we need
+// add event listener for the submit event
 addGardenForm.addEventListener("submit", function (e) {
 
     // Prevent the form from submitting
@@ -52,19 +63,12 @@ addGardenForm.addEventListener("submit", function (e) {
 
     // Send the request and wait for the response
     xhttp.send(JSON.stringify(data));
+});
 
-})
-
-
-// Creates a single row from an Object representing a single record from 
-// plants
 addRowToTable = (data) => {
 
     // Get a reference to the current table on the page and clear it out.
     let currentTable = document.getElementById("gardens-table");
-
-    // Get the location where we should insert the new row (end of table)
-    let newRowIndex = currentTable.rows.length;
 
     // Get a reference to the new row from the database query (last object)
     let parsedData = JSON.parse(data);

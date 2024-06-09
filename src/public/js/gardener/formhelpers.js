@@ -11,7 +11,9 @@
 
 let gardenerInput = document.getElementById("input-update-gardener-id");
 
-// when a new option is selected, capture the value
+// This event listener captures the value of the selected entity 
+// and then updates each field in the form with the data from the selected entity.
+// This allows the user to take advantage of the existing data, and only update the fields they need to.
 gardenerInput.addEventListener("change", function() {
     let gardenData = gardenerInput.value;
     gardenData = decodeURI(gardenData);
