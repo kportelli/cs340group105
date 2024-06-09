@@ -53,7 +53,7 @@
 // Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app/blob/main/Step%208%20-%20Dynamically%20Updating%20Data/app.js
 
 {{! Citations for Gardeners.hbs:
-Date: 06/08/2024
+Date: 10 June 2024
 All Gardeners Handlebars adapted from node-js-starter-app example code:
 https://github.com/osu-cs340-ecampus/nodejs-starter-app/
 
@@ -66,7 +66,7 @@ see /js/gardeners/formhelpers.js for "json this" citation.
 }}
 
 {{! Citations for Gardens.hbs:
-Date: 06/08/2024
+Date: 10 June 2024
 All Gardens Handlebars adapted from node-js-starter-app example code:
 https://github.com/osu-cs340-ecampus/nodejs-starter-app/
 
@@ -78,7 +78,7 @@ with dynamic drop down menus adapted from Step 6.
 }}
 
 {{! Citations for InvoiceDetails.hbs:
-Date: 06/08/2024
+Date: 10 June 2024
 All InvoiceDetails Handlebars adapted from node-js-starter-app example code:
 https://github.com/osu-cs340-ecampus/nodejs-starter-app/
 
@@ -88,7 +88,7 @@ with dynamic drop down menus adapted from Step 6.
 }}
 
 {{! Citations for Invoices.hbs:
-Date: 06/08/2024
+Date: 10 June 2024
 All Invoices Handlebars adapted from node-js-starter-app example code:
 https://github.com/osu-cs340-ecampus/nodejs-starter-app/
 
@@ -99,7 +99,7 @@ with dynamic drop down menus adapted from Step 6.
 }}
 
 {{! Citations for Plants.hbs:
-Date: 06/08/2024
+Date: 10 June 2024
 All Plants Handlebars adapted from node-js-starter-app example code:
 https://github.com/osu-cs340-ecampus/nodejs-starter-app/
 
@@ -111,7 +111,7 @@ Dynamic drop down menus adapted from Step 6.
 }}
 
 {{! Citations for PlantsPlots.hbs:
-Date: 06/08/2024
+Date: 10 June 2024
 All PlantsPlots Handlebars adapted from node-js-starter-app example code:
 https://github.com/osu-cs340-ecampus/nodejs-starter-app/
 
@@ -124,7 +124,7 @@ see /js/plantsplots/formhelpers.js for "json this" citation.
 }}
 
 {{! Citations for Plots.hbs:
-Date: 06/08/2024
+Date: 10 June 2024
 All Plots Handlebars adapted from node-js-starter-app example code:
 https://github.com/osu-cs340-ecampus/nodejs-starter-app/
 
@@ -134,9 +134,8 @@ Add Plot form adapted from Step 5,
 with dynamic drop down menus adapted from Step 6.
 }}
 
-
 {{! Citations for PlotsGardeners.hbs:
-Date: 06/08/2024
+Date: 10 June 2024
 All PlotsGardeners Handlebars adapted from node-js-starter-app example code:
 https://github.com/osu-cs340-ecampus/nodejs-starter-app/
 
@@ -146,3 +145,13 @@ Add PlotsGardener form adapted from Step 5,
 with dynamic drop down menus adapted from Step 6.
 }}
 
+/* 
+** Citation for the contents of main.css
+** Date: 10 June 2024
+** Adapted from the w3 schools documentation, and flexbox documentation which are linked below, as well as
+**  the conventional knowledge gained in Oregon State University's CS290 coursework.
+**  Knowledge gained during CS290 is not cited as it is considered common knowledge
+**  for the purposes of this course.
+** Source URL: https://www.w3schools.com/css/
+** Source URL: https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_flexible_box_layout/Basic_concepts_of_flexbox
+*/
