@@ -50,7 +50,7 @@ with dynamic drop down menus adapted from Step 6.
                 <div class="input row-auto">
                     <select class="form-select" type="text" id="input-add-plot-gardener-plot-id"
                         name="input-add-plot-gardener-plot-id" required>
-                        <option value="default-plot">Select a Plot [PlotID (Garden)]</option>
+                        <option value="default">Select a Plot [PlotID (Garden)]</option>
                         {{#each plotIDs}}
                         <option value={{this.plotID}}>{{this.plotID}} ({{this.gardenID}} {{this.gardenName}})</option>
                         {{/each}}
@@ -62,7 +62,7 @@ with dynamic drop down menus adapted from Step 6.
                 <div class="input row-auto">
                     <select class="form-select" type="text" id="input-add-plot-gardener-gardener-id"
                         name="input-add-plot-gardener-gardener-id" required>
-                        <option value="default-plot">Select a Gardener</option>
+                        <option value="default">Select a Gardener</option>
                         {{#each gardenerIDs}}
                         <option value={{this.gardenerID}}>{{this.gardenerID}} {{this.firstName}} {{this.lastName}}
                         </option>

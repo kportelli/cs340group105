@@ -24,6 +24,12 @@ updateGardenForm.addEventListener("submit", function (e) {
         return;
     }
 
+    // check if the user has selected a plant to update
+    if (plantIDvalue == "default") {
+        alert("Please select a plant to update.");
+        return;
+    }
+
     // Put our data we want to send in a javascript object
     let data = {
         plantID: plantIDvalue,

@@ -49,13 +49,13 @@ function deleteRow(ID) {
 
     for (let i = 0, option; option = updatePlantPlotSelect.options[i]; i++) {
         let value = decodeURI(option.value);
-        if (value == "default-plantplot") {
+        if (value == "default") {
             continue;
         }
         if (JSON.parse(value).plantsPlotsID == ID) {
 
             // if the deleted plantplot is the one selected in the "update plantplot" form, reset the form
-            if (decodeURI(updatePlantPlotSelect.value) != "default-plantplot" && 
+            if (decodeURI(updatePlantPlotSelect.value) != "default" && 
             JSON.parse(decodeURI(updatePlantPlotSelect.value)).plantsPlotsID == ID) {
 
                 // clear the input fields

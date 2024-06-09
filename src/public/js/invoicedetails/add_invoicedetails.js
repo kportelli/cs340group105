@@ -10,12 +10,22 @@ addInvoiceDetailForm.addEventListener("submit", function (e) {
 
     // Prevent the form from submitting
     e.preventDefault();
-
+    
     // Get form fields we need to get data from
     let inputPlantID = document.getElementById("input-invoice-details-plant");
     let inputInvoiceID = document.getElementById("input-invoice-details-invoice");
     let inputPlantPrice = document.getElementById("input-invoice-details-price");
     let inputPlantQuantity = document.getElementById("input-invoice-details-quantity");
+
+    if (inputPlantID.value === "default") {
+        alert("Please select a plant from the dropdown.");
+        return;
+    }
+
+    if (inputInvoiceID.value === "default") {
+        alert("Please select an invoice from the dropdown.");
+        return;
+    }
 
     // Get the values from the form fields
     // parse inputPlantID.value from string to object
@@ -34,7 +44,6 @@ addInvoiceDetailForm.addEventListener("submit", function (e) {
     if (isNaN(priceValue) || isNaN(quantityValue)) {
         return;
     }
-
 
     // Put our data we want to send in a javascript object
     let data = {

@@ -45,7 +45,7 @@ with dynamic drop down menus adapted from Step 6.
             <label for="input-add-plot-garden-id" class="col-sm-2 row-form-label">Garden</label>
             <select class="form-select" type="text" id="input-add-plot-garden-id" name="input-add-plot-garden-id"
                 required>
-                <option value="default-garden">Select a Garden</option>
+                <option value="default">Select a Garden</option>
                 {{#each gardenIDs}}
                 <option value={{this.gardenID}}>{{this.gardenID}} {{this.gardenName}}</option>
                 {{/each}}

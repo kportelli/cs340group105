@@ -59,21 +59,21 @@ Dynamic drop down menus adapted from Step 6.
             <div class="input row-auto">
                 <label for="input-varietyName" class="col-sm-2 row-form-label">Variety</label>
                 <input type="text" class="form-control" name="input-varietyName" id="input-varietyName"
-                    placeholder="Variety">
+                    placeholder="Variety" required>
             </div>
 
             {{! Input field for Add Plant Name}}
             <div class="input row-auto">
                 <label for="input-plant-type" class="col-sm-2 row-form-label">Type</label>
                 <input type="text" class="form-control" name="input-plant-type" id="input-plant-type"
-                    placeholder="Type">
+                    placeholder="Type" required>
             </div>
 
             {{! Input field for Add Plant price}}
             <div class="input row-auto">
                 <label for="input-price" class="col-sm-2 row-form-label">Price</label>
                 <input type="number" class="form-control" step="0.01" name="input-price" id="input-price"
-                    placeholder="Price">
+                    placeholder="Price" required>
             </div>
 
 
@@ -92,7 +92,7 @@ Dynamic drop down menus adapted from Step 6.
                 {{! Dropdown menu to select Plant to Update}}
                 <div class="input row-auto">
                     <select class="form-select" id="input-plantID" name="input-plantID" required>
-                        <option value="test">Select a Plant</option>
+                        <option value="default">Select a Plant</option>
                         {{#each plantIDs}}
                         <option value="{{this.plantID}}">{{this.plantID}} {{this.varietyName}} {{this.type}}</option>
                         {{/each}}
@@ -102,7 +102,7 @@ Dynamic drop down menus adapted from Step 6.
                     {{! Input field for Update Plant Price}}
                     <label for="input-price-update" class="col-sm-2 row-form-label">Price</label>
                     <input type="number" class="form-control" step="0.01" name="input-price-update"
-                        id="input-price-update" placeholder="Price">
+                        id="input-price-update" placeholder="Price" required>
                 </div>
 
 

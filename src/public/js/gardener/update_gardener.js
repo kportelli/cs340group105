@@ -21,6 +21,11 @@ updateGardenerForm.addEventListener("submit", function (e) {
     let input_email = document.getElementById("input-update-gardener-email");
     let input_phone = document.getElementById("input-update-gardener-phone");
 
+    if (input_gardenerID.value === "default") {
+        alert("Please select a gardener from the dropdown.");
+        return;
+    }
+
     // Get the values from the form fields
     let gardenerIDValue = JSON.parse(decodeURI(input_gardenerID.value)).gardenerID;
     let firstnameValue = input_fname.value;

@@ -12,7 +12,7 @@ plantInput.addEventListener("change", function() {
     let plantData = plantInput.value;
 
     // if the value is default, return
-    if (plantData == "default-plant") {
+    if (plantData == "default") {
         let priceInput = document.getElementById("input-invoice-details-price");
         priceInput.value = "";
         priceInput.readOnly = false;
@@ -22,7 +22,7 @@ plantInput.addEventListener("change", function() {
     // parse data into JSON object
     let parsedData = JSON.parse(decodeURI(plantData));
     
-    // populate the price field with the price of the selected plant
+    // populate the price field with the price of the selected plantdefault-plant
     let priceInput = document.getElementById("input-invoice-details-price");
     priceInput.value = parsedData.price;
     priceInput.readOnly = true;

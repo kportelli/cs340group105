@@ -19,6 +19,16 @@ addPlotGardenerForm.addEventListener("submit", function (e) {
     let plotIDValue = inputPlotID.value;
     let gardenerIDValue = inputGardenerID.value;
 
+    if (plotIDValue === "default") {
+        alert("Please select a plot.");
+        return;
+    }
+
+    if (gardenerIDValue === "default") {
+        alert("Please select a gardener.");
+        return;
+    }
+
     // Put our data we want to send in a javascript object
     let data = {
         plotID: plotIDValue,
