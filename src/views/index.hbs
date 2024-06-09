@@ -1,46 +1,49 @@
-<div>
+<div class="homepage">
 
-    <h3>Gardens</h3>
+    <h3><a href="/gardens">Gardens</a></h3>
     <ul>
         <li>[SELECT] Get a list of all Gardens</li>
         <li>[INSERT] Create a new Garden</li>
         <li>[UPDATE] Update a Garden</li>
         <li>[DELETE] Remove a Garden (Removes all dependencies via CASCADE)</li>
     </ul>
-    <h3>Plots</h3>
+    <h3><a href="/plots">Plots</a></h3>
     <ul>
         <li>[SELECT] Get a list of all Plots</li>
         <li>[INSERT] Create a new Plot</li>
     </ul>
-    <h3>Plants Plots (M:N Intersection Table)</h3>
+    <h3><a href="/plantsplots">Plants Plots</a></h3>
+    <p>(M:N Intersection Table)</p>
     <ul>
         <li>[SELECT] Get all PlantsPlots</li>
         <li>[INSERT] Create a new PlantPlot</li>
         <li>[UPDATE] Update PlantPlot</li>
     </ul>
-    <h3>Plots Gardeners (M:N Intersection Table)</h3>
+    <h3><a href="/plotsgardeners">Plots Gardeners</a></h3>
+    <p>(M:N Intersection Table)</p>
     <ul>
         <li>[SELECT] Get all PlotsGardeners</li>
         <li>[INSERT] Create a new PlotsGardeners</li>
     </ul>
-    <h3>Gardeners</h3>
+    <h3><a href="/gardeners">Gardeners</a></h3>
     <ul>
         <li>[SELECT] Get a list of all Gardeners</li>
         <li>[INSERT] Create a new Gardener</li>
         <li>[UPDATE] Update a Gardener's attributes</li>
         <li>[DELETE] Remove a Gardener (NULLs GardenerID on all associated Invoices)</li>
     </ul>
-    <h3>InvoiceDetails</h3>
+    <h3><a href="/invoicedetails">InvoiceDetails</a></h3>
     <ul>
         <li>[SELECT] Get a list of all InvoiceDetail items</li>
         <li>[INSERT] Create a new InvoiceDetail (this also updates Invoices)</li>
     </ul>
-    <h3>Invoices (Facilitates a M:N relationship, but not a pure intersection table)</h3>
+    <h3><a href="/invoices">Invoices</a></h3>
+    <p>(Facilitates a M:N relationship, but not a pure intersection table)</p>
     <ul>
         <li>[SELECT] Get a list of all Invoices</li>
         <li>[INSERT] Create a new Invoice</li>
     </ul>
-    <h3>Plants</h3>
+    <h3><a href="/plants">Plants</a></h3>
     <ul>
         <li>[SELECT] Get a list of all Plants</li>
         <li>[INSERT] Create a new Plant</li>
