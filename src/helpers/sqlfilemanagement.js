@@ -9,6 +9,14 @@
 //  in order to properly read the sql files.
 // Source URL: https://nodejs.org/api/path.html#path_path_join_paths
 
+// Citation for the use of the node exports module
+// Date: 10 June 2024
+// Adapted from the nodejs documentation. The documentation provides examples of
+//  how to export functions from a module.
+// Source URL: https://nodejs.org/api/modules.html#modules_modules
+// Source URL: https://nodejs.org/docs/v20.13.1/api/modules.html#exports
+// Source URL: https://www.geeksforgeeks.org/node-js-export-module/
+
 const fs = require('fs');
 const path = require('path');
 

@@ -9,6 +9,17 @@
 // Adapted from the nodejs-starter-app and modified to use different credentials.
 // Source URL: : https://github.com/osu-cs340-ecampus/nodejs-starter-app/blob/main/Step%201%20-%20Connecting%20to%20a%20MySQL%20Database/database/db-connector.js
 
+// Citation for the use of the node filesystem library 'fs'
+// Date 10 June 2024
+// Copied from the nodejs api documentation
+// Source URL: https://nodejs.org/api/fs.html#fsreadfilesyncpath-options
+
+// Citation for the use of the node path library 'path'
+// Date 10 June 2024
+// Copied from the nodejs api documentation. This library is used to join file paths
+//  in order to properly read the sql files.
+// Source URL: https://nodejs.org/api/path.html#path_path_join_paths
+
 // Citation for mysql database options configuration and the use of 'multipleStatements'
 // Date: 10 June 2024
 // Adapted from the nodejs documentation. The documentation provides examples of
