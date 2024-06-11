@@ -55,7 +55,7 @@ SELECT * FROM Invoices LEFT JOIN Gardeners ON Invoices.gardenerID = Gardeners.ga
 -- -- [GET] select relevant Gardener columns for dropdown menu to display names with PKs
 SELECT gardenerID, firstName, lastName FROM Gardeners;
 -- -- [GET] select all Invoices joined with Gardeners on gardenerID, so that only gardeners who appear in the Invoices table are returned
-`SELECT Invoices.invoiceID, Gardeners.gardenerID, Gardeners.firstName, Gardeners.lastName, Invoices.totalCost FROM Invoices JOIN Gardeners ON Invoices.gardenerID = Gardeners.gardenerID;`;
+SELECT Invoices.invoiceID, Gardeners.gardenerID, Gardeners.firstName, Gardeners.lastName, Invoices.totalCost FROM Invoices JOIN Gardeners ON Invoices.gardenerID = Gardeners.gardenerID;
 -- -- [POST] insert a new Invoice into the Invoices table
 INSERT INTO Invoices (gardenerID, totalCost) VALUES (?, ?);
 -- -- [POST] select the last row from the Invoices table joined with Gardeners on gardenerID
