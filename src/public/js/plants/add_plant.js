@@ -71,28 +71,17 @@ addRowToTable = (data) => {
     let plantTypeCell = document.createElement("TD");
     let plantPriceCell = document.createElement("TD");
 
-    let deleteCell = document.createElement("TD");
-
     // Fill the cells with correct data
     idCell.innerText = newRow.plantID;
     varietyNameCell.innerText = newRow.varietyName;
     plantTypeCell.innerText = newRow.type;
     plantPriceCell.innerText = '$' + parseFloat(newRow.price).toFixed(2);
 
-    // add delete button to new row
-    let deleteButton = document.createElement("button");
-    deleteButton.onclick = function () {
-        deletePlant(newRow.plantID);
-    };
-    deleteButton.innerText = "Delete";
-    deleteCell.appendChild(deleteButton);
-
     // Add the cells to the row 
     row.appendChild(idCell);
     row.appendChild(varietyNameCell);
     row.appendChild(plantTypeCell);
     row.appendChild(plantPriceCell);
-    row.appendChild(deleteCell);
 
     // Add a row attribute so the deleteRow function can find a newly added row
     row.setAttribute('data-value', newRow.plantID);
