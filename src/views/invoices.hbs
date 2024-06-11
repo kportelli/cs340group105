@@ -37,7 +37,7 @@ with dynamic drop down menus adapted from Step 6.
             {{#each data}}
             <tr>
                 <td>{{this.invoiceID}}</td>
-                <td>{{this.gardenerID}} {{this.firstName}} {{this.lastName}}</td>
+                <td>{{stringifyNull this.gardenerID}} {{this.firstName}} {{this.lastName}}</td>
                 <td>${{toFixed this.totalCost 2}}</td>
             </tr>
             {{/each}}

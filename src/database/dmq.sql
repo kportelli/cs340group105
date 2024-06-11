@@ -31,8 +31,8 @@ DELETE FROM Gardens WHERE gardenID = ?;
 DELETE FROM Plots WHERE gardenID = ?;
 
 -- Invoice Details
--- -- [GET] select joined data from InvoiceDetails, Plants, Invoices, and Gardeners tables
-SELECT InvoiceDetails.invoiceDetailID, Invoices.invoiceID, Plants.varietyName, Plants.type, InvoiceDetails.quantity, InvoiceDetails.price, InvoiceDetails.lineTotal, Gardeners.gardenerID, Gardeners.firstName, Gardeners.lastName FROM InvoiceDetails INNER JOIN Plants ON InvoiceDetails.plantID = Plants.plantID INNER JOIN Invoices ON InvoiceDetails.invoiceID = Invoices.invoiceID INNER JOIN Gardeners ON Invoices.gardenerID = Gardeners.gardenerID ORDER BY InvoiceDetails.invoiceDetailID ASC;
+-- -- [GET] select joined data from InvoiceDetails, Plants, Invoices, and Gardeners tables. Outer join Gardeners and Invoices so that ALL Invoices are returned, even if there is no matching gardenerID
+SELECT InvoiceDetails.invoiceDetailID, Invoices.invoiceID, Plants.varietyName, Plants.type, InvoiceDetails.quantity, InvoiceDetails.price, InvoiceDetails.lineTotal, Gardeners.gardenerID, Gardeners.firstName, Gardeners.lastName FROM InvoiceDetails INNER JOIN Plants ON InvoiceDetails.plantID = Plants.plantID INNER JOIN Invoices ON InvoiceDetails.invoiceID = Invoices.invoiceID LEFT JOIN Gardeners ON Invoices.gardenerID = Gardeners.gardenerID ORDER BY InvoiceDetails.invoiceDetailID ASC;
 -- -- [GET] select all plants from the Plants table
 SELECT plantID, varietyName, type, price FROM Plants;
 -- -- [GET] select invoices and gardeners joined by gardenerID
@@ -45,8 +45,8 @@ UPDATE Invoices SET totalCost = totalCost + ? WHERE Invoices.invoiceID = ?;
 SELECT InvoiceDetails.invoiceDetailID, Invoices.invoiceID, Plants.plantID, Plants.varietyName, Plants.type, InvoiceDetails.quantity, InvoiceDetails.price, InvoiceDetails.lineTotal, Gardeners.gardenerID, Gardeners.firstName, Gardeners.lastName FROM InvoiceDetails INNER JOIN Plants ON InvoiceDetails.plantID = Plants.plantID INNER JOIN Invoices ON InvoiceDetails.invoiceID = Invoices.invoiceID INNER JOIN Gardeners ON Invoices.gardenerID = Gardeners.gardenerID ORDER BY InvoiceDetails.invoiceDetailID ASC;
 
 -- Invoices
--- -- [GET] select all Invoices gardeners by joining Invoices and Gardeners on gardenerID
-SELECT * FROM Invoices JOIN Gardeners ON Invoices.gardenerID = Gardeners.gardenerID;
+-- -- [GET] select all Invoices gardeners by joining Invoices and Gardeners on gardenerID. Outer join Gardeners and Invoices so that ALL Invoices are returned, even if there is no matching gardenerID
+SELECT * FROM Invoices LEFT JOIN Gardeners ON Invoices.gardenerID = Gardeners.gardenerID;
 -- -- [GET] select relevant Gardener columns for dropdown menu to display names with PKs
 SELECT gardenerID, firstName, lastName FROM Gardeners;
 -- -- [POST] insert a new Invoice into the Invoices table

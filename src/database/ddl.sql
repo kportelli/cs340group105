@@ -114,7 +114,7 @@ CREATE TABLE PlantsPlots (
 CREATE TABLE PlotsGardeners (
   plotsGardenersID int(11) NOT NULL AUTO_INCREMENT,
   plotID int(11) NOT NULL,
-  gardenerID int(11) NOT NULL,
+  gardenerID int(11),
   PRIMARY KEY (plotsGardenersID),
   FOREIGN KEY (gardenerID) REFERENCES Gardeners (gardenerID) ON DELETE CASCADE ON UPDATE CASCADE,
   FOREIGN KEY (plotID) REFERENCES Plots (plotID) ON DELETE CASCADE ON UPDATE CASCADE

@@ -45,7 +45,7 @@ with dynamic drop down menus adapted from Step 6.
                 <td>{{this.quantity}}</td>
                 <td>${{toFixed this.price 2}}</td>
                 <td>${{toFixed this.lineTotal 2}}</td>
-                <td>{{this.gardenerID}} {{this.firstName}} {{this.lastName}}</td>
+                <td>{{stringifyNullGardener this}}</td>
             </tr>
             {{/each}}
         </tbody>

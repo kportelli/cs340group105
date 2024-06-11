@@ -26,5 +26,14 @@ module.exports = {
     },
     toFixed: function(value, decimals) {
         return parseFloat(value).toFixed(decimals);
+    },
+    stringifyNull: function(value) {
+        return value === null ? '[Removed]' : value;
+    },
+    stringifyNullGardener: function(value) {
+        if (value.gardenerID === null) {
+            return '[Removed]';
+        }
+        return `${value.gardenerID} ${value.firstName} ${value.lastName}`;
     }
 };
