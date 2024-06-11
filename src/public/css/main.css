@@ -82,6 +82,10 @@ form {
     text-align: center;
 }
 
+.form-details {
+    margin: 1em;
+}
+
 .form-btn {
     margin-top: 1em;
 }
