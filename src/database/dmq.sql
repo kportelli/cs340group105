@@ -1,3 +1,8 @@
+-- Alaaddin Hiefield and Kathryn Portelli
+-- Group 105
+-- Final Project Step 6 Updated DDL
+
+
 -- Gardeners
 -- -- [GET] get all Gardeners
 SELECT * FROM Gardeners;

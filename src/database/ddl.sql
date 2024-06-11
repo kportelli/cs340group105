@@ -1,6 +1,6 @@
 -- Alaaddin Hiefield and Kathryn Portelli
 -- Group 105
--- Step 2 Draft
+-- Final Project Step 6 Updated DDL
 
 -- --------------------------------------------------------
 -- Table structure for table `Gardens`
