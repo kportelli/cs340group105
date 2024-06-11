@@ -30,7 +30,6 @@ Dynamic drop down menus adapted from Step 6.
                 <th>Variety</th>
                 <th>Type</th>
                 <th>Price</th>
-                <th>Delete</th>
             </tr>
         </thead>
 
@@ -42,7 +41,6 @@ Dynamic drop down menus adapted from Step 6.
                 <td>{{this.Variety}}</td>
                 <td>{{this.Type}}</td>
                 <td>${{toFixed this.Price 2}}</td>
-                <td><button class="delete-row-button" onclick="deletePlant({{this.Id}})">Delete</button></td>
             </tr>
             {{/each}}
         </tbody>

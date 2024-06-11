@@ -69,12 +69,6 @@ SELECT * FROM Plants ORDER BY plantID DESC LIMIT 1;
 UPDATE Plants SET price = ? WHERE plantID = ?;
 -- -- [PUT] select a Plant by ID
 SELECT * FROM Plants WHERE plantID = ?;
--- -- [DELETE] delete the Plants row with the matching ID 
-DELETE FROM Plants WHERE plantID = ?;
--- -- [DELETE] delete the InvoiceDetails row with the matching plantID
-DELETE FROM InvoiceDetails WHERE plantID = ?;
--- -- [DELETE] delete the PlantsPlots row with the matching plantID
-DELETE FROM PlantsPlots WHERE plantID = ?;
 
 -- PlantsPlots
 -- -- [GET] select all PlantsPlots data joined with Plots, Plants, and Gardens
