@@ -73,6 +73,11 @@ function updateRow(data, plantID) {
             // Get td of gardener value
             let td = updateRowIndex.getElementsByTagName("td")[1];
 
+            // Check if the value is already updated
+            if (td.innerText == '[Removed]') {
+                continue;
+            }
+
             // Reassign price to our value we updated to
             td.innerText = '[Removed]'
 
