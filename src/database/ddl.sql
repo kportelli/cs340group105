@@ -148,7 +148,9 @@ INSERT INTO Gardeners (firstName, lastName, streetAddress, city, zip, email, pho
 INSERT INTO Invoices (gardenerID, totalCost) VALUES
 ((SELECT gardenerID FROM Gardeners WHERE gardenerID = 6), 125.00),
 ((SELECT gardenerID FROM Gardeners WHERE gardenerID = 5), 32.50),
-((SELECT gardenerID FROM Gardeners WHERE gardenerID = 1), 35.00);
+((SELECT gardenerID FROM Gardeners WHERE gardenerID = 1), 35.00),
+((SELECT gardenerID FROM Gardeners WHERE gardenerID = 2), 10.00),
+((SELECT gardenerID FROM Gardeners WHERE gardenerID = 2), 25.00);
 
 -- Insert data into Plants
 INSERT INTO Plants (varietyName, type, price) VALUES
@@ -188,6 +190,9 @@ INSERT INTO InvoiceDetails (plantID, invoiceID, price, quantity, lineTotal) VALU
 ((SELECT plantID FROM Plants WHERE plantID = 5), (SELECT invoiceID FROM Invoices WHERE invoiceID = 1), 25.00, 5, 125.00),
 ((SELECT plantID FROM Plants WHERE plantID = 4), (SELECT invoiceID FROM Invoices WHERE invoiceID = 2), 6.50, 5, 32.50),
 ((SELECT plantID FROM Plants WHERE plantID = 1), (SELECT invoiceID FROM Invoices WHERE invoiceID = 3), 10.00, 2, 20.00),
-((SELECT plantID FROM Plants WHERE plantID = 2), (SELECT invoiceID FROM Invoices WHERE invoiceID = 3), 5.00, 3, 15.00);
+((SELECT plantID FROM Plants WHERE plantID = 2), (SELECT invoiceID FROM Invoices WHERE invoiceID = 3), 5.00, 3, 15.00),
+((SELECT plantID FROM Plants WHERE plantID = 1), (SELECT invoiceID FROM Invoices WHERE invoiceID = 4), 10.00, 1, 10.00),
+((SELECT plantID FROM Plants WHERE plantID = 5), (SELECT invoiceID FROM Invoices WHERE invoiceID = 5), 25.00, 1, 25.00);
+
 
 SET FOREIGN_KEY_CHECKS=1;
