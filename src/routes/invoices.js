@@ -82,4 +82,31 @@ router.post('/add-invoice-ajax', function (req, res) {
     });
 });
 
+router.put('/update-invoice-ajax', function (req, res) {
+    let data = req.body;
+
+    // Update the Invoice with the given invoiceID
+    let query1 = `UPDATE Invoices SET gardenerID = NULL WHERE gardenerID = ?;`;
+
+    // Select the updated Invoice joined with Gardeners on gardenerID
+    let query2 = `SELECT invoiceID FROM Invoices WHERE gardenerID IS NULL;`;
+
+    db.pool.query(query1, [data.gardenerID], function (error, rows, fields) {
+        if (error) {
+            console.log(error)              // if there's an error, log it to console and return a 400 status code
+            res.sendStatus(400);
+        }
+        else {
+            db.pool.query(query2, [data.invoiceID], function (error2, rows, fields) {
+                if (error2) {
+                    console.log(error2);    // if there's an error, log it to console and return a 400 status code
+                    res.sendStatus(400);
+                } else {
+                    res.send(rows);         // Send the updated Invoice back to client
+                }
+            });
+        }
+    });
+});
+
 module.exports = router;

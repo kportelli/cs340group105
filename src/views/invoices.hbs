@@ -35,7 +35,7 @@ with dynamic drop down menus adapted from Step 6.
         {{! Fill out rows with data}}
         <tbody>
             {{#each data}}
-            <tr>
+            <tr data-value={{this.invoiceID}}>
                 <td>{{this.invoiceID}}</td>
                 <td>{{stringifyNull this.gardenerID}} {{this.firstName}} {{this.lastName}}</td>
                 <td>${{toFixed this.totalCost 2}}</td>
@@ -77,5 +77,29 @@ with dynamic drop down menus adapted from Step 6.
 
         </form>
     </div>
+
+    <div>
+        <form class="col g-1" id="update-invoice-form-ajax">
+            <span class="form-name">Remove Gardener</span>
+            <span class="form-details">By removing a Gardener, an Invoice will <i>freeze,</i> and no longer allow the addition of Invoice Details, or the reassignment of a Gardener to this Invoice.</span>
+            {{! Dropdown menu of Gardeners}}
+            <div class="input row-auto">
+                <select class="form-select" id="input-update-gardenerID-invoices" name="input-update-gardenerID-invoices" required>
+                    <option value="default">Select a Gardener</option>
+                    {{#each gardenerIDs}}
+                    <option value="{{this.gardenerID}}">{{this.gardenerID}} {{this.firstName}} {{this.lastName}}
+                    </option>
+                    {{/each}}
+                </select>
+            </div>
+
+            {{! Add Invoice submit button}}
+            <div class="input row-auto">
+                <button type="submit" class="form-btn btn btn-primary mb-3">Add</button>
+            </div>
+
+        </form>
+    </div>
 </div>
 <script src="./js/invoices/add_invoice.js"></script>
+<script src="./js/invoices/update_invoice.js"></script>
