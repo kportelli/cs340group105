@@ -53,9 +53,11 @@ updateInvoiceForm.addEventListener("submit", function (e) {
 
 function updateRow(data, plantID) {
     let parsedData = JSON.parse(data);
+    let parsedInvoiceIds = parsedData.data;
+    let gardenerID = parsedData.gardenerID;
 
     let listOfChangedInvoiceIds = [];
-    parsedData.forEach((e) => listOfChangedInvoiceIds.push(e.invoiceID));
+    parsedInvoiceIds.forEach((e) => listOfChangedInvoiceIds.push(e.invoiceID));
 
     let table = document.getElementById("invoices-table");
 
@@ -80,10 +82,18 @@ function updateRow(data, plantID) {
 
             // Reassign price to our value we updated to
             td.innerText = '[Removed]'
-
-            // reset select option to default
-            var selectElement = document.getElementById("input-update-gardenerID-invoices");
-            selectElement.selectedIndex = 0; // Reset to the first option
         }
     }
+
+    // iterate through the select options and remove the option that was selected
+    var selectElement = document.getElementById("input-update-gardenerID-invoices");
+    for (let i = 0; i < selectElement.length; i++) {
+        if (selectElement.options[i].value == gardenerID) {
+            selectElement.remove(i);
+        }
+    }
+
+    // reset select option to default
+    var selectElement = document.getElementById("input-update-gardenerID-invoices");
+    selectElement.selectedIndex = 0; // Reset to the first option
 }
