@@ -36,6 +36,9 @@ router.get('/invoices', (req, res) => {
     // Select relevant Gardener columns for dropdown menu to display names with PKs
     let query2 = `SELECT gardenerID, firstName, lastName FROM Gardeners;`;
 
+    // select all Invoices joined with Gardeners on gardenerID, so that only gardeners who appear in the Invoices table are returned
+    let query3 = `SELECT DISTINCT Gardeners.gardenerID, Gardeners.firstName, Gardeners.lastName FROM Gardeners JOIN Invoices ON Gardeners.gardenerID = Invoices.gardenerID;`;
+
     db.pool.query(query1, function (error, rows, fields) {
         if (error) {
             console.log(error);             // if there's an error, log it to console and return a 400 status code
@@ -46,8 +49,14 @@ router.get('/invoices', (req, res) => {
                     console.log(error2);    // if there's an error, log it to console and return a 400 status code
                     res.sendStatus(400);
                 } else {
-                    // Render the invoices hbs file, and send results from query1 (rows) and results from query2 (gardenerIDs)
-                    res.render('invoices', { data: rows, gardenerIDs });
+                    db.pool.query(query3, function (error3, invoiceGardenerIDs) {
+                        if (error3) {
+                            console.log(error3);    // if there's an error, log it to console and return a 400 status code
+                            res.sendStatus(400);
+                        } else {
+                            res.render('invoices', { data: rows, gardenerIDs, invoiceGardenerIDs}); // Render the invoices hbs file, and send results from query1 (rows) and results from query2 (gardenerIDs)
+                        }
+                    });
                 }
             });
         }
@@ -102,7 +111,7 @@ router.put('/update-invoice-ajax', function (req, res) {
                     console.log(error2);    // if there's an error, log it to console and return a 400 status code
                     res.sendStatus(400);
                 } else {
-                    res.send(rows);         // Send the updated Invoice back to client
+                    res.send({data: rows, gardenerID: data.gardenerID});         // Send the updated Invoice back to client
                 }
             });
         }
