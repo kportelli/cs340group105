@@ -35,7 +35,7 @@ var pool = mysql.createPool({
     connectionLimit : 10,
     host            : 'localhost',
     user            : 'api_user',
-    password        : ';0JBY)}kXx"un}O0',
+    // password        : /*redacted*/,
     database        : 'goc_dev'
 });
 
@@ -46,7 +46,7 @@ var adminpool = mysql.createPool({
     connectionLimit : 10,
     host            : 'localhost',
     user            : 'api_admin',
-    password        : ';0JBY)}kXx"un}O0',
+    // password        : /*redacted*/,
     database        : 'goc_dev',
     multipleStatements: true
 });
