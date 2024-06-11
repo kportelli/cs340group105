@@ -125,44 +125,4 @@ router.put('/put-plant-ajax', function (req, res, next) {
     });
 });
 
-// DELETE: Delete an existing Plant
-router.delete('/delete-plant-ajax/', function (req, res, next) {
-    let data = req.body;
-    let plantID = parseInt(data.id);
-
-    // delete the Plants row with the matching ID 
-    let deletePlantFromPlants = `DELETE FROM Plants WHERE plantID = ?;`;
-
-    // Also delete the Plant from InvoiceDetails
-    let deletePlantFromInvoiceDetails = `DELETE FROM InvoiceDetails WHERE plantID = ?;`;
-
-    // Also delete the Plant from PlantsPlots
-    let deletePlantFromPlantsPlots = `DELETE FROM PlantsPlots WHERE plantID = ?;`;
-
-    db.pool.query(deletePlantFromPlantsPlots, [plantID], function (error, rows, fields) {
-        if (error) {
-            console.log(error);                         // if there's an error, log it to console and return a 400 status code
-            res.sendStatus(400);
-        }
-        else {
-            db.pool.query(deletePlantFromInvoiceDetails, [plantID], function (error, rows, fields) {
-                if (error) {
-                    console.log(error);                 // if there's an error, log it to console and return a 400 status code
-                    res.sendStatus(400);
-                }
-                else {
-                    db.pool.query(deletePlantFromPlants, [plantID], function (error, rows, fields) {
-                        if (error) {
-                            console.log(error);         // if there's an error, log it to console and return a 400 status code
-                            res.sendStatus(400);
-                        } else {
-                            res.sendStatus(204);        // send a 204 status code to indicate success
-                        }
-                    });
-                }
-            });
-        }
-    });
-});
-
 module.exports = router;
