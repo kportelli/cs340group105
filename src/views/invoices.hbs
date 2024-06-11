@@ -9,14 +9,14 @@ Add Invoice form adapted from Step 5,
 with dynamic drop down menus adapted from Step 6.
 }}
 
- {{!-- 
- ----- Citations for Handlebars Helpers usage -----
- ----- Date: 10 June 2024
------- Adapted from Handlebars Helpers example code in Handlebars.js documentation to create and use 
+{{!--
+----- Citations for Handlebars Helpers usage -----
+----- Date: 10 June 2024
+------ Adapted from Handlebars Helpers example code in Handlebars.js documentation to create and use
 ------ a custom Handlebars Helper to convert JSON object to string.
 ------ Source URL: https://handlebarsjs.com/guide/builtin-helpers.html
 ------ Source URL: https://handlebarsjs.com/guide/expressions.html#helpers
-  --}}
+--}}
 
 {{! Display all Invoices data as a table}}
 <div class="page-table">
@@ -81,10 +81,12 @@ with dynamic drop down menus adapted from Step 6.
     <div>
         <form class="col g-1" id="update-invoice-form-ajax">
             <span class="form-name">Remove Gardener</span>
-            <span class="form-details">By removing a Gardener, an Invoice will <i>freeze,</i> and no longer allow the addition of Invoice Details, or the reassignment of a Gardener to this Invoice.</span>
+            <span class="form-details">By removing a Gardener, that Gardener's Invoice/s will <i>freeze,</i> and no
+                longer allow the addition of Invoice Details, or the reassignment of a Gardener to the Invoice/s.</span>
             {{! Dropdown menu of Gardeners}}
             <div class="input row-auto">
-                <select class="form-select" id="input-update-gardenerID-invoices" name="input-update-gardenerID-invoices" required>
+                <select class="form-select" id="input-update-gardenerID-invoices"
+                    name="input-update-gardenerID-invoices" required>
                     <option value="default">Select a Gardener</option>
                     {{#each invoiceGardenerIDs}}
                     <option value="{{this.gardenerID}}">{{this.gardenerID}} {{this.firstName}} {{this.lastName}}
