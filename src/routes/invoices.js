@@ -30,11 +30,11 @@ var db = require('../database/db-connector');
 // GET: Get all Invoices
 router.get('/invoices', (req, res) => {
     
-    // Select all Invoices gardeners by joining Invoices and Gardeners on gardenerID
-    let query1 = "SELECT * FROM Invoices JOIN Gardeners ON Invoices.gardenerID = Gardeners.gardenerID;";
+    // select all Invoices gardeners by joining Invoices and Gardeners on gardenerID. Outer join Gardeners and Invoices so that ALL Invoices are returned, even if there is no matching gardenerID
+    let query1 = `SELECT * FROM Invoices LEFT JOIN Gardeners ON Invoices.gardenerID = Gardeners.gardenerID;`;
 
     // Select relevant Gardener columns for dropdown menu to display names with PKs
-    let query2 = "SELECT gardenerID, firstName, lastName FROM Gardeners;";
+    let query2 = `SELECT gardenerID, firstName, lastName FROM Gardeners;`;
 
     db.pool.query(query1, function (error, rows, fields) {
         if (error) {

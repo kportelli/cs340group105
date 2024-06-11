@@ -30,8 +30,8 @@ var db = require('../database/db-connector');
 // GET: Get all InvoiceDetails
 router.get('/invoicedetails', (req, res) => {
 
-    // select joined data from InvoiceDetails, Plants, Invoices, and Gardeners tables
-    let query1 = `SELECT InvoiceDetails.invoiceDetailID, Invoices.invoiceID, Plants.varietyName, Plants.type, InvoiceDetails.quantity, InvoiceDetails.price, InvoiceDetails.lineTotal, Gardeners.gardenerID, Gardeners.firstName, Gardeners.lastName FROM InvoiceDetails INNER JOIN Plants ON InvoiceDetails.plantID = Plants.plantID INNER JOIN Invoices ON InvoiceDetails.invoiceID = Invoices.invoiceID INNER JOIN Gardeners ON Invoices.gardenerID = Gardeners.gardenerID ORDER BY InvoiceDetails.invoiceDetailID ASC;`;
+    // select joined data from InvoiceDetails, Plants, Invoices, and Gardeners tables. Outer join Gardeners and Invoices so that ALL Invoices are returned, even if there is no matching gardenerID
+    let query1 = `SELECT InvoiceDetails.invoiceDetailID, Invoices.invoiceID, Plants.varietyName, Plants.type, InvoiceDetails.quantity, InvoiceDetails.price, InvoiceDetails.lineTotal, Gardeners.gardenerID, Gardeners.firstName, Gardeners.lastName FROM InvoiceDetails INNER JOIN Plants ON InvoiceDetails.plantID = Plants.plantID INNER JOIN Invoices ON InvoiceDetails.invoiceID = Invoices.invoiceID LEFT JOIN Gardeners ON Invoices.gardenerID = Gardeners.gardenerID ORDER BY InvoiceDetails.invoiceDetailID ASC;`;
 
     // select all plants from Plants table to show in drop down
     let query2 = `SELECT plantID, varietyName, type, price FROM Plants;`;
